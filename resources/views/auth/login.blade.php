@@ -5,7 +5,7 @@
 <div class="login-container">
     <div class="row justify-content-center">
         <h1 class="text-center">
-            Birbal Sahni Institute of Palaeosciences
+            Dev : Birbal Sahni Institute of Palaeosciences
         </h1>
         <span class="text-center mb-3">An Autonomuous Institute Under The Department of Science & Technology, Government of India </span>
         <hr style="-webkit-box-shadow: 0px 0px 5px 0px rgba(55,59,168,1);
