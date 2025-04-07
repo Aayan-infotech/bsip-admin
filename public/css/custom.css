@@ -1,0 +1,12 @@
+.card-custom {
+    /* background: linear-gradient(135deg, #f8f9fa, #e9ecef); */
+    background: rgb(36,0,15);
+    background: linear-gradient(90deg, rgba(36,0,15,1) 0%, rgba(121,9,19,1) 35%, rgba(255,0,0,0.8771708512506565) 100%); 
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-custom .card-title {
+    color: #007bff;
+}
+
