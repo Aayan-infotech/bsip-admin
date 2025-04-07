@@ -49,7 +49,7 @@ class LoginController extends Controller
         }
         
         if (Auth::attempt($request->only('email', 'password'))) {
-            return response()->json(['message' => 'Login successful!', 'redirect' => url('/')]);
+            return response()->json(['message' => 'Login successful!', 'redirect' => url('/adminDashboard')]);
         } else {
             return response()->json(['error' => 'Invalid credentials!'], 401);
         }
@@ -59,7 +59,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/adminDashboard');
     }
 }
 

@@ -15,7 +15,7 @@
                 <div class="card-header">
                     <nav aria-label="breadcrumb" class="float-start">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/adminDashboard') }}"><i class="fa fa-home"></i></a></li>
                             <li class="breadcrumb-item">Template Management</li>
                             <li class="breadcrumb-item"><a href="{{ url('/headerMenu') }}">Header Menus</a></li>
                         </ol>

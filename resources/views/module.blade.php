@@ -12,7 +12,7 @@
                     <!-- {{ __('User Management') }} -->
                     <nav aria-label="breadcrumb" class="float-start">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/adminDashboard') }}"><i class="fa fa-home"></i></a></li>
                             <li class="breadcrumb-item">User Management</li>
                             <li class="breadcrumb-item"><a href="{{ url('/modules') }}">Modules</a></li>
                         </ol>

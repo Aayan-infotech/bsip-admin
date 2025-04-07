@@ -20,7 +20,7 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/adminDashboard', [HomeController::class, 'index'])->name('home');
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
 Route::get('/list', [UserController::class, 'getUsers'])->name('users.list'); // For Yajra DataTable
@@ -83,7 +83,7 @@ Route::post('/menuPages/{id}/toggleStatus', [MenuPageController::class, 'toggleS
 
 // Route::get('/', function () { return view('dashboard'); })->name('dashboard')->middleware('auth');
 
-Route::get('/default', function () {
+Route::get('/', function () {
     return "Under Development";
 });
 
@@ -91,3 +91,8 @@ Route::get('/default', function () {
 
 
 // Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+// Web Routes.
+
+
