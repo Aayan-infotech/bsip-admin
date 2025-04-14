@@ -12,6 +12,8 @@ use App\Http\Controllers\UserRightsController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\HeaderMenuController;
 use App\Http\Controllers\MenuPageController;
+use Illuminate\Support\Facades\Cache;
+use App\Http\Controllers\Admin\WebContentManagementController;
 
 Auth::routes();
 
@@ -19,8 +21,9 @@ Auth::routes();
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
 Route::get('/adminDashboard', [HomeController::class, 'index'])->name('home');
+
+
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
 Route::get('/list', [UserController::class, 'getUsers'])->name('users.list'); // For Yajra DataTable
@@ -79,20 +82,70 @@ Route::get('/menuPages/{id}/edit', [MenuPageController::class, 'edit'])->name('m
 Route::put('/menuPages/{id}', [MenuPageController::class, 'update'])->name('menuPages.update');
 Route::post('/menuPages/{id}/toggleStatus', [MenuPageController::class, 'toggleStatus'])->name('menuPages.toggleStatus');
 
+// Web Content Management
+Route::get('/sliders', [WebContentManagementController::class, 'index'])->name('sliders.index');
+Route::post('/sliders', [WebContentManagementController::class, 'store'])->name('sliders.store');
+Route::get('/sliders/data', [WebContentManagementController::class, 'getData'])->name('sliders.data');
+Route::get('/sliders/edit/{id}', [WebContentManagementController::class, 'edit'])->name('sliders.edit');
+Route::post('/sliders/update/{id}', [WebContentManagementController::class, 'update'])->name('sliders.update');
+Route::post('/sliders/updateStatus', [WebContentManagementController::class, 'toggleStatus'])->name('sliders.updateStatus');
 
+Route::get('/notices', [WebContentManagementController::class, 'noticesIndex'])->name('notices.index');
+Route::get('/notices/data', [WebContentManagementController::class, 'getNoticesData'])->name('notices.data');
+Route::post('/notices', [WebContentManagementController::class, 'storeNotice'])->name('notices.store');
+Route::get('/notices/edit/{id}', [WebContentManagementController::class, 'editNotice'])->name('notices.edit');
+Route::post('/notices/update/{id}', [WebContentManagementController::class, 'updateNotice'])->name('notices.update');
+Route::post('/notices/toggleStatus', [WebContentManagementController::class, 'toggleNoticeStatus'])->name('notices.toggleStatus');
+Route::post('/notices/archiveExpired', [WebContentManagementController::class, 'archiveExpiredNotices'])->name('notices.archiveExpired');
+Route::post('/notices/toggleArchivedStatus', [WebContentManagementController::class, 'toggleArchivedStatus'])->name('notices.toggleArchivedStatus');
 
+Route::get('/careers', [WebContentManagementController::class, 'careersIndex'])->name('careers.index');
+Route::get('/careers/data', [WebContentManagementController::class, 'getCareersData'])->name('careers.data');
+Route::post('/careers', [WebContentManagementController::class, 'storeCareer'])->name('careers.store');
+Route::get('/careers/edit/{id}', [WebContentManagementController::class, 'editCareer'])->name('careers.edit');
+Route::post('/careers/update/{id}', [WebContentManagementController::class, 'updateCareer'])->name('careers.update');
+Route::post('/careers/toggleStatus', [WebContentManagementController::class, 'toggleCareerStatus'])->name('careers.toggleStatus');
+Route::post('/careers/toggleArchivedStatus', [WebContentManagementController::class, 'toggleCareerArchivedStatus'])->name('careers.toggleArchivedStatus');
 // Route::get('/', function () { return view('dashboard'); })->name('dashboard')->middleware('auth');
 
-Route::get('/', function () {
-    return "Under Development";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\LanguageSetting;
+use App\Http\Controllers\FrontendController;
+
+Route::get('/initialize-visitor-count', function () {
+    Cache::put('visitor_count', 0);
+    return 'Visitor count initialized to 0';
 });
 
+Route::get('/', function () {
+    $activeLanguage = LanguageSetting::where('status', 1)->first();
 
+    if ($activeLanguage) {
+        return redirect('/' . $activeLanguage->language);
+    }
 
+    return redirect('/en');
+});
 
-// Route::get('/', [HomeController::class, 'index'])->name('home');
-
-
-// Web Routes.
-
+Route::group(['prefix' => '{language}', 'where' => ['language' => 'en|hi']], function () {
+    Route::get('/', [FrontendController::class, 'home'])->name('frontend.home');
+});
 

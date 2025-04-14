@@ -601,9 +601,10 @@
                 url: "{{ route('template.language.get') }}", // Replace with your route to fetch language
                 type: 'GET',
                 success: function(response) {
-                    if (response && response.language) {
+                    // console.log(response.selectedLanguage.language);
+                    if (response && response.selectedLanguage) {
                         // Set the selected language
-                        $(`#languageForm input[name="language"][value="${response.language}"]`).prop('checked', true);
+                        $(`#languageForm input[name="language"][value="${response.selectedLanguage.language}"]`).prop('checked', true);
                     }
                 },
                 error: function() {

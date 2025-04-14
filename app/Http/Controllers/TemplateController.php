@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -95,8 +96,13 @@ class TemplateController extends Controller
 
     public function getLanguage()
     {
-        $language = LanguageSetting::first(); // Fetch the first language setting
-        return response()->json($language);
+        $languages = LanguageSetting::all(); // Fetch all languages
+        $selectedLanguage = LanguageSetting::where('status', 1)->first(); // Fetch the active language
+
+        return response()->json([
+            'languages' => $languages,
+            'selectedLanguage' => $selectedLanguage,
+        ]);
     }
 
     public function storeLanguage(Request $request)
@@ -105,14 +111,18 @@ class TemplateController extends Controller
             'language' => 'required|in:en,hi',
         ]);
 
-        $language = LanguageSetting::first();
+        // Set the status of all languages to 0
+        LanguageSetting::query()->update(['status' => 0]);
+
+        // Check if the language already exists
+        $language = LanguageSetting::where('language', $request->language)->first();
 
         if ($language) {
-            // Update existing language
-            $language->update(['language' => $request->language]);
+            // Update existing language and set status to 1
+            $language->update(['status' => 1]);
         } else {
-            // Create a new language setting
-            LanguageSetting::create(['language' => $request->language]);
+            // Create a new language setting with status = 1
+            LanguageSetting::create(['language' => $request->language, 'status' => 1]);
         }
 
         return response()->json(['message' => 'Language saved successfully!']);
