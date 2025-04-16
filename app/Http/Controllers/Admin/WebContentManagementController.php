@@ -11,8 +11,11 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Slider;
 use App\Models\Notice;
 use App\Models\Career;
-use Carbon\Carbon;
+use App\Models\Tender;
+use App\Models\Pastevents;
+use App\Models\Forms;
 
+use Carbon\Carbon;
 
 class WebContentManagementController extends Controller
 {
@@ -141,19 +144,19 @@ class WebContentManagementController extends Controller
             // $sliders = Notice::where('archived_status', 'No')->get();
             $sliders = Notice::get();
             return DataTables::of($sliders)
-                ->addColumn('status', function ($slider) {
-                    $checked = $slider->status ? 'checked' : '';
-                    $statusText = $slider->status
-                        ? '<span class="badge badge-success" style="color: white;background: #2c751d;">Active</span>'
-                        : '<span class="badge badge-danger" style="color: white;background: #df0d17;">Blocked</span>';
+            ->addColumn('status', function ($slider) {
+                $checked = $slider->status ? 'checked' : '';
+                $statusText = $slider->status
+                    ? ' <span class="badge badge-success" style="color: white;background: #2c751d;">Active</span>'
+                    : ' <span class="badge badge-danger" style="color: white;background: #df0d17;">Blocked</span>';
 
-                    $checked1 = $slider->archived_status === 'Yes' ? 'checked' : '';
-                    $statusText1 = $slider->archived_status === 'Yes'
-                        ? '<span class="badge badge-warning" style="color: white;background:rgb(180, 5, 151);">Archived</span>'
-                        : '<span class="badge badge-info" style="color: white;background: #053479;">Un-Archived</span>';
-                    return '<input type="checkbox" class="toggle-status" data-id="' . $slider->id . '" ' . $checked . '> ' . $statusText .
-                        ' <input type="checkbox" class="toggle-archived-status" data-id="' . $slider->id . '" ' . $checked1 . '> ' . $statusText1;
-                })
+                $checked1 = $slider->archived_status === 'Yes' ? 'checked' : '';
+                $statusText1 = $slider->archived_status === 'Yes'
+                    ? ' <span class="badge badge-warning" style="color: white;background:rgb(180, 5, 151);">Archived</span>'
+                    : ' <span class="badge badge-info" style="color: white;background: #053479;">Un-Archived</span>';
+                return '<div class="d-flex"> <input type="checkbox" class="toggle-status me-2" data-id="' . $slider->id . '" ' . $checked . '> ' . $statusText . '</div>' .
+                    '<br><div class="d-flex"> <input type="checkbox" class="toggle-archived-status me-2" data-id="' . $slider->id . '" ' . $checked1 . '> ' . $statusText1 . '</div>';
+            })
                 ->addColumn('action', function ($slider) {
                     return '<button class="btn btn-sm btn-primary edit-notice" data-id="' . $slider->id . '">
                     <i class="fas fa-edit"></i>
@@ -440,6 +443,457 @@ class WebContentManagementController extends Controller
     public function toggleCareerArchivedStatus(Request $request)
     {
         $career = Career::findOrFail($request->id);
+        $career->archived_status = $request->status === 'Yes' ? 'Yes' : 'No';
+        $career->save();
+
+        return response()->json(['success' => 'Archived status updated successfully.']);
+    }
+    public function tendersIndex()
+    {
+        return view('tenders');
+    }
+
+    // Fetch Careers Data for DataTable
+    public function gettendersData(Request $request)
+    {
+        if ($request->ajax()) {
+            // $sliders = Notice::where('archived_status', 'No')->get();
+            $sliders = Tender::get();
+            return DataTables::of($sliders)
+                ->addColumn('status', function ($slider) {
+                    $checked = $slider->status ? 'checked' : '';
+                    $statusText = $slider->status
+                        ? ' <span class="badge badge-success" style="color: white;background: #2c751d;">Active</span>'
+                        : ' <span class="badge badge-danger" style="color: white;background: #df0d17;">Blocked</span>';
+
+                    $checked1 = $slider->archived_status === 'Yes' ? 'checked' : '';
+                    $statusText1 = $slider->archived_status === 'Yes'
+                        ? ' <span class="badge badge-warning" style="color: white;background:rgb(180, 5, 151);">Archived</span>'
+                        : ' <span class="badge badge-info" style="color: white;background: #053479;">Un-Archived</span>';
+                    return '<div class="d-flex"> <input type="checkbox" class="toggle-status me-2" data-id="' . $slider->id . '" ' . $checked . '> ' . $statusText . '</div>' .
+                        '<br><div class="d-flex"> <input type="checkbox" class="toggle-archived-status me-2" data-id="' . $slider->id . '" ' . $checked1 . '> ' . $statusText1 . '</div>';
+                })
+                ->addColumn('action', function ($slider) {
+                    return '<button class="btn btn-sm btn-primary edit-tender" data-id="' . $slider->id . '">
+                    <i class="fas fa-edit"></i>
+                </button>';
+                })
+                ->editColumn('expiry_date', function ($slider) {
+                    return Carbon::parse($slider->expiry_date)->format('d-m-Y');
+                })
+                ->rawColumns(['status', 'action'])
+                ->make(true);
+        }
+
+      
+    }
+
+    // Store Career
+    public function storetender(Request $request)
+    {
+        $request->validate([
+            'reference_no' => 'required|string',
+            'title' => 'required|string|max:255',
+            'hin_title' => 'required|string|max:255',
+            'tender_document' => 'required|file|mimes:pdf|max:2048',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'g-recaptcha-response' => 'required',
+        ]);
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => env('RECAPTCHA_SECRET_KEY'),
+            'response' => $request->input('g-recaptcha-response'),
+        ]);
+
+        $result = $response->json();
+
+        if (!isset($result['success']) || !$result['success'] || !isset($result['score']) || $result['score'] < 0.5) {
+            return response()->json(['error' => 'reCAPTCHA verification failed!'], 422);
+        }
+
+        $pdfPath = null;
+        if ($request->hasFile('tender_document')) {
+            $pdfPath = $request->file('tender_document')->store('tenders', 'public');
+        }
+
+        Tender::create([
+            'reference_no' => $request->reference_no,
+            'title' => $request->title,
+            'hin_title' => $request->hin_title,
+            'tender_document' => $pdfPath,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'status' => 1,
+            'archived_status' => 'No',
+        ]);
+
+        return response()->json(['message' => 'Tender added successfully.']);
+    }
+
+    // Edit Career
+    public function edittender($id)
+    {
+        $career = Tender::findOrFail($id);
+
+        return response()->json([
+            'id' => $career->id,
+            'reference_no' => $career->reference_no,
+            'title' => $career->title,
+            'hin_title' => $career->hin_title,
+            'start_date' => $career->start_date,
+            'end_date' => $career->end_date,
+        ]);
+    }
+
+    // Update Career
+    public function updatetender(Request $request, $id)
+    {
+        $request->validate([
+            'reference_no' => 'required|string',
+            'title' => 'required|string|max:255',
+            'hin_title' => 'required|string|max:255',
+            'tender_document' => 'nullable|file|mimes:pdf|max:2048',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+        ]);
+
+        $career = Tender::findOrFail($id);
+
+        if ($request->hasFile('tender_document')) {
+            $tender_documentPath = $request->file('tender_document')->store('tenders', 'public');
+            $career->tender_document = $tender_documentPath;
+        }
+
+        $career->update([
+            'reference_no' => $request->title,
+            'title' => $request->hin_title,
+            'hin_title_title' => $request->url,
+            'start_date_date' => $request->interview_date,
+            'end_date_date' => $request->last_date,
+        ]);
+
+        return response()->json(['message' => 'Tender updated successfully.']);
+    }
+
+    // Toggle Career Status
+    public function toggletenderStatus(Request $request)
+    {
+        $career = Tender::findOrFail($request->id);
+        $career->status = $request->status;
+        $career->save();
+
+        return response()->json(['success' => 'Status updated successfully.']);
+    }
+
+    // Toggle Archived Status
+    public function toggletenderArchivedStatus(Request $request)
+    {
+        $career = Tender::findOrFail($request->id);
+        $career->archived_status = $request->status === 'Yes' ? 'Yes' : 'No';
+        $career->save();
+
+        return response()->json(['success' => 'Archived status updated successfully.']);
+    }
+
+
+    public function pastEventsIndex()
+    {
+        return view('pastEvents');
+    }
+
+    // Fetch Careers Data for DataTable
+    public function getpastEventsData(Request $request)
+    {
+        if ($request->ajax()) {
+            // $sliders = Notice::where('archived_status', 'No')->get();
+            $sliders = pastEvents::get();
+            return DataTables::of($sliders)
+                ->addColumn('status', function ($slider) {
+                    $checked = $slider->status ? 'checked' : '';
+                    $statusText = $slider->status
+                        ? ' <span class="badge badge-success" style="color: white;background: #2c751d;">Active</span>'
+                        : ' <span class="badge badge-danger" style="color: white;background: #df0d17;">Blocked</span>';
+
+                    $checked1 = $slider->archived_status === 'Yes' ? 'checked' : '';
+                    $statusText1 = $slider->archived_status === 'Yes'
+                        ? ' <span class="badge badge-warning" style="color: white;background:rgb(180, 5, 151);">Archived</span>'
+                        : ' <span class="badge badge-info" style="color: white;background: #053479;">Un-Archived</span>';
+                    return '<div class="d-flex"> <input type="checkbox" class="toggle-status me-2" data-id="' . $slider->id . '" ' . $checked . '> ' . $statusText . '</div>' .
+                        '<br><div class="d-flex"> <input type="checkbox" class="toggle-archived-status me-2" data-id="' . $slider->id . '" ' . $checked1 . '> ' . $statusText1 . '</div>';
+                })
+                ->addColumn('action', function ($slider) {
+                    return '<button class="btn btn-sm btn-primary edit-past-event" data-id="' . $slider->id . '">
+                    <i class="fas fa-edit"></i>
+                </button>';
+                })
+                ->editColumn('expiry_date', function ($slider) {
+                    return Carbon::parse($slider->expiry_date)->format('d-m-Y');
+                })
+                ->rawColumns(['status', 'action'])
+                ->make(true);
+        }
+
+      
+    }
+
+    // Store Career
+    public function storepastEvents(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'hin_title' => 'required|string',
+            'pdf' => 'required|file|mimes:pdf|max:2048',
+            'facebook_url' => 'nullable|string|max:255',
+            'youtube_url' => 'nullable|string',
+            'g-recaptcha-response' => 'required',
+        ]);
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => env('RECAPTCHA_SECRET_KEY'),
+            'response' => $request->input('g-recaptcha-response'),
+        ]);
+
+        $result = $response->json();
+
+        if (!isset($result['success']) || !$result['success'] || !isset($result['score']) || $result['score'] < 0.5) {
+            return response()->json(['error' => 'reCAPTCHA verification failed!'], 422);
+        }
+
+        $pdfPath = null;
+        if ($request->hasFile('pdf')) {
+            $pdfPath = $request->file('pdf')->store('pastEvents', 'public');
+        }
+
+        pastEvents::create([
+            'title' => $request->title,
+            'hin_title' => $request->hin_title,
+            'pdf' => $pdfPath,
+            'facebook_url' => $request->facebook_url,
+            'youtube_url' => $request->youtube_url,
+            'status' => 1,
+            'archived_status' => 'No',
+        ]);
+
+        return response()->json(['message' => 'Event added successfully.']);
+    }
+
+    // Edit Career
+    public function editpastEvents($id)
+    {
+        $career = pastEvents::findOrFail($id);
+
+        return response()->json([
+            'id' => $career->id,
+            'title' => $career->title,
+            'hin_title' => $career->hin_title,
+            'pdf' => $career->pdf,
+            'facebook_url' => $career->facebook_url,
+            'youtube_url' => $career->youtube_url,
+        ]);
+    }
+
+    // Update Career
+    public function updatepastEvents(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'hin_title' => 'required|string',
+            'pdf' => 'nullable|file|mimes:pdf|max:2048',
+            'facebook_url' => 'nullable|string|max:255',
+            'youtube_url' => 'nullable|string',
+        ]);
+
+        $career = pastEvents::findOrFail($id);
+
+        if ($request->hasFile('pdf')) {
+            $tender_documentPath = $request->file('pdf')->store('pastEvents', 'public');
+            $career->tender_document = $tender_documentPath;
+        }
+
+        $career->update([
+            'title' => $request->title,
+            'hin_title' => $request->hin_title,
+            'facebook_url' => $request->facebook_url,
+            'youtube_url' => $request->youtube_url,
+        ]);
+
+        return response()->json(['message' => 'Event updated successfully.']);
+    }
+
+    // Toggle Career Status
+    public function togglepastEventsStatus(Request $request)
+    {
+        $career = pastEvents::findOrFail($request->id);
+        $career->status = $request->status;
+        $career->save();
+
+        return response()->json(['success' => 'Status updated successfully.']);
+    }
+
+    // Toggle Archived Status
+    public function togglepastEventsArchivedStatus(Request $request)
+    {
+        $career = pastEvents::findOrFail($request->id);
+        $career->archived_status = $request->status === 'Yes' ? 'Yes' : 'No';
+        $career->save();
+
+        return response()->json(['success' => 'Archived status updated successfully.']);
+    }
+
+
+    public function formsIndex()
+    {
+        return view('forms');
+    }
+
+    // Fetch Careers Data for DataTable
+    public function getformsData(Request $request)
+    {
+        if ($request->ajax()) {
+            // $sliders = Notice::where('archived_status', 'No')->get();
+            $sliders = Forms::get();
+            return DataTables::of($sliders)
+                ->addColumn('status', function ($slider) {
+                    $checked = $slider->status ? 'checked' : '';
+                    $statusText = $slider->status
+                        ? ' <span class="badge badge-success" style="color: white;background: #2c751d;">Active</span>'
+                        : ' <span class="badge badge-danger" style="color: white;background: #df0d17;">Blocked</span>';
+
+                    $checked1 = $slider->archived_status === 'Yes' ? 'checked' : '';
+                    $statusText1 = $slider->archived_status === 'Yes'
+                        ? ' <span class="badge badge-warning" style="color: white;background:rgb(180, 5, 151);">Archived</span>'
+                        : ' <span class="badge badge-info" style="color: white;background: #053479;">Un-Archived</span>';
+                    return '<div class="d-flex"> <input type="checkbox" class="toggle-status me-2" data-id="' . $slider->id . '" ' . $checked . '> ' . $statusText . '</div>' .
+                        '<br><div class="d-flex"> <input type="checkbox" class="toggle-archived-status me-2" data-id="' . $slider->id . '" ' . $checked1 . '> ' . $statusText1 . '</div>';
+                })
+                ->addColumn('action', function ($slider) {
+                    return '<button class="btn btn-sm btn-primary edit-forms" data-id="' . $slider->id . '">
+                    <i class="fas fa-edit"></i>
+                </button>';
+                })
+                ->editColumn('expiry_date', function ($slider) {
+                    return Carbon::parse($slider->expiry_date)->format('d-m-Y');
+                })
+                ->rawColumns(['status', 'action'])
+                ->make(true);
+        }
+
+      
+    }
+
+    // Store Career
+    public function storeforms(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'hin_title' => 'required|string',
+            'pdf' => 'required|file|mimes:pdf|max:2048',
+            'document' => 'nullable|file|max:2048',
+            'hin_document' => 'nullable|file|max:2048',
+            'g-recaptcha-response' => 'required',
+        ]);
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => env('RECAPTCHA_SECRET_KEY'),
+            'response' => $request->input('g-recaptcha-response'),
+        ]);
+
+        $result = $response->json();
+
+        if (!isset($result['success']) || !$result['success'] || !isset($result['score']) || $result['score'] < 0.5) {
+            return response()->json(['error' => 'reCAPTCHA verification failed!'], 422);
+        }
+
+        $pdfPath = null;
+        if ($request->hasFile('pdf')) {
+            $pdfPath = $request->file('pdf')->store('forms', 'public');
+        }
+        $pdfPath1 = null;
+        if ($request->hasFile('document')) {
+            $pdfPath1 = $request->file('document')->store('forms', 'public');
+        }
+        $pdfPath2 = null;
+        if ($request->hasFile('hin_document')) {
+            $pdfPath2 = $request->file('hin_document')->store('forms', 'public');
+        }
+
+        Forms::create([
+            'title' => $request->title,
+            'hin_title' => $request->hin_title,
+            'pdf' => $pdfPath,
+            'document' => $pdfPath1,
+            'hin_document' => $pdfPath2,
+            'status' => 1,
+            'archived_status' => 'No',
+        ]);
+
+        return response()->json(['message' => 'Event added successfully.']);
+    }
+
+    // Edit Career
+    public function editforms($id)
+    {
+        $career = Forms::findOrFail($id);
+
+        return response()->json([
+            'id' => $career->id,
+            'title' => $career->title,
+            'hin_title' => $career->hin_title,
+            'pdf' => $career->pdf,
+            'document' => $career->document,
+            'hin_document' => $career->hin_document,
+        ]);
+    }
+
+    // Update Career
+    public function updateforms(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'hin_title' => 'required|string',
+            'pdf' => 'nullable|file|mimes:pdf|max:2048',
+            'document' => 'nullable|file|max:2048',
+            'hin_document' => 'nullable|file|max:2048',
+        ]);
+
+        $career = Forms::findOrFail($id);
+
+        if ($request->hasFile('pdf')) {
+            $tender_documentPath = $request->file('pdf')->store('pastEvents', 'public');
+            $career->pdf = $tender_documentPath;
+        }
+        if ($request->hasFile('document')) {
+            $tender_documentPath = $request->file('document')->store('pastEvents', 'public');
+            $career->document = $tender_documentPath;
+        }
+        if ($request->hasFile('hin_document')) {
+            $tender_documentPath = $request->file('hin_document')->store('pastEvents', 'public');
+            $career->hin_document = $tender_documentPath;
+        }
+
+        $career->update([
+            'title' => $request->title,
+            'hin_title' => $request->hin_title,
+        ]);
+
+        return response()->json(['message' => 'Event updated successfully.']);
+    }
+
+    // Toggle Career Status
+    public function toggleformsStatus(Request $request)
+    {
+        $career = Forms::findOrFail($request->id);
+        $career->status = $request->status;
+        $career->save();
+
+        return response()->json(['success' => 'Status updated successfully.']);
+    }
+
+    // Toggle Archived Status
+    public function toggleformsArchivedStatus(Request $request)
+    {
+        $career = Forms::findOrFail($request->id);
         $career->archived_status = $request->status === 'Yes' ? 'Yes' : 'No';
         $career->save();
 

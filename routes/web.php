@@ -106,6 +106,33 @@ Route::get('/careers/edit/{id}', [WebContentManagementController::class, 'editCa
 Route::post('/careers/update/{id}', [WebContentManagementController::class, 'updateCareer'])->name('careers.update');
 Route::post('/careers/toggleStatus', [WebContentManagementController::class, 'toggleCareerStatus'])->name('careers.toggleStatus');
 Route::post('/careers/toggleArchivedStatus', [WebContentManagementController::class, 'toggleCareerArchivedStatus'])->name('careers.toggleArchivedStatus');
+
+Route::get('/tenders', [WebContentManagementController::class, 'tendersIndex'])->name('tenders.index');
+Route::get('/tenders/data', [WebContentManagementController::class, 'gettendersData'])->name('tenders.data');
+Route::post('/tenders', [WebContentManagementController::class, 'storetender'])->name('tenders.store');
+Route::get('/tenders/edit/{id}', [WebContentManagementController::class, 'edittender'])->name('tenders.edit');
+Route::post('/tenders/update/{id}', [WebContentManagementController::class, 'updatetender'])->name('tenders.update');
+Route::post('/tenders/toggleStatus', [WebContentManagementController::class, 'toggletenderstatus'])->name('tenders.toggleStatus');
+Route::post('/tenders/toggleArchivedStatus', [WebContentManagementController::class, 'toggletenderArchivedStatus'])->name('tenders.toggleArchivedStatus');
+
+Route::get('/pastEvents', [WebContentManagementController::class, 'pastEventsIndex'])->name('pastEvents.index');
+Route::get('/pastEvents/data', [WebContentManagementController::class, 'getpastEventsData'])->name('pastEvents.data');
+Route::post('/pastEvents', [WebContentManagementController::class, 'storepastEvents'])->name('pastEvents.store');
+Route::get('/pastEvents/edit/{id}', [WebContentManagementController::class, 'editpastEvents'])->name('pastEvents.edit');
+Route::post('/pastEvents/update/{id}', [WebContentManagementController::class, 'updatepastEvents'])->name('pastEvents.update');
+Route::post('/pastEvents/toggleStatus', [WebContentManagementController::class, 'togglepastEventstatus'])->name('pastEvents.toggleStatus');
+Route::post('/pastEvents/toggleArchivedStatus', [WebContentManagementController::class, 'togglepastEventsArchivedStatus'])->name('pastEvents.toggleArchivedStatus');
+
+Route::get('/forms', [WebContentManagementController::class, 'formsIndex'])->name('forms.index');
+Route::get('/forms/data', [WebContentManagementController::class, 'getformsData'])->name('forms.data');
+Route::post('/forms', [WebContentManagementController::class, 'storeforms'])->name('forms.store');
+Route::get('/forms/edit/{id}', [WebContentManagementController::class, 'editforms'])->name('forms.edit');
+Route::post('/forms/update/{id}', [WebContentManagementController::class, 'updateforms'])->name('forms.update');
+Route::post('/forms/toggleStatus', [WebContentManagementController::class, 'toggleformsStatus'])->name('forms.toggleStatus');
+Route::post('/forms/toggleArchivedStatus', [WebContentManagementController::class, 'toggleformsArchivedStatus'])->name('forms.toggleArchivedStatus');
+
+
+
 // Route::get('/', function () { return view('dashboard'); })->name('dashboard')->middleware('auth');
 
 
