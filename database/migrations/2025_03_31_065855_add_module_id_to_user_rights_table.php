@@ -9,8 +9,8 @@ class AddModuleIdToUserRightsTable extends Migration
     public function up()
     {
         Schema::table('user_rights', function (Blueprint $table) {
-            $table->unsignedBigInteger('module_id')->nullable()->after('page_id'); // Add module_id column
-            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade'); // Add foreign key constraint
+            // $table->unsignedBigInteger('module_id')->nullable()->after('page_id'); // Add module_id column
+            // $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade'); // Add foreign key constraint
         });
     }
 

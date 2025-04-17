@@ -8,7 +8,7 @@ class AddHinTitleToImportantLinksTable extends Migration
     public function up()
     {
         Schema::table('important_links', function (Blueprint $table) {
-            $table->string('hin_title')->nullable()->after('title'); // Add the hin_title column
+            // $table->string('hin_title')->nullable()->after('title'); // Add the hin_title column
         });
     }
 

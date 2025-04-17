@@ -13,6 +13,7 @@ use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\HeaderMenuController;
 use App\Http\Controllers\MenuPageController;
 use Illuminate\Support\Facades\Cache;
+use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\Admin\WebContentManagementController;
 
 Auth::routes();
@@ -130,6 +131,53 @@ Route::get('/forms/edit/{id}', [WebContentManagementController::class, 'editform
 Route::post('/forms/update/{id}', [WebContentManagementController::class, 'updateforms'])->name('forms.update');
 Route::post('/forms/toggleStatus', [WebContentManagementController::class, 'toggleformsStatus'])->name('forms.toggleStatus');
 Route::post('/forms/toggleArchivedStatus', [WebContentManagementController::class, 'toggleformsArchivedStatus'])->name('forms.toggleArchivedStatus');
+
+
+
+Route::get('research_highlights', [ResearchController::class, 'index'])->name('research_highlights');
+Route::post('research_highlights/store', [ResearchController::class, 'store'])->name('research_highlights.store');
+Route::get('/research.highlights', [ResearchController::class, 'getResearchHighlights'])->name('research.highlights.list');
+Route::get('/research_highlights/edit/{id}', [ResearchController::class, 'edit'])->name('research_highlights.edit');
+Route::post('research_highlights/update/{id}', [ResearchController::class, 'update'])->name('research_highlights.update');
+Route::post('research_highlights/toggleStatus', [ResearchController::class, 'toggleStatus'])->name('research_highlights.toggleStatus');
+Route::post('research_highlights/toggleArchivedStatus', [ResearchController::class, 'toggleArchivedStatus'])->name('research_highlights.toggleArchivedStatus');
+
+Route::get('manage_lecturer',[ResearchController::class,'manageLecturer'])->name('manage.lecturer');
+Route::post('manage_lecturer/store',[ResearchController::class,'storeLecturer'])->name('manage.lecturer.store');
+Route::get('manage_lecturer/list',[ResearchController::class,'getLecturers'])->name('manage.lecturer.list');
+Route::get('manage_lecturer/edit/{id}',[ResearchController::class,'editLecturer'])->name('manage.lecturer.edit');
+Route::post('manage_lecturer/update/{id}',[ResearchController::class,'updateLecturer'])->name('manage.lecturer.update');
+Route::post('manage_lecturer/toggleStatus',[ResearchController::class,'toggleLecturerStatus'])->name('manage.lecturer.toggleStatus');
+
+Route::get('manage_lecture', [ResearchController::class, 'manageLecture'])->name('manage.lecture');
+Route::post('manage_lecture/store', [ResearchController::class, 'storeLecture'])->name('manage.lecture.store');
+Route::get('manage_lecture/list', [ResearchController::class, 'getLectures'])->name('manage.lecture.list');
+Route::get('manage_lecture/edit/{id}', [ResearchController::class, 'editLecture'])->name('manage.lecture.edit');
+Route::post('manage_lecture/update/{id}', [ResearchController::class, 'updateLecture'])->name('manage.lecture.update');
+Route::post('manage_lecture/toggleStatus', [ResearchController::class, 'toggleLectureStatus'])->name('manage.lecture.toggleStatus');
+
+
+Route::get('add_activities', [ResearchController::class, 'addActivities'])->name('add.activities');
+Route::post('add_activities/store', [ResearchController::class, 'storeActivities'])->name('add.activities.store');
+Route::get('add_activities/list', [ResearchController::class, 'getActivities'])->name('add.activities.list');
+Route::get('add_activities/edit/{id}', [ResearchController::class, 'editActivities'])->name('add.activities.edit');
+Route::post('add_activities/update/{id}', [ResearchController::class, 'updateActivities'])->name('add.activities.update');
+Route::post('add_activities/toggleStatus', [ResearchController::class, 'toggleActivitiesStatus'])->name('add.activities.toggleStatus');
+
+Route::get('manage_activities', [ResearchController::class, 'manageActivities'])->name('manage.activities');
+Route::post('manage_activities/store', [ResearchController::class, 'storeManageActivities'])->name('manage.activities.store');
+Route::get('manage_activities/list', [ResearchController::class, 'getManageActivities'])->name('manage.activities.list');
+Route::get('manage_activities/edit/{id}', [ResearchController::class, 'editManageActivities'])->name('manage.activities.edit');
+Route::post('manage_activities/update/{id}', [ResearchController::class, 'updateManageActivities'])->name('manage.activities.update');
+Route::post('manage_activities/toggleStatus', [ResearchController::class, 'toggleManageActivitiesStatus'])->name('manage.activities.toggleStatus');
+
+Route::get('manage_projects', [ResearchController::class, 'manageProjects'])->name('manage.projects');
+Route::post('manage_projects/store', [ResearchController::class, 'storeManageProjects'])->name('manage.projects.store');
+Route::get('manage_projects/list', [ResearchController::class, 'getManageProjects'])->name('manage.projects.list');
+Route::get('manage_projects/edit/{id}', [ResearchController::class, 'editManageProjects'])->name('manage.projects.edit');
+Route::post('manage_projects/update/{id}', [ResearchController::class, 'updateManageProjects'])->name('manage.projects.update');
+Route::post('manage_projects/toggleStatus', [ResearchController::class, 'toggleManageProjectsStatus'])->name('manage.projects.toggleStatus');
+
 
 
 
