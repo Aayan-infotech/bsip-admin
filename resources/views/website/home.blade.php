@@ -155,22 +155,46 @@
                     </h2>
                     <div class="card-body auto-scroll" id="notices-updates">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Multisensor XRF Core Scanner [Last Date: 28-08-2024]</li>
-                            <li class="list-group-item">List of provisionally qualified candidates for the post of
-                                BSRS...
+                            <!-- @foreach ($notices as $notice) -->
+                            @php
+                            $today = \Carbon\Carbon::today(); // Get today's date
+                            @endphp
+                            @forelse ($notices as $index => $notice)
+                            @if (\Carbon\Carbon::parse($notice->expiry_date)->gte($today))
+                            <li class="list-group-item">
+                                <span>{{ $language === 'hi' ? $notice->hin_title : $notice->title }}</span>
+                                @if ($notice->expiry_date)
+                                <span aria-label="{{ $language === 'hi' ? 'अंतिम तिथि' : 'Last Date' }}">
+                                    [{{ $language === 'hi' ? 'अंतिम तिथि' : 'Last Date' }}: {{ \Carbon\Carbon::parse($notice->expiry_date)->format('d-m-Y') }}]
+                                </span>
+                                @endif
+                                @if ($notice->pdf)
+                                <a href="{{ asset('storage/' . $notice->pdf) }}" target="_blank" class="text-primary" role="link" aria-label="{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}">
+                                    [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
+                                </a>
+                                @endif
+                                @if ($notice->url)
+                                <a href="{{ $notice->url }}" target="_blank" class="text-primary" role="link" aria-label="{{ $language === 'hi' ? 'लिंक देखें' : 'View Link' }}">
+                                    [{{ $language === 'hi' ? 'लिंक देखें' : 'View Link' }}]
+                                </a>
+                                @endif
                             </li>
-                            <li class="list-group-item">List of non-qualified candidates for the post of BSRS...</li>
-                            <li class="list-group-item">List of provisionally qualified candidates for interview...</li>
-                            <li class="list-group-item">Multisensor XRF Core Scanner [Last Date: 28-08-2024]</li>
-                            <li class="list-group-item">List of provisionally qualified candidates for the post of
-                                BSRS...
+                            @endif
+                            @empty
+                            <li>
+                                <td colspan="4" class="text-center text-muted">
+                                    {{ $language === 'hi' ? 'कोई सूचना उपलब्ध नहीं है।' : 'No notices available.' }}
+                                </td>
                             </li>
-                            <li class="list-group-item">List of non-qualified candidates for the post of BSRS...</li>
-                            <li class="list-group-item">List of provisionally qualified candidates for interview...</li>
+                            @endforelse
+                            <!-- @endforeach -->
                         </ul>
                     </div>
                     <div class="card-footer text-end">
-                        <a href="{{ $language === 'hi' ? 'hin_bsip_notice_and_updates_all.php' : 'bsip_notice_and_updates_all.php' }}" class="button-profile-card">
+                        <a href="{{ $language === 'hi' ? $language.'/bsip_notice_and_updates_all' : $language.'/bsip_notice_and_updates_all' }}"
+                            class="button-profile-card"
+                            role="link"
+                            aria-label="{{ $language === 'hi' ? 'सभी नोटिस और अपडेट पढ़ें' : 'Read all notices and updates' }}">
                             {{ $language === 'hi' ? 'और पढ़ें' : 'Read More' }}
                         </a>
                     </div>
