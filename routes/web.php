@@ -1,209 +1,227 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\WebContentManagementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\HomeController;
-use Illuminate\Support\Facades\Auth;
-
-use App\Http\Controllers\Users\UserController;
-use App\Http\Controllers\Modules\ModuleController;
-use App\Http\Controllers\Pages\PageController;
-use App\Http\Controllers\UserRightsController;
-use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\FooterManagementController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HeaderMenuController;
 use App\Http\Controllers\MenuPageController;
-use Illuminate\Support\Facades\Cache;
+use App\Http\Controllers\Modules\ModuleController;
+use App\Http\Controllers\Pages\PageController;
+use App\Http\Controllers\PublicationManagementController;
 use App\Http\Controllers\ResearchController;
-use App\Http\Controllers\Admin\WebContentManagementController;
+use App\Http\Controllers\StructureManagementController;
+use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\UserRightsController;
+use App\Http\Controllers\Users\UserController;
+use App\Models\LanguageSetting;
+use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
 //User Management
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/adminDashboard', [HomeController::class, 'index'])->name('home');
 
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/users', [UserController::class, 'index'])->name('users');
-Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
-Route::get('/list', [UserController::class, 'getUsers'])->name('users.list'); // For Yajra DataTable
-Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
-Route::post('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
-Route::post('/users/update-status', [UserController::class, 'updateStatus'])->name('users.updateStatus');
-Route::delete('/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
 
-Route::get('/modules', [ModuleController::class, 'index'])->name('modules.index');
-Route::get('/modules/list', [ModuleController::class, 'getModules'])->name('modules.list');
-Route::post('/modules/store', [ModuleController::class, 'store'])->name('modules.store');
-Route::get('/modules/edit/{id}', [ModuleController::class, 'edit'])->name('modules.edit');
-Route::post('/modules/update/{id}', [ModuleController::class, 'update'])->name('modules.update');
-Route::post('/modules/updateStatus', [ModuleController::class, 'updateStatus'])->name('modules.updateStatus');
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+    Route::get('/list', [UserController::class, 'getUsers'])->name('users.list'); // For Yajra DataTable
+    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::post('/users/update-status', [UserController::class, 'updateStatus'])->name('users.updateStatus');
+    Route::delete('/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
 
-Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
-Route::get('/pages/list', [PageController::class, 'getPages'])->name('pages.list');
-Route::post('/pages/store', [PageController::class, 'store'])->name('pages.store');
-Route::get('/pages/edit/{id}', [PageController::class, 'edit'])->name('pages.edit');
-Route::post('/pages/update/{id}', [PageController::class, 'update'])->name('pages.update');
-Route::post('/pages/updateStatus', [PageController::class, 'updateStatus'])->name('pages.updateStatus');
+    Route::get('/modules', [ModuleController::class, 'index'])->name('modules.index');
+    Route::get('/modules/list', [ModuleController::class, 'getModules'])->name('modules.list');
+    Route::post('/modules/store', [ModuleController::class, 'store'])->name('modules.store');
+    Route::get('/modules/edit/{id}', [ModuleController::class, 'edit'])->name('modules.edit');
+    Route::post('/modules/update/{id}', [ModuleController::class, 'update'])->name('modules.update');
+    Route::post('/modules/updateStatus', [ModuleController::class, 'updateStatus'])->name('modules.updateStatus');
 
-Route::get('/user-rights', [UserRightsController::class, 'index'])->name('userRights.index');
-Route::post('/user-rights/fetch', [UserRightsController::class, 'fetchUserRights'])->name('userRights.fetch');
-Route::post('/user-rights/update', [UserRightsController::class, 'updateUserRights'])->name('userRights.update');
+    Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
+    Route::get('/pages/list', [PageController::class, 'getPages'])->name('pages.list');
+    Route::post('/pages/store', [PageController::class, 'store'])->name('pages.store');
+    Route::get('/pages/edit/{id}', [PageController::class, 'edit'])->name('pages.edit');
+    Route::post('/pages/update/{id}', [PageController::class, 'update'])->name('pages.update');
+    Route::post('/pages/updateStatus', [PageController::class, 'updateStatus'])->name('pages.updateStatus');
+
+    Route::get('/user-rights', [UserRightsController::class, 'index'])->name('userRights.index');
+    Route::post('/user-rights/fetch', [UserRightsController::class, 'fetchUserRights'])->name('userRights.fetch');
+    Route::post('/user-rights/update', [UserRightsController::class, 'updateUserRights'])->name('userRights.update');
 
 //Template Management
-Route::get('/manageTemplate', [TemplateController::class, 'index'])->name('template.index');
-Route::post('/template/store', [TemplateController::class, 'store'])->name('template.store');
-Route::post('/template/update', [TemplateController::class, 'update'])->name('template.update');
-Route::post('/template/logo/store', [TemplateController::class, 'storeLogo'])->name('template.logo.store');
-Route::get('/template/logo', [TemplateController::class, 'getLogo'])->name('template.logo.get');
-Route::get('/template/language', [TemplateController::class, 'getLanguage'])->name('template.language.get');
-Route::post('/template/language', [TemplateController::class, 'storeLanguage'])->name('template.language.store');
-Route::get('/template/contact', [TemplateController::class, 'getContact'])->name('template.contact.get');
-Route::post('/template/contact', [TemplateController::class, 'storeContact'])->name('template.contact.store');
-Route::get('/template/social-links', [TemplateController::class, 'getSocialLinks'])->name('template.socialLinks.get');
-Route::post('/template/social-links', [TemplateController::class, 'storeSocialLinks'])->name('template.socialLinks.store');
-Route::delete('/template/social-links/{id}', [TemplateController::class, 'deleteSocialLink'])->name('template.socialLinks.delete');
-Route::get('/template/important-links', [TemplateController::class, 'getImportantLinks'])->name('template.importantLinks.get');
-Route::post('/template/important-links', [TemplateController::class, 'storeImportantLinks'])->name('template.importantLinks.store');
-Route::delete('/template/important-links/{id}', [TemplateController::class, 'deleteImportantLink'])->name('template.importantLinks.delete');
-Route::get('/template/useful-links', [TemplateController::class, 'getUsefulLinks'])->name('template.usefulLinks.get');
-Route::post('/template/useful-links', [TemplateController::class, 'storeUsefulLinks'])->name('template.usefulLinks.store');
-Route::delete('/template/useful-links/{id}', [TemplateController::class, 'deleteUsefulLink'])->name('template.usefulLinks.delete');
+    Route::get('/manageTemplate', [TemplateController::class, 'index'])->name('template.index');
+    Route::post('/template/store', [TemplateController::class, 'store'])->name('template.store');
+    Route::post('/template/update', [TemplateController::class, 'update'])->name('template.update');
+    Route::post('/template/logo/store', [TemplateController::class, 'storeLogo'])->name('template.logo.store');
+    Route::get('/template/logo', [TemplateController::class, 'getLogo'])->name('template.logo.get');
+    Route::get('/template/language', [TemplateController::class, 'getLanguage'])->name('template.language.get');
+    Route::post('/template/language', [TemplateController::class, 'storeLanguage'])->name('template.language.store');
+    Route::get('/template/contact', [TemplateController::class, 'getContact'])->name('template.contact.get');
+    Route::post('/template/contact', [TemplateController::class, 'storeContact'])->name('template.contact.store');
+    Route::get('/template/social-links', [TemplateController::class, 'getSocialLinks'])->name('template.socialLinks.get');
+    Route::post('/template/social-links', [TemplateController::class, 'storeSocialLinks'])->name('template.socialLinks.store');
+    Route::delete('/template/social-links/{id}', [TemplateController::class, 'deleteSocialLink'])->name('template.socialLinks.delete');
+    Route::get('/template/important-links', [TemplateController::class, 'getImportantLinks'])->name('template.importantLinks.get');
+    Route::post('/template/important-links', [TemplateController::class, 'storeImportantLinks'])->name('template.importantLinks.store');
+    Route::delete('/template/important-links/{id}', [TemplateController::class, 'deleteImportantLink'])->name('template.importantLinks.delete');
+    Route::get('/template/useful-links', [TemplateController::class, 'getUsefulLinks'])->name('template.usefulLinks.get');
+    Route::post('/template/useful-links', [TemplateController::class, 'storeUsefulLinks'])->name('template.usefulLinks.store');
+    Route::delete('/template/useful-links/{id}', [TemplateController::class, 'deleteUsefulLink'])->name('template.usefulLinks.delete');
 
-Route::get('/headerMenu', [HeaderMenuController::class, 'index'])->name('headerMenu.index');
-Route::post('/headerMenu', [HeaderMenuController::class, 'store'])->name('headerMenu.store');
-Route::get('/headerMenu/{id}/edit', [HeaderMenuController::class, 'edit'])->name('headerMenu.edit');
-Route::put('/headerMenu/{id}', [HeaderMenuController::class, 'update'])->name('headerMenu.update');
-Route::post('/headerMenu/{id}/toggleStatus', [HeaderMenuController::class, 'toggleStatus'])->name('headerMenu.toggleStatus');
+    Route::get('/headerMenu', [HeaderMenuController::class, 'index'])->name('headerMenu.index');
+    Route::post('/headerMenu', [HeaderMenuController::class, 'store'])->name('headerMenu.store');
+    Route::get('/headerMenu/{id}/edit', [HeaderMenuController::class, 'edit'])->name('headerMenu.edit');
+    Route::put('/headerMenu/{id}', [HeaderMenuController::class, 'update'])->name('headerMenu.update');
+    Route::post('/headerMenu/{id}/toggleStatus', [HeaderMenuController::class, 'toggleStatus'])->name('headerMenu.toggleStatus');
 
-Route::get('/menuPages', [MenuPageController::class, 'index'])->name('menuPages.index');
-Route::post('/menuPages', [MenuPageController::class, 'store'])->name('menuPages.store');
-Route::get('/menuPages/{id}/edit', [MenuPageController::class, 'edit'])->name('menuPages.edit');
-Route::put('/menuPages/{id}', [MenuPageController::class, 'update'])->name('menuPages.update');
-Route::post('/menuPages/{id}/toggleStatus', [MenuPageController::class, 'toggleStatus'])->name('menuPages.toggleStatus');
+    Route::get('/menuPages', [MenuPageController::class, 'index'])->name('menuPages.index');
+    Route::post('/menuPages', [MenuPageController::class, 'store'])->name('menuPages.store');
+    Route::get('/menuPages/{id}/edit', [MenuPageController::class, 'edit'])->name('menuPages.edit');
+    Route::put('/menuPages/{id}', [MenuPageController::class, 'update'])->name('menuPages.update');
+    Route::post('/menuPages/{id}/toggleStatus', [MenuPageController::class, 'toggleStatus'])->name('menuPages.toggleStatus');
 
 // Web Content Management
-Route::get('/sliders', [WebContentManagementController::class, 'index'])->name('sliders.index');
-Route::post('/sliders', [WebContentManagementController::class, 'store'])->name('sliders.store');
-Route::get('/sliders/data', [WebContentManagementController::class, 'getData'])->name('sliders.data');
-Route::get('/sliders/edit/{id}', [WebContentManagementController::class, 'edit'])->name('sliders.edit');
-Route::post('/sliders/update/{id}', [WebContentManagementController::class, 'update'])->name('sliders.update');
-Route::post('/sliders/updateStatus', [WebContentManagementController::class, 'toggleStatus'])->name('sliders.updateStatus');
+    Route::get('/sliders', [WebContentManagementController::class, 'index'])->name('sliders.index');
+    Route::post('/sliders', [WebContentManagementController::class, 'store'])->name('sliders.store');
+    Route::get('/sliders/data', [WebContentManagementController::class, 'getData'])->name('sliders.data');
+    Route::get('/sliders/edit/{id}', [WebContentManagementController::class, 'edit'])->name('sliders.edit');
+    Route::post('/sliders/update/{id}', [WebContentManagementController::class, 'update'])->name('sliders.update');
+    Route::post('/sliders/updateStatus', [WebContentManagementController::class, 'toggleStatus'])->name('sliders.updateStatus');
 
-Route::get('/notices', [WebContentManagementController::class, 'noticesIndex'])->name('notices.index');
-Route::get('/notices/data', [WebContentManagementController::class, 'getNoticesData'])->name('notices.data');
-Route::post('/notices', [WebContentManagementController::class, 'storeNotice'])->name('notices.store');
-Route::get('/notices/edit/{id}', [WebContentManagementController::class, 'editNotice'])->name('notices.edit');
-Route::post('/notices/update/{id}', [WebContentManagementController::class, 'updateNotice'])->name('notices.update');
-Route::post('/notices/toggleStatus', [WebContentManagementController::class, 'toggleNoticeStatus'])->name('notices.toggleStatus');
-Route::post('/notices/archiveExpired', [WebContentManagementController::class, 'archiveExpiredNotices'])->name('notices.archiveExpired');
-Route::post('/notices/toggleArchivedStatus', [WebContentManagementController::class, 'toggleArchivedStatus'])->name('notices.toggleArchivedStatus');
+    Route::get('/notices', [WebContentManagementController::class, 'noticesIndex'])->name('notices.index');
+    Route::get('/notices/data', [WebContentManagementController::class, 'getNoticesData'])->name('notices.data');
+    Route::post('/notices', [WebContentManagementController::class, 'storeNotice'])->name('notices.store');
+    Route::get('/notices/edit/{id}', [WebContentManagementController::class, 'editNotice'])->name('notices.edit');
+    Route::post('/notices/update/{id}', [WebContentManagementController::class, 'updateNotice'])->name('notices.update');
+    Route::post('/notices/toggleStatus', [WebContentManagementController::class, 'toggleNoticeStatus'])->name('notices.toggleStatus');
+    Route::post('/notices/archiveExpired', [WebContentManagementController::class, 'archiveExpiredNotices'])->name('notices.archiveExpired');
+    Route::post('/notices/toggleArchivedStatus', [WebContentManagementController::class, 'toggleArchivedStatus'])->name('notices.toggleArchivedStatus');
 
-Route::get('/careers', [WebContentManagementController::class, 'careersIndex'])->name('careers.index');
-Route::get('/careers/data', [WebContentManagementController::class, 'getCareersData'])->name('careers.data');
-Route::post('/careers', [WebContentManagementController::class, 'storeCareer'])->name('careers.store');
-Route::get('/careers/edit/{id}', [WebContentManagementController::class, 'editCareer'])->name('careers.edit');
-Route::post('/careers/update/{id}', [WebContentManagementController::class, 'updateCareer'])->name('careers.update');
-Route::post('/careers/toggleStatus', [WebContentManagementController::class, 'toggleCareerStatus'])->name('careers.toggleStatus');
-Route::post('/careers/toggleArchivedStatus', [WebContentManagementController::class, 'toggleCareerArchivedStatus'])->name('careers.toggleArchivedStatus');
+    Route::get('/careers', [WebContentManagementController::class, 'careersIndex'])->name('careers.index');
+    Route::get('/careers/data', [WebContentManagementController::class, 'getCareersData'])->name('careers.data');
+    Route::post('/careers', [WebContentManagementController::class, 'storeCareer'])->name('careers.store');
+    Route::get('/careers/edit/{id}', [WebContentManagementController::class, 'editCareer'])->name('careers.edit');
+    Route::post('/careers/update/{id}', [WebContentManagementController::class, 'updateCareer'])->name('careers.update');
+    Route::post('/careers/toggleStatus', [WebContentManagementController::class, 'toggleCareerStatus'])->name('careers.toggleStatus');
+    Route::post('/careers/toggleArchivedStatus', [WebContentManagementController::class, 'toggleCareerArchivedStatus'])->name('careers.toggleArchivedStatus');
 
-Route::get('/tenders', [WebContentManagementController::class, 'tendersIndex'])->name('tenders.index');
-Route::get('/tenders/data', [WebContentManagementController::class, 'gettendersData'])->name('tenders.data');
-Route::post('/tenders', [WebContentManagementController::class, 'storetender'])->name('tenders.store');
-Route::get('/tenders/edit/{id}', [WebContentManagementController::class, 'edittender'])->name('tenders.edit');
-Route::post('/tenders/update/{id}', [WebContentManagementController::class, 'updatetender'])->name('tenders.update');
-Route::post('/tenders/toggleStatus', [WebContentManagementController::class, 'toggletenderstatus'])->name('tenders.toggleStatus');
-Route::post('/tenders/toggleArchivedStatus', [WebContentManagementController::class, 'toggletenderArchivedStatus'])->name('tenders.toggleArchivedStatus');
+    Route::get('/tenders', [WebContentManagementController::class, 'tendersIndex'])->name('tenders.index');
+    Route::get('/tenders/data', [WebContentManagementController::class, 'gettendersData'])->name('tenders.data');
+    Route::post('/tenders', [WebContentManagementController::class, 'storetender'])->name('tenders.store');
+    Route::get('/tenders/edit/{id}', [WebContentManagementController::class, 'edittender'])->name('tenders.edit');
+    Route::post('/tenders/update/{id}', [WebContentManagementController::class, 'updatetender'])->name('tenders.update');
+    Route::post('/tenders/toggleStatus', [WebContentManagementController::class, 'toggletenderstatus'])->name('tenders.toggleStatus');
+    Route::post('/tenders/toggleArchivedStatus', [WebContentManagementController::class, 'toggletenderArchivedStatus'])->name('tenders.toggleArchivedStatus');
 
-Route::get('/pastEvents', [WebContentManagementController::class, 'pastEventsIndex'])->name('pastEvents.index');
-Route::get('/pastEvents/data', [WebContentManagementController::class, 'getpastEventsData'])->name('pastEvents.data');
-Route::post('/pastEvents', [WebContentManagementController::class, 'storepastEvents'])->name('pastEvents.store');
-Route::get('/pastEvents/edit/{id}', [WebContentManagementController::class, 'editpastEvents'])->name('pastEvents.edit');
-Route::post('/pastEvents/update/{id}', [WebContentManagementController::class, 'updatepastEvents'])->name('pastEvents.update');
-Route::post('/pastEvents/toggleStatus', [WebContentManagementController::class, 'togglepastEventstatus'])->name('pastEvents.toggleStatus');
-Route::post('/pastEvents/toggleArchivedStatus', [WebContentManagementController::class, 'togglepastEventsArchivedStatus'])->name('pastEvents.toggleArchivedStatus');
+    Route::get('/pastEvents', [WebContentManagementController::class, 'pastEventsIndex'])->name('pastEvents.index');
+    Route::get('/pastEvents/data', [WebContentManagementController::class, 'getpastEventsData'])->name('pastEvents.data');
+    Route::post('/pastEvents', [WebContentManagementController::class, 'storepastEvents'])->name('pastEvents.store');
+    Route::get('/pastEvents/edit/{id}', [WebContentManagementController::class, 'editpastEvents'])->name('pastEvents.edit');
+    Route::post('/pastEvents/update/{id}', [WebContentManagementController::class, 'updatepastEvents'])->name('pastEvents.update');
+    Route::post('/pastEvents/toggleStatus', [WebContentManagementController::class, 'togglepastEventstatus'])->name('pastEvents.toggleStatus');
+    Route::post('/pastEvents/toggleArchivedStatus', [WebContentManagementController::class, 'togglepastEventsArchivedStatus'])->name('pastEvents.toggleArchivedStatus');
 
-Route::get('/forms', [WebContentManagementController::class, 'formsIndex'])->name('forms.index');
-Route::get('/forms/data', [WebContentManagementController::class, 'getformsData'])->name('forms.data');
-Route::post('/forms', [WebContentManagementController::class, 'storeforms'])->name('forms.store');
-Route::get('/forms/edit/{id}', [WebContentManagementController::class, 'editforms'])->name('forms.edit');
-Route::post('/forms/update/{id}', [WebContentManagementController::class, 'updateforms'])->name('forms.update');
-Route::post('/forms/toggleStatus', [WebContentManagementController::class, 'toggleformsStatus'])->name('forms.toggleStatus');
-Route::post('/forms/toggleArchivedStatus', [WebContentManagementController::class, 'toggleformsArchivedStatus'])->name('forms.toggleArchivedStatus');
+    Route::get('/forms', [WebContentManagementController::class, 'formsIndex'])->name('forms.index');
+    Route::get('/forms/data', [WebContentManagementController::class, 'getformsData'])->name('forms.data');
+    Route::post('/forms', [WebContentManagementController::class, 'storeforms'])->name('forms.store');
+    Route::get('/forms/edit/{id}', [WebContentManagementController::class, 'editforms'])->name('forms.edit');
+    Route::post('/forms/update/{id}', [WebContentManagementController::class, 'updateforms'])->name('forms.update');
+    Route::post('/forms/toggleStatus', [WebContentManagementController::class, 'toggleformsStatus'])->name('forms.toggleStatus');
+    Route::post('/forms/toggleArchivedStatus', [WebContentManagementController::class, 'toggleformsArchivedStatus'])->name('forms.toggleArchivedStatus');
 
+    Route::get('research_highlights', [ResearchController::class, 'index'])->name('research_highlights');
+    Route::post('research_highlights/store', [ResearchController::class, 'store'])->name('research_highlights.store');
+    Route::get('/research.highlights', [ResearchController::class, 'getResearchHighlights'])->name('research.highlights.list');
+    Route::get('/research_highlights/edit/{id}', [ResearchController::class, 'edit'])->name('research_highlights.edit');
+    Route::post('research_highlights/update/{id}', [ResearchController::class, 'update'])->name('research_highlights.update');
+    Route::post('research_highlights/toggleStatus', [ResearchController::class, 'toggleStatus'])->name('research_highlights.toggleStatus');
+    Route::post('research_highlights/toggleArchivedStatus', [ResearchController::class, 'toggleArchivedStatus'])->name('research_highlights.toggleArchivedStatus');
 
+    Route::get('manage_lecturer', [ResearchController::class, 'manageLecturer'])->name('manage.lecturer');
+    Route::post('manage_lecturer/store', [ResearchController::class, 'storeLecturer'])->name('manage.lecturer.store');
+    Route::get('manage_lecturer/list', [ResearchController::class, 'getLecturers'])->name('manage.lecturer.list');
+    Route::get('manage_lecturer/edit/{id}', [ResearchController::class, 'editLecturer'])->name('manage.lecturer.edit');
+    Route::post('manage_lecturer/update/{id}', [ResearchController::class, 'updateLecturer'])->name('manage.lecturer.update');
+    Route::post('manage_lecturer/toggleStatus', [ResearchController::class, 'toggleLecturerStatus'])->name('manage.lecturer.toggleStatus');
 
-Route::get('research_highlights', [ResearchController::class, 'index'])->name('research_highlights');
-Route::post('research_highlights/store', [ResearchController::class, 'store'])->name('research_highlights.store');
-Route::get('/research.highlights', [ResearchController::class, 'getResearchHighlights'])->name('research.highlights.list');
-Route::get('/research_highlights/edit/{id}', [ResearchController::class, 'edit'])->name('research_highlights.edit');
-Route::post('research_highlights/update/{id}', [ResearchController::class, 'update'])->name('research_highlights.update');
-Route::post('research_highlights/toggleStatus', [ResearchController::class, 'toggleStatus'])->name('research_highlights.toggleStatus');
-Route::post('research_highlights/toggleArchivedStatus', [ResearchController::class, 'toggleArchivedStatus'])->name('research_highlights.toggleArchivedStatus');
+    Route::get('manage_lecture', [ResearchController::class, 'manageLecture'])->name('manage.lecture');
+    Route::post('manage_lecture/store', [ResearchController::class, 'storeLecture'])->name('manage.lecture.store');
+    Route::get('manage_lecture/list', [ResearchController::class, 'getLectures'])->name('manage.lecture.list');
+    Route::get('manage_lecture/edit/{id}', [ResearchController::class, 'editLecture'])->name('manage.lecture.edit');
+    Route::post('manage_lecture/update/{id}', [ResearchController::class, 'updateLecture'])->name('manage.lecture.update');
+    Route::post('manage_lecture/toggleStatus', [ResearchController::class, 'toggleLectureStatus'])->name('manage.lecture.toggleStatus');
 
-Route::get('manage_lecturer',[ResearchController::class,'manageLecturer'])->name('manage.lecturer');
-Route::post('manage_lecturer/store',[ResearchController::class,'storeLecturer'])->name('manage.lecturer.store');
-Route::get('manage_lecturer/list',[ResearchController::class,'getLecturers'])->name('manage.lecturer.list');
-Route::get('manage_lecturer/edit/{id}',[ResearchController::class,'editLecturer'])->name('manage.lecturer.edit');
-Route::post('manage_lecturer/update/{id}',[ResearchController::class,'updateLecturer'])->name('manage.lecturer.update');
-Route::post('manage_lecturer/toggleStatus',[ResearchController::class,'toggleLecturerStatus'])->name('manage.lecturer.toggleStatus');
+    Route::get('add_activities', [ResearchController::class, 'addActivities'])->name('add.activities');
+    Route::post('add_activities/store', [ResearchController::class, 'storeActivities'])->name('add.activities.store');
+    Route::get('add_activities/list', [ResearchController::class, 'getActivities'])->name('add.activities.list');
+    Route::get('add_activities/edit/{id}', [ResearchController::class, 'editActivities'])->name('add.activities.edit');
+    Route::post('add_activities/update/{id}', [ResearchController::class, 'updateActivities'])->name('add.activities.update');
+    Route::post('add_activities/toggleStatus', [ResearchController::class, 'toggleActivitiesStatus'])->name('add.activities.toggleStatus');
 
-Route::get('manage_lecture', [ResearchController::class, 'manageLecture'])->name('manage.lecture');
-Route::post('manage_lecture/store', [ResearchController::class, 'storeLecture'])->name('manage.lecture.store');
-Route::get('manage_lecture/list', [ResearchController::class, 'getLectures'])->name('manage.lecture.list');
-Route::get('manage_lecture/edit/{id}', [ResearchController::class, 'editLecture'])->name('manage.lecture.edit');
-Route::post('manage_lecture/update/{id}', [ResearchController::class, 'updateLecture'])->name('manage.lecture.update');
-Route::post('manage_lecture/toggleStatus', [ResearchController::class, 'toggleLectureStatus'])->name('manage.lecture.toggleStatus');
+    Route::get('manage_activities', [ResearchController::class, 'manageActivities'])->name('manage.activities');
+    Route::post('manage_activities/store', [ResearchController::class, 'storeManageActivities'])->name('manage.activities.store');
+    Route::get('manage_activities/list', [ResearchController::class, 'getManageActivities'])->name('manage.activities.list');
+    Route::get('manage_activities/edit/{id}', [ResearchController::class, 'editManageActivities'])->name('manage.activities.edit');
+    Route::post('manage_activities/update/{id}', [ResearchController::class, 'updateManageActivities'])->name('manage.activities.update');
+    Route::post('manage_activities/toggleStatus', [ResearchController::class, 'toggleManageActivitiesStatus'])->name('manage.activities.toggleStatus');
 
+    Route::get('manage_projects', [ResearchController::class, 'manageProjects'])->name('manage.projects');
+    Route::post('manage_projects/store', [ResearchController::class, 'storeManageProjects'])->name('manage.projects.store');
+    Route::get('manage_projects/list', [ResearchController::class, 'getManageProjects'])->name('manage.projects.list');
+    Route::get('manage_projects/edit/{id}', [ResearchController::class, 'editManageProjects'])->name('manage.projects.edit');
+    Route::post('manage_projects/update/{id}', [ResearchController::class, 'updateManageProjects'])->name('manage.projects.update');
+    Route::post('manage_projects/toggleStatus', [ResearchController::class, 'toggleManageProjectsStatus'])->name('manage.projects.toggleStatus');
 
-Route::get('add_activities', [ResearchController::class, 'addActivities'])->name('add.activities');
-Route::post('add_activities/store', [ResearchController::class, 'storeActivities'])->name('add.activities.store');
-Route::get('add_activities/list', [ResearchController::class, 'getActivities'])->name('add.activities.list');
-Route::get('add_activities/edit/{id}', [ResearchController::class, 'editActivities'])->name('add.activities.edit');
-Route::post('add_activities/update/{id}', [ResearchController::class, 'updateActivities'])->name('add.activities.update');
-Route::post('add_activities/toggleStatus', [ResearchController::class, 'toggleActivitiesStatus'])->name('add.activities.toggleStatus');
+    Route::get('past_heads', [StructureManagementController::class, 'pastHeads'])->name('past.heads');
+    Route::post('past_heads/store', [StructureManagementController::class, 'storePastHeads'])->name('past.heads.store');
+    Route::get('past_heads/list', [StructureManagementController::class, 'getPastHeads'])->name('past.heads.list');
+    Route::get('past_heads/edit/{id}', [StructureManagementController::class, 'editPastHeads'])->name('past.heads.edit');
+    Route::post('past_heads/update/{id}', [StructureManagementController::class, 'updatePastHeads'])->name('past.heads.update');
+    Route::post('past_heads/toggleStatus', [StructureManagementController::class, 'togglePastHeadsStatus'])->name('past.heads.toggleStatus');
 
-Route::get('manage_activities', [ResearchController::class, 'manageActivities'])->name('manage.activities');
-Route::post('manage_activities/store', [ResearchController::class, 'storeManageActivities'])->name('manage.activities.store');
-Route::get('manage_activities/list', [ResearchController::class, 'getManageActivities'])->name('manage.activities.list');
-Route::get('manage_activities/edit/{id}', [ResearchController::class, 'editManageActivities'])->name('manage.activities.edit');
-Route::post('manage_activities/update/{id}', [ResearchController::class, 'updateManageActivities'])->name('manage.activities.update');
-Route::post('manage_activities/toggleStatus', [ResearchController::class, 'toggleManageActivitiesStatus'])->name('manage.activities.toggleStatus');
+    Route::get('past_directors', [StructureManagementController::class, 'pastDirectors'])->name('past.directors');
+    Route::post('past_directors/store', [StructureManagementController::class, 'storePastDirectors'])->name('past.directors.store');
+    Route::get('past_directors/list', [StructureManagementController::class, 'getPastDirectors'])->name('past.directors.list');
+    Route::get('past_directors/edit/{id}', [StructureManagementController::class, 'editPastDirectors'])->name('past.directors.edit');
+    Route::post('past_directors/update/{id}', [StructureManagementController::class, 'updatePastDirectors'])->name('past.directors.update');
+    Route::post('past_directors/toggleStatus', [StructureManagementController::class, 'togglePastDirectorsStatus'])->name('past.directors.toggleStatus');
 
-Route::get('manage_projects', [ResearchController::class, 'manageProjects'])->name('manage.projects');
-Route::post('manage_projects/store', [ResearchController::class, 'storeManageProjects'])->name('manage.projects.store');
-Route::get('manage_projects/list', [ResearchController::class, 'getManageProjects'])->name('manage.projects.list');
-Route::get('manage_projects/edit/{id}', [ResearchController::class, 'editManageProjects'])->name('manage.projects.edit');
-Route::post('manage_projects/update/{id}', [ResearchController::class, 'updateManageProjects'])->name('manage.projects.update');
-Route::post('manage_projects/toggleStatus', [ResearchController::class, 'toggleManageProjectsStatus'])->name('manage.projects.toggleStatus');
+    Route::get('annual_report', [PublicationManagementController::class, 'annualReport'])->name('annual.report');
+    Route::post('annual_report/store', [PublicationManagementController::class, 'storeAnnualReport'])->name('annual.report.store');
+    Route::get('annual_report/list', [PublicationManagementController::class, 'getAnnualReport'])->name('annual.report.list');
+    Route::get('annual_report/edit/{id}', [PublicationManagementController::class, 'editAnnualReport'])->name('annual.report.edit');
+    Route::post('annual_report/update/{id}', [PublicationManagementController::class, 'updateAnnualReport'])->name('annual.report.update');
+    Route::post('annual_report/toggleStatus', [PublicationManagementController::class, 'toggleAnnualReportStatus'])->name('annual.report.toggleStatus');
+    Route::post('annual_report/toggleArchivedStatus', [PublicationManagementController::class, 'toggleAnnualReportArchivedStatus'])->name('annual.report.toggleArchivedStatus');
 
+    Route::get('monthly_report', [PublicationManagementController::class, 'monthlyReport'])->name('monthly.report');
+    Route::post('monthly_report/store', [PublicationManagementController::class, 'storeMonthlyReport'])->name('monthly.report.store');
+    Route::get('monthly_report/list', [PublicationManagementController::class, 'getMonthlyReport'])->name('monthly.report.list');
+    Route::get('monthly_report/edit/{id}', [PublicationManagementController::class, 'editMonthlyReport'])->name('monthly.report.edit');
+    Route::post('monthly_report/update/{id}', [PublicationManagementController::class, 'updateMonthlyReport'])->name('monthly.report.update');
+    Route::post('monthly_report/toggleStatus', [PublicationManagementController::class, 'toggleMonthlyReportStatus'])->name('monthly.report.toggleStatus');
+    Route::post('monthly_report/toggleArchivedStatus', [PublicationManagementController::class, 'toggleMonthlyReportArchivedStatus'])->name('monthly.report.toggleArchivedStatus');
 
+    Route::get('Institute_catalogue', [PublicationManagementController::class, 'instituteCatalogue'])->name('institute.catalogue');
+    Route::post('Institute_catalogue/store', [PublicationManagementController::class, 'storeInstituteCatalogue'])->name('institute.catalogue.store');
+    Route::get('Institute_catalogue/list', [PublicationManagementController::class, 'getInstituteCatalogue'])->name('institute.catalogue.list');
+    Route::get('Institute_catalogue/edit/{id}', [PublicationManagementController::class, 'editInstituteCatalogue'])->name('institute.catalogue.edit');
+    Route::post('Institute_catalogue/update/{id}', [PublicationManagementController::class, 'updateInstituteCatalogue'])->name('institute.catalogue.update');
+    Route::post('Institute_catalogue/toggleStatus', [PublicationManagementController::class, 'toggleInstituteCatalogueStatus'])->name('institute.catalogue.toggleStatus');
+    Route::post('Institute_catalogue/toggleArchivedStatus', [PublicationManagementController::class, 'toggleInstituteCatalogueArchivedStatus'])->name('institute.catalogue.toggleArchivedStatus');
 
+    Route::get('manage_news', [FooterManagementController::class, 'manageNews'])->name('manage.news');
+});
 
-// Route::get('/', function () { return view('dashboard'); })->name('dashboard')->middleware('auth');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-use App\Models\LanguageSetting;
-use App\Http\Controllers\FrontendController;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/initialize-visitor-count', function () {
     Cache::put('visitor_count', 0);
@@ -223,4 +241,3 @@ Route::get('/', function () {
 Route::group(['prefix' => '{language}', 'where' => ['language' => 'en|hi']], function () {
     Route::get('/', [FrontendController::class, 'home'])->name('frontend.home');
 });
-

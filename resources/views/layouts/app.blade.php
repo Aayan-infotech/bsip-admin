@@ -95,7 +95,7 @@
     </style>
     <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
 
-    
+
 
 </head>
 
@@ -103,7 +103,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/adminDashboard') }}">
+                <a class="navbar-brand" href="{{ url('/dashboard') }}">
                     <img src="bsipLogo.png" alt="logo" width="25" height="25" class="d-inline-block align-text-top">
                     <span>{{ config('app.name', 'Laravel') }}</span>
                 </a>

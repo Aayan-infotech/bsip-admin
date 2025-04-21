@@ -18,7 +18,7 @@
 
                     <div class="row">
                         @foreach($modules as $module)
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-3">
                             <div class="card text-center menu-box" style=" background: rgb(36,0,15);
 background: linear-gradient(90deg, rgba(36,0,15,1) 0%, rgba(121,9,19,1) 35%, rgba(255,0,0,0.8771708512506565) 100%);  border: none; box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s;">
                                 <div class="card-body">

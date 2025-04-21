@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             {{-- Added the SideBar Components --}}
-            <x-side-bar-component module="4" />
+            <x-side-bar-component module="5" />
 
             <!-- Main Content -->
             <div class="col-md-10 col-sm-9">
@@ -14,9 +14,9 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"><i
                                             class="fa fa-home"></i></a></li>
-                                <li class="breadcrumb-item">Research Management</li>
-                                <li class="breadcrumb-item"><a href="{{ route('research_highlights') }}">Add Research
-                                        Highlights</a></li>
+                                <li class="breadcrumb-item">Publication Management</li>
+                                <li class="breadcrumb-item"><a href="{{ route('institute.catalogue') }}">Institute
+                                        Catalogue</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -26,44 +26,65 @@
                         <div id="alert-success" class="alert alert-success d-none"></div>
 
                         <!-- User Registration Form -->
-                        <form id="addResearchHighlight" autocomplete="off" enctype="multipart/form-data">
+                        <form id="addInstituteCatalogue" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-
                                 <div class="mb-3 col-md-6 col-12 ">
-                                    <label>Year:</label>
-                                    <input type="text" name="year" class="form-control">
-                                    <span class="text-danger error-year"></span>
-                                </div>
-                                <div class="mb-3 col-md-6 col-12 ">
-                                    <label>Link</label>
-                                    <input type="text" name="link" class="form-control">
-                                    <span class="text-danger error-link"></span>
-                                </div>
-                                <div class="mb-3 col-md-6 col-12 ">
-                                    <label>Title:</label>
-                                    <input type="text" name="title" class="form-control">
-                                    <span class="text-danger error-title"></span>
+                                    <label>Catalogue Title:</label>
+                                    <input type="text" name="catalogue_name" class="form-control">
+                                    <span class="text-danger error-catalogue_name"></span>
                                 </div>
                                 <div class="mb-3 col-md-6 col-12">
-                                    <label>Title (Hindi):</label>
-                                    <input type="text" name="hin_title" class="form-control">
-                                    <span class="text-danger error-hin_title"></span>
+                                    <label>Catalogue Title (Hindi):</label>
+                                    <input type="text" name="catalogue_hin_name" class="form-control">
+                                    <span class="text-danger error-catalogue_hin_name"></span>
+                                </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label>Writer:</label>
+                                    <input type="text" name="writer_name" class="form-control">
+                                    <span class="text-danger error-writer_name"></span>
+                                </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label>Writer (Hindi):</label>
+                                    <input type="text" name="writer_hin_name" class="form-control">
+                                    <span class="text-danger error-writer_hin_name"></span>
+                                </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label>Cover Image:</label>
+                                    <input type="file" name="cover_image" class="form-control" accept=".jpg,.jpeg,.png">
+                                    <span class="text-danger error-cover_image"></span>
+                                </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label>Cover Image (Hindi):</label>
+                                    <input type="file" name="cover_image_hin" class="form-control"
+                                        accept=".jpg,.jpeg,.png">
+                                    <span class="text-danger error-cover_image_hin"></span>
                                 </div>
                                 <div class="mb-3 col-md-6 col-12">
                                     <label>Upload English File:</label>
-                                    <input type="file" name="english_file" class="form-control" accept=".pdf">
-                                    <span class="text-danger error-english_file"></span>
+                                    <input type="file" name="catalogue_file" class="form-control" accept=".pdf">
+                                    <span class="text-danger error-catalogue_file"></span>
                                 </div>
                                 <div class="mb-3 col-md-6 col-12">
                                     <label>Upload Hindi File:</label>
-                                    <input type="file" name="hindi_file" class="form-control" accept=".pdf">
-                                    <span class="text-danger error-hindi_file"></span>
+                                    <input type="file" name="catalogue_file_hin" class="form-control" accept=".pdf">
+                                    <span class="text-danger error-catalogue_file_hin"></span>
                                 </div>
+                                <div class="col-md-6 col-12 mb-3">
+                                    <label>More info:</label>
+                                    <textarea name="more_info" class="form-control" rows="3"></textarea>
+                                    <span class="text-danger error-more_info"></span>
+                                </div>
+                                <div class="col-md-6 col-12 mb-3">
+                                    <label>More info(Hindi):</label>
+                                    <textarea name="more_info_hin" class="form-control" rows="3"></textarea>
+                                    <span class="text-danger error-more_info_hin"></span>
+                                </div>
+
                             </div>
 
                             <button type="submit" id="submitButton" class="btn btn-primary">
-                                Add Research Highlight
+                                Add Institute Catalogue
                                 <span class="spinner-border spinner-border-sm d-none"></span>
                             </button>
                         </form>
@@ -73,14 +94,12 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="yajraTable table table-bordered table-hover align-middle pt-3 w-full m-0"
-                                id="researchHighlights">
+                                id="InstituteCatalogueTable">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>Sr</th>
-                                        <th>Year</th>
-                                        <th>Title</th>
-                                        <th>Title (Hindi)</th>
-                                        <th>Link</th>
+                                        <th>Catalogue Name</th>
+                                        <th>Writer Name</th>
                                         <th>File (English)</th>
                                         <th>File (Hindi)</th>
                                         <th>Status</th>
@@ -94,48 +113,77 @@
             </div>
         </div>
     </div>
-    <div id="editResearchHighlightModal" class="modal right fade" tabindex="-1">
+    <div id="editInstituteCatalogueModal" class="modal right fade" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Research Highlight</h5>
+                    <h5 class="modal-title">Edit Institute Catalogue</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editResearchHighlightForm" enctype="multipart/form-data">
+                    <form id="editInstituteCatalogueForm" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" id="editResearchHighlightId">
+                        <input type="hidden" id="editInstituteCatalogueId">
                         <div class="mb-3">
-                            <label>Year:</label>
-                            <input type="text" id="editYear" name="year" class="form-control" >
-                            <span class="text-danger erroredit-year"></span>
+                            <label for="editCatalogueName">Catalogue Name:</label>
+                            <input type="text" id="editCatalogueName" name="catalogue_name" class="form-control">
+                            <span class="text-danger erroredit-catalogue_name"></span>
                         </div>
                         <div class="mb-3">
-                            <label>Link:</label>
-                            <input type="text" id="editLink" name="link" class="form-control" >
-                            <span class="text-danger erroredit-link"></span>
+                            <label for="editCatalogueHinName">Catalogue Name (Hindi):</label>
+                            <input type="text" id="editCatalogueHinName" name="catalogue_hin_name"
+                                class="form-control">
+                            <span class="text-danger erroredit-catalogue_hin_name"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editWriterName">Writer Name:</label>
+                            <input type="text" id="editWriterName" name="writer_name" class="form-control">
+                            <span class="text-danger erroredit-writer_name"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editWriterHinName">Writer Name (Hindi):</label>
+                            <input type="text" id="editWriterHinName" name="writer_hin_name" class="form-control">
+                            <span class="text-danger erroredit-writer_hin_name"></span>
                         </div>
                         <div class="mb-3">
-                            <label>Title:</label>
-                            <input type="text" id="editTitle" name="title" class="form-control" >
-                            <span class="text-danger erroredit-title"></span>
+                            <label for="editCoverImage">Cover Image:</label>
+                            <input type="file" id="editCoverImage" name="cover_image" class="form-control"
+                                accept=".jpg,.jpeg,.png">
+                            <span class="text-danger erroredit-cover_image"></span>
                         </div>
                         <div class="mb-3">
-                            <label>Title (Hindi):</label>
-                            <input type="text" id="editHinTitle" name="hin_title" class="form-control" >
-                            <span class="text-danger erroredit-hin_title"></span>
+                            <label for="editCoverImageHin">Cover Image (Hindi):</label>
+                            <input type="file" id="editCoverImageHin" name="cover_image_hin" class="form-control"
+                                accept=".jpg,.jpeg,.png">
+                            <span class="text-danger erroredit-cover_image_hin"></span>
                         </div>
+
+
                         <div class="mb-3">
                             <label>Upload English File:</label>
-                            <input type="file" name="english_file" class="form-control" accept=".pdf">
-                            <span class="text-danger erroredit-english_file"></span>
+                            <input type="file" name="catalogue_file" class="form-control" accept=".pdf">
+                            <span class="text-danger erroredit-catalogue_file"></span>
                         </div>
+
                         <div class="mb-3">
                             <label>Upload Hindi File:</label>
-                            <input type="file" name="hindi_file" class="form-control" accept=".pdf">
-                            <span class="text-danger erroredit-hindi_file"></span>
+                            <input type="file" name="catalogue_file_hin" class="form-control" accept=".pdf">
+                            <span class="text-danger erroredit-catalogue_file_hin"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update Research Highlight</button>
+
+                        <div class="mb-3">
+                            <label for="editMoreInfo">More Info:</label>
+                            <textarea id="editMoreInfo" name="more_info" class="form-control" rows="3"></textarea>
+                            <span class="text-danger erroredit-more_info"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editMoreInfoHin">More Info (Hindi):</label>
+                            <textarea id="editMoreInfoHin" name="more_info_hin" class="form-control" rows="3"></textarea>
+                            <span class="text-danger erroredit-more_info_hin"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Institute Catalogue</button>
                     </form>
                 </div>
             </div>
@@ -144,7 +192,7 @@
 
 
     <style>
-        #researchHighlights {
+        #InstituteCatalogueTable {
             width: 100% !important;
         }
     </style>
@@ -153,8 +201,8 @@
 
     <script>
         $(document).ready(function() {
-            $("#addResearchHighlight").trigger("reset");
-            $("#addResearchHighlight").on("submit", function(e) {
+            $("#addInstituteCatalogue").trigger("reset");
+            $("#addInstituteCatalogue").on("submit", function(e) {
                 e.preventDefault();
 
                 let form = $(this);
@@ -170,21 +218,19 @@
 
                 grecaptcha.ready(function() {
                     grecaptcha.execute("{{ env('RECAPTCHA_SITE_KEY') }}", {
-                        action: 'research_highlights/store'
+                        action: 'Institute_catalogue/store'
                     }).then(function(token) {
                         let formData = new FormData(form[0]);
                         formData.append("g-recaptcha-response", token);
-                        console.log("Token",)
-
                         $.ajax({
-                            url: "{{ route('research_highlights.store') }}",
+                            url: "{{ route('institute.catalogue.store') }}",
                             type: "POST",
                             data: formData,
                             processData: false,
                             contentType: false,
                             success: function(response) {
                                 toastr.success(
-                                    "Research highlight added successfully!"
+                                    "Institute Catalogue added successfully!"
                                 );
                                 form.trigger("reset");
                                 table.ajax.reload();
@@ -217,11 +263,11 @@
                 });
             });
 
-            var table = $('#researchHighlights').DataTable({
+            var table = $('#InstituteCatalogueTable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('research.highlights.list') }}",
+                    url: "{{ route('institute.catalogue.list') }}",
                     type: "GET",
                     data: function(d) {
                         d.customParam = 'value'; // Add custom parameter if needed
@@ -235,43 +281,32 @@
                         name: "sr"
                     },
                     {
-                        data: "year",
-                        name: "year"
+                        data: "catalogue_name",
+                        name: "catalogue_name",
                     },
                     {
-                        data: "title",
-                        name: "title"
+                        data: "writer_name",
+                        name: "writer_name",
                     },
                     {
-                        data: "hin_title",
-                        name: "hin_title"
-                    },
-                    {
-                        data: "link",
-                        name: "link",
-                        render: function(data) {
-                            return `<a href="${data}" target="_blank" >${data}</a>`;
-                        }
-                    },
-                    {
-                        data: "english_file",
-                        name: "english_file",
+                        data: "catalogue_file",
+                        name: "catalogue_file",
                         render: function(data) {
                             return `<div style="display: flex; justify-content: center; align-items: center;">
                                 ${data ? `<a href="${data}" target="_blank" style="text-decoration: none;">
-                                                        <i class="fas fa-file-pdf" style="font-size: 24px; color: #df0d17;"></i>
-                                                    </a>` : `<span>-</span>`}
+                                                                                <i class="fas fa-file-pdf" style="font-size: 24px; color: #df0d17;"></i>
+                                                                            </a>` : `<span>-</span>`}
                             </div>`;
                         }
                     },
                     {
-                        data: "hindi_file",
-                        name: "hindi_file",
+                        data: "catalogue_file_hin",
+                        name: "catalogue_file_hin",
                         render: function(data) {
                             return `<div style="display: flex; justify-content: center; align-items: center;">
                                 ${data ? `<a href="${data}" target="_blank" style="text-decoration: none;">
-                                                        <i class="fas fa-file-pdf" style="font-size: 24px; color: #df0d17;"></i>
-                                                    </a>` : `<span>-</span>`}
+                                                                                <i class="fas fa-file-pdf" style="font-size: 24px; color: #df0d17;"></i>
+                                                                            </a>` : `<span>-</span>`}
                             </div>`;
                         }
                     },
@@ -294,7 +329,7 @@
                 let status = $(this).is(':checked') ? 1 : 0;
 
                 $.ajax({
-                    url: "{{ route('research_highlights.toggleStatus') }}",
+                    url: "{{ route('institute.catalogue.toggleStatus') }}",
                     type: "POST",
                     data: {
                         _token: "{{ csrf_token() }}",
@@ -318,7 +353,7 @@
                 let status = $(this).is(':checked') ? 1 : 0;
 
                 $.ajax({
-                    url: "{{ route('research_highlights.toggleArchivedStatus') }}",
+                    url: "{{ route('institute.catalogue.toggleArchivedStatus') }}",
                     type: "POST",
                     data: {
                         _token: "{{ csrf_token() }}",
@@ -338,40 +373,42 @@
 
 
 
-            $(document).on('click', '.edit-research-highlight', function() {
+            $(document).on('click', '.edit-report', function() {
                 let id = $(this).data('id');
-                console.log(id);
 
                 $.ajax({
-                    url: "/research_highlights/edit/" + id,
+                    url: "/Institute_catalogue/edit/" + id,
                     type: "GET",
                     success: function(response) {
-                        $('#editResearchHighlightId').val(response.id);
-                        $('#editTitle').val(response.title);
-                        $('#editHinTitle').val(response.hin_title);
-                        $('#editLink').val(response.link);
-                        $('#editYear').val(response.year);
-                        $('#editResearchHighlightModal').find('.text-danger').text('');
-                        $('#editResearchHighlightModal').modal('show');
+                        $('#editInstituteCatalogueId').val(response.id);
+                        $('#editCatalogueName').val(response.catalogue_name);
+                        $('#editCatalogueHinName').val(response.catalogue_hin_name);
+                        $('#editWriterName').val(response.writer_name);
+                        $('#editWriterHinName').val(response.writer_hin_name);
+                        $('#editMoreInfo').val(response.more_info);
+                        $('#editMoreInfoHin').val(response.more_info_hin);
+
+                        $('#editInstituteCatalogueModal').find('.text-danger').text('');
+                        $('#editInstituteCatalogueModal').modal('show');
                     }
                 });
             });
 
-            $('#editResearchHighlightForm').on('submit', function(e) {
+            $('#editInstituteCatalogueForm').on('submit', function(e) {
                 e.preventDefault();
                 const formData = new FormData(this);
 
-                let id = $('#editResearchHighlightId').val();
+                let id = $('#editInstituteCatalogueId').val();
 
                 $.ajax({
-                    url: "/research_highlights/update/" + id,
+                    url: "/Institute_catalogue/update/" + id,
                     type: "POST",
                     data: formData,
                     processData: false,
                     contentType: false,
                     success: function(response) {
                         toastr.success(response.message);
-                        $('#editResearchHighlightModal').modal('hide');
+                        $('#editInstituteCatalogueModal').modal('hide');
                         table.ajax.reload();
                     },
                     error: function(xhr) {
@@ -389,15 +426,5 @@
             });
 
         });
-
-        // function formatDate(dateString) {
-        //     if (!dateString) return '';
-        //     const date = new Date(dateString);
-        //     return new Intl.DateTimeFormat('en-GB', {
-        //         day: '2-digit',
-        //         month: 'short',
-        //         year: 'numeric'
-        //     }).format(date);
-        // }
     </script>
 @endsection
