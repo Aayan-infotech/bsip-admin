@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('geo_heritages', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->nullable();
+            $table->string('title_hin')->nullable();
+            $table->text('description')->nullable();
+            $table->text('description_hin')->nullable();
+            $table->longText('images')->nullable();
+            $table->string('pdf_file')->nullable();
+            $table->date('date')->nullable();
+            $table->boolean('status')->default(1);
+            $table->enum('archived_status', ['Yes', 'No'])->default('No');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('geo_heritages');
+    }
+};

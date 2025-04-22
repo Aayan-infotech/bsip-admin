@@ -15,7 +15,7 @@
                                 <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i></a>
                                 </li>
                                 <li class="breadcrumb-item">Footer Management</li>
-                                <li class="breadcrumb-item"><a href="{{ route('manage.news') }}">Manage News</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('outreach.program') }}">Outreach Program</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -41,13 +41,13 @@
                                 </div>
                                 <div class="mb-3 col-12">
                                     <label>Date:</label>
-                                    <input type="date" name="published_at" class="form-control datepicker">
-                                    <span class="text-danger error-published_at"></span>
+                                    <input type="date" name="date" class="form-control datepicker">
+                                    <span class="text-danger error-date"></span>
                                 </div>
                                 <div class="mb-3 col-md-6 col-12">
-                                    <label>Upload Image:</label>
-                                    <input type="file" name="image[]" class="form-control" multiple>
-                                    <span class="text-danger error-image"></span>
+                                    <label>Upload Images:</label>
+                                    <input type="file" name="images[]" class="form-control" multiple>
+                                    <span class="text-danger error-images"></span>
                                 </div>
                                 <div class="mb-3 col-md-6 col-12">
                                     <label>Upload PDF:</label>
@@ -67,7 +67,7 @@
                             </div>
 
                             <button type="submit" id="submitButton" class="btn btn-primary">
-                                Add News
+                                Submit
                                 <span class="spinner-border spinner-border-sm d-none"></span>
                             </button>
                         </form>
@@ -101,13 +101,13 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit News</h5>
+                    <h5 class="modal-title">Edit Outreach Program</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="editNewsForm" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" id="editNewsId">
+                        <input type="hidden" id="editId">
                         <div class="mb-3">
                             <label>Title:</label>
                             <input type="text" id="editTitle" name="title" class="form-control">
@@ -122,8 +122,8 @@
 
                         <div class="mb-3">
                             <label>Date:</label>
-                            <input type="date" id="editDate" name="published_at" class="form-control">
-                            <span class="text-danger erroredit-published_at"></span>
+                            <input type="date" id="editDate" name="date" class="form-control">
+                            <span class="text-danger erroredit-date"></span>
                         </div>
                         <div class="mb-3">
                             <label>Uploaded Images</label>
@@ -133,12 +133,12 @@
                         </div>
                         <div class="mb-3">
                             <label>Upload Image:</label>
-                            <input type="file" name="image[]" class="form-control" multiple>
-                            <span class="text-danger erroredit-image"></span>
+                            <input type="file" name="images[]" class="form-control" multiple>
+                            <span class="text-danger erroredit-images"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label>Upload File:</label>
+                            <label>Upload PDF:</label>
                             <input type="file" name="pdf_file" class="form-control" accept=".pdf">
                             <span class="text-danger erroredit-pdf_file"></span>
                         </div>
@@ -154,7 +154,7 @@
                             <textarea name="description_hin" id="editDescriptionHin" class="form-control" rows="3"></textarea>
                             <span class="text-danger erroredit-description_hin"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update News</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
@@ -183,19 +183,19 @@
                 $(".text-danger").text("");
                 grecaptcha.ready(function() {
                     grecaptcha.execute("{{ env('RECAPTCHA_SITE_KEY') }}", {
-                        action: 'manage_news/store'
+                        action: 'outreach_program/store'
                     }).then(function(token) {
                         let formData = new FormData(form[0]);
                         formData.append("g-recaptcha-response", token);
                         $.ajax({
-                            url: "{{ route('manage.news.store') }}",
+                            url: "{{ route('outreach.program.store') }}",
                             type: "POST",
                             data: formData,
                             processData: false,
                             contentType: false,
                             success: function(response) {
                                 toastr.success(
-                                    "News added successfully!"
+                                    "OutReach added successfully!"
                                 );
                                 form.trigger("reset");
                                 table.ajax.reload();
@@ -230,7 +230,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('manage.news.list') }}",
+                    url: "{{ route('outreach.program.list') }}",
                     type: "GET",
                     data: function(d) {
                         d.customParam = 'value';
@@ -248,16 +248,16 @@
                         name: "title"
                     },
                     {
-                        data: "published_at",
-                        name: "published_at"
+                        data: "date",
+                        name: "date"
                     },
                     {
                         data: "description",
                         name: "description"
                     },
                     {
-                        data: "file",
-                        name: "file",
+                        data: "pdf_file",
+                        name: "pdf_file",
                         render: function(data) {
                             return `<div style="display: flex; justify-content: center; align-items: center;">
                                 ${data ? `<a href="${data}" target="_blank" style="text-decoration: none;">
@@ -284,7 +284,7 @@
                 let id = $(this).data('id');
                 let status = $(this).is(':checked') ? 1 : 0;
                 $.ajax({
-                    url: "{{ route('manage.news.toggleStatus') }}",
+                    url: "{{ route('outreach.program.toggleStatus') }}",
                     type: "POST",
                     data: {
                         _token: "{{ csrf_token() }}",
@@ -308,7 +308,7 @@
                 let status = $(this).is(':checked') ? 1 : 0;
 
                 $.ajax({
-                    url: "{{ route('manage.news.toggleArchivedStatus') }}",
+                    url: "{{ route('outreach.program.toggleArchivedStatus') }}",
                     type: "POST",
                     data: {
                         _token: "{{ csrf_token() }}",
@@ -327,23 +327,23 @@
             })
 
 
-            $(document).on('click', '.edit-news', function() {
+            $(document).on('click', '.edit-outreach-program', function() {
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "/manage_news/edit/" + id,
+                    url: "/outreach_program/edit/" + id,
                     type: "GET",
                     success: function(response) {
-                        $('#editNewsId').val(response.id);
+                        $('#editId').val(response.id);
                         $('#editTitle').val(response.title);
                         $('#editTitleHin').val(response.title_hin);
-                        $('#editDate').val(response.published_at);
+                        $('#editDate').val(response.date);
                         $('#editDescription').val(response.description);
                         $('#editDescriptionHin').val(response.description_hin);
                         $('#editImagePreview').empty();
-                        if (response.image) {
-                            if (response.image.length > 0) {
-                                $.each(response.image, function(index, image) {
+                        if (response.images) {
+                            if (response.images.length > 0) {
+                                $.each(response.images, function(index, image) {
                                     $('#editImagePreview').append(
                                         `<div class="image-preview" style="position: relative; margin-right: 10px;">
                                         <img src="${image}" alt="Image" style="width: 100px; height: 100px; object-fit: cover;">
@@ -379,10 +379,10 @@
                 e.preventDefault();
                 const formData = new FormData(this);
 
-                let id = $('#editNewsId').val();
+                let id = $('#editId').val();
 
                 $.ajax({
-                    url: "/manage_news/update/" + id,
+                    url: "/outreach_program/update/" + id,
                     type: "POST",
                     data: formData,
                     processData: false,

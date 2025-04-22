@@ -17,13 +17,33 @@ use App\Http\Controllers\UserRightsController;
 use App\Http\Controllers\Users\UserController;
 use App\Models\LanguageSetting;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
 
-Auth::routes();
+Route::get('/initialize-visitor-count', function () {
+    Cache::put('visitor_count', 0);
+    return 'Visitor count initialized to 0';
+});
+
+Route::get('/', function () {
+    $activeLanguage = LanguageSetting::where('status', 1)->first();
+
+    if ($activeLanguage) {
+        return redirect('/' . $activeLanguage->language);
+    }
+
+    return redirect('/en');
+});
+
+Route::group(['prefix' => '{language}', 'where' => ['language' => 'en|hi']], function () {
+    Route::get('/', [FrontendController::class, 'home'])->name('frontend.home');
+});
 
 //User Management
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
+Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -218,26 +238,40 @@ Route::middleware(['auth'])->group(function () {
     Route::post('Institute_catalogue/toggleArchivedStatus', [PublicationManagementController::class, 'toggleInstituteCatalogueArchivedStatus'])->name('institute.catalogue.toggleArchivedStatus');
 
     Route::get('manage_news', [FooterManagementController::class, 'manageNews'])->name('manage.news');
-});
+    Route::post('manage_news/store', [FooterManagementController::class, 'storeNews'])->name('manage.news.store');
+    Route::get('manage_news/list', [FooterManagementController::class, 'getNews'])->name('manage.news.list');
+    Route::get('manage_news/edit/{id}', [FooterManagementController::class, 'editNews'])->name('manage.news.edit');
+    Route::post('manage_news/update/{id}', [FooterManagementController::class, 'updateNews'])->name('manage.news.update');
+    Route::post('manage_news/toggleStatus', [FooterManagementController::class, 'toggleNewsStatus'])->name('manage.news.toggleStatus');
+    Route::post('manage_news/toggleArchivedStatus', [FooterManagementController::class, 'toggleNewsArchivedStatus'])->name('manage.news.toggleArchivedStatus');
 
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Route;
 
-Route::get('/initialize-visitor-count', function () {
-    Cache::put('visitor_count', 0);
-    return 'Visitor count initialized to 0';
-});
+    // OutReach Management
+    Route::get('outreach_program', [FooterManagementController::class, 'outreachProgram'])->name('outreach.program');
+    Route::post('outreach_program/store', [FooterManagementController::class, 'storeOutreachProgram'])->name('outreach.program.store');
+    Route::get('outreach_program/list', [FooterManagementController::class, 'getOutreachProgram'])->name('outreach.program.list');
+    Route::get('outreach_program/edit/{id}', [FooterManagementController::class, 'editOutreachProgram'])->name('outreach.program.edit');
+    Route::post('outreach_program/update/{id}', [FooterManagementController::class, 'updateOutreachProgram'])->name('outreach.program.update');
+    Route::post('outreach_program/toggleStatus', [FooterManagementController::class, 'toggleOutreachProgramStatus'])->name('outreach.program.toggleStatus');
+    Route::post('outreach_program/toggleArchivedStatus', [FooterManagementController::class, 'toggleOutreachProgramArchivedStatus'])->name('outreach.program.toggleArchivedStatus');
 
-Route::get('/', function () {
-    $activeLanguage = LanguageSetting::where('status', 1)->first();
 
-    if ($activeLanguage) {
-        return redirect('/' . $activeLanguage->language);
-    }
+    // Rajbhasha Management
+    Route::get('bsip_rajbhasha_portal', [FooterManagementController::class, 'bsipRajbhashaPortal'])->name('bsip.rajbhasha.portal');
+    Route::post('bsip_rajbhasha_portal/store', [FooterManagementController::class, 'storeBsipRajbhashaPortal'])->name('bsip.rajbhasha.portal.store');
+    Route::get('bsip_rajbhasha_portal/list', [FooterManagementController::class, 'getBsipRajbhashaPortal'])->name('bsip.rajbhasha.portal.list');
+    Route::get('bsip_rajbhasha_portal/edit/{id}', [FooterManagementController::class, 'editBsipRajbhashaPortal'])->name('bsip.rajbhasha.portal.edit');
+    Route::post('bsip_rajbhasha_portal/update/{id}', [FooterManagementController::class, 'updateBsipRajbhashaPortal'])->name('bsip.rajbhasha.portal.update');
+    Route::post('bsip_rajbhasha_portal/toggleStatus', [FooterManagementController::class, 'toggleBsipRajbhashaPortalStatus'])->name('bsip.rajbhasha.portal.toggleStatus');
+    Route::post('bsip_rajbhasha_portal/toggleArchivedStatus', [FooterManagementController::class, 'toggleBsipRajbhashaPortalArchivedStatus'])->name('bsip.rajbhasha.portal.toggleArchivedStatus');
 
-    return redirect('/en');
-});
+    // Geo Hertiage Management
 
-Route::group(['prefix' => '{language}', 'where' => ['language' => 'en|hi']], function () {
-    Route::get('/', [FrontendController::class, 'home'])->name('frontend.home');
+    Route::get('bsip_geo_heritage', [FooterManagementController::class, 'bsipGeoHeritage'])->name('bsip.geo.heritage');
+    Route::post('bsip_geo_heritage/store', [FooterManagementController::class, 'storeBsipGeoHeritage'])->name('bsip.geo.heritage.store');
+    Route::get('bsip_geo_heritage/list', [FooterManagementController::class, 'getBsipGeoHeritage'])->name('bsip.geo.heritage.list');
+    Route::get('bsip_geo_heritage/edit/{id}', [FooterManagementController::class, 'editBsipGeoHeritage'])->name('bsip.geo.heritage.edit');
+    Route::post('bsip_geo_heritage/update/{id}', [FooterManagementController::class, 'updateBsipGeoHeritage'])->name('bsip.geo.heritage.update');
+    Route::post('bsip_geo_heritage/toggleStatus', [FooterManagementController::class, 'toggleBsipGeoHeritageStatus'])->name('bsip.geo.heritage.toggleStatus');
+    Route::post('bsip_geo_heritage/toggleArchivedStatus', [FooterManagementController::class, 'toggleBsipGeoHeritageArchivedStatus'])->name('bsip.geo.heritage.toggleArchivedStatus');
 });
