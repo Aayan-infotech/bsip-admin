@@ -11,6 +11,7 @@ use App\Http\Controllers\Modules\ModuleController;
 use App\Http\Controllers\Pages\PageController;
 use App\Http\Controllers\PublicationManagementController;
 use App\Http\Controllers\ResearchController;
+use App\Http\Controllers\StaffManagementController;
 use App\Http\Controllers\StructureManagementController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\UserRightsController;
@@ -245,7 +246,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('manage_news/toggleStatus', [FooterManagementController::class, 'toggleNewsStatus'])->name('manage.news.toggleStatus');
     Route::post('manage_news/toggleArchivedStatus', [FooterManagementController::class, 'toggleNewsArchivedStatus'])->name('manage.news.toggleArchivedStatus');
 
-
     // OutReach Management
     Route::get('outreach_program', [FooterManagementController::class, 'outreachProgram'])->name('outreach.program');
     Route::post('outreach_program/store', [FooterManagementController::class, 'storeOutreachProgram'])->name('outreach.program.store');
@@ -254,7 +254,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('outreach_program/update/{id}', [FooterManagementController::class, 'updateOutreachProgram'])->name('outreach.program.update');
     Route::post('outreach_program/toggleStatus', [FooterManagementController::class, 'toggleOutreachProgramStatus'])->name('outreach.program.toggleStatus');
     Route::post('outreach_program/toggleArchivedStatus', [FooterManagementController::class, 'toggleOutreachProgramArchivedStatus'])->name('outreach.program.toggleArchivedStatus');
-
 
     // Rajbhasha Management
     Route::get('bsip_rajbhasha_portal', [FooterManagementController::class, 'bsipRajbhashaPortal'])->name('bsip.rajbhasha.portal');
@@ -274,4 +273,50 @@ Route::middleware(['auth'])->group(function () {
     Route::post('bsip_geo_heritage/update/{id}', [FooterManagementController::class, 'updateBsipGeoHeritage'])->name('bsip.geo.heritage.update');
     Route::post('bsip_geo_heritage/toggleStatus', [FooterManagementController::class, 'toggleBsipGeoHeritageStatus'])->name('bsip.geo.heritage.toggleStatus');
     Route::post('bsip_geo_heritage/toggleArchivedStatus', [FooterManagementController::class, 'toggleBsipGeoHeritageArchivedStatus'])->name('bsip.geo.heritage.toggleArchivedStatus');
+
+
+    // Staff Management
+    Route::get('staff_sub_category', [StaffManagementController::class, 'staffSubCategory'])->name('staff.sub.category');
+    Route::post('staff_sub_category/store', [StaffManagementController::class, 'storeStaffSubCategory'])->name('staff.sub.category.store');
+    Route::get('staff_sub_category/list', [StaffManagementController::class, 'getStaffSubCategory'])->name('staff.sub.category.list');
+    Route::get('staff_sub_category/edit/{id}', [StaffManagementController::class, 'editStaffSubCategory'])->name('staff.sub.category.edit');
+    Route::post('staff_sub_category/update/{id}', [StaffManagementController::class, 'updateStaffSubCategory'])->name('staff.sub.category.update');
+    Route::post('staff_sub_category/toggleStatus', [StaffManagementController::class, 'toggleStaffSubCategoryStatus'])->name('staff.sub.category.toggleStatus');
+
+
+
+    // Staff management
+    Route::get('staff_master', [StaffManagementController::class, 'staffMaster'])->name('staff.master');
+    Route::post('staff_master/store', [StaffManagementController::class, 'storeStaffMaster'])->name('staff.master.store');
+    Route::get('staff_master/list', [StaffManagementController::class, 'getStaffMaster'])->name('staff.master.list');
+    Route::get('staff_master/edit/{id}', [StaffManagementController::class, 'editStaffMaster'])->name('staff.master.edit');
+    Route::post('staff_master/update/{id}', [StaffManagementController::class, 'updateStaffMaster'])->name('staff.master.update');
+    Route::post('staff_master/toggleStatus', [StaffManagementController::class, 'toggleStaffMasterStatus'])->name('staff.master.toggleStatus');
+    Route::post('staff_master/toggleArchivedStatus', [StaffManagementController::class, 'toggleStaffMasterArchivedStatus'])->name('staff.master.toggleArchivedStatus');
+    Route::get('staff_master/sub_category', [StaffManagementController::class, 'getSubCategoryofCategory'])->name('staff.sub_category');
+
+
+    //
+    Route::get('scientist_management', [StaffManagementController::class, 'scientistManagement'])->name('scientist.management');
+    Route::post('scientist_management/staffDetails',[StaffManagementController::class, 'getStaffDetails'])->name('scientist.management.staffDetails');
+    Route::post('scientist_management/updateProfileImage/{id}',[StaffManagementController::class, 'updateProfileImage'])->name('scientist.management.updateProfileImage');
+    Route::post('scientist_management/updateAccountDetails/{id}',[StaffManagementController::class, 'updateAccountDetails'])->name('scientist.management.updateAccountDetails');
+    Route::post('scientist_management/addCollaboration',[StaffManagementController::class, 'addCollaboration'])->name('scientist.management.addCollaboration');
+    Route::post('scientist_management/removeCollaboration',[StaffManagementController::class, 'removeCollaboration'])->name('scientist.management.removeCollaboration');
+    Route::post('scientist_management/addProfessionalService',[StaffManagementController::class, 'addProfessionalService'])->name('addProfessionalService');
+    Route::post('scientist_management/removeProfessionalService',[StaffManagementController::class, 'removeProfessionalService'])->name('removeProfessionalService');
+    Route::post('scientist_management/addFellowship',[StaffManagementController::class, 'addFellowship'])->name('addFellowship');
+    Route::post('scientist_management/removeFellowship',[StaffManagementController::class, 'removeFellowship'])->name('removeFellowship');
+    Route::post('scientist_management/addAward',[StaffManagementController::class, 'addAward'])->name('addAward');
+    Route::post('scientist_management/removeAward',[StaffManagementController::class, 'removeAward'])->name('removeAward');
+
+
+    Route::get('manage_saif', [StaffManagementController::class, 'manageSaif'])->name('manage.saif');
+    Route::post('manage_saif/store', [StaffManagementController::class, 'storeSaif'])->name('manage.saif.store');
+    Route::get('manage_saif/list', [StaffManagementController::class, 'getSaif'])->name('manage.saif.list');
+    Route::get('manage_saif/edit/{id}', [StaffManagementController::class, 'editSaif'])->name('manage.saif.edit');
+    Route::post('manage_saif/update/{id}', [StaffManagementController::class, 'updateSaif'])->name('manage.saif.update');
+    Route::post('manage_saif/toggleStatus', [StaffManagementController::class, 'toggleSaifStatus'])->name('manage.saif.toggleStatus');
+    Route::post('manage_saif/toggleArchivedStatus', [StaffManagementController::class, 'toggleSaifArchivedStatus'])->name('manage.saif.toggleArchivedStatus');
+
 });
