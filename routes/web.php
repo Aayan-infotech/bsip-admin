@@ -38,6 +38,17 @@ Route::get('/', function () {
 
 Route::group(['prefix' => '{language}', 'where' => ['language' => 'en|hi']], function () {
     Route::get('/', [FrontendController::class, 'home'])->name('frontend.home');
+    Route::get('/bsip_notice_and_updates_all', [FrontendController::class, 'noticesSection'])->name('frontend.notices');
+    Route::get('/bsip_institute_history', [FrontendController::class, 'historySection'])->name('frontend.history');
+    Route::get('/bsip_Prof_birbal_Sahni_background', [FrontendController::class, 'parentalBackgroundSection'])->name('frontend.parentalBackground');
+    Route::get('/bsip_Prof_birbal_Sahni_education_career', [FrontendController::class, 'educationCareerSection'])->name('frontend.educationCareer');
+    Route::get('/bsip_Prof_birbal_Sahni_General_interest', [FrontendController::class, 'generalInterestSection'])->name('frontend.generalInterest');
+    Route::get('/bsip_Prof_birbal_Sahni_youth_incident', [FrontendController::class, 'incidentofYouthSection'])->name('frontend.incidentofYouth');
+    Route::get('/bsip_contribution_living', [FrontendController::class, 'livingSection'])->name('frontend.living');
+    Route::get('/bsip_contribution_fossil', [FrontendController::class, 'fossilSection'])->name('frontend.fossil');
+    Route::get('/bsip_contribution_geology', [FrontendController::class, 'geologySection'])->name('frontend.geology');
+    Route::get('/bsip_institute_honours', [FrontendController::class, 'honoursSection'])->name('frontend.honours');
+    Route::get('/bsip_institute_mrs_savitri_sahni', [FrontendController::class, 'mrsSavitriSahniSection'])->name('frontend.mrsSavitriSahni');
 });
 
 //User Management

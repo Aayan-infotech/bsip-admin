@@ -11,7 +11,7 @@
                             </li>
                             <li class="ico-site-search cf">
                                 <a href="#" id="toggleSearch" title="Site Search" role="link">
-                                    <img class="top" src="assets-new/assets/images/ico-site-search.png" alt="Site Search" /></a>
+                                    <img class="top" src="{{ asset('assets-new/assets/images/ico-site-search.png') }}" alt="Site Search" /></a>
                                 <div class="search-drop both-search">
                                     <div class="google-find">
                                         <form method="get" action="http://www.google.com/search" target="_blank">
@@ -40,16 +40,16 @@
                             </li>
                             <li class="ico-accessibility cf">
                                 <a href="#" id="toggleAccessibility" title="Accessibility Dropdown" role="link">
-                                    <img class="top" src="assets-new/assets/images/ico-accessibility.png" alt="Accessibility Dropdown" />
+                                    <img class="top" src="{{ asset('assets-new/assets/images/ico-accessibility.png') }}" alt="Accessibility Dropdown" />
                                 </a>
                                 <ul style="visibility: hidden;">
-                                    <li> <a onClick="set_font_size(&#39;increase&#39;)" title="Increase font size" href="#"
+                                    <li> <a onClick="set_font_size('increase')" title="Increase font size" href="#"
                                             role="link">A<sup>+</sup>
                                         </a>
                                     </li>
                                     <li> <a onClick="set_font_size()" title="Reset font size" href="#" role="link">A<sup>&nbsp;</sup></a>
                                     </li>
-                                    <li> <a onClick="set_font_size(&#39;decrease&#39;)" title="Decrease font size" href="#"
+                                    <li> <a onClick="set_font_size('decrease')" title="Decrease font size" href="#"
                                             role="link">A<sup>-</sup></a> </li>
                                     <li> <a href="#" class="high-contrast dark" title="High Contrast" role="link">A</a>
                                     </li>
@@ -59,7 +59,7 @@
                             </li>
                             <li class="ico-social cf">
                                 <a href="#" id="toggleSocial" title="Social Medias" role="link">
-                                    <img class="top" src="assets-new/assets/images/ico-social.png" alt="Social Medias" /></a>
+                                    <img class="top" src="{{ asset('assets-new/assets/images/ico-social.png') }}" alt="Social Medias" /></a>
                                 <ul>
 
                                     @foreach($socialLinks as $link)
@@ -73,7 +73,7 @@
                             </li>
                             <li class="ico-sitemap cf">
                                 <a href="#" title="Sitemap" role="link" aria-label="sitemap">
-                                    <img class="top" src="assets-new/assets/images/ico-sitemap.png" alt="Sitemap" /></a>
+                                    <img class="top" src="{{ asset('assets-new/assets/images/ico-sitemap.png') }}" alt="Sitemap" /></a>
                             </li>
                             <!-- Desktop Language Switcher (d-hide) -->
                             <li class="hindi cmf_lan d-hide">
@@ -81,8 +81,8 @@
                                     <span>Language</span>
                                 </label>
                                 <select id="language-select" title="Select language" onchange="location = this.value;">
-                                    <option value="{{ url('/en') }}" {{ $language === 'en' ? 'selected' : '' }}>English</option>
-                                    <option value="{{ url('/hi') }}" {{ $language === 'hi' ? 'selected' : '' }}>हिन्दी</option>
+                                    <option value="{{ url('en/' . request()->segment(2)) }}" {{ request()->segment(1) === 'en' ? 'selected' : '' }}>English</option>
+                                    <option value="{{ url('hi/' . request()->segment(2)) }}" {{ request()->segment(1) === 'hi' ? 'selected' : '' }}>हिन्दी</option>
                                 </select>
                             </li>
 
