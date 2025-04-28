@@ -119,6 +119,11 @@
             </div>
         </div>
     </section>
+    <style>
+        .main-menu ul>li {
+            margin-right: 8px !important;
+        }
+    </style>
     <section class="wrapper megamenu-wraper">
         <div class="container-fluid common-container four_content">
             <p class="showhide"><em></em><em></em><em></em></p>
@@ -127,14 +132,21 @@
                     @foreach($headerMenus as $menu)
                     <li class="nav-item" aria-haspopup="true" aria-expanded="false">
                         <a href="{{ $menu->menuHas === 'Page' ? '#' : url($language . '/' . $menu->url) }}" role="link" aria-label="{{ $language === 'hi' ? $menu->hin_title : $menu->title }}">
+                            @if($menu->title === 'Home')
+                            <i class="fa fa-home" aria-hidden="true"></i> <!-- Home icon -->
+                            @else
                             {{ $language === 'hi' ? $menu->hin_title : $menu->title }}
+                            @endif
                         </a>
                         @if($menu->menuHas === 'Page' && $menu->menuPages->isNotEmpty())
                         <div class="sub-nav">
                             <ul class="sub-nav-group">
                                 @foreach($menu->menuPages as $page)
                                 <li>
-                                    <a href="{{ url($language . '/' . $page->page_url) }}" role="link" aria-label="{{ $language === 'hi' ? $page->hin_title : $page->title }}">
+                                    <a href="{{ Str::startsWith($page->page_url, ['http://', 'https://']) ? $page->page_url : url($language . '/' . $page->page_url) }}"
+                                        target="{{ Str::startsWith($page->page_url, ['http://', 'https://']) ? '_blank' : '_self' }}"
+                                        role="link"
+                                        aria-label="{{ $language === 'hi' ? $page->hin_title : $page->title }}">
                                         {{ $language === 'hi' ? $page->hin_title : $page->title }}
                                     </a>
                                 </li>

@@ -1,4 +1,4 @@
-<div class="col-md-2 col-sm-3 bg-light sidebar" style="min-height: 100vh; padding: 20px; max-width: fit-content;">
+<div class="col-md-2 col-sm-3 bg-light sidebar sidebar-responsive">
     <button class="btn btn-primary d-md-none mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-expanded="false" aria-controls="sidebarMenu">
         Open Menu
     </button>
@@ -43,3 +43,19 @@
         </ul>
     </div>
 </div>
+<style>
+    .sidebar-responsive {
+        min-height: 100vh;
+        padding: 20px;
+        max-width: fit-content;
+    }
+
+    @media screen and (max-width: 768px) {
+        .sidebar-responsive {
+            min-height: 5vh;
+            padding: 20px;
+            max-width: none;
+        }
+
+    }
+</style>

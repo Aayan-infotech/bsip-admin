@@ -34,7 +34,7 @@
                   : 'Professor Birbal Sahni, FRS, and a great visionary, established the Institute as Institute of Palaeobotany...' }}
                             </p>
                             <div class="row">
-                                <a href="{{ $language === 'hi' ? 'bsip_institute_history.php' : 'bsip_institute_history.php' }}" class="button-profile-card">
+                                <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_institute_history' : 'bsip_institute_history' }}" class="button-profile-card">
                                     {{ $language === 'hi' ? 'और पढ़ें' : 'Know More' }}
                                 </a>
                             </div>
@@ -56,7 +56,7 @@
                             <h3>{{ $language === 'hi' ? 'प्रो. बीरबल साहनी' : 'Prof. Birbal Sahni, FRS' }}</h3>
                             <h4>{{ $language === 'hi' ? 'संस्थापक बी.सा.पु.सं.' : 'Founder BSIP' }}</h4>
                             <div class="row">
-                                <a href="{{ $language === 'hi' ? 'hin_bsip_Prof_birbal_Sahni_background.php' : 'parental-background.php' }}" class="button-profile-card">
+                                <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_Prof_birbal_Sahni_background' : 'bsip_Prof_birbal_Sahni_background' }}" class="button-profile-card">
                                     {{ $language === 'hi' ? 'प्रोफाइल देखिये' : 'View Profile' }}
                                 </a>
                             </div>
@@ -78,7 +78,7 @@
                             <h3>{{ $language === 'hi' ? 'प्रोफेसर महेश जी. ठक्कर' : 'Prof. Mahesh G. Thakkar' }}</h3>
                             <h4>{{ $language === 'hi' ? 'निदेशक' : 'Director' }}</h4>
                             <div class="row">
-                                <a href="{{ $language === 'hi' ? 'hin_director.php' : 'director.php' }}" class="button-profile-card">
+                                <a href="{{ $language}}/{{ $language === 'hi' ? 'director' : 'director' }}" class="button-profile-card">
                                     {{ $language === 'hi' ? 'प्रोफाइल देखिये' : 'View Profile' }}
                                 </a>
                             </div>
@@ -139,7 +139,7 @@
                         </ul>
                     </div>
                     <div class="card-footer text-end">
-                        <a href="{{ $language === 'hi' ? 'hin_bsip_research_highlights_all.php' : 'bsip_research_highlights_all.php' }}" class="button-profile-card">
+                        <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_research_highlights_all' : 'bsip_research_highlights_all' }}" class="button-profile-card">
                             {{ $language === 'hi' ? 'और पढ़ें' : 'Read More' }}
                         </a>
                     </div>
@@ -211,7 +211,7 @@
                         <div class="row justify-content-center g-4">
                             <!-- Journal of Palaeosciences -->
                             <div class="col-6">
-                                <a href="{{ $language === 'hi' ? 'hin_bsip_the_paleobotanist.php' : 'bsip_the_paleobotanist.php' }}"
+                                <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_the_paleobotanist' : 'bsip_the_paleobotanist' }}"
                                     class="card-link text-decoration-none" role="link" aria-label="home">
                                     <div class="card-section border rounded text-center p-3">
                                         <div class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
@@ -225,7 +225,7 @@
                             </div>
                             <!-- Research Projects -->
                             <div class="col-6">
-                                <a href="{{ $language === 'hi' ? 'hin_bsip_research_activities.php' : 'bsip_research_activities.php' }}"
+                                <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_research_activities' : 'bsip_research_activities' }}"
                                     class="card-link text-decoration-none" role="link" aria-label="home">
                                     <div class="card-section border rounded text-center p-3">
                                         <div class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
@@ -239,7 +239,7 @@
                             </div>
                             <!-- Annual Report -->
                             <div class="col-6">
-                                <a href="{{ $language === 'hi' ? 'hin_bsip_annual_reports.php' : 'bsip_annual_reports.php' }}"
+                                <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_annual_reports' : 'bsip_annual_reports' }}"
                                     class="card-link text-decoration-none" role="link" aria-label="home">
                                     <div class="card-section border rounded text-center p-3">
                                         <div class="icon-container bg-warning text-white d-flex justify-content-center align-items-center mx-auto">
@@ -253,7 +253,7 @@
                             </div>
                             <!-- Monthly Report -->
                             <div class="col-6">
-                                <a href="{{ $language === 'hi' ? 'hin_bsip_monthly_report.php' : 'bsip_monthly_report.php' }}"
+                                <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_monthly_report' : 'bsip_monthly_report' }}"
                                     class="card-link text-decoration-none" role="link" aria-label="home">
                                     <div class="card-section border rounded text-center p-3">
                                         <div class="icon-container bg-danger text-white d-flex justify-content-center align-items-center mx-auto">
@@ -286,7 +286,7 @@
                         <div class="card-body d-flex justify-content-center align-items-center">
                             <div class="row justify-content-center g-4">
                                 <div class="col-6">
-                                    <a href="bsip_past_events.php" class="card-link text-decoration-none" role="link" aria-label="home">
+                                    <a href="bsip_past_events" class="card-link text-decoration-none" role="link" aria-label="home">
                                         <div class="card-section border rounded text-center p-3">
                                             <div class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
                                                 <i class="fas fa-calendar-alt fa-1x" role="presentation"></i>
@@ -340,7 +340,7 @@
                         <div class="card-body d-flex justify-content-center align-items-center">
                             <div class="row justify-content-center g-4">
                                 <div class="col-6">
-                                    <a href="{{ $language === 'hi' ? 'hin_bsip_short_term_training_program.php' : 'bsip_short_term_training_program.php' }}" class="card-link text-decoration-none" role="link" aria-label="home">
+                                    <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_short_term_training_program' : 'bsip_short_term_training_program' }}" class="card-link text-decoration-none" role="link" aria-label="home">
                                         <div class="card-section border rounded text-center p-2">
                                             <div class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
                                                 <i class="fas fa-chalkboard-teacher fa-1x" role="presentation"></i>
@@ -350,7 +350,7 @@
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="{{ $language === 'hi' ? 'hin_bsip_master_dissertation_program.php' : 'bsip_master_dissertation_program.php' }}" class="card-link text-decoration-none" role="link" aria-label="home">
+                                    <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_master_dissertation_program' : 'bsip_master_dissertation_program' }}" class="card-link text-decoration-none" role="link" aria-label="home">
                                         <div class="card-section border rounded text-center p-3">
                                             <div class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
                                                 <i class="fas fa-graduation-cap fa-1x" role="presentation"></i>
@@ -360,7 +360,7 @@
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="{{ $language === 'hi' ? 'hin_bsip_admission_to_phd.php' : 'bsip_admission_to_phd.php' }}" class="card-link text-decoration-none" role="link" aria-label="home">
+                                    <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_admission_to_phd' : 'bsip_admission_to_phd' }}" class="card-link text-decoration-none" role="link" aria-label="home">
                                         <div class="card-section border rounded text-center p-3">
                                             <div class="icon-container bg-warning text-white d-flex justify-content-center align-items-center mx-auto">
                                                 <i class="fas fa-university fa-1x" role="presentation"></i>
@@ -370,7 +370,7 @@
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="{{ $language === 'hi' ? 'hin_bsip_career.php' : 'bsip_career.php' }}" class="card-link text-decoration-none" role="link" aria-label="home">
+                                    <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_career' : 'bsip_career' }}" class="card-link text-decoration-none" role="link" aria-label="home">
                                         <div class="card-section border rounded text-center p-3">
                                             <div class="icon-container bg-danger text-white d-flex justify-content-center align-items-center mx-auto">
                                                 <i class="fas fa-bullhorn fa-1x" role="presentation"></i>
@@ -394,7 +394,7 @@
                         <div class="card-body d-flex justify-content-center align-items-center">
                             <div class="row justify-content-center g-4">
                                 <div class="col-6">
-                                    <a href="{{ $language === 'hi' ? 'hin_bsip_scientific.php' : 'bsip_scientific.php' }}" class="card-link text-decoration-none" role="link" aria-label="home">
+                                    <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_scientific' : 'bsip_scientific' }}" class="card-link text-decoration-none" role="link" aria-label="home">
                                         <div class="card-section border rounded text-center p-3">
                                             <div class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
                                                 <i class="fas fa-microscope fa-1x"></i>
@@ -404,7 +404,7 @@
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="{{ $language === 'hi' ? 'hin_bsip_technical_staff.php' : 'bsip_technical_staff.php' }}" class="card-link text-decoration-none" role="link" aria-label="home">
+                                    <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_technical_staff' : 'bsip_technical_staff' }}" class="card-link text-decoration-none" role="link" aria-label="home">
                                         <div class="card-section border rounded text-center p-3">
                                             <div class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
                                                 <i class="fas fa-cogs fa-1x"></i>
@@ -414,7 +414,7 @@
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="{{ $language === 'hi' ? 'hin_bsip_administrative.php' : 'bsip_administrative.php' }}" class="card-link text-decoration-none" role="link" aria-label="home">
+                                    <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_administrative' : 'bsip_administrative' }}" class="card-link text-decoration-none" role="link" aria-label="home">
                                         <div class="card-section border rounded text-center p-3">
                                             <div class="icon-container bg-warning text-white d-flex justify-content-center align-items-center mx-auto">
                                                 <i class="fas fa-users-cog fa-1x"></i>
@@ -424,7 +424,7 @@
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="{{ $language === 'hi' ? 'hin_bsip_superannuated_employee.php' : 'bsip_superannuated_employee.php' }}" class="card-link text-decoration-none" role="link" aria-label="home">
+                                    <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_superannuated_employee' : 'bsip_superannuated_employee' }}" class="card-link text-decoration-none" role="link" aria-label="home">
                                         <div class="card-section border rounded text-center p-3">
                                             <div class="icon-container bg-danger text-white d-flex justify-content-center align-items-center mx-auto">
                                                 <i class="fas fa-user-clock fa-1x"></i>
@@ -449,7 +449,7 @@
 
                 <!-- Museum Card -->
                 <div class="col-md-4">
-                    <a href="{{ $language === 'hi' ? 'bsip_museum.php' : 'bsip_museum.php' }}" class="text-decoration-none" role="link" aria-label="home">
+                    <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_museum' : 'bsip_museum' }}" class="text-decoration-none" role="link" aria-label="home">
                         <div class="card shadow">
                             <h2 class="header-section-profiles">
                                 <i class="fas fa-landmark me-2"></i>
@@ -468,7 +468,7 @@
 
                 <!-- CPGG Card -->
                 <div class="col-md-4">
-                    <a href="{{ $language === 'hi' ? 'hin_bsip_geo_heritage.php' : 'bsip_geo_heritage.php' }}" class="text-decoration-none" role="link" aria-label="home">
+                    <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_geo_heritage' : 'bsip_geo_heritage' }}" class="text-decoration-none" role="link" aria-label="home">
                         <div class="card shadow">
                             <h2 class="header-section-profiles">
                                 <i class="fas fa-handshake me-2"></i>
@@ -487,7 +487,7 @@
 
                 <!-- Media Cell Card -->
                 <div class="col-md-4">
-                    <a href="{{ $language === 'hi' ? 'hin_bsip_media_cell.php' : 'bsip_media_cell.php' }}" class="text-decoration-none" role="link" aria-label="home">
+                    <a href="{{ $language}}/{{ $language === 'hi' ? 'bsip_media_cell' : 'bsip_media_cell' }}" class="text-decoration-none" role="link" aria-label="home">
                         <div class="card shadow">
                             <h2 class="header-section-profiles">
                                 <i class="fas fa-broadcast-tower me-2"></i>
@@ -522,37 +522,37 @@
                 <div class="slider-wrapper">
                     <div class="slider-container">
                         <div class="slider-item">
-                            <a href="{{ $language === 'hi' ? 'hin_saif.php' : 'saif.php' }}">
+                            <a href="{{ $language}}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
                                 <img src="https://www.bsip.res.in/images/services/TL-OSL.jpg" alt="TL/OSL">
                                 <div class="slider-title">TL/OSL</div>
                             </a>
                         </div>
                         <div class="slider-item">
-                            <a href="{{ $language === 'hi' ? 'hin_saif.php' : 'saif.php' }}">
+                            <a href="{{ $language}}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
                                 <img src="https://www.bsip.res.in/images/services/XRD.jpg" alt="XRD">
                                 <div class="slider-title">XRD</div>
                             </a>
                         </div>
                         <div class="slider-item">
-                            <a href="{{ $language === 'hi' ? 'hin_saif.php' : 'saif.php' }}">
+                            <a href="{{ $language}}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
                                 <img src="https://www.bsip.res.in/images/services/Nutrien%20Analyzer.jpg" alt="Nutrien Analyzer">
                                 <div class="slider-title">Nutrien Analyzer</div>
                             </a>
                         </div>
                         <div class="slider-item">
-                            <a href="{{ $language === 'hi' ? 'hin_saif.php' : 'saif.php' }}">
+                            <a href="{{ $language}}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
                                 <img src="https://www.bsip.res.in/images/services/FESEM.jpg" alt="FESEM">
                                 <div class="slider-title">FESEM</div>
                             </a>
                         </div>
                         <div class="slider-item">
-                            <a href="{{ $language === 'hi' ? 'hin_saif.php' : 'saif.php' }}">
+                            <a href="{{ $language}}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
                                 <img src="https://www.bsip.res.in/images/services/Coal-CF.jpeg" alt="Coal CF">
                                 <div class="slider-title">Coal CF</div>
                             </a>
                         </div>
                         <div class="slider-item">
-                            <a href="{{ $language === 'hi' ? 'hin_saif.php' : 'saif.php' }}">
+                            <a href="{{ $language}}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
                                 <img src="https://www.bsip.res.in/images/services/Thermo-Gravimetric-Analyser-(TGA).jpeg" alt="Bomb Calorimeter">
                                 <div class="slider-title">Bomb Calorimeter</div>
                             </a>
@@ -572,7 +572,7 @@
             <div class="gallery-area clearfix">
                 <div class="gallery-heading text-center" role="main">
                     <h3>{{ $language === 'hi' ? 'फोटो गैलरी' : 'Photo Gallery' }}</h3>
-                    <a class="bttn-more bttn-view" href="{{ $language === 'hi' ? 'https://www.bsip.res.in/bsip_rajbhasha_patal.php' : 'bsip_rajbhasha_patal.php' }}" target="_blank" aria-label="{{ $language === 'hi' ? 'सभी को देखें' : 'View All' }}">
+                    <a class="bttn-more bttn-view" href="{{ $language}}/{{ $language === 'hi' ? 'bsip_rajbhasha_patal' : 'bsip_rajbhasha_patal' }}" target="_blank" aria-label="{{ $language === 'hi' ? 'सभी को देखें' : 'View All' }}">
                         <span>{{ $language === 'hi' ? 'सभी को देखें' : 'View All' }}</span>
                     </a>
                 </div>
