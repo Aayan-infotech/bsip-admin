@@ -9,74 +9,12 @@
         <p class="text-muted">Access your modules just like system drives</p>
     </div>
 
-<<<<<<< HEAD
-                    <!-- {{ __('You are logged in!') }} -->
-
-                    <div class="row">
-                        @foreach($modules as $module)
-                        <div class="col-md-4 mt-3">
-                            <div class="card text-center menu-box" style=" background: rgb(36,0,15);
-background: linear-gradient(90deg, rgba(36,0,15,1) 0%, rgba(121,9,19,1) 35%, rgba(255,0,0,0.8771708512506565) 100%);  border: none; box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s;">
-                                <div class="card-body">
-                                    <h5 class="card-title" style="color: white;">{{ $module->name }}</h5>
-                                    <p class="text-light card-text">{{ $module->description ?? 'Manage ' . $module->name }}</p>
-                                    @php
-                                    $topPage = $module->pages->sortBy('sequence')->first(); // Get the top page by sequence
-                                    @endphp
-                                    @if($topPage)
-                                    <a href="{{ url($topPage->page_url) }}" class="btn btn-primary mb-2">Click Here</a>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-
-                    <div class="row d-none">
-                        <!-- Menu Box 1 -->
-                        <div class="col-md-4">
-                            <div class="card text-center menu-box" style=" background: rgb(36,0,15);
-background: linear-gradient(90deg, rgba(36,0,15,1) 0%, rgba(121,9,19,1) 35%, rgba(255,0,0,0.8771708512506565) 100%);  border: none; box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s;">
-                                <div class="card-body">
-                                    <h5 class="card-title" style="color: white;">Users</h5>
-                                    <p class="text-light card-text">Manage users of the system.</p>
-                                    <a href="{{ url('/users') }}" class="btn btn-primary">Go to Users</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Menu Box 2 -->
-                        <div class="col-md-4">
-                            <div class="card text-center menu-box" style=" background: rgb(36,0,15);
-background: linear-gradient(90deg, rgba(36,0,15,1) 0%, rgba(121,9,19,1) 35%, rgba(255,0,0,0.8771708512506565) 100%);  border: none; box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s;">
-                                <div class="card-body">
-                                    <h5 class="card-title" style="color: white;">Settings</h5>
-                                    <p class="text-light card-text">Configure application settings.</p>
-                                    <a href="{{ url('/settings') }}" class="btn btn-primary">Go to Settings</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Menu Box 3 -->
-                        <div class="col-md-4">
-                            <div class="card text-center menu-box" style=" background: rgb(36,0,15);
-background: linear-gradient(90deg, rgba(36,0,15,1) 0%, rgba(121,9,19,1) 35%, rgba(255,0,0,0.8771708512506565) 100%);  border: none; box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s;">
-                                <div class="card-body">
-                                    <h5 class="card-title" style="color: white;">Reports</h5>
-                                    <p class="text-light card-text">View system reports and analytics.</p>
-                                    <a href="{{ url('/reports') }}" class="btn btn-primary">Go to Reports</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-=======
     <div class="row justify-content-start">
         @foreach($modules as $module)
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-4">
             <div class="glass-tile d-flex flex-column align-items-center justify-content-center text-center p-4">
                 <div class="win11-icon mb-3">
                     <i class="fa-solid fa-folder fa-2x text-white"></i>
->>>>>>> c2e0f8f0a956c02e348c4d919f04a01ae5eac31a
                 </div>
                 <h5 class="fw-semibold text-dark mb-1">{{ $module->name }}</h5>
                 <p class="text-dark small mb-2">{{ $module->description ?? 'Manage ' . $module->name }}</p>

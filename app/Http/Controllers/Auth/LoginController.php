@@ -18,16 +18,16 @@ class LoginController extends Controller
     {
         return view('auth.login');
     }
-
+    
     public function login(Request $request)
-    {
+    {        
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
             'g-recaptcha-response' => 'required',
         ]);
 
-
+        
         $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
             'secret' => env('RECAPTCHA_SECRET_KEY'),
             'response' => $request->input('g-recaptcha-response'),
@@ -35,7 +35,7 @@ class LoginController extends Controller
 
         $result = $response->json();
 
-
+        
         if (!$result['success'] || $result['score'] < 0.5) {
             return response()->json(['error' => 'reCAPTCHA verification failed!'], 422);
         }
@@ -47,19 +47,19 @@ class LoginController extends Controller
             // return redirect()->back()->withErrors(['email' => 'Your account is blocked. Please contact the administrator.']);
             return response()->json(['error' => 'Your account is blocked. Please contact the administrator.'], 401);
         }
-
+        
         if (Auth::attempt($request->only('email', 'password'))) {
-            return response()->json(['message' => 'Login successful!', 'redirect' => url('/dashboard')]);
+            return response()->json(['message' => 'Login successful!', 'redirect' => url('/adminDashboard')]);
         } else {
             return response()->json(['error' => 'Invalid credentials!'], 401);
         }
     }
 
-
+    
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect('/dashboard');
+        return redirect('/adminDashboard');
     }
 }
 

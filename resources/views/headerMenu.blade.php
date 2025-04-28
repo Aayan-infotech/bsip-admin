@@ -9,7 +9,7 @@
                 <div class="card-header">
                     <nav aria-label="breadcrumb" class="float-start">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/adminDashboard') }}"><i class="fa fa-home"></i></a></li>
                             <li class="breadcrumb-item">Template Management</li>
                             <li class="breadcrumb-item"><a href="{{ url('/headerMenu') }}">Header Menus</a></li>
                         </ol>
@@ -140,7 +140,7 @@
         processing: true,
         serverSide: true,
         ajax: "{{ route('headerMenu.index') }}",
-        order: [],
+        order: [], 
         columns: [
             { data: 'sequence', name: 'sequence' },
             { data: 'title', name: 'title' },

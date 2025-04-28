@@ -12,7 +12,7 @@
                     <!-- {{ __('User Management') }} -->
                     <nav aria-label="breadcrumb" class="float-start">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/adminDashboard') }}"><i class="fa fa-home"></i></a></li>
                             <li class="breadcrumb-item">Web Content Management</li>
                             <li class="breadcrumb-item"><a href="{{ url('/sliders') }}">Sliders</a></li>
                         </ol>
@@ -116,7 +116,7 @@
                     render: function(data) {
                         return `
         <div style="display: flex; justify-content: center; align-items: center;">
-            <img src="/storage/${data}" alt="Slider Image"
+            <img src="/storage/${data}" alt="Slider Image" 
                 style="width: 120px; height: 80px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
         </div>`;
                     },
