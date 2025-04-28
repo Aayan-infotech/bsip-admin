@@ -144,19 +144,19 @@ class WebContentManagementController extends Controller
             // $sliders = Notice::where('archived_status', 'No')->get();
             $sliders = Notice::get();
             return DataTables::of($sliders)
-            ->addColumn('status', function ($slider) {
-                $checked = $slider->status ? 'checked' : '';
-                $statusText = $slider->status
-                    ? ' <span class="badge badge-success" style="color: white;background: #2c751d;">Active</span>'
-                    : ' <span class="badge badge-danger" style="color: white;background: #df0d17;">Blocked</span>';
+                ->addColumn('status', function ($slider) {
+                    $checked = $slider->status ? 'checked' : '';
+                    $statusText = $slider->status
+                        ? ' <span class="badge badge-success" style="color: white;background: #2c751d;">Active</span>'
+                        : ' <span class="badge badge-danger" style="color: white;background: #df0d17;">Blocked</span>';
 
-                $checked1 = $slider->archived_status === 'Yes' ? 'checked' : '';
-                $statusText1 = $slider->archived_status === 'Yes'
-                    ? ' <span class="badge badge-warning" style="color: white;background:rgb(180, 5, 151);">Archived</span>'
-                    : ' <span class="badge badge-info" style="color: white;background: #053479;">Un-Archived</span>';
-                return '<div class="d-flex"> <input type="checkbox" class="toggle-status me-2" data-id="' . $slider->id . '" ' . $checked . '> ' . $statusText . '</div>' .
-                    '<br><div class="d-flex"> <input type="checkbox" class="toggle-archived-status me-2" data-id="' . $slider->id . '" ' . $checked1 . '> ' . $statusText1 . '</div>';
-            })
+                    $checked1 = $slider->archived_status === 'Yes' ? 'checked' : '';
+                    $statusText1 = $slider->archived_status === 'Yes'
+                        ? ' <span class="badge badge-warning" style="color: white;background:rgb(180, 5, 151);">Archived</span>'
+                        : ' <span class="badge badge-info" style="color: white;background: #053479;">Un-Archived</span>';
+                    return '<div class="d-flex"> <input type="checkbox" class="toggle-status me-2" data-id="' . $slider->id . '" ' . $checked . '> ' . $statusText . '</div>' .
+                        '<br><div class="d-flex"> <input type="checkbox" class="toggle-archived-status me-2" data-id="' . $slider->id . '" ' . $checked1 . '> ' . $statusText1 . '</div>';
+                })
                 ->addColumn('action', function ($slider) {
                     return '<button class="btn btn-sm btn-primary edit-notice" data-id="' . $slider->id . '">
                     <i class="fas fa-edit"></i>
@@ -321,8 +321,6 @@ class WebContentManagementController extends Controller
                 ->rawColumns(['status', 'action'])
                 ->make(true);
         }
-
-      
     }
 
     // Store Career
@@ -484,8 +482,6 @@ class WebContentManagementController extends Controller
                 ->rawColumns(['status', 'action'])
                 ->make(true);
         }
-
-      
     }
 
     // Store Career
@@ -546,7 +542,7 @@ class WebContentManagementController extends Controller
         ]);
     }
 
-    // Update Career
+
     public function updatetender(Request $request, $id)
     {
         $request->validate([
@@ -558,19 +554,19 @@ class WebContentManagementController extends Controller
             'end_date' => 'required|date',
         ]);
 
-        $career = Tender::findOrFail($id);
+        $tender = Tender::findOrFail($id);
 
         if ($request->hasFile('tender_document')) {
             $tender_documentPath = $request->file('tender_document')->store('tenders', 'public');
-            $career->tender_document = $tender_documentPath;
+            $tender->tender_document = $tender_documentPath;
         }
 
-        $career->update([
-            'reference_no' => $request->title,
-            'title' => $request->hin_title,
-            'hin_title_title' => $request->url,
-            'start_date_date' => $request->interview_date,
-            'end_date_date' => $request->last_date,
+        $tender->update([
+            'reference_no' => $request->reference_no,
+            'title' => $request->title,
+            'hin_title' => $request->hin_title,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
         ]);
 
         return response()->json(['message' => 'Tender updated successfully.']);
@@ -633,8 +629,6 @@ class WebContentManagementController extends Controller
                 ->rawColumns(['status', 'action'])
                 ->make(true);
         }
-
-      
     }
 
     // Store Career
@@ -778,8 +772,6 @@ class WebContentManagementController extends Controller
                 ->rawColumns(['status', 'action'])
                 ->make(true);
         }
-
-      
     }
 
     // Store Career

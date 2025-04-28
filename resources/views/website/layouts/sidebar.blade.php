@@ -1,12 +1,17 @@
 <style>
     .sidebar {
-        background-color: #d0e8ff;
-        padding: 20px;
-        border-radius: 8px;
+        background-color: #0262af;
+        padding:
+            7px;
+        padding-left: 7px;
+        border-radius:
+            8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         margin-left: 20px;
+        padding-left: 0px;
     }
-    .content{
+
+    .content {
         width: 80%;
     }
 
@@ -31,12 +36,16 @@
     .sidebar-nav a {
         display: flex;
         align-items: center;
-        text-decoration: none;
-        font-size: 1rem;
-        color: #495057;
-        padding: 8px 12px;
-        border-radius: 5px;
-        transition: all 0.3s ease;
+        text-decoration:
+            none;
+        font-size: 14px;
+        color:rgb(255, 255, 255);
+        padding:
+            8px 12px;
+        border-radius:
+            5px;
+        transition:
+            all 0.3s ease;
     }
 
     .sidebar-nav a i {
@@ -45,34 +54,36 @@
     }
 
     .sidebar-nav a.active {
-        background-color: #007bff;
+        background-color: #bd371a;
         color: #fff;
         font-weight: bold;
     }
 
     .sidebar-nav a:hover {
-        background-color: #e9ecef;
+        background-color: #fff;
         color: #007bff;
+        margin-left: 5px;
     }
 </style>
 
 <div class="col-md-2 sidebar">
     <nav aria-label="{{ $language === 'hi' ? 'साइडबार नेविगेशन' : 'Sidebar Navigation' }}">
         <ul class="sidebar-nav">
-            <li>
+            <!-- <li>
                 <p class="sidebar-heading">
                     {{ $language === 'hi' ? 'प्रोफाइल' : 'Profile' }}
                 </p>
-            </li>
+            </li> -->
             @foreach ($menuPages as $menuPage)
-                <li>
-                    <a href="{{ url($language . '/' . $menuPage->page_url) }}" 
-                       class="{{ $menuPage->id === $currentPageId ? 'active' : '' }}" 
-                       aria-label="{{ $language === 'hi' ? $menuPage->hin_title : $menuPage->title }}">
-                        <i class="{{ $menuPage->icon }}"></i> 
-                        <span>{{ $language === 'hi' ? $menuPage->hin_title : $menuPage->title }}</span>
-                    </a>
-                </li>
+            <li>
+                <a href="{{ Str::startsWith($menuPage->page_url, ['http://', 'https://']) ? $menuPage->page_url : url($language . '/' . $menuPage->page_url) }}"
+                    target="{{ Str::startsWith($menuPage->page_url, ['http://', 'https://']) ? '_blank' : '_self' }}"
+                    class="{{ $menuPage->id === $currentPageId ? 'active' : '' }}"
+                    aria-label="{{ $language === 'hi' ? $menuPage->hin_title : $menuPage->title }}">
+                    <i class="{{ $menuPage->icon }}"></i>
+                    <span>{{ $language === 'hi' ? $menuPage->hin_title : $menuPage->title }}</span>
+                </a>
+            </li>
             @endforeach
         </ul>
     </nav>

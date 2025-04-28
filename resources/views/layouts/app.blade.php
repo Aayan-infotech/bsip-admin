@@ -47,55 +47,101 @@
             display: none;
         }
 
-    .yajraTable {
-        font-size: 14px;
-        border-collapse: collapse;
-    }
+        .yajraTable {
+            font-size: 14px;
+            border-collapse: collapse;
+        }
 
-    .yajraTable th {
-        background-color: #343a40;
-        color: white;
-        text-align: center;
-    }
+        .yajraTable th {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+        }
 
-    .yajraTable td {
-        text-align: center;
-        vertical-align: middle;
-    }
+        .yajraTable td {
+            text-align: center;
+            vertical-align: middle;
+        }
 
-    .yajraTable .btn {
-        font-size: 12px;
-        padding: 5px 10px;
-    }
+        .yajraTable .btn {
+            font-size: 12px;
+            padding: 5px 10px;
+        }
 
-    .yajraTable .toggle-status {
-        transform: scale(1.2);
-    }
+        .yajraTable .toggle-status {
+            transform: scale(1.2);
+        }
 
-    .table-responsive {
-        margin-top: 20px;
-    }
-    .sidebar {
-        border-right: 1px solid #ddd;
-    }
+        .table-responsive {
+            margin-top: 20px;
+        }
 
-    .nav-link {
-        color: #007bff;
-        transition: color 0.3s;
-    }
+        .sidebar {
+            border-right: 1px solid #ddd;
+        }
 
-    .nav-link:hover {
-        color: #0056b3;
-    }
+        .nav-link {
+            color: #007bff;
+            transition: color 0.3s;
+        }
 
-    .nav-link.active {
-        font-weight: bold;
-        color: #0056b3;
-    }
+        .nav-link:hover {
+            color: #0056b3;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            color: #0056b3;
+        }
     </style>
     <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
 
 
+<<<<<<< HEAD
+=======
+    <style>
+        .startup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #101820;
+            /* dark like Windows boot */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 1s ease-in-out 3s forwards;
+        }
+
+        .startup-logo {
+            animation: zoomInOut 2.5s ease-in-out infinite;
+        }
+
+        @keyframes zoomInOut {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                z-index: -1;
+            }
+        }
+    </style>
+>>>>>>> c2e0f8f0a956c02e348c4d919f04a01ae5eac31a
 
 </head>
 
@@ -156,11 +202,29 @@
                 </div>
             </div>
         </nav>
+        <div id="startup-loader" class="startup-overlay">
+            <div class="startup-logo">
+                <svg width="80" height="80" viewBox="0 0 48 48" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="3" width="18" height="18" fill="#ffffff" />
+                    <rect x="27" y="3" width="18" height="18" fill="#ffffff" />
+                    <rect x="3" y="27" width="18" height="18" fill="#ffffff" />
+                    <rect x="27" y="27" width="18" height="18" fill="#ffffff" />
+                </svg>
+                <!-- <img src="{{ asset('/bsipLogo.png')}}" alt=""> -->
+            </div>
+        </div>
 
         <main class="">
             @yield('content')
         </main>
     </div>
+
+    <script>
+        setTimeout(() => {
+            const loader = document.getElementById('startup-loader');
+            if (loader) loader.remove();
+        }, 4000);
+    </script>
 
 </body>
 

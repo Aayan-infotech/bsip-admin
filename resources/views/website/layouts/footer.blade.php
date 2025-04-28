@@ -47,7 +47,10 @@
                     <ul class="list-unstyled footer-link mt-4">
                         @foreach($importantLinks as $link)
                         <li>
-                            <a href="{{ $link->url }}" role="link" aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}" target="_blank">
+                            <a href="{{ Str::startsWith($link->url, ['http://', 'https://']) ? $link->url : url($language . '/' . $link->url) }}"
+                                role="link"
+                                aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}"
+                                {{ Str::startsWith($link->url, ['http://', 'https://']) ? 'target="_blank"' : '' }}>
                                 {{ $language === 'hi' ? $link->hin_title : $link->title }}
                             </a>
                         </li>
@@ -63,7 +66,10 @@
                     <ul class="list-unstyled footer-link mt-4">
                         @foreach($usefulLinks as $link)
                         <li>
-                            <a href="{{ $link->url }}" role="link" aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}" target="_blank">
+                            <a href="{{ Str::startsWith($link->url, ['http://', 'https://']) ? $link->url : url($language . '/' . $link->url) }}"
+                                role="link"
+                                aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}"
+                                {{ Str::startsWith($link->url, ['http://', 'https://']) ? 'target="_blank"' : '' }}>
                                 {{ $language === 'hi' ? $link->hin_title : $link->title }}
                             </a>
                         </li>
@@ -74,17 +80,17 @@
 
             <!-- Site Visitors Section -->
             <div class="col-lg-2 col-6">
-    <div class="visitor-section text-center">
-        <h4 class="footer-heading mb-3" style="font-weight: bold; color: #1565c0;">
-            {{ $language === 'hi' ? 'साइट आगंतुक' : 'Site Visitors' }}
-        </h4>
-        <div class="visitor-counter" style="background: #f7f7f7; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <p style="font-size: 18px; font-weight: bold; margin: 0; color: #333;">
-                {{ $language === 'hi' ? 'आगंतुक : ' . $visitorCount : 'Visitors : ' . $visitorCount }}
-            </p>
-        </div>
-    </div>
-</div>
+                <div class="visitor-section text-center">
+                    <h4 class="footer-heading mb-3" style="font-weight: bold; color: #1565c0;">
+                        {{ $language === 'hi' ? 'साइट आगंतुक' : 'Site Visitors' }}
+                    </h4>
+                    <div class="visitor-counter" style="background: #f7f7f7; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <p style="font-size: 18px; font-weight: bold; margin: 0; color: #333;">
+                            {{ $language === 'hi' ? 'आगंतुक : ' . $visitorCount : 'Visitors : ' . $visitorCount }}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
