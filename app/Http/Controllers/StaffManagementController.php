@@ -191,10 +191,10 @@ class StaffManagementController extends Controller
             'sub_category_id'      => 'required|exists:staff_sub_categories,id',
             'name'                 => 'required|string|max:255',
             'name_hin'             => 'required|string|max:255',
-            'email'                => 'required|email|unique:staff,email',
+            'email'                => 'nullable|email|unique:staff,email',
             'telephone_extension'  => 'nullable|string|max:20',
             'personal_telephone'   => 'nullable|string|max:20',
-            'mobile_no'            => 'required|string|max:20',
+            'mobile_no'            => 'nullable|string|max:20',
             'alternate_mobile_no'  => 'nullable|string|max:20',
             'alternate_email'      => 'nullable|email|max:255',
             'joining_date'         => 'nullable|date',
@@ -228,7 +228,7 @@ class StaffManagementController extends Controller
         if ($request->hasFile('cv_file')) {
             $file                     = $request->file('cv_file');
             $cvPath                   = $this->uploadFile($file, 'staff/cv_files');
-            $validatedData['cv_file'] = $cvPath;
+            $validatedData['cv'] = $cvPath;
         }
 
         $lastStaff                    = Staff::orderBy('id', 'desc')->first();
@@ -253,8 +253,8 @@ class StaffManagementController extends Controller
                 'joining_date'        => $validatedData['joining_date'],
                 'exit_date'           => $validatedData['exit_date'],
                 'superannuation_date' => $validatedData['superannuation_date'],
-                'profile_picture'     => $validatedData['profile_picture'],
-                'cv'                  => $validatedData['cv_file'],
+                'profile_picture'     => $validatedData['profile_picture'] ?? null,
+                'cv'                  => $validatedData['cv'] ?? null,
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -335,7 +335,7 @@ class StaffManagementController extends Controller
             if ($request->hasFile('cv_file')) {
                 $file                     = $request->file('cv_file');
                 $cvPath                   = $this->uploadFile($file, 'staff/cv_files');
-                $validatedData['cv_file'] = $cvPath;
+                $validatedData['cv'] = $cvPath;
             }
 
             // dd($validatedData);
@@ -420,8 +420,11 @@ class StaffManagementController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'current_position'          => 'nullable|string|max:255',
+            'hin_current_position'      => 'nullable|string|max:255',
             'previous_position'         => 'nullable|string|max:255',
+            'hin_previous_position'     => 'nullable|string|max:255',
             'educational_qualification' => 'nullable|string|max:255',
+            'hin_educational_qualification' => 'nullable|string|max:255',
             'no_of_publications'        => 'nullable|string|max:255',
             'total_citations'           => 'nullable|string|max:255',
             'research_interests'        => 'nullable|string|max:255',

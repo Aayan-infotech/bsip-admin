@@ -13,7 +13,8 @@
                     <div class="card-header">
                         <nav aria-label="breadcrumb" class="float-start">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i></a>
+                                <li class="breadcrumb-item"><a href="{{ url('/adminDashboard') }}"><i
+                                            class="fa fa-home"></i></a>
                                 </li>
                                 <li class="breadcrumb-item">Staff Management</li>
                                 <li class="breadcrumb-item"><a href="{{ route('scientist.management') }}">Scientist
@@ -97,23 +98,45 @@
                                                         <span class="text-danger error-current_position"></span>
                                                     </div>
                                                     <div class="col-md-6 col-12 mb-3">
+                                                        <label for="hin_current_position">Current Position(Hindi):</label>
+                                                        <input type="text" class="form-control"
+                                                            name="hin_current_position" id="hin_current_position">
+                                                        <span class="text-danger error-hin_current_position"></span>
+                                                    </div>
+                                                    <div class="col-md-6 col-12 mb-3">
                                                         <label for="previous_position">Previous Position</label>
                                                         <input type="text" class="form-control" name="previous_position"
                                                             id="previous_position">
                                                         <span class="text-danger error-previous_position"></span>
+                                                    </div>
+                                                    <div class="col-md-6 col-12 mb-3">
+                                                        <label for="hin_previous_position">Previous Position(Hindi):</label>
+                                                        <input type="text" class="form-control"
+                                                            name="hin_previous_position" id="hin_previous_position">
+                                                        <span class="text-danger error-hin_previous_position"></span>
                                                     </div>
 
                                                     <div class="col-12 mb-3">
                                                         <label for="educational_qualification">Educational
                                                             Qualification</label>
                                                         <input type="text" class="form-control"
-                                                            name="educational_qualification" id="educational_qualification">
+                                                            name="educational_qualification"
+                                                            id="educational_qualification">
                                                         <span class="text-danger error-educational_qualification"></span>
+                                                    </div>
+                                                    <div class="col-12 mb-3">
+                                                        <label for="hin_educational_qualification">Educational
+                                                            Qualification(Hindi)</label>
+                                                        <input type="text" class="form-control"
+                                                            name="hin_educational_qualification"
+                                                            id="hin_educational_qualification">
+                                                        <span
+                                                            class="text-danger error-hin_educational_qualification"></span>
                                                     </div>
                                                     <div class="col-md-6 col-12 mb-3">
                                                         <label for="no_of_publications">No of Publications</label>
-                                                        <input type="text" class="form-control" name="no_of_publications"
-                                                            id="no_of_publications">
+                                                        <input type="text" class="form-control"
+                                                            name="no_of_publications" id="no_of_publications">
                                                         <span class="text-danger error-no_of_publications"></span>
                                                     </div>
                                                     <div class="col-md-6 col-12 mb-3">
@@ -352,11 +375,15 @@
                     $('#userSubCategory').text(staffSubCategory);
                 }
 
-                function showAccountDetails(currentPosition, previousPosition, educationalQualification,
+                function showAccountDetails(currentPosition, currentPositionHindi, previousPosition,
+                    previousPositionHindi, educationalQualification, educationalQualificationHindi,
                     noOfPublications, totalCitations, researchInterests) {
                     $('#current_position').val(currentPosition);
+                    $('#hin_current_position').val(currentPositionHindi);
                     $('#previous_position').val(previousPosition);
+                    $('#hin_previous_position').val(previousPositionHindi);
                     $('#educational_qualification').val(educationalQualification);
+                    $('#hin_educational_qualification').val(educationalQualificationHindi);
                     $('#no_of_publications').val(noOfPublications);
                     $('#total_citations').val(totalCitations);
                     $('#research_interests').val(researchInterests);
@@ -460,8 +487,11 @@
                             );
                             showAccountDetails(
                                 response.current_position,
+                                response.hin_current_position,
                                 response.previous_position,
+                                response.hin_previous_position,
                                 response.educational_qualification,
+                                response.hin_educational_qualification,
                                 response.no_of_publications,
                                 response.total_citations,
                                 response.research_interests
@@ -550,8 +580,11 @@
                             $('#updateAccountDetailsForm').trigger('reset');
                             showAccountDetails(
                                 response.current_position,
+                                response.hin_current_position,
                                 response.previous_position,
+                                response.hin_previous_position,
                                 response.educational_qualification,
+                                response.hin_educational_qualification,
                                 response.no_of_publications,
                                 response.total_citations,
                                 response.research_interests

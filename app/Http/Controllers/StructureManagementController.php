@@ -49,6 +49,8 @@ class StructureManagementController extends Controller
         $validator = Validator::make($request->all(), [
             'name'                 => 'required|string|max:255',
             'hin_name'             => 'required|string|max:255',
+            'designation'          => 'required|string|max:255',
+            'hin_designation'      => 'required|string|max:255',
             'from_month'           => 'required|string|max:255',
             'from_year'            => 'required|string|max:255',
             'to_month'             => 'required|string|max:255',
@@ -77,6 +79,23 @@ class StructureManagementController extends Controller
 
         $validatedData = $validator->validated();
 
+        $months = [
+            'january'   => 'जनवरी',
+            'february'  => 'फरवरी',
+            'march'     => 'मार्च',
+            'april'     => 'अप्रैल',
+            'may'       => 'मई',
+            'june'      => 'जून',
+            'july'      => 'जुलाई',
+            'august'    => 'अगस्त',
+            'september' => 'सितंबर',
+            'october'   => 'अक्टूबर',
+            'november'  => 'नवंबर',
+            'december'  => 'दिसंबर',
+        ];
+        $validatedData['hin_from_month'] = $months[strtolower($validatedData['from_month'])] ?? $validatedData['from_month'];
+        $validatedData['hin_to_month']   = $months[strtolower($validatedData['to_month'])] ?? $validatedData['to_month'];
+
         $pastHead = PastHeads::create($validatedData);
 
         return response()->json(['success' => true, 'message' => "Past Head saved successfully!", 'data' => $pastHead]);
@@ -93,6 +112,8 @@ class StructureManagementController extends Controller
         $validator = Validator::make($request->all(), [
             'name'       => 'required|string|max:255',
             'hin_name'   => 'required|string|max:255',
+            'designation' => 'required|string|max:255',
+            'hin_designation' => 'required|string|max:255',
             'from_month' => 'required|string|max:255',
             'from_year'  => 'required|string|max:255',
             'to_month'   => 'required|string|max:255',
@@ -105,6 +126,23 @@ class StructureManagementController extends Controller
         }
 
         $validatedData = $validator->validated();
+
+        $months = [
+            'january'   => 'जनवरी',
+            'february'  => 'फरवरी',
+            'march'     => 'मार्च',
+            'april'     => 'अप्रैल',
+            'may'       => 'मई',
+            'june'      => 'जून',
+            'july'      => 'जुलाई',
+            'august'    => 'अगस्त',
+            'september' => 'सितंबर',
+            'october'   => 'अक्टूबर',
+            'november'  => 'नवंबर',
+            'december'  => 'दिसंबर',
+        ];
+        $validatedData['hin_from_month'] = $months[strtolower($validatedData['from_month'])] ?? $validatedData['from_month'];
+        $validatedData['hin_to_month']   = $months[strtolower($validatedData['to_month'])] ?? $validatedData['to_month'];
 
         $pastHead = PastHeads::findOrFail($id);
         if ($pastHead) {
@@ -192,6 +230,23 @@ class StructureManagementController extends Controller
 
         $validatedData = $validator->validated();
 
+        $months = [
+            'january'   => 'जनवरी',
+            'february'  => 'फरवरी',
+            'march'     => 'मार्च',
+            'april'     => 'अप्रैल',
+            'may'       => 'मई',
+            'june'      => 'जून',
+            'july'      => 'जुलाई',
+            'august'    => 'अगस्त',
+            'september' => 'सितंबर',
+            'october'   => 'अक्टूबर',
+            'november'  => 'नवंबर',
+            'december'  => 'दिसंबर',
+        ];
+        $validatedData['hin_from_month'] = $months[strtolower($validatedData['from_month'])] ?? $validatedData['from_month'];
+        $validatedData['hin_to_month']   = $months[strtolower($validatedData['to_month'])] ?? $validatedData['to_month'];
+
         $pastDirector = PastDirectors::create($validatedData);
 
         return response()->json(['success' => true, 'message' => "Past Director saved successfully!", 'data' => $pastDirector]);
@@ -219,6 +274,23 @@ class StructureManagementController extends Controller
         }
 
         $validatedData = $validator->validated();
+
+        $months = [
+            'january'   => 'जनवरी',
+            'february'  => 'फरवरी',
+            'march'     => 'मार्च',
+            'april'     => 'अप्रैल',
+            'may'       => 'मई',
+            'june'      => 'जून',
+            'july'      => 'जुलाई',
+            'august'    => 'अगस्त',
+            'september' => 'सितंबर',
+            'october'   => 'अक्टूबर',
+            'november'  => 'नवंबर',
+            'december'  => 'दिसंबर',
+        ];
+        $validatedData['hin_from_month'] = $months[strtolower($validatedData['from_month'])] ?? $validatedData['from_month'];
+        $validatedData['hin_to_month']   = $months[strtolower($validatedData['to_month'])] ?? $validatedData['to_month'];
 
         $pastDirector = PastDirectors::findOrFail($id);
         if ($pastDirector) {

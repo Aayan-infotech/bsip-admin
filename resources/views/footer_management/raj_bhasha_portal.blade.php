@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <nav aria-label="breadcrumb" class="float-start">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i></a>
+                                <li class="breadcrumb-item"><a href="{{ url('/adminDashboard') }}"><i class="fa fa-home"></i></a>
                                 </li>
                                 <li class="breadcrumb-item">Footer Management</li>
                                 <li class="breadcrumb-item"><a href="{{ route('bsip.rajbhasha.portal') }}">BSIP Rajbhasha Portal</a></li>
@@ -98,7 +98,7 @@
         </div>
     </div>
     <div id="editNewsModal" class="modal right fade" tabindex="-1">
-        
+
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">

@@ -12,4 +12,14 @@ class Staff_Category extends Model
         'category_name_hin',
     ];
 
+    public function staff()
+    {
+        return $this->hasMany(Staff::class, 'category_id');
+    }
+
+    public function subCategories()
+    {
+        return $this->hasMany(StaffSubCategory::class, 'category_id');
+    }
+
 }

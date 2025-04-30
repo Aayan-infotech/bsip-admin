@@ -12,9 +12,13 @@ class PastHeads extends Model
     protected $fillable = [
         'name',
         'hin_name',
+        'designation',
+        'hin_designation',
         'from_month',
+        'hin_from_month',
         'from_year',
         'to_month',
+        'hin_to_month',
         'to_year',
         'image',
         'status'

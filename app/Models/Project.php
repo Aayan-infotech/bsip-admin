@@ -14,6 +14,7 @@ class Project extends Model
         'component_title',
         'hin_component_title',
         'personnel',
+        'hin_personnel',
         'status',
     ];
 
@@ -21,4 +22,6 @@ class Project extends Model
     {
         return $this->belongsTo(Activity::class, 'activity_id');
     }
+
+
 }

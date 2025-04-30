@@ -99,6 +99,7 @@
                                 </ul>
                             </li>
                         </ul>
+
                     </div>
                 </div>
             </div>
@@ -111,7 +112,7 @@
             <div class="row">
                 <div class="col-md-12 logo">
                     <a href="{{ url($language) }}" title="{{ $logo->title ?? 'Home' }}" rel="home" class="header__logo" id="logo">
-                        <img class="national_emblem" src="{{ asset('/' . ($logo->logo ?? 'default-logo.png')) }}"
+                        <img class="national_emblem" src="{{ asset( ($logo->logo ?? 'default-logo.png')) }}"
                             alt="{{ $logo->title ?? 'Birbal Sahni Institute of Palaeosciences Logo' }}">
                     </a>
                 </div>

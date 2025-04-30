@@ -17,4 +17,9 @@ class StaffSubCategory extends Model
     {
         return $this->belongsTo(Staff_Category::class, 'category_id');
     }
+
+    public function staff()
+    {
+        return $this->hasMany(Staff::class, 'sub_category_id');
+    }
 }

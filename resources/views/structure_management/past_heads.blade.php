@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <nav aria-label="breadcrumb" class="float-start">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"><i
+                                <li class="breadcrumb-item"><a href="{{ url('/adminDashboard') }}"><i
                                             class="fa fa-home"></i></a></li>
                                 <li class="breadcrumb-item">Structure Management</li>
                                 <li class="breadcrumb-item"><a href="{{ route('past.heads') }}">Past Heads</a>
@@ -38,6 +38,16 @@
                                     <label>Name (Hindi):</label>
                                     <input type="text" name="hin_name" class="form-control">
                                     <span class="text-danger error-hin_name"></span>
+                                </div>
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label>Designation:</label>
+                                    <input type="text" name="designation" class="form-control">
+                                    <span class="text-danger error-designation"></span>
+                                </div>
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label>Designation (Hindi):</label>
+                                    <input type="text" name="hin_designation" class="form-control">
+                                    <span class="text-danger error-hin_designation"></span>
                                 </div>
                                 <div class="col-md-6 col-12 mb-3">
                                     <label>From Month</label>
@@ -109,6 +119,8 @@
                                         <th>Sr</th>
                                         <th>Name</th>
                                         <th>Name (Hindi)</th>
+                                        <th>Designation</th>
+                                        <th>Designation (Hindi)</th>
                                         <th>From </th>
                                         <th>To </th>
                                         <th>Status</th>
@@ -144,6 +156,17 @@
                             <input type="text" id="editHinPastHeadName" name="hin_name"
                                 class="form-control">
                             <span class="text-danger erroredit-hin_name"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label>Designation</label>
+                            <input type="text" id="editDesignation" name="designation" class="form-control">
+                            <span class="text-danger erroredit-designation"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label>Designation (Hindi)</label>
+                            <input type="text" id="editHinDesignation" name="hin_designation"
+                                class="form-control">
+                            <span class="text-danger erroredit-hin_designation"></span>
                         </div>
                         <div class="mb-3">
                             <label>From Month:</label>
@@ -218,7 +241,7 @@
         $(document).ready(function() {
 
             const currentYear = new Date().getFullYear();
-            const startYear = 1950;
+            const startYear = 1900;
 
             for (let year = currentYear; year >= startYear; year--) {
                 $('.year-dropdown').each(function() {
@@ -313,6 +336,14 @@
                         name: "hin_name"
                     },
                     {
+                        data: "designation",
+                        name: "designation"
+                    },
+                    {
+                        data: "hin_designation",
+                        name: "hin_designation"
+                    },
+                    {
                         data:"from",
                         name: "from"
                     },
@@ -366,6 +397,8 @@
                         $('#editPastHeadId').val(response.id);
                         $('#editHinPastHeadName').val(response.hin_name);
                         $('#editPastHeadName').val(response.name);
+                        $('#editDesignation').val(response.designation);
+                        $('#editHinDesignation').val(response.hin_designation);
                         $('#editFromMonth').val(response.from_month);
                         $('#editFromYear').val(response.from_year);
                         $('#editToMonth').val(response.to_month);

@@ -14,8 +14,8 @@ class ActivitiesName extends Model
         'status',
     ];
 
-    // public function activities()
-    // {
-    //     return $this->hasMany(Activities::class, 'activity_id');
-    // }
+    public function activities()
+    {
+        return $this->hasMany(Activity::class, 'activity_name_id');
+    }
 }

@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <nav aria-label="breadcrumb" class="float-start">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"><i
+                                <li class="breadcrumb-item"><a href="{{ url('/adminDashboard') }}"><i
                                             class="fa fa-home"></i></a></li>
                                 <li class="breadcrumb-item">Research Management</li>
                                 <li class="breadcrumb-item"><a href="{{ route('manage.projects') }}">Manage Projects</a>
@@ -54,10 +54,15 @@
                                     <input type="text" name="hin_component_title" class="form-control">
                                     <span class="text-danger error-hin_component_title"></span>
                                 </div>
-                                <div class="col-12 mb-3">
+                                <div class="col-md-6 col-12 mb-3">
                                     <label>Personnel</label>
                                     <input type="text" name="personnel" class="form-control">
                                     <span class="text-danger error-personnel"></span>
+                                </div>
+                                <div class="col-md-6 col-12 mb-3">
+                                    <label>Personnel(Hindi):</label>
+                                    <input type="text" name="hin_personnel" class="form-control">
+                                    <span class="text-danger error-hin_personnel"></span>
                                 </div>
                             </div>
 
@@ -131,10 +136,15 @@
                                     class="form-control">
                                 <span class="text-danger erroredit-hin_component_title"></span>
                             </div>
-                            <div class="col-12 mb-3">
+                            <div class="col-md-6 col-12 mb-3">
                                 <label>Personnel</label>
                                 <input type="text" name="personnel" id="edit_personnel" class="form-control">
                                 <span class="text-danger erroredit-personnel"></span>
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <label>Personnel(Hindi):</label>
+                                <input type="text" name="hin_personnel" id="edit_hin_personnel" class="form-control">
+                                <span class="text-danger erroredit-hin_personnel"></span>
                             </div>
                         </div>
 

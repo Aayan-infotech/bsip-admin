@@ -5,13 +5,14 @@ use App\Models\ActivitiesName;
 use App\Models\Activity;
 use App\Models\Lecturers;
 use App\Models\Lectures;
+use App\Models\Project;
 use App\Models\ResearchHighlights;
+use App\Models\SponsoredProjects;
 use App\Traits\UploadFilesTraits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
-use App\Models\Project;
 
 class ResearchController extends Controller
 {
@@ -516,8 +517,8 @@ class ResearchController extends Controller
             'hin_project_core_members'   => 'nullable|string|max:255',
             'associated_members'         => 'nullable|string|max:255',
             'hin_associated_members'     => 'nullable|string|max:255',
-            'description'                => 'nullable|string|max:255',
-            'hin_description'            => 'nullable|string|max:255',
+            'description'                => 'nullable|string',
+            'hin_description'            => 'nullable|string',
             'g-recaptcha-response'       => 'required',
         ],
             [
@@ -566,8 +567,8 @@ class ResearchController extends Controller
             'hin_project_core_members'   => 'nullable|string|max:255',
             'associated_members'         => 'nullable|string|max:255',
             'hin_associated_members'     => 'nullable|string|max:255',
-            'description'                => 'nullable|string|max:255',
-            'hin_description'            => 'nullable|string|max:255',
+            'description'                => 'nullable|string',
+            'hin_description'            => 'nullable|string',
         ]);
 
         if ($validator->fails()) {
@@ -590,7 +591,8 @@ class ResearchController extends Controller
         return response()->json(['success' => 'Status updated successfully.']);
     }
 
-    public function manageProjects(){
+    public function manageProjects()
+    {
         $activities = Activity::with('activityName')->get();
         return view('research-management.manage_projects', compact('activities'));
     }
@@ -628,6 +630,7 @@ class ResearchController extends Controller
             'component_title'      => 'nullable|string|max:255',
             'hin_component_title'  => 'nullable|string|max:255',
             'personnel'            => 'nullable|string|max:255',
+            'hin_personnel'        => 'nullable|string|max:255',
             'g-recaptcha-response' => 'required',
         ],
             [
@@ -669,6 +672,7 @@ class ResearchController extends Controller
             'component_title'     => 'nullable|string|max:255',
             'hin_component_title' => 'nullable|string|max:255',
             'personnel'           => 'nullable|string|max:255',
+            'hin_personnel'       => 'nullable|string|max:255',
         ],
             [
                 'activity_id.exists'   => 'The selected activity name is invalid.',
@@ -693,5 +697,114 @@ class ResearchController extends Controller
         $project->save();
 
         return response()->json(['success' => 'Status updated successfully.']);
+    }
+
+    // Sponsered Projects
+    public function sponsoredProjects(Request $request)
+    {
+        return view('research-management.sponsored_projects');
+    }
+
+    public function getSponsoredProjects(Request $request)
+    {
+        if ($request->ajax()) {
+            $sponsoredProjects = SponsoredProjects::get();
+            return DataTables::of($sponsoredProjects)
+                ->addColumn('status', function ($sponsoredProject) {
+                    $checked    = $sponsoredProject->status ? 'checked' : '';
+                    $statusText = $sponsoredProject->status
+                    ? ' <span class="badge badge-success" style="color: white;background: #2c751d;">Active</span>'
+                    : ' <span class="badge badge-danger" style="color: white;background: #df0d17;">Blocked</span>';
+                    return '<div class="d-flex"> <input type="checkbox" class="toggle-status me-2" data-id="' . $sponsoredProject->id . '" ' . $checked . '> ' . $statusText . '</div>';
+                })
+                ->addColumn('action', function ($sponsoredProject) {
+                    return '<button class="btn btn-sm btn-primary edit-sponsored-project" data-id="' . $sponsoredProject->id . '">
+                    <i class="fas fa-edit"></i>
+                </button>';
+                })
+                ->rawColumns(['status', 'action'])
+                ->make(true);
+        }
+    }
+
+    public function storeSponsoredProjects(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'project_title'           => 'required|string|max:255',
+            'hin_project_title'       => 'required|string|max:255',
+            'project_coordinator'     => 'required|string|max:255',
+            'hin_project_coordinator' => 'required|string|max:255',
+            'funding_agency'          => 'required|string|max:255',
+            'hin_funding_agency'      => 'required|string|max:255',
+            'project_no'              => 'required|string|max:255',
+            'project_cost'            => 'required|string|max:255',
+            'start_date'              => 'required|date',
+            'duration'        => 'required|string|max:255',
+            'hin_duration'    => 'required|string|max:255',
+            'g-recaptcha-response'    => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret'   => env('RECAPTCHA_SECRET_KEY'),
+            'response' => $request->input('g-recaptcha-response'),
+        ]);
+        $result = $response->json();
+
+        if (! isset($result['success']) || ! $result['success'] || ! isset($result['score']) || $result['score'] < 0.5) {
+            return response()->json(['error' => 'reCAPTCHA verification failed!'], 422);
+        }
+        unset($request['g-recaptcha-response']);
+
+        $validatedData = $validator->validated();
+
+        SponsoredProjects::create($validatedData);
+
+        return response()->json(['message' => 'Sponsored Projects added successfully!'], 201);
+    }
+
+    public function toggleSponsoredProjectsStatus(Request $request)
+    {
+        $sponsoredProject         = SponsoredProjects::findOrFail($request->id);
+        $sponsoredProject->status = $request->status;
+        $sponsoredProject->save();
+
+        return response()->json(['success' => 'Status updated successfully.']);
+    }
+    public function editSponsoredProjects($id)
+    {
+        $sponsoredProject = SponsoredProjects::findOrFail($id);
+        return response()->json($sponsoredProject);
+    }
+
+    public function updateSponsoredProjects(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'project_title'           => 'required|string|max:255',
+            'hin_project_title'       => 'required|string|max:255',
+            'project_coordinator'     => 'required|string|max:255',
+            'hin_project_coordinator' => 'required|string|max:255',
+            'funding_agency'          => 'required|string|max:255',
+            'hin_funding_agency'      => 'required|string|max:255',
+            'project_no'              => 'required|string|max:255',
+            'project_cost'            => 'required|string|max:255',
+            'start_date'              => 'required|date',
+            'duration'        => 'required|string|max:255',
+            'hin_duration'    => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $validatedData = $validator->validated();
+
+        $sponsoredProject = SponsoredProjects::findOrFail($id);
+        $sponsoredProject->update($validatedData);
+
+        return response()->json(['message' => 'Sponsored Projects updated successfully!'], 200);
     }
 }

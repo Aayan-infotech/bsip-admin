@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <nav aria-label="breadcrumb" class="float-start">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"><i
+                                <li class="breadcrumb-item"><a href="{{ url('/adminDashboard') }}"><i
                                             class="fa fa-home"></i></a></li>
                                 <li class="breadcrumb-item">Publication Management</li>
                                 <li class="breadcrumb-item"><a href="{{ route('monthly.report') }}">Monthly Report</a></li>

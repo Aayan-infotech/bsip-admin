@@ -12,8 +12,10 @@ class PastDirectors extends Model
         'name',
         'hin_name',
         'from_month',
+        'hin_from_month',
         'from_year',
         'to_month',
+        'hin_to_month',
         'to_year',
         'image',
         'status'

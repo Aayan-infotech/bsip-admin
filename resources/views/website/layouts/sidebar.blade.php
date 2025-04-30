@@ -1,5 +1,5 @@
 <style>
-    .sidebar {
+    /* .sidebar {
         background-color: #0262af;
         padding:
             7px;
@@ -9,12 +9,12 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         margin-left: 20px;
         padding-left: 0px;
-    }
+    } */
 
-    .content {
+    /* .content {
         width: 80%;
-    }
-
+    } */
+    /*
     .sidebar-heading {
         font-size: 1.2rem;
         color: #343a40;
@@ -63,27 +63,29 @@
         background-color: #fff;
         color: #007bff;
         margin-left: 5px;
-    }
+    } */
 </style>
 
-<div class="col-md-2 sidebar">
+<div class="col-md-3 sidebar">
     <nav aria-label="{{ $language === 'hi' ? 'साइडबार नेविगेशन' : 'Sidebar Navigation' }}">
         <ul class="sidebar-nav">
-            <!-- <li>
-                <p class="sidebar-heading">
-                    {{ $language === 'hi' ? 'प्रोफाइल' : 'Profile' }}
-                </p>
-            </li> -->
-            @foreach ($menuPages as $menuPage)
             <li>
-                <a href="{{ Str::startsWith($menuPage->page_url, ['http://', 'https://']) ? $menuPage->page_url : url($language . '/' . $menuPage->page_url) }}"
-                    target="{{ Str::startsWith($menuPage->page_url, ['http://', 'https://']) ? '_blank' : '_self' }}"
-                    class="{{ $menuPage->id === $currentPageId ? 'active' : '' }}"
-                    aria-label="{{ $language === 'hi' ? $menuPage->hin_title : $menuPage->title }}">
-                    <i class="{{ $menuPage->icon }}"></i>
-                    <span>{{ $language === 'hi' ? $menuPage->hin_title : $menuPage->title }}</span>
-                </a>
+                @if (isset($currentHeaderMenu) && !empty($currentHeaderMenu))
+                    <p class="sidebar-heading">
+                        {{ $language === 'hi' ? $currentHeaderMenu['hin_title'] : $currentHeaderMenu['title'] }}
+                    </p>
+                @endIf
             </li>
+            @foreach ($menuPages as $menuPage)
+                <li>
+                    <a href="{{ Str::startsWith($menuPage->page_url, ['http://', 'https://']) ? $menuPage->page_url : url($language . '/' . $menuPage->page_url) }}"
+                        target="{{ Str::startsWith($menuPage->page_url, ['http://', 'https://']) ? '_blank' : '_self' }}"
+                        class="{{ $menuPage->id === $currentPageId ? 'active' : '' }}"
+                        aria-label="{{ $language === 'hi' ? $menuPage->hin_title : $menuPage->title }}">
+                        <i class="{{ $menuPage->icon }}"></i>
+                        <span>{{ $language === 'hi' ? $menuPage->hin_title : $menuPage->title }}</span>
+                    </a>
+                </li>
             @endforeach
         </ul>
     </nav>

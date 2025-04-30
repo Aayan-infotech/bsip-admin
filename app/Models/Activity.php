@@ -31,4 +31,9 @@ class Activity extends Model
     {
         return $this->belongsTo(ActivitiesName::class, 'activity_name_id');
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'activity_id');
+    }
 }
