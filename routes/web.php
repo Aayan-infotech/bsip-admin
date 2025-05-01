@@ -21,8 +21,10 @@ use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\FooterManagementController;
 // use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\Frontend\StructureManagement;
+use App\Http\Controllers\Frontend\EventController;
+use App\Http\Controllers\Frontend\Facilities;
 use App\Http\Controllers\Frontend\PublicationManagement;
+use App\Http\Controllers\Frontend\StructureManagement;
 use App\Http\Controllers\Frontend\UnitsManagement;
 use App\Http\Controllers\HeaderMenuController;
 use App\Http\Controllers\MenuPageController;
@@ -207,7 +209,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('sponsored_projects/update/{id}', [ResearchController::class, 'updateSponsoredProjects'])->name('sponsored.projects.update');
     Route::post('sponsored_projects/toggleStatus', [ResearchController::class, 'toggleSponsoredProjectsStatus'])->name('sponsored.projects.toggleStatus');
 
-
     Route::get('past_heads', [StructureManagementController::class, 'pastHeads'])->name('past.heads');
     Route::post('past_heads/store', [StructureManagementController::class, 'storePastHeads'])->name('past.heads.store');
     Route::get('past_heads/list', [StructureManagementController::class, 'getPastHeads'])->name('past.heads.list');
@@ -322,10 +323,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('manage_saif/toggleStatus', [StaffManagementController::class, 'toggleSaifStatus'])->name('manage.saif.toggleStatus');
     Route::post('manage_saif/toggleArchivedStatus', [StaffManagementController::class, 'toggleSaifArchivedStatus'])->name('manage.saif.toggleArchivedStatus');
 
-
-
 });
-
 
 Route::get('/initialize-visitor-count', function () {
     Cache::put('visitor_count', 0);
@@ -376,37 +374,51 @@ Route::group(['prefix' => '{language}', 'where' => ['language' => 'en|hi']], fun
     Route::get('bsip_past_institute_heads', [StructureManagement::class, 'pastInstituteHeads'])->name('frontend.pastInstituteHeads');
     Route::get('bsip_past_institute_presidents', [StructureManagement::class, 'pastInstitutePresidents'])->name('frontend.pastInstitutePresidents');
 
-
     Route::get('bsip_scientific', [StructureManagement::class, 'scientificSection'])->name('frontend.scientificSection');
     Route::get('profile_details/{staffid}', [StructureManagement::class, 'profileDetails'])->name('frontend.profileDetails');
-    Route::get('bsip_technical_staff',[StructureManagement::class, 'technicalStaff'])->name('frontend.technicalStaff');
-    Route::get('bsip_administrative',[StructureManagement::class,'administrativeStaff'])->name('frontend.administrativeStaff');
-    Route::get('bsip_superannuated_employee',[StructureManagement::class,'superannuatedEmployee'])->name('frontend.superannuatedEmployee');
-    Route::get('bsip_acsir',[StructureManagement::class,'acsir'])->name('frontend.acsir');
+    Route::get('bsip_technical_staff', [StructureManagement::class, 'technicalStaff'])->name('frontend.technicalStaff');
+    Route::get('bsip_administrative', [StructureManagement::class, 'administrativeStaff'])->name('frontend.administrativeStaff');
+    Route::get('bsip_superannuated_employee', [StructureManagement::class, 'superannuatedEmployee'])->name('frontend.superannuatedEmployee');
+    Route::get('bsip_acsir', [StructureManagement::class, 'acsir'])->name('frontend.acsir');
 
-
-    Route::get('bsip_collaboration',[StructureManagement::class,'collaboration'])->name('frontend.collaboration');
-    Route::get('bsip_fellowship',[StructureManagement::class,'fellowship'])->name('frontend.fellowship');
-    Route::get('bsip_medals_and_awards',[StructureManagement::class,'medalsAndAwards'])->name('frontend.medalsAndAwards');
-    Route::get('bsip_consultancy',[StructureManagement::class,'consultancy'])->name('frontend.consultancy');
+    Route::get('bsip_collaboration', [StructureManagement::class, 'collaboration'])->name('frontend.collaboration');
+    Route::get('bsip_fellowship', [StructureManagement::class, 'fellowship'])->name('frontend.fellowship');
+    Route::get('bsip_medals_and_awards', [StructureManagement::class, 'medalsAndAwards'])->name('frontend.medalsAndAwards');
+    Route::get('bsip_consultancy', [StructureManagement::class, 'consultancy'])->name('frontend.consultancy');
     // Dynamic pages
-    Route::get('bsip_research_activities',[StructureManagement::class,'researchActivities'])->name('frontend.researchActivities');
-    Route::get('bsip_sponsored_project',[StructureManagement::class,'sponsoredProject'])->name('frontend.sponsoredProject');
-    Route::get('bsip_lectures',[StructureManagement::class,'lectures'])->name('frontend.lectures');
-
-
+    Route::get('bsip_research_activities', [StructureManagement::class, 'researchActivities'])->name('frontend.researchActivities');
+    Route::get('bsip_sponsored_project', [StructureManagement::class, 'sponsoredProject'])->name('frontend.sponsoredProject');
+    Route::get('bsip_lectures', [StructureManagement::class, 'lectures'])->name('frontend.lectures');
 
     // Publications
-    Route::get('bsip_the_paleobotanist',[PublicationManagement::class,'thePaleobotanist'])->name('frontend.thePaleobotanist');
-    Route::get('bsip_p_on__sale',[PublicationManagement::class,'pOnSale'])->name('frontend.pOnSale');
-
+    Route::get('bsip_the_paleobotanist', [PublicationManagement::class, 'thePaleobotanist'])->name('frontend.thePaleobotanist');
+    Route::get('bsip_p_on__sale', [PublicationManagement::class, 'pOnSale'])->name('frontend.pOnSale');
+    Route::get('bsip_annual_reports', [PublicationManagement::class, 'annualReports'])->name('frontend.annualReports');
+    Route::get('bsip_catalogues', [PublicationManagement::class, 'catalogues'])->name('frontend.catalogues');
+    Route::get('bsip_research_highlights_all', [PublicationManagement::class, 'researchHighlightsAll'])->name('frontend.researchHighlightsAll');
+    Route::get('bsip_monthly_report', [PublicationManagement::class, 'monthlyReports'])->name('frontend.monthlyReports');
+    Route::get('bsip_newsletter', [PublicationManagement::class, 'newsLetter'])->name('frontend.newsLetter');
+    Route::get('bsip_epatrika', [PublicationManagement::class, 'epatrika'])->name('frontend.epatrika');
 
     // Units Management
-    Route::get('bsip_museum',[UnitsManagement::class,'museum'])->name('frontend.museum');
-    Route::get('bsip_library',[UnitsManagement::class,'library'])->name('frontend.library');
-    Route::get('bsip_computer_section',[UnitsManagement::class,'computerSection'])->name('frontend.computerSection');
-    Route::get('bsip_amber_analysis',[UnitsManagement::class,'amberAnalysis'])->name('frontend.amberAnalysis');
-    Route::get('bsip_geo_heritage',[UnitsManagement::class,'geoHeritage'])->name('frontend.geoHeritage');
+    Route::get('bsip_museum', [UnitsManagement::class, 'museum'])->name('frontend.museum');
+    Route::get('bsip_library', [UnitsManagement::class, 'library'])->name('frontend.library');
+    Route::get('bsip_computer_section', [UnitsManagement::class, 'computerSection'])->name('frontend.computerSection');
+    Route::get('bsip_amber_analysis', [UnitsManagement::class, 'amberAnalysis'])->name('frontend.amberAnalysis');
+    Route::get('bsip_geo_heritage', [UnitsManagement::class, 'geoHeritage'])->name('frontend.geoHeritage');
 
+    // Facility Management
+    Route::get('saif', [Facilities::class, 'saif'])->name('frontend.saif');
+    Route::get('bsip_dna_lab', [Facilities::class, 'dnaLab'])->name('frontend.dnaLab');
+    Route::get('bsip_sem', [Facilities::class, 'sem'])->name('frontend.sem');
+    Route::get('bsip_c14', [Facilities::class, 'c14'])->name('frontend.c14');
+    Route::get('bsip_section_cutting', [Facilities::class, 'sectionCutting'])->name('frontend.sectionCutting');
+    Route::get('bsip_maceration', [Facilities::class, 'maceration'])->name('frontend.maceration');
 
+    // Event Management
+    Route::get('bsip_past_events', [EventController::class, 'pastEvents'])->name('frontend.pastEvents');
+    Route::get('bsip_gallery', [EventController::class, 'gallery'])->name('frontend.gallery');
+    Route::get('LEM_ISS_2023', [EventController::class, 'lemIss2023'])->name('frontend.lemIss2023');
+
+    Route::get('rajbhashaPatal', [EventController::class, 'rajbhashaPatal'])->name('frontend.rajbhashaPatal');
 });

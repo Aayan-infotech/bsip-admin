@@ -24,4 +24,9 @@ class Pastevents extends Model
         'status',
         'archived_status',
     ];
+
+    public function getPdfAttribute($value)
+    {
+        return $value ? asset('storage/' . $value) : null;
+    }
 }

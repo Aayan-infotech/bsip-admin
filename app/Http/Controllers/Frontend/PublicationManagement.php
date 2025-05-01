@@ -12,6 +12,11 @@ use App\Models\SocialLink;
 use App\Models\UsefulLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use App\Models\Annual_Report;
+use App\Models\Institute_Catalogue;
+use App\Models\ResearchHighlights;
+use App\Models\MonthlyReport;
+use Carbon\Carbon;
 
 class PublicationManagement extends Controller
 {
@@ -49,8 +54,8 @@ class PublicationManagement extends Controller
         }
     }
 
-
-    public function thePaleobotanist(Request $request){
+    public function thePaleobotanist(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -82,7 +87,8 @@ class PublicationManagement extends Controller
         return view('website.publications.thePaleobotanist', $this->sharedData);
     }
 
-    public function pOnSale(Request $request){
+    public function pOnSale(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -112,6 +118,234 @@ class PublicationManagement extends Controller
         $this->sharedData['currentPage']       = $currentPage;
 
         return view('website.publications.pOnSale', $this->sharedData);
+    }
+
+    public function annualReports(Request $request)
+    {
+        $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
+        if (! $currentPage) {
+            abort(404, 'Page not found');
+        }
+
+        // Get the parent_menu_id from the current page
+        $parentMenuId = $currentPage->parent_menu_id;
+
+        // Current Headermenu
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
+
+        // Fetch all menu pages under the same parent_menu_id
+        $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
+            ->where('status', 1)
+            ->orderBy('sequence', 'asc')
+            ->get();
+
+        // Pass data to the view
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
+
+        // Fetch the annual reports
+        $annualReports = Annual_Report::where('archived_status', 'No')
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $archivedReports = Annual_Report::where('archived_status', 'Yes')
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('website.publications.annualReports', $this->sharedData, compact('annualReports', 'archivedReports'));
+    }
+
+    public function catalogues(Request $request){
+        $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
+        if (! $currentPage) {
+            abort(404, 'Page not found');
+        }
+
+        // Get the parent_menu_id from the current page
+        $parentMenuId = $currentPage->parent_menu_id;
+
+        // Current Headermenu
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
+
+        // Fetch all menu pages under the same parent_menu_id
+        $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
+            ->where('status', 1)
+            ->orderBy('sequence', 'asc')
+            ->get();
+
+        // Pass data to the view
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
+
+        // Fetch the catalogues
+        $catalogues = Institute_Catalogue::where('archived_status', 'No')
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('website.publications.catalogues', $this->sharedData , compact('catalogues'));
+    }
+
+
+    public function researchHighlightsAll(Request $request){
+        $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
+        if (! $currentPage) {
+            abort(404, 'Page not found');
+        }
+
+        // Get the parent_menu_id from the current page
+        $parentMenuId = $currentPage->parent_menu_id;
+
+        // Current Headermenu
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
+
+        // Fetch all menu pages under the same parent_menu_id
+        $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
+            ->where('status', 1)
+            ->orderBy('sequence', 'asc')
+            ->get();
+
+        // Pass data to the view
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
+
+        // Fetch the research highlights
+        $researchHighlights = ResearchHighlights::where('status', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('website.publications.researchHighlightsAll', $this->sharedData, compact('researchHighlights'));
+    }
+
+
+    public function monthlyReports(Request $request){
+        $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
+        if (! $currentPage) {
+            abort(404, 'Page not found');
+        }
+
+        // Get the parent_menu_id from the current page
+        $parentMenuId = $currentPage->parent_menu_id;
+
+        // Current Headermenu
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
+
+        // Fetch all menu pages under the same parent_menu_id
+        $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
+            ->where('status', 1)
+            ->orderBy('sequence', 'asc')
+            ->get();
+
+        // Pass data to the view
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
+
+        $monthlyReports = MonthlyReport::where('status', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $monthlyReports->transform(function ($report) {
+            $report->report_month = Carbon::parse($report->report_month)->format('F');
+            $report->report_year = Carbon::parse($report->report_month)->format('Y');
+            $report->report_month_hin = Carbon::parse($report->report_month)->locale('hi')->translatedFormat('F');
+            return $report;
+        });
+
+        return view('website.publications.monthlyReports', $this->sharedData, compact('monthlyReports'));
+    }
+
+    public function newsLetter(Request $request){
+        $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
+        if (! $currentPage) {
+            abort(404, 'Page not found');
+        }
+
+        // Get the parent_menu_id from the current page
+        $parentMenuId = $currentPage->parent_menu_id;
+
+        // Current Headermenu
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
+
+        // Fetch all menu pages under the same parent_menu_id
+        $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
+            ->where('status', 1)
+            ->orderBy('sequence', 'asc')
+            ->get();
+
+        // Pass data to the view
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
+
+        return view('website.publications.newsLetter', $this->sharedData);
+    }
+
+    public function epatrika(Request $request){
+        $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
+        if (! $currentPage) {
+            abort(404, 'Page not found');
+        }
+
+        // Get the parent_menu_id from the current page
+        $parentMenuId = $currentPage->parent_menu_id;
+
+        // Current Headermenu
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
+
+        // Fetch all menu pages under the same parent_menu_id
+        $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
+            ->where('status', 1)
+            ->orderBy('sequence', 'asc')
+            ->get();
+
+        // Pass data to the view
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
+
+        return view('website.publications.epatrika', $this->sharedData);
     }
 
 }
