@@ -6,34 +6,36 @@
                 <div class="">
                     <h4 class="footer-heading">{{ $language === 'hi' ? 'संपर्क करें' : 'Contact Us' }}</h4>
                     <p class="contact-info mt-4">
-                        {{ $language === 'hi' 
-                            ? 'बीरबल साहनी पुराविज्ञान संस्थान, 53 विश्वविद्यालय रोड, लखनऊ - 226007, उत्तर प्रदेश, भारत' 
+                        {{ $language === 'hi'
+                            ? 'बीरबल साहनी पुराविज्ञान संस्थान, 53 विश्वविद्यालय रोड, लखनऊ - 226007, उत्तर प्रदेश, भारत'
                             : 'Birbal Sahni Institute of Palaeosciences, 53 University Road, Lucknow - 226007, Uttar Pradesh, India' }}
                     </p>
                     <p class="contact-info">
-                        <i class="fas fa-phone-alt" role="presentation"></i> {{$contact->contact}}
+                        <i class="fas fa-phone-alt" role="presentation"></i> {{ $contact->contact }}
                     </p>
                     <p class="contact-info">
-                        <i class="fas fa-envelope" role="presentation"></i> {{$contact->email}}
+                        <i class="fas fa-envelope" role="presentation"></i> {{ $contact->email }}
                     </p>
                     <!-- <p class="contact-info">
                         <i class="fas fa-envelope" role="presentation"></i> registrar@bsip.res.in
                     </p> -->
                     <p class="contact-info">
                         <i class="fas fa-globe" role="presentation"></i>
-                        <a href="{{$contact->website}}" target="_blank" class="text-white">{{$contact->website}}</a>
+                        <a href="{{ $contact->website }}" target="_blank" class="text-white">{{ $contact->website }}</a>
                     </p>
 
                     <!-- Social Links -->
                     <div class="mt-1">
                         <ul class="list-inline">
-                            @foreach($socialLinks as $link)
-                            <li class="list-inline-item">
-                                <a href="{{ $link->url }}" role="link" aria-label="{{ $link->title }}" target="_blank">
-                                    <!-- <i class="fab {{ $link->icon_class }} footer-social-icon"></i> -->
-                                    <img style="width: 60%;" alt="Social Link" src="{{ asset('storage/' . $link->icon_image) }}">
-                                </a>
-                            </li>
+                            @foreach ($socialLinks as $link)
+                                <li class="list-inline-item">
+                                    <a href="{{ $link->url }}" role="link" aria-label="{{ $link->title }}"
+                                        target="_blank">
+                                        <!-- <i class="fab {{ $link->icon_class }} footer-social-icon"></i> -->
+                                        <img style="width: 60%;" alt="Social Link"
+                                            src="{{ asset('storage/' . $link->icon_image) }}">
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -45,15 +47,15 @@
                 <div class="">
                     <h4 class="footer-heading">{{ $language === 'hi' ? 'महत्वपूर्ण लिंक' : 'Important Links' }}</h4>
                     <ul class="list-unstyled footer-link mt-4">
-                        @foreach($importantLinks as $link)
-                        <li>
-                            <a href="{{ Str::startsWith($link->url, ['http://', 'https://']) ? $link->url : url($language . '/' . $link->url) }}"
-                                role="link"
-                                aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}"
-                                {{ Str::startsWith($link->url, ['http://', 'https://']) ? 'target="_blank"' : '' }}>
-                                {{ $language === 'hi' ? $link->hin_title : $link->title }}
-                            </a>
-                        </li>
+                        @foreach ($importantLinks as $link)
+                            <li>
+                                <a href="{{ Str::startsWith($link->url, ['http://', 'https://']) ? $link->url : url($language . '/' . $link->url) }}"
+                                    role="link"
+                                    aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}"
+                                    {{ Str::startsWith($link->url, ['http://', 'https://']) ? 'target="_blank"' : '' }}>
+                                    {{ $language === 'hi' ? $link->hin_title : $link->title }}
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -64,15 +66,15 @@
                 <div class="">
                     <h4 class="footer-heading">{{ $language === 'hi' ? 'उपयोगी लिंक' : 'Useful Links' }}</h4>
                     <ul class="list-unstyled footer-link mt-4">
-                        @foreach($usefulLinks as $link)
-                        <li>
-                            <a href="{{ Str::startsWith($link->url, ['http://', 'https://']) ? $link->url : url($language . '/' . $link->url) }}"
-                                role="link"
-                                aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}"
-                                {{ Str::startsWith($link->url, ['http://', 'https://']) ? 'target="_blank"' : '' }}>
-                                {{ $language === 'hi' ? $link->hin_title : $link->title }}
-                            </a>
-                        </li>
+                        @foreach ($usefulLinks as $link)
+                            <li>
+                                <a href="{{ Str::startsWith($link->url, ['http://', 'https://']) ? $link->url : url($language . '/' . $link->url) }}"
+                                    role="link"
+                                    aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}"
+                                    {{ Str::startsWith($link->url, ['http://', 'https://']) ? 'target="_blank"' : '' }}>
+                                    {{ $language === 'hi' ? $link->hin_title : $link->title }}
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -84,13 +86,34 @@
                     <h4 class="footer-heading mb-3" style="font-weight: bold; color: #1565c0;">
                         {{ $language === 'hi' ? 'साइट आगंतुक' : 'Site Visitors' }}
                     </h4>
-                    <div class="visitor-counter" style="background: #f7f7f7; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div class="visitor-counter"
+                        style="background: #f7f7f7; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                         <p style="font-size: 18px; font-weight: bold; margin: 0; color: #333;">
                             {{ $language === 'hi' ? 'आगंतुक : ' . $visitorCount : 'Visitors : ' . $visitorCount }}
                         </p>
                     </div>
                 </div>
             </div>
+
+
+            <div class="divider"></div>
+            <div class="row text-center">
+                <div class="col-md-2"><a href="{{ route('frontend.copyRightPolicy', ['language' => $language]) }}"
+                        class="text-white">{{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}</a>
+                </div>
+                <div class="col-md-2"><a href="{{ route('frontend.securityPolicy', ['language' => $language]) }}"
+                        class="text-white">{{ $language === 'hi' ? 'सुरक्षा नीति' : 'Security Policy' }}</a></div>
+                <div class="col-md-2"><a href="{{ route('frontend.onlineFeedbackForm', ['language' => $language]) }}" class="text-white">{{ $language === 'hi' ? 'ऑनलाइन फीडबैक फॉर्म' : 'Online Feedback Form' }}</a></div>
+
+
+                <div class="col-md-2"><a href="{{ route('frontend.help', ['language' => $language]) }}" class="text-white">{{
+                    $language === 'hi' ? 'मदद':'Help'}}</a></div>
+                <div class="col-md-2"><a href="{{ route('frontend.contactUs', ['language' => $language]) }}" class="text-white">
+                    {{ $language === 'hi' ? 'संपर्क करें':'Contact Us'}}</a></div>
+                <div class="col-md-2"><a href="{{ route('frontend.nationalPortal', ['language' => $language]) }}" class="text-white">{{
+                    $language === 'hi' ? 'राष्ट्रीय पोर्टल' : 'National Portal' }}</a></div>
+            </div>
+
         </div>
     </div>
 
@@ -106,7 +129,8 @@
                 <p class="footer-alt mb-0 f-14">
                     {{ $language === 'hi' ? 'डिज़ाइन एवं विकसित द्वारा' : 'Designed & Developed By' }}
                     <span>
-                        <a href="https://aayaninfotech.com/" class="text-white" target="_blank" role="link" aria-label="aayan">Aayan Infotech</a>
+                        <a href="https://aayaninfotech.com/" class="text-white" target="_blank" role="link"
+                            aria-label="aayan">Aayan Infotech</a>
                     </span>
                 </p>
             </div>

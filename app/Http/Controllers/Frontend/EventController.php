@@ -163,4 +163,24 @@ class EventController extends Controller
 
         return view('website.event.rajbhashaPatal', $this->sharedData,compact('rajBhashaEvents'));
     }
+
+    public function copyRightPolicy(Request $request){
+        return view('website.event.copyRightPolicy', $this->sharedData);
+    }
+
+    public function securityPolicy(Request $request){
+        return view('website.event.securityPolicy', $this->sharedData);
+    }
+    public function onlineFeedbackForm(Request $request){
+        return view('website.event.onlineFeedbackForm', $this->sharedData);
+    }
+    public function help(Request $request){
+        return view('website.event.help', $this->sharedData);
+    }
+
+    public function contactUs(Request $request){
+        return view('website.event.contactUs', $this->sharedData);
+    }
+
+  
 }

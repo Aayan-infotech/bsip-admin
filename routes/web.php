@@ -421,4 +421,11 @@ Route::group(['prefix' => '{language}', 'where' => ['language' => 'en|hi']], fun
     Route::get('LEM_ISS_2023', [EventController::class, 'lemIss2023'])->name('frontend.lemIss2023');
 
     Route::get('rajbhashaPatal', [EventController::class, 'rajbhashaPatal'])->name('frontend.rajbhashaPatal');
+
+    Route::get('copyright_policy', [EventController::class, 'copyRightPolicy'])->name('frontend.copyRightPolicy');
+    Route::get('security_policy', [EventController::class, 'securityPolicy'])->name('frontend.securityPolicy');
+    Route::get('online_feedback_form', [EventController::class, 'onlineFeedbackForm'])->name('frontend.onlineFeedbackForm');
+    Route::get('help', [EventController::class, 'help'])->name('frontend.help');
+    Route::get('contact_us', [EventController::class, 'contactUs'])->name('frontend.contactUs');
+    Route::get('national_portal', [EventController::class, 'nationalPortal'])->name('frontend.nationalPortal');
 });
