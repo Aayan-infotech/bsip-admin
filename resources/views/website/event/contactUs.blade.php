@@ -22,7 +22,7 @@
             <h2 class="text-center mb-4">Get in Touch</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="contact-info">
+                    <div class="contact-info-1">
                         <div class="contact-info-item">
                             <div class="contact-info-icon">
                                 <i class="fas fa-map-marked"></i>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="contact-info">
+                    <div class="contact-info-1">
                         <div class="contact-info-item">
                             <div class="contact-info-icon">
                                 <i class="fas fa-envelope"></i>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="contact-info">
+                    <div class="contact-info-1">
                         <div class="contact-info-item">
                             <div class="contact-info-icon">
                                 <i class="fas fa-phone"></i>
@@ -112,4 +112,12 @@
             </div>
         </div>
     </section>
+    <style>
+        .contact-info-1 {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
 @endsection

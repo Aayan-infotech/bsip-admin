@@ -20,70 +20,54 @@
 
     <section class="common-mobile-view">
         <div class="container my-5">
-            <h1 class="mb-4 text-center">Web Policies</h1>
-            <!-- Standardisation -->
-            <section class="p-4 rounded mb-4 section-standardisation">
-                <div class="policy-header">Standardisation Testing and Quality Certification</div>
-                <p>No specific content provided under this heading, but it likely refers to adherence to standardized
-                    practices and certifications for website quality and accessibility.</p>
-            </section>
+            <h1 class="mb-4 text-center">{{ $language === 'hi' ? 'कॉपीराइट नीतियाँ' : 'Copyright Policies' }}</h1>
 
             <!-- Copyright -->
             <section class="p-4 rounded mb-4 section-copyright">
-                <div class="policy-header">Copyright Policy</div>
-                <p>Material featured on this site may be reproduced free of charge in any format or media without requiring
-                    specific permission. This is subject to the material being reproduced accurately and not being used in a
-                    derogatory manner or in a misleading context. Where the material is being published or issued to others,
-                    the source must be prominently acknowledged.</p>
-                <p>However, the permission to reproduce this material does not extend to any material on this site which is
-                    explicitly identified as being the copyright of a third party. Authorization to reproduce such material
-                    must be obtained from the concerned copyright holders.</p>
+                <div class="policy-header">{{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}</div>
+                <p>{!! $language === 'hi'
+                    ? '<strong>बीरबल साहनी पुराविज्ञान संस्थान (बीएसआईपी)</strong> की आधिकारिक वेबसाइट पर प्रदर्शित सभी सामग्री को किसी भी प्रारूप या माध्यम में निःशुल्क पुनरुत्पादित किया जा सकता है, बशर्ते कि पुनरुत्पादन सटीक हो और उसे भ्रामक संदर्भ में प्रस्तुत न किया गया हो या अपमानजनक तरीके से इस्तेमाल न किया गया हो।
+                                जहां कोई बीएसआईपी सामग्री प्रकाशित की जा रही हो या दूसरों को वितरित की जा रही हो, वहां स्रोत को प्रमुखता से स्वीकार किया जाना चाहिए:'
+                    : "All material featured on the official website of the <strong>Birbal Sahni Institute of Palaeosciences (BSIP)</strong> may be reproduced free of charge in any format or medium, provided that the reproduction is accurate and is not presented in a misleading context or used in a derogatory manner.
+                                Where any BSIP material is being published or distributed to others, the source must be prominently acknowledged as:" !!}
+                </p>
+                <p>{!! $language === 'hi'
+                    ? '<strong>"स्रोत: बिरबल साहनी जीवाश्म विज्ञान संस्थान (BSIP)"</strong><br>
+                यह पुनरुत्पादन की अनुमति उन सामग्रियों पर लागू नहीं होती जो स्पष्ट रूप से किसी तृतीय पक्ष के कॉपीराइट के अंतर्गत आती हैं। ऐसी सामग्री के पुनरुत्पादन के लिए संबंधित कॉपीराइट धारकों से स्वतंत्र अनुमति प्राप्त करना आवश्यक होगा, क्योंकि BSIP के पास ऐसी सामग्री को पुनः प्रस्तुत करने का अधिकार नहीं है।
+                BSIP को यह अधिकार है कि वह इस नीति को किसी भी समय, बिना पूर्व सूचना के संशोधित या वापस ले सकता है।'
+                    : '<strong>"Source: Birbal Sahni Institute of Palaeosciences (BSIP)".</strong><br>
+                This permission to reproduce BSIP material does not apply to content explicitly identified as the copyright of a third party. For such materials, authorization must be obtained directly from the concerned copyright holders, as BSIP does not hold the rights to grant such permission.
+                BSIP reserves the right to revise or withdraw this policy at any time without prior notice.' !!}
+                </p>
             </section>
 
-            <!-- Hyperlinking -->
-            <section class="p-4 rounded mb-4 section-hyperlinking">
-                <div class="policy-header">Hyperlinking Policy</div>
-                <p>Links to other websites/portals are provided for convenience. IIG is not responsible for the content or
-                    reliability of linked websites and does not necessarily endorse their views. The presence of a link does
-                    not imply endorsement. Link availability cannot be guaranteed.</p>
-                <p>Direct linking to this website is allowed unless otherwise specified, though informing us is appreciated.
-                    Framing our website within another site is not permitted. Pages must load in a new browser window.</p>
-            </section>
-
-            <!-- Privacy -->
-            <section class="p-4 rounded mb-4 section-privacy">
-                <div class="policy-header">Privacy Policy</div>
-                <p>The Department of Science and Technology does not automatically capture any specific personal information
-                    such as name, phone number, or email address that can identify you.</p>
-                <p>No personally identifiable information volunteered on this site is sold or shared with third parties.
-                    Information provided will be protected against loss, misuse, or unauthorized disclosure.</p>
-                <p>This site does not use cookies.</p>
-            </section>
-
-            <!-- Terms of Use -->
-            <section class="p-4 rounded mb-4 section-terms">
-                <div class="policy-header">Terms of Use</div>
-                <p>This site is maintained by the Department of Science and Technology. While efforts are made to ensure
-                    content accuracy, it should not be considered a legal statement. Users should verify details
-                    independently and seek professional advice if needed.</p>
-                <p>The Department is not liable for any losses or damages arising from use of this site or data loss.</p>
-                <p>These terms are governed by Indian laws and any disputes are under the jurisdiction of Indian courts.</p>
-                <p>Links to third-party websites are provided for convenience. The Department does not guarantee
-                    availability or content accuracy of external links, and users are subject to the privacy and security
-                    policies of those external sites.</p>
-            </section>
         </div>
     </section>
     <style>
         .policy-header {
-          font-size: 1.5rem;
-          font-weight: 600;
-          margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
-        .section-standardisation { background-color: #e3f2fd; }
-        .section-copyright { background-color: #e3f2fd; }
-        .section-hyperlinking { background-color: #e3f2fd; }
-        .section-privacy { background-color: #e3f2fd; }
-        .section-terms { background-color: #e3f2fd; }
-      </style>
+
+        .section-standardisation {
+            background-color: #e3f2fd;
+        }
+
+        .section-copyright {
+            background-color: #e3f2fd;
+        }
+
+        .section-hyperlinking {
+            background-color: #e3f2fd;
+        }
+
+        .section-privacy {
+            background-color: #e3f2fd;
+        }
+
+        .section-terms {
+            background-color: #e3f2fd;
+        }
+    </style>
 @endsection

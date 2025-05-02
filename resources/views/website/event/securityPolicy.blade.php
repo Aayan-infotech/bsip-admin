@@ -20,70 +20,87 @@
 
     <section class="common-mobile-view">
         <div class="container my-5">
-            <h1 class="mb-4 text-center">Web Policies</h1>
-            <!-- Standardisation -->
-            <section class="p-4 rounded mb-4 section-standardisation">
-                <div class="policy-header">Standardisation Testing and Quality Certification</div>
-                <p>No specific content provided under this heading, but it likely refers to adherence to standardized
-                    practices and certifications for website quality and accessibility.</p>
-            </section>
+            <h1 class="mb-4 text-center">{{ $language === 'hi' ? 'सुरक्षा नीति' : 'Security Policy' }}</h1>
 
-            <!-- Copyright -->
-            <section class="p-4 rounded mb-4 section-copyright">
-                <div class="policy-header">Copyright Policy</div>
-                <p>Material featured on this site may be reproduced free of charge in any format or media without requiring
-                    specific permission. This is subject to the material being reproduced accurately and not being used in a
-                    derogatory manner or in a misleading context. Where the material is being published or issued to others,
-                    the source must be prominently acknowledged.</p>
-                <p>However, the permission to reproduce this material does not extend to any material on this site which is
-                    explicitly identified as being the copyright of a third party. Authorization to reproduce such material
-                    must be obtained from the concerned copyright holders.</p>
-            </section>
 
-            <!-- Hyperlinking -->
-            <section class="p-4 rounded mb-4 section-hyperlinking">
-                <div class="policy-header">Hyperlinking Policy</div>
-                <p>Links to other websites/portals are provided for convenience. IIG is not responsible for the content or
-                    reliability of linked websites and does not necessarily endorse their views. The presence of a link does
-                    not imply endorsement. Link availability cannot be guaranteed.</p>
-                <p>Direct linking to this website is allowed unless otherwise specified, though informing us is appreciated.
-                    Framing our website within another site is not permitted. Pages must load in a new browser window.</p>
-            </section>
+
+
+
 
             <!-- Privacy -->
             <section class="p-4 rounded mb-4 section-privacy">
-                <div class="policy-header">Privacy Policy</div>
-                <p>The Department of Science and Technology does not automatically capture any specific personal information
-                    such as name, phone number, or email address that can identify you.</p>
-                <p>No personally identifiable information volunteered on this site is sold or shared with third parties.
-                    Information provided will be protected against loss, misuse, or unauthorized disclosure.</p>
-                <p>This site does not use cookies.</p>
+                <div class="policy-header"> {{ $language === 'hi' ? 'गोपनीयता नीति' : 'Privacy Policy' }}</div>
+                <p>{!! $language === 'hi'
+                    ? '
+                                                                बिरबल साहनी जीवाश्म विज्ञान संस्थान (BSIP) इस वेबसाइट पर आपके बारे में कोई विशिष्ट व्यक्तिगत जानकारी (जैसे नाम, फ़ोन नंबर या ई-मेल पता) स्वचालित रूप से एकत्रित नहीं करता, जिससे आपकी पहचान की जा सके।
+                                                                BSIP वेबसाइट पर स्वेच्छा से दी गई कोई भी व्यक्तिगत पहचान योग्य जानकारी किसी भी तीसरे पक्ष (सरकारी या निजी) को बेची या साझा नहीं की जाती है। इस पोर्टल को प्रदान की गई कोई भी जानकारी हानि, दुरुपयोग, अनधिकृत पहुंच या प्रकटीकरण, परिवर्तन या विनाश से सुरक्षित रखी जाएगी।
+                                                                "कुकी" एक सॉफ्टवेयर कोड का टुकड़ा होता है जिसे कोई वेबसाइट आपके ब्राउज़र को तब भेजती है जब आप उस वेबसाइट की जानकारी एक्सेस करते हैं। यह वेबसाइट किसी भी प्रकार की कुकीज़ का उपयोग नहीं करती है।'
+                    : 'The Birbal Sahni Institute of Palaeosciences (BSIP) does not automatically capture any specific personal information from you (such as name, phone number, or e-mail address) that would allow us to identify you individually when you visit this website.
+                                                                We do not sell or share any personally identifiable information voluntarily provided on the BSIP website with any third party (public or private). Any personal information shared with this portal will be handled with strict confidentiality and protected against loss, misuse, unauthorized access or disclosure, alteration, or destruction.
+                                                                A "cookie" is a piece of software code sent to your browser when you access a website. The BSIP website does not use cookies' !!}</p>
+
             </section>
 
             <!-- Terms of Use -->
             <section class="p-4 rounded mb-4 section-terms">
-                <div class="policy-header">Terms of Use</div>
-                <p>This site is maintained by the Department of Science and Technology. While efforts are made to ensure
-                    content accuracy, it should not be considered a legal statement. Users should verify details
-                    independently and seek professional advice if needed.</p>
-                <p>The Department is not liable for any losses or damages arising from use of this site or data loss.</p>
-                <p>These terms are governed by Indian laws and any disputes are under the jurisdiction of Indian courts.</p>
-                <p>Links to third-party websites are provided for convenience. The Department does not guarantee
-                    availability or content accuracy of external links, and users are subject to the privacy and security
-                    policies of those external sites.</p>
+                <div class="policy-header"> {{ $language === 'hi' ? 'उपयोग की शर्तें' : 'Terms of Use' }}</div>
+                {!! $language === 'hi'
+                    ? ' <p>यह वेबसाइट <strong>बीरबल साहनी जीवाश्म विज्ञान संस्थान (BSIP)</strong>  द्वारा डिज़ाइन, विकसित और अनुरक्षित की गई है। यद्यपि इस वेबसाइट पर प्रदर्शित सामग्री की सटीकता और अद्यतनता सुनिश्चित करने के लिए सभी प्रयास किए गए हैं, फिर भी इसे किसी कानून के कथन के रूप में नहीं समझा जाना चाहिए और न ही किसी कानूनी उद्देश्य के लिए उपयोग किया जाना चाहिए।</p>
+                                <p>किसी भी अस्पष्टता या संदेह की स्थिति में, उपयोगकर्ताओं को संस्थान या अन्य स्रोतों से जानकारी की पुष्टि करने और उपयुक्त पेशेवर सलाह लेने की सिफारिश की जाती है।</p>
+                                <p>किसी भी स्थिति में BSIP इस वेबसाइट के उपयोग या उपयोग की असमर्थता से उत्पन्न किसी भी प्रकार की हानि, व्यय, या क्षति (प्रत्यक्ष, अप्रत्यक्ष या आनुषंगिक) के लिए उत्तरदायी नहीं होगा।</p>
+                                <p>ये नियम और शर्तें भारत के कानूनों के अनुसार नियंत्रित और व्याख्यायित की जाएंगी। इन शर्तों के तहत उत्पन्न होने वाले किसी भी विवाद के लिए भारत के न्यायालयों का विशेष अधिकार क्षेत्र होगा।</p>
+                                pइस वेबसाइट पर ऐसे हाइपरलिंक्स या संकेत हो सकते हैं जो गैर-सरकारी या निजी संगठनों द्वारा बनाए गए और अनुरक्षित अन्य वेबसाइटों की ओर निर्देशित करते हैं। ये लिंक केवल आपकी सूचना और सुविधा के लिए प्रदान किए गए हैं। जब आप ऐसे किसी बाहरी लिंक का चयन करते हैं, तो आप BSIP की वेबसाइट से बाहर निकल जाते हैं और उस बाहरी वेबसाइट के गोपनीयता और सुरक्षा नीतियों के अधीन हो जाते हैं। BSIP ऐसे लिंक किए गए पृष्ठों की हमेशा उपलब्धता की गारंटी नहीं देता।</p>'
+                    : '<p>This website is designed, developed, and maintained by the <strong> Birbal Sahni Institute of
+                                        Palaeosciences
+                                        (BSIP).</strong> While every effort has been made to ensure the accuracy and currency of the content
+                                    presented on
+                                    this website, it should not be construed as a statement of law or be used for any legal purposes.
+                                </p>
+                                <p>In case of any ambiguity or doubts, users are advised to verify/check with the Institute or other
+                                    appropriate sources and seek relevant professional advice.</p>
+                                <p>Under no circumstances will BSIP be liable for any loss, expense, or damage—direct, indirect, or
+                                    consequential—arising from the use of, or inability to use, this website or any information provided on
+                                    it.</p>
+                                <p>These terms and conditions shall be governed by and construed in accordance with the laws of India. Any
+                                    disputes arising under these terms and conditions shall fall under the exclusive jurisdiction of the
+                                    courts of India.</p>
+                                <p>This website may include links to other websites maintained by non-government or private organizations.
+                                    These links are provided solely for user convenience and informational purposes. When you select such a
+                                    link, you are leaving the BSIP website and are subject to the privacy and security policies of the
+                                    linked external website. BSIP does not guarantee the availability or accuracy of such external pages at
+                                    all times.</p>' !!}
+
+
+
+
             </section>
         </div>
     </section>
     <style>
         .policy-header {
-          font-size: 1.5rem;
-          font-weight: 600;
-          margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
-        .section-standardisation { background-color: #e3f2fd; }
-        .section-copyright { background-color: #e3f2fd; }
-        .section-hyperlinking { background-color: #e3f2fd; }
-        .section-privacy { background-color: #e3f2fd; }
-        .section-terms { background-color: #e3f2fd; }
-      </style>
+
+        .section-standardisation {
+            background-color: #e3f2fd;
+        }
+
+        .section-copyright {
+            background-color: #e3f2fd;
+        }
+
+        .section-hyperlinking {
+            background-color: #e3f2fd;
+        }
+
+        .section-privacy {
+            background-color: #e3f2fd;
+        }
+
+        .section-terms {
+            background-color: #e3f2fd;
+        }
+    </style>
 @endsection
