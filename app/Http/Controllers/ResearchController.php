@@ -177,7 +177,8 @@ class ResearchController extends Controller
 
     public function manageLecturer()
     {
-        return view('research-management.manage_lecturer');
+        $lecturers = Lecturers::where('status', 1)->get();
+        return view('research-management.manage_lecture',compact('lecturers'));
     }
 
     public function storeLecturer(Request $request)
@@ -271,8 +272,7 @@ class ResearchController extends Controller
 
     public function manageLecture()
     {
-        $lecturers = Lecturers::where('status', 1)->get();
-        return view('research-management.manage_lecture', compact('lecturers'));
+        return view('research-management.manage_lecturer');
     }
 
     public function storeLecture(Request $reqeust)

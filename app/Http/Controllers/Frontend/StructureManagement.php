@@ -18,6 +18,8 @@ use App\Models\StaffSubCategory;
 use App\Models\UsefulLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use App\Models\Lectures;
+use App\Models\Lecturers;
 
 class StructureManagement extends Controller
 {
@@ -802,7 +804,13 @@ class StructureManagement extends Controller
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
-        return view('website.research.lectures', $this->sharedData);
+        $lectures = Lecturers::with(['lectures' => function ($query) {
+            $query->where('status', 1);
+        }])->where('status', 1)->orderBy('id', 'asc')->get();
+        // dd($lectures);
+
+
+        return view('website.research.lectures', $this->sharedData, compact('lectures'));
     }
 
 }

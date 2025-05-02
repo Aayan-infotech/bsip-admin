@@ -30,7 +30,7 @@
                             @csrf
                             <div class="row">
                                 <div class="mb-3  col-12">
-                                    <label>Select Lecturer:</label>
+                                    <label>Select Lecture:</label>
                                     <select class="form-control select2" name="lecturer_id" id="lecturer_id">
                                         <option value="">Select Lecturer</option>
                                         @foreach ($lecturers as $lecturer)
@@ -42,12 +42,12 @@
                                 </div>
 
                                 <div class="mb-3  col-12 ">
-                                    <label>Lecture Title:</label>
+                                    <label>Lecture Name:</label>
                                     <input type="text" name="lecture_title" class="form-control">
                                     <span class="text-danger error-lecture_title"></span>
                                 </div>
                                 <div class="mb-3 col-12">
-                                    <label>Lecture Title (Hindi):</label>
+                                    <label>Lecture Name (Hindi):</label>
                                     <input type="text" name="hin_lecture_title" class="form-control">
                                     <span class="text-danger error-hin_lecture_title"></span>
                                 </div>
