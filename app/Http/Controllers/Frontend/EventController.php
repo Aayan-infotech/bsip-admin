@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Pastevents;
 use App\Models\RajBhashaPortal;
+use App\Models\News;
+use App\Models\outreachProgram;
 
 class EventController extends Controller
 {
@@ -182,5 +184,23 @@ class EventController extends Controller
         return view('website.event.contactUs', $this->sharedData);
     }
 
-  
+    public function sitemap(Request $request){
+        return view('website.event.sitemap', $this->sharedData);
+    }
+
+    public function news(Request $request){
+        $news = News::where('status', 1)
+        ->orderBy('created_at', 'desc')
+        ->get();
+        // dd($news);
+        return view('website.event.news', $this->sharedData, compact('news'));
+    }
+
+    public function outreachProgram(Request $request){
+        $outreachProgram = outreachProgram::where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('website.event.outreachProgram', $this->sharedData, compact('outreachProgram'));
+    }
 }

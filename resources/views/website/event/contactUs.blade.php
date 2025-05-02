@@ -17,73 +17,99 @@
             </nav>
         </div>
     </section>
-
-    <section class="common-mobile-view">
-        <div class="container my-5">
-            <h1 class="mb-4 text-center">Web Policies</h1>
-            <!-- Standardisation -->
-            <section class="p-4 rounded mb-4 section-standardisation">
-                <div class="policy-header">Standardisation Testing and Quality Certification</div>
-                <p>No specific content provided under this heading, but it likely refers to adherence to standardized
-                    practices and certifications for website quality and accessibility.</p>
-            </section>
-
-            <!-- Copyright -->
-            <section class="p-4 rounded mb-4 section-copyright">
-                <div class="policy-header">Copyright Policy</div>
-                <p>Material featured on this site may be reproduced free of charge in any format or media without requiring
-                    specific permission. This is subject to the material being reproduced accurately and not being used in a
-                    derogatory manner or in a misleading context. Where the material is being published or issued to others,
-                    the source must be prominently acknowledged.</p>
-                <p>However, the permission to reproduce this material does not extend to any material on this site which is
-                    explicitly identified as being the copyright of a third party. Authorization to reproduce such material
-                    must be obtained from the concerned copyright holders.</p>
-            </section>
-
-            <!-- Hyperlinking -->
-            <section class="p-4 rounded mb-4 section-hyperlinking">
-                <div class="policy-header">Hyperlinking Policy</div>
-                <p>Links to other websites/portals are provided for convenience. IIG is not responsible for the content or
-                    reliability of linked websites and does not necessarily endorse their views. The presence of a link does
-                    not imply endorsement. Link availability cannot be guaranteed.</p>
-                <p>Direct linking to this website is allowed unless otherwise specified, though informing us is appreciated.
-                    Framing our website within another site is not permitted. Pages must load in a new browser window.</p>
-            </section>
-
-            <!-- Privacy -->
-            <section class="p-4 rounded mb-4 section-privacy">
-                <div class="policy-header">Privacy Policy</div>
-                <p>The Department of Science and Technology does not automatically capture any specific personal information
-                    such as name, phone number, or email address that can identify you.</p>
-                <p>No personally identifiable information volunteered on this site is sold or shared with third parties.
-                    Information provided will be protected against loss, misuse, or unauthorized disclosure.</p>
-                <p>This site does not use cookies.</p>
-            </section>
-
-            <!-- Terms of Use -->
-            <section class="p-4 rounded mb-4 section-terms">
-                <div class="policy-header">Terms of Use</div>
-                <p>This site is maintained by the Department of Science and Technology. While efforts are made to ensure
-                    content accuracy, it should not be considered a legal statement. Users should verify details
-                    independently and seek professional advice if needed.</p>
-                <p>The Department is not liable for any losses or damages arising from use of this site or data loss.</p>
-                <p>These terms are governed by Indian laws and any disputes are under the jurisdiction of Indian courts.</p>
-                <p>Links to third-party websites are provided for convenience. The Department does not guarantee
-                    availability or content accuracy of external links, and users are subject to the privacy and security
-                    policies of those external sites.</p>
-            </section>
+    <section class="contact-page-sec">
+        <div class="container">
+            <h2 class="text-center mb-4">Get in Touch</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-map-marked"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h2>Address</h2>
+                                <span>53 University Road,</span>
+                                <span>Lucknow - 226007, Uttar Pradesh, India</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h2>E-mail</h2>
+                                <span>director[at]bsip[dot]res[dot]in</span>
+                                <span>registrar[at]bsip[dot]res[dot]in</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h2>Phone</h2>
+                                <span>+91-522-2742903</span>
+                                <span>+91-522-2742902</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-page-form" method="post">
+                        <h2 class="text-center">Send us Your Query!</h2>
+                        <form action="contact-mail.php" method="post">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="single-input-field">
+                                        <input type="text" placeholder="Your Name" name="name" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="single-input-field">
+                                        <input type="email" placeholder="E-mail" name="email" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="single-input-field">
+                                        <input type="text" placeholder="Phone Number" name="phone" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="single-input-field">
+                                        <input type="text" placeholder="Subject" name="subject" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 message-input">
+                                    <div class="single-input-field">
+                                        <textarea placeholder="Write Your Message" name="message"></textarea>
+                                    </div>
+                                </div>
+                                <div class="single-input-fieldsbtn">
+                                    <input type="submit" value="Send Now" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-page-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.2238848374284!2d80.93663117545241!3d26.86717607667159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd9c5b0e099d%3A0xe91f8220e9b92505!2sBirbal%20Sahni%20Institute%20of%20Palaeosciences!5e0!3m2!1sen!2sin!4v1714553984817!5m2!1sen!2sin"
+                            width="100%" height="450" frameborder="0" style="border: 0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <style>
-        .policy-header {
-          font-size: 1.5rem;
-          font-weight: 600;
-          margin-bottom: 1rem;
-        }
-        .section-standardisation { background-color: #e3f2fd; }
-        .section-copyright { background-color: #e3f2fd; }
-        .section-hyperlinking { background-color: #e3f2fd; }
-        .section-privacy { background-color: #e3f2fd; }
-        .section-terms { background-color: #e3f2fd; }
-      </style>
 @endsection

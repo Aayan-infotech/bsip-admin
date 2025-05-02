@@ -9,12 +9,12 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         margin-left: 20px;
         padding-left: 0px;
-    } */
+    }
 
-    /* .content {
+    .content {
         width: 80%;
-    } */
-    /*
+    }
+
     .sidebar-heading {
         font-size: 1.2rem;
         color: #343a40;
@@ -71,9 +71,9 @@
         <ul class="sidebar-nav">
             <li>
                 @if (isset($currentHeaderMenu) && !empty($currentHeaderMenu))
-                    <p class="sidebar-heading">
+                    <h2 class="sidebar-heading">
                         {{ $language === 'hi' ? $currentHeaderMenu['hin_title'] : $currentHeaderMenu['title'] }}
-                    </p>
+                    </h2>
                 @endIf
             </li>
             @foreach ($menuPages as $menuPage)

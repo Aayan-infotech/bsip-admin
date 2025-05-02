@@ -63,6 +63,11 @@
                                             <a href="{{ $annualReport->report_file_hin }}" class="btn btn-view-profile">
                                                 <i class="fas fa-download"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a>
+                                            @if($annualReport->report_file_hin_size)
+                                                <span class="file-size">
+                                                    ({{ $annualReport->report_file_hin_size }}) MB
+                                                </span>
+                                            @endif
                                         @endif
                                     </td>
                                     <td>
@@ -71,6 +76,11 @@
                                                 <i class="fas fa-download"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}
                                             </a>
+                                            @if($annualReport->report_file_size)
+                                                <span class="file-size">
+                                                    ({{ $annualReport->report_file_size }}) MB
+                                                </span>
+                                            @endif
                                         @endif
                                     </td>
                                 </tr>
@@ -103,7 +113,13 @@
                                         @if ($annualReport->report_file_hin)
                                             <a href="{{ $annualReport->report_file_hin }}" class="btn btn-view-profile">
                                                 <i class="fas fa-download"></i>
-                                                {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a>
+                                                {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}
+                                            </a>
+                                            @if($annualReport->report_file_hin_size)
+                                                <span class="file-size">
+                                                    ({{ $annualReport->report_file_hin_size }}) MB
+                                                </span>
+                                            @endif
                                         @endif
                                     </td>
                                     <td>
@@ -112,6 +128,11 @@
                                                 <i class="fas fa-download"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}
                                             </a>
+                                            @if($annualReport->report_file_size)
+                                            <span class="file-size">
+                                                ({{ $annualReport->report_file_size }}) MB
+                                            </span>
+                                        @endif
                                         @endif
                                     </td>
                                 </tr>

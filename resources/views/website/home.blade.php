@@ -13,7 +13,7 @@
             </ul>
         </div>
     </section>
-    <section id="fontSize" class="wrapper body-wrapper ">
+    <section id="skipToContent" class="wrapper body-wrapper ">
         <section class="main-contents-home-page">
             <div class="container-fluid p-5">
                 <div class="row">
@@ -25,7 +25,7 @@
                                 {{ $language === 'hi' ? 'बीएसआईपी एक नजर में' : 'BSIP At A Glance' }}
                             </h2>
                             <div class="card-image">
-                                <img src="https://www.bsip.res.in/bsip-imgd.png" alt="">
+                                <img src="{{ asset('assets-new/assets/images/home/bsip-1.png') }}" alt="">
                             </div>
                             <div class="card-content">
                                 <p class="paragraph-profile-card">
@@ -51,7 +51,8 @@
                                 {{ $language === 'hi' ? 'संस्थापक' : 'Founder' }}
                             </h2>
                             <div class="card-image">
-                                <img src="assets-new/assets/images/founder.png" alt="" width="100">
+                                <img src="{{ asset('assets-new/assets/images/founder.png') }}" alt=""
+                                    width="100">
                             </div>
                             <div class="card-content">
                                 <h3>{{ $language === 'hi' ? 'प्रो. बीरबल साहनी' : 'Prof. Birbal Sahni, FRS' }}</h3>
@@ -74,11 +75,10 @@
                                 {{ $language === 'hi' ? 'निदेशक' : 'Director' }}
                             </h2>
                             <div class="card-image">
-                                <img src="https://www.bsip.res.in/admin/assets/img/gallery/director3.jpg" alt=""
-                                    class="director-img">
+                                <img src="{{ $director->profile_picture }}" alt="" class="director-img">
                             </div>
                             <div class="card-content">
-                                <h3>{{ $language === 'hi' ? 'प्रोफेसर महेश जी. ठक्कर' : 'Prof. Mahesh G. Thakkar' }}</h3>
+                                <h3>{{ $language === 'hi' ? $director->name_hin : $director->name }}</h3>
                                 <h4>{{ $language === 'hi' ? 'निदेशक' : 'Director' }}</h4>
                                 <div class="row">
                                     <a href="{{ $language }}/{{ $language === 'hi' ? 'director' : 'director' }}"
@@ -104,44 +104,19 @@
                         </h2>
                         <div class="card-body auto-scroll" id="research-highlights">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    Aggarwal, N. and Goswami, S. (26 Feb 2024): Tectonic inferences from palynology of
-                                    Permian
-                                    sequences...
-                                    <a href="#" class="text-primary" role="link" aria-label="home">View PDF <i
-                                            class="fas fa-file-pdf text-danger" role="presentation"></i></a>
-                                </li>
-                                <li class="list-group-item">
-                                    Joshi, H. and Aggarwal, N., 2024: Palynology of the Upper Gondwana deposits from the
-                                    Chintalapudi...
-                                    <a href="#" class="text-primary" role="link" aria-label="home">View PDF <i
-                                            class="fas fa-file-pdf text-danger" role="presentation"></i></a>
-                                </li>
-                                <li class="list-group-item">
-                                    Mandal S, Singh A, Banerjee S... Linking the impact of seismicity on palaeogeographic
-                                    evolution.
-                                    <a href="#" class="text-primary" role="link" aria-label="home">View PDF <i
-                                            class="fas fa-file-pdf text-danger" role="presentation"></i></a>
-                                </li>
-                                <li class="list-group-item">
-                                    Aggarwal, N. and Goswami, S. (26 Feb 2024): Tectonic inferences from palynology of
-                                    Permian
-                                    sequences...
-                                    <a href="#" class="text-primary" role="link" aria-label="home">View PDF <i
-                                            class="fas fa-file-pdf text-danger" role="presentation"></i></a>
-                                </li>
-                                <li class="list-group-item">
-                                    Joshi, H. and Aggarwal, N., 2024: Palynology of the Upper Gondwana deposits from the
-                                    Chintalapudi...
-                                    <a href="#" class="text-primary" role="link" aria-label="home">View PDF <i
-                                            class="fas fa-file-pdf text-danger" role="presentation"></i></a>
-                                </li>
-                                <li class="list-group-item">
-                                    Mandal S, Singh A, Banerjee S... Linking the impact of seismicity on palaeogeographic
-                                    evolution.
-                                    <a href="#" class="text-primary" role="link" aria-label="home">View PDF <i
-                                            class="fas fa-file-pdf text-danger" role="presentation"></i></a>
-                                </li>
+                                @if ($researchHighlights->isNotEmpty())
+                                    @foreach ($researchHighlights as $index => $highlight)
+                                        <li class="list-group-item">
+                                            {{ $language === 'hi' ? $highlight->hin_title : $highlight->title }}
+
+                                            <a href="{{ $language === 'hi' ? $highlight->hindi_file : $highlight->english_file }}"
+                                                class="text-primary" role="link" aria-label="home" target="_blank">
+                                                [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
+                                                <i class="fas fa-file-pdf text-danger" role="presentation"></i>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @endif
                             </ul>
                         </div>
                         <div class="card-footer text-end">
@@ -303,7 +278,7 @@
                             <div class="card-body d-flex justify-content-center align-items-center">
                                 <div class="row justify-content-center g-4">
                                     <div class="col-6">
-                                        <a href="bsip_past_events" class="card-link text-decoration-none" role="link"
+                                        <a href="{{ $language }}/bsip_past_events" class="card-link text-decoration-none" role="link"
                                             aria-label="home">
                                             <div class="card-section border rounded text-center p-3">
                                                 <div
@@ -650,48 +625,17 @@
                     </div>
                     <div class="fancybox">
                         <ul class="slider">
-                            <li>
-                                <a href="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA45_15_15_09_PM_5425.JPG"
-                                    data-fancybox="images">
-                                    <img src="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA45_15_15_09_PM_5425.JPG"
-                                        alt="Photo Gallery Slide 1" class="photo-gallery-img" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA44_15_08_35_PM_6291.JPG"
-                                    data-fancybox="images">
-                                    <img src="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA44_15_08_35_PM_6291.JPG"
-                                        alt="Photo Gallery Slide 2" class="photo-gallery-img" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA43_14_35_34_PM_9076.JPG"
-                                    data-fancybox="images">
-                                    <img src="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA43_14_35_34_PM_9076.JPG"
-                                        alt="Photo Gallery Slide 3" class="photo-gallery-img" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA45_15_15_09_PM_5425.JPG"
-                                    data-fancybox="images">
-                                    <img src="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA45_15_15_09_PM_5425.JPG"
-                                        alt="Photo Gallery Slide 1" class="photo-gallery-img" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA44_15_08_35_PM_6291.JPG"
-                                    data-fancybox="images">
-                                    <img src="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA44_15_08_35_PM_6291.JPG"
-                                        alt="Photo Gallery Slide 2" class="photo-gallery-img" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA43_14_35_34_PM_9076.JPG"
-                                    data-fancybox="images">
-                                    <img src="https://www.bsip.res.in/admin/assets/img/BSIPRAJBHASHA43_14_35_34_PM_9076.JPG"
-                                        alt="Photo Gallery Slide 3" class="photo-gallery-img" />
-                                </a>
-                            </li>
+                            @if ($photoGallery->count() > 0)
+                                @foreach ($photoGallery as $photo)
+                                    <li>
+                                        <a href="{{ $photo}}"
+                                            data-fancybox="images">
+                                            <img src="{{ $photo }}"
+                                                alt="Photo Gallery Slide 1" class="photo-gallery-img" />
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>

@@ -2,21 +2,21 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Annual_Report;
 use App\Models\ContactSetting;
 use App\Models\HeaderMenu;
 use App\Models\ImportantLink;
+use App\Models\Institute_Catalogue;
 use App\Models\LanguageSetting;
 use App\Models\Logo;
 use App\Models\MenuPage;
+use App\Models\MonthlyReport;
+use App\Models\ResearchHighlights;
 use App\Models\SocialLink;
 use App\Models\UsefulLink;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use App\Models\Annual_Report;
-use App\Models\Institute_Catalogue;
-use App\Models\ResearchHighlights;
-use App\Models\MonthlyReport;
-use Carbon\Carbon;
 
 class PublicationManagement extends Controller
 {
@@ -161,10 +161,34 @@ class PublicationManagement extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
+        // get the file size of each report of hindi and english
+        // $annualReports->transform(function ($report) {
+        //     // Extract relative path from URL if needed
+        //     $relativePath = str_replace(url('storage') . '/', '', $report->report_file);
+        //     $filePath = public_path('storage/' . $relativePath);
+
+        //     $report->report_file_size = (file_exists($filePath))
+        //         ? round(filesize($filePath) / 1024 / 1024, 2)
+        //         : null;
+
+        //     $relativeHinPath = str_replace(url('storage') . '/', '', $report->report_file_hin);
+        //     $fileHinPath = public_path('storage/' . $relativeHinPath);
+
+        //     $report->report_file_hin_size = (file_exists($fileHinPath))
+        //         ? round(filesize($fileHinPath) / 1024 / 1024, 2)
+        //         : null;
+
+        //     return $report;
+        // });
+
+
+        // dd($annualReports);
+
         return view('website.publications.annualReports', $this->sharedData, compact('annualReports', 'archivedReports'));
     }
 
-    public function catalogues(Request $request){
+    public function catalogues(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -199,11 +223,11 @@ class PublicationManagement extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        return view('website.publications.catalogues', $this->sharedData , compact('catalogues'));
+        return view('website.publications.catalogues', $this->sharedData, compact('catalogues'));
     }
 
-
-    public function researchHighlightsAll(Request $request){
+    public function researchHighlightsAll(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -240,8 +264,8 @@ class PublicationManagement extends Controller
         return view('website.publications.researchHighlightsAll', $this->sharedData, compact('researchHighlights'));
     }
 
-
-    public function monthlyReports(Request $request){
+    public function monthlyReports(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -275,8 +299,8 @@ class PublicationManagement extends Controller
             ->get();
 
         $monthlyReports->transform(function ($report) {
-            $report->report_month = Carbon::parse($report->report_month)->format('F');
-            $report->report_year = Carbon::parse($report->report_month)->format('Y');
+            $report->report_month     = Carbon::parse($report->report_month)->format('F');
+            $report->report_year      = Carbon::parse($report->report_month)->format('Y');
             $report->report_month_hin = Carbon::parse($report->report_month)->locale('hi')->translatedFormat('F');
             return $report;
         });
@@ -284,7 +308,8 @@ class PublicationManagement extends Controller
         return view('website.publications.monthlyReports', $this->sharedData, compact('monthlyReports'));
     }
 
-    public function newsLetter(Request $request){
+    public function newsLetter(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -316,7 +341,8 @@ class PublicationManagement extends Controller
         return view('website.publications.newsLetter', $this->sharedData);
     }
 
-    public function epatrika(Request $request){
+    public function epatrika(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');

@@ -32,7 +32,7 @@
                                     <a href="{{ $link->url }}" role="link" aria-label="{{ $link->title }}"
                                         target="_blank">
                                         <!-- <i class="fab {{ $link->icon_class }} footer-social-icon"></i> -->
-                                        <img style="width: 60%;" alt="Social Link"
+                                        <img style="max-width:30px;" alt="Social Link"
                                             src="{{ asset('storage/' . $link->icon_image) }}">
                                     </a>
                                 </li>
@@ -96,22 +96,30 @@
             </div>
 
 
-            <div class="divider"></div>
+            <div class="divider "></div>
             <div class="row text-center">
-                <div class="col-md-2"><a href="{{ route('frontend.copyRightPolicy', ['language' => $language]) }}"
+                <div class="col-md-2 footer-link"><a
+                        href="{{ route('frontend.copyRightPolicy', ['language' => $language]) }}"
                         class="text-white">{{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}</a>
                 </div>
-                <div class="col-md-2"><a href="{{ route('frontend.securityPolicy', ['language' => $language]) }}"
+                <div class="col-md-2 footer-link"><a
+                        href="{{ route('frontend.securityPolicy', ['language' => $language]) }}"
                         class="text-white">{{ $language === 'hi' ? 'सुरक्षा नीति' : 'Security Policy' }}</a></div>
-                <div class="col-md-2"><a href="{{ route('frontend.onlineFeedbackForm', ['language' => $language]) }}" class="text-white">{{ $language === 'hi' ? 'ऑनलाइन फीडबैक फॉर्म' : 'Online Feedback Form' }}</a></div>
+                <div class="col-md-2 footer-link"><a
+                        href="{{ route('frontend.onlineFeedbackForm', ['language' => $language]) }}"
+                        class="text-white">{{ $language === 'hi' ? 'ऑनलाइन फीडबैक फॉर्म' : 'Online Feedback Form' }}</a>
+                </div>
 
 
-                <div class="col-md-2"><a href="{{ route('frontend.help', ['language' => $language]) }}" class="text-white">{{
-                    $language === 'hi' ? 'मदद':'Help'}}</a></div>
-                <div class="col-md-2"><a href="{{ route('frontend.contactUs', ['language' => $language]) }}" class="text-white">
-                    {{ $language === 'hi' ? 'संपर्क करें':'Contact Us'}}</a></div>
-                <div class="col-md-2"><a href="{{ route('frontend.nationalPortal', ['language' => $language]) }}" class="text-white">{{
-                    $language === 'hi' ? 'राष्ट्रीय पोर्टल' : 'National Portal' }}</a></div>
+                <div class="col-md-2 footer-link"><a href="{{ route('frontend.help', ['language' => $language]) }}"
+                        class="text-white">{{ $language === 'hi' ? 'मदद' : 'Help' }}</a></div>
+                <div class="col-md-2 footer-link"><a
+                        href="{{ route('frontend.contactUs', ['language' => $language]) }}" class="text-white">
+                        {{ $language === 'hi' ? 'संपर्क करें' : 'Contact Us' }}</a></div>
+                <div class="col-md-2 footer-link"><a
+                        href="https://www.india.gov.in/" target="_blank"
+                        aria-label="National Portal"
+                        class="text-white">{{ $language === 'hi' ? 'राष्ट्रीय पोर्टल' : 'National Portal' }}</a></div>
             </div>
 
         </div>
