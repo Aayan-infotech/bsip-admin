@@ -25,7 +25,7 @@
                                 {{ $language === 'hi' ? 'बीएसआईपी एक नजर में' : 'BSIP At A Glance' }}
                             </h2>
                             <div class="card-image">
-                                <img src="{{ asset('assets-new/assets/images/home/bsip-1.png') }}" alt="">
+                                <img src="{{ asset('assets-new/assets/images/home/bsip-1.png') }}" alt="BSIP At A Glance 1">
                             </div>
                             <div class="card-content">
                                 <p class="paragraph-profile-card">
@@ -51,7 +51,7 @@
                                 {{ $language === 'hi' ? 'संस्थापक' : 'Founder' }}
                             </h2>
                             <div class="card-image">
-                                <img src="{{ asset('assets-new/assets/images/founder.png') }}" alt=""
+                                <img src="{{ asset('assets-new/assets/images/founder.png') }}" alt="Founder"
                                     width="100">
                             </div>
                             <div class="card-content">
@@ -493,7 +493,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12">
-                                            <img src="{{ $language === 'hi' ? 'https://www.bsip.res.in/images/nav/museum2.jpg' : 'assets-new/assets/images/home/museum2.jpg' }}"
+                                            <img src="{{ asset('assets-new/assets/museum/museum2.jpg') }}"
                                                 alt="museum-img" class="img-fluid img-museum">
                                         </div>
                                     </div>
@@ -514,7 +514,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12">
-                                            <img src="{{ $language === 'hi' ? 'https://www.bsip.res.in/museumpics/cpgg.jpg' : 'assets-new/assets/images/home/cpgg.jpg' }}"
+                                            <img src="{{ asset('assets-new/assets/museum/cpgg.jpg') }}"
                                                 alt="cpgg-img" class="img-fluid img-museum">
                                         </div>
                                     </div>
@@ -535,7 +535,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12">
-                                            <img src="{{ $language === 'hi' ? 'https://www.bsip.res.in/images/media-cell-eng.jpg' : 'assets-new/assets/images/home/media-cell-eng.jpg' }}"
+                                            <img src="{{ asset('assets-new/assets/museum/media-cell-eng.jpg') }}"
                                                 alt="cell-img" class="img-fluid img-museum">
                                         </div>
                                     </div>
@@ -565,39 +565,39 @@
                         <div class="slider-container">
                             <div class="slider-item">
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                    <img src="https://www.bsip.res.in/images/services/TL-OSL.jpg" alt="TL/OSL">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/TL-OSL.jpg') }}" alt="Facility 1">
                                     <div class="slider-title">TL/OSL</div>
                                 </a>
                             </div>
                             <div class="slider-item">
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                    <img src="https://www.bsip.res.in/images/services/XRD.jpg" alt="XRD">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/xrd.jfif') }}" alt="Facility 2">
                                     <div class="slider-title">XRD</div>
                                 </a>
                             </div>
                             <div class="slider-item">
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                    <img src="https://www.bsip.res.in/images/services/Nutrien%20Analyzer.jpg"
-                                        alt="Nutrien Analyzer">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/nutrient.jfif') }}"
+                                        alt="Facility 3">
                                     <div class="slider-title">Nutrien Analyzer</div>
                                 </a>
                             </div>
                             <div class="slider-item">
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                    <img src="https://www.bsip.res.in/images/services/FESEM.jpg" alt="FESEM">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/FESEM.jpg') }}" alt="Facility 4">
                                     <div class="slider-title">FESEM</div>
                                 </a>
                             </div>
                             <div class="slider-item">
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                    <img src="https://www.bsip.res.in/images/services/Coal-CF.jpeg" alt="Coal CF">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/coal.jfif') }}" alt="Facility 5">
                                     <div class="slider-title">Coal CF</div>
                                 </a>
                             </div>
                             <div class="slider-item">
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                    <img src="https://www.bsip.res.in/images/services/Thermo-Gravimetric-Analyser-(TGA).jpeg"
-                                        alt="Bomb Calorimeter">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/bomb.jfif') }}"
+                                        alt="Facility 6">
                                     <div class="slider-title">Bomb Calorimeter</div>
                                 </a>
                             </div>

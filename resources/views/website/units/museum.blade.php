@@ -37,7 +37,7 @@
                     <h3 id="history">{{ $language === 'hi' ? $currentPage['hin_title'] : $currentPage['title'] }}</h3>
                     <div class="divider"></div>
                     <div class="row">
-                        <div class="col-md-4"><img src="https://www.bsip.res.in/images/nav/museum2.jpg"
+                        <div class="col-md-4"><img src="{{ asset('assets-new/assets/museum/museum2.jpg') }}"
                                 alt="History Image 1" class="img-fluid img-history"></div>
                         <div class="col-md-8">
                             <p class="normal-text">{{ $language === 'hi' ? 'प्रोफेसर साहनी द्वारा भारत और विदेशों से एकत्रित जीवाश्म पौधों का संग्रह, जिसमें उन्हें उपहार या विनिमय के रूप में प्राप्त जीवाश्म पौधे भी शामिल हैं, ने संस्थान के संग्रहालय की शुरुआत की। संग्रहालय का भण्डार संस्थान के वैज्ञानिकों द्वारा पूरे देश में अपने फील्डवर्क के दौरान किए गए संग्रह और विदेशों से प्राप्त सामग्री के आदान-प्रदान से लगातार समृद्ध होता रहा है। संग्रहालय द्वारा होलोटाइप नमूने, स्लाइड और चित्रित नमूनों को व्यवस्थित रूप से संग्रहीत किया जाता है जो अनुसंधानकर्ताओं के लिए जांच के लिए आसानी से उपलब्ध हैं।':'The collection of fossil plants made by Professor Sahni from India and

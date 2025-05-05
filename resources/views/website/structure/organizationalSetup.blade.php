@@ -37,7 +37,7 @@
                     <h3>{{ $language === 'hi' ? $currentPage['hin_title'] : $currentPage['title'] }}</h3>
                     <div class="divider"></div>
                     <div class="img-oranization">
-                        <img src="https://www.bsip.res.in/images/pages/setup.jpg" alt="" class="img-fluid">
+                        <img src="{{ asset('assets-new/assets/amber/setup.jpg') }}" alt="setup" class="img-fluid">
                     </div>
                 </div>
             </div>

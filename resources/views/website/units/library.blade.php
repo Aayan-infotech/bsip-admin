@@ -37,14 +37,14 @@
                     <h3 id="history">{{ $language === 'hi' ? $currentPage['hin_title'] : $currentPage['title'] }}</h3>
                     <div class="divider"></div>
                     <div class="row">
-                        <div class="col-md-3"><img src="https://www.bsip.res.in/images/nav/museum2.jpg"
-                                alt="History Image 1" class="img-fluid img-history"></div>
-                        <div class="col-md-3"><img src="https://www.bsip.res.in/images/nav/museum2.jpg"
-                                alt="History Image 1" class="img-fluid img-history"></div>
-                        <div class="col-md-3"><img src="https://www.bsip.res.in/images/nav/museum2.jpg"
-                                alt="History Image 1" class="img-fluid img-history"></div>
-                        <div class="col-md-3"><img src="https://www.bsip.res.in/images/nav/museum2.jpg"
-                                alt="History Image 1" class="img-fluid img-history"></div>
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/library/krc1.jpg') }}"
+                                alt="Library 1" class="img-fluid img-history"></div>
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/library/krc2.jpg') }}"
+                                alt="Library 2" class="img-fluid img-history"></div>
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/library/krc3.jpg') }}"
+                                alt="Library 3" class="img-fluid img-history"></div>
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/library/krc4.jfif') }}"
+                                alt="Library 4" class="img-fluid img-history"></div>
 
                         <div class="col-md-12 mt-3">
                             <p class="normal-text">The Library subscribes a wide variety of journals and is also a member of

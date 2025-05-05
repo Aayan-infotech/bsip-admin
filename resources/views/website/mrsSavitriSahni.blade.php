@@ -25,7 +25,7 @@
 </section>
 
 <section class="common-mobile-view">
-    <div class="container-fluid py-3">
+    <div class="container py-3">
         <div class="row gx-5">
             <!-- Sidebar with Links and Icons -->
             @include('website.layouts.sidebar', ['menuPages' => $menuPages, 'currentPageId' => $currentPageId, 'language' => $language])
@@ -39,7 +39,7 @@
                 <div class="row mb-0">
                     @if ($language === 'hi')
                     <div class="col-md-2">
-                        <img src="https://www.bsip.res.in/images/pages/savitri-sahni-1.jpg"
+                        <img src="{{ asset('assets-new/assets/savitri/savitri-sahni-1.jpg') }}"
                             alt="श्रीमती सावित्री साहनी की छवि" class="img-fluid img-history rounded shadow-sm">
                     </div>
                     <div class="col-md-10">
@@ -54,7 +54,7 @@
                     </div>
                     @else
                     <div class="col-md-2">
-                        <img src="https://www.bsip.res.in/images/pages/savitri-sahni-1.jpg"
+                        <img src="{{ asset('assets-new/assets/savitri/savitri-sahni-1.jpg') }}"
                             alt="Image of Mrs. Savitri Sahni" class="img-fluid img-history rounded shadow-sm">
                     </div>
                     <div class="col-md-10">

@@ -90,13 +90,13 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-3"><img src="https://www.bsip.res.in/bsipimg1.jpeg" alt=""
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-1.jpeg') }}" alt="amber 1"
                                 class="img-fluid img-history"></div>
-                        <div class="col-md-3"><img src="https://www.bsip.res.in/bsipimg2.jpeg" alt=""
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-2.jpeg') }}" alt="amber 2"
                                 class="img-fluid img-history"></div>
-                        <div class="col-md-3"><img src="https://www.bsip.res.in/bsipimg3.jpeg" alt=""
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-3.jpeg') }}" alt="amber 3"
                                 class="img-fluid img-history"></div>
-                        <div class="col-md-3"><img src="https://www.bsip.res.in/bsipimg4.jpeg" alt=""
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-4.jpeg') }}" alt="amber "
                                 class="img-fluid img-history"></div>
                     </div>
                     <div class="row">

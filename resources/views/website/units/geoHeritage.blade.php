@@ -38,7 +38,7 @@
                     <div class="divider"></div>
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="https://www.bsip.res.in/images/Untitled%20design_page-0001.jpg" alt=""
+                            <img src="{{ asset('assets-new/assets/geo-heritage/geo-1.jpg') }}" alt=""
                                 class="img-fluid img-history">
                         </div>
                     </div>
@@ -270,7 +270,7 @@
                                                                 visited BSIP, Lucknow to sign the MoU and discussed plans with Dr. Vandana Prasad, Director,
                                                                 BSIP.' }}
                             </p>
-                            <img src="https://www.bsip.res.in/admin/assets/img/BSIPGEO6_12_59_11_PM_9633.png" alt=""
+                            <img src="{{ asset('assets-new/assets/geo-heritage/geo-2.png') }}" alt=""
                                 class="img-fluid img-history">
                         </div>
                     </div>
@@ -287,7 +287,7 @@
                                                             Palaeosciences, Lucknow on 28 June 2023. The Governing Body and Research Advisory Committee
                                                             members and senior scientists were present during the ceremony.' }}
                             </p>
-                            <img src="https://www.bsip.res.in/admin/assets/img/BSIPGEO6_12_59_28_PM_7468.png" alt=""
+                            <img src="{{ asset('assets-new/assets/geo-heritage/geo-3.png') }}" alt=""
                                 class="img-fluid img-history">
                         </div>
                     </div>

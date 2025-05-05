@@ -39,11 +39,11 @@
                             <h3>BSIP Platinum Jubilee Year Documentary 2021</h3>
                             <div class="divider"></div>
                         </div>
-                        <div class="col-md-4"><img src="https://www.bsip.res.in/admin/assets/img/gallery/bsip%20page.jpg"
+                        <div class="col-md-4"><img src="{{ asset('assets-new/assets/gallery/gallery-1.jpg') }}"
                                 alt="" class="img-fluid img-history"></div>
-                        <div class="col-md-4"><img src="https://www.bsip.res.in/admin/assets/img/gallery/bsip%20page.jpg"
+                        <div class="col-md-4"><img src="{{ asset('assets-new/assets/gallery/gallery-1.jpg') }}"
                                 alt="" class="img-fluid img-history"></div>
-                        <div class="col-md-4"><img src="https://www.bsip.res.in/admin/assets/img/gallery/bsip%20page.jpg"
+                        <div class="col-md-4"><img src="{{ asset('assets-new/assets/gallery/gallery-1.jpg') }}"
                                 alt="" class="img-fluid img-history"></div>
                     </div>
                 </div>

@@ -38,7 +38,7 @@
                         <div class="col-md-12">
                             <h3>LEM ISS 2023 : 13-26 March, 2023</h3>
                             <div class="divider"></div>
-                            <iframe src="https://www.bsip.res.in/LEM-ISS_2023-First_Circular-2.pdf" width="100%"
+                            <iframe src="{{ asset('assets-new/assets/pdfs/LEM-ISS_2023-First_Circular-2.pdf') }}" width="100%"
                                 height="600px" style="border: none;"></iframe>
                         </div>
                     </div>

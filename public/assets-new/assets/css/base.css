@@ -973,6 +973,16 @@ th {
 .common-right ul .language > a {
     background-image: none !important;
 }
+@media (max-width:768px) {
+    #accessibilityBar {
+        gap: 5px !important;
+    }
+    
+    #accessibilityBar a {
+        padding: 2px 5px !important;
+    }
+    
+}
 #accessibilityBar {
     margin-left: 10px;
     margin-right: 10px;

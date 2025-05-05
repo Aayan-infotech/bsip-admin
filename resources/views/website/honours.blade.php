@@ -56,7 +56,7 @@
     }
 </style>
 <section class="common-mobile-view">
-    <div class="container-fluid py-3">
+    <div class="container py-3">
         <div class="row gx-5">
             <!-- Sidebar with Links and Icons -->
             @include('website.layouts.sidebar', ['menuPages' => $menuPages, 'currentPageId' => $currentPageId, 'language' => $language])

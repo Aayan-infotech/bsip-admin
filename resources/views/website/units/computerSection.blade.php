@@ -37,8 +37,8 @@
                     <h3 id="history">{{ $language === 'hi' ? $currentPage['hin_title'] : $currentPage['title'] }}</h3>
                     <div class="divider"></div>
                     <div class="row">
-                        <div class="col-md-4"><img src="https://www.bsip.res.in/images/nav/compsec.jpg"
-                                alt="History Image 1" class="img-fluid img-history"></div>
+                        <div class="col-md-4"><img src="{{ asset('assets-new/assets/geo-heritage/compsec.jpg') }}"
+                                alt="Computer Section" class="img-fluid img-history"></div>
                         <div class="col-md-8">
                             <p class="normal-text">
                                 {{ $language === 'hi'
