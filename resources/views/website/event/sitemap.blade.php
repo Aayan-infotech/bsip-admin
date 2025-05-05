@@ -77,28 +77,28 @@
                       {{ $language === 'hi' ? 'सामान्य रूचि' : 'General Interest' }}</span></a></li>
 
                   <li><a
-                    href="{{ $language === 'hi' ? url('hi/bsip_incident_of_youth') : url('en/bsip_incident_of_youth') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_Prof_birbal_Sahni_youth_incident') : url('en/bsip_Prof_birbal_Sahni_youth_incident') }}">
                     <span class="node-content"><i class="fas fa-child"></i>
                       {{ $language === 'hi' ? 'युवाओं का वृत्तांत' : 'Incident of Youth' }}</span></a></li>
 
-                  <li><a href="{{ $language === 'hi' ? url('hi/bsip_honours') : url('en/bsip_honours') }}">
+                  <li><a href="{{ $language === 'hi' ? url('hi/bsip_institute_honours') : url('en/bsip_institute_honours') }}">
                     <span class="node-content"><i class="fas fa-award"></i>
                       {{ $language === 'hi' ? 'सम्मान' : 'Honours' }}</span></a></li>
 
-                  <li><a href="{{ $language === 'hi' ? url('hi/bsip_living') : url('en/bsip_living') }}">
+                  <li><a href="{{ $language === 'hi' ? url('hi/bsip_contribution_living') : url('en/bsip_contribution_living') }}">
                     <span class="node-content"><i class="fas fa-home"></i>
                       {{ $language === 'hi' ? 'जीविका' : 'Living' }}</span></a></li>
 
-                  <li><a href="{{ $language === 'hi' ? url('hi/bsip_fossil') : url('en/bsip_fossil') }}">
+                  <li><a href="{{ $language === 'hi' ? url('hi/bsip_contribution_fossil') : url('en/bsip_contribution_fossil') }}">
                     <span class="node-content"><i class="fas fa-bone"></i>
                       {{ $language === 'hi' ? 'जीवाश्म' : 'Fossil' }}</span></a></li>
 
-                  <li><a href="{{ $language === 'hi' ? url('hi/bsip_geology') : url('en/bsip_geology') }}">
+                  <li><a href="{{ $language === 'hi' ? url('hi/bsip_contribution_geology') : url('en/bsip_contribution_geology') }}">
                     <span class="node-content"><i class="fas fa-mountain"></i>
                       {{ $language === 'hi' ? 'भूगर्भ विज्ञान' : 'Geology' }}</span></a></li>
 
                   <li><a
-                    href="{{ $language === 'hi' ? url('hi/bsip_mrs_savitri_sahni') : url('en/bsip_mrs_savitri_sahni') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_institute_mrs_savitri_sahni') : url('en/bsip_institute_mrs_savitri_sahni') }}">
                     <span class="node-content"><i class="fas fa-female"></i>
                       {{ $language === 'hi' ? 'श्रीमती सावित्री साहनी' : 'Mrs. Savitri Sahni' }}</span></a></li>
                 </ul>
@@ -117,56 +117,56 @@
                 <ul>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/administration/governing_body') : url('en/administration/governing_body') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_governing_body') : url('en/bsip_governing_body') }}">
                     <span class="node-content"><i class="fas fa-users-cog"></i>
                       {{ $language === 'hi' ? 'शासी मंडल' : 'Governing Body' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/administration/research_advisory_council') : url('en/administration/research_advisory_council') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_research_advisory_council') : url('en/bsip_research_advisory_council') }}">
                     <span class="node-content"><i class="fas fa-user-friends"></i>
                       {{ $language === 'hi' ? 'अनुसंधान सलाहकार परिषद' : 'Research Advisory Council' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/administration/finance_committee') : url('en/administration/finance_committee') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_finance_and_building_committee') : url('en/bsip_finance_and_building_committee') }}">
                     <span class="node-content"><i class="fas fa-coins"></i>
                       {{ $language === 'hi' ? 'वित्त समिति' : 'Finance Committee' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/administration/building_committee') : url('en/administration/building_committee') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_building_committee') : url('en/bsip_building_committee') }}">
                     <span class="node-content"><i class="fas fa-tools"></i>
                       {{ $language === 'hi' ? 'भवन समिति' : 'Building Committee' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/administration/director') : url('en/administration/director') }}">
+                    href="{{ $language === 'hi' ? url('hi/director') : url('en/director') }}">
                     <span class="node-content"><i class="fas fa-user-tie"></i>
                       {{ $language === 'hi' ? 'निदेशक' : 'Director' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/administration/organizational_setup') : url('en/administration/organizational_setup') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_organizational_setup') : url('en/bsip_organizational_setup') }}">
                     <span class="node-content"><i class="fas fa-network-wired"></i>
                       {{ $language === 'hi' ? 'संगठनात्मक व्यवस्था' : 'Organizational Setup' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/administration/past_heads') : url('en/administration/past_heads') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_past_institute_heads') : url('en/bsip_past_institute_heads') }}">
                     <span class="node-content"><i class="fas fa-portrait"></i>
                       {{ $language === 'hi' ? 'संस्थान के पूर्व-प्रमुख' : 'Past Heads of Institute' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/administration/past_chairman') : url('en/administration/past_chairman') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_past_institute_presidents') : url('en/bsip_past_institute_presidents') }}">
                     <span class="node-content"><i class="fas fa-user-shield"></i>
                       {{ $language === 'hi' ? 'पूर्व सभापति/अध्यक्ष' : 'Past President/Chairman' }}</span>
                     </a>
@@ -193,33 +193,33 @@
                     </a>
                   </li>
                   <li>
-                    <a href="{{ $language === 'hi' ? url('hi/staff/scientific') : url('en/staff/scientific') }}">
+                    <a href="{{ $language === 'hi' ? url('hi/bsip_scientific') : url('en/bsip_scientific') }}">
                     <span class="node-content"><i class="fas fa-atom"></i>
                       {{ $language === 'hi' ? 'वैज्ञानिक' : 'Scientific' }}</span>
                     </a>
                   </li>
                   <li>
-                    <a href="{{ $language === 'hi' ? url('hi/staff/technical') : url('en/staff/technical') }}">
+                    <a href="{{ $language === 'hi' ? url('hi/bsip_technical_staff') : url('en/bsip_technical_staff') }}">
                     <span class="node-content"><i class="fas fa-cogs"></i>
                       {{ $language === 'hi' ? 'तकनीकी' : 'Technical' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/staff/administrative') : url('en/staff/administrative') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_administrative') : url('en/bsip_administrative') }}">
                     <span class="node-content"><i class="fas fa-briefcase"></i>
                       {{ $language === 'hi' ? 'प्रशासनिक' : 'Administrative' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/staff/superannuated') : url('en/staff/superannuated') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_superannuated_employee') : url('en/bsip_superannuated_employee') }}">
                     <span class="node-content"><i class="fas fa-user-clock"></i>
                       {{ $language === 'hi' ? 'वयोवृद्ध' : 'Superannuated' }}</span>
                     </a>
                   </li>
                   <li>
-                    <a href="{{ $language === 'hi' ? url('hi/staff/acsir') : url('en/staff/acsir') }}">
+                    <a href="{{ $language === 'hi' ? url('hi/bsip_acsir') : url('en/bsip_acsir') }}">
                     <span class="node-content"><i class="fas fa-university"></i>
                       {{ $language === 'hi' ? 'AcSIR' : 'AcSIR' }}</span>
                     </a>
@@ -241,48 +241,48 @@
                 <ul>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/research/activities') : url('en/research/activities') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_research_activities') : url('en/bsip_research_activities') }}">
                     <span class="node-content"><i class="fas fa-tasks"></i>
                       {{ $language === 'hi' ? 'अनुसंधान गतिविधियाँ' : 'Research Activities' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/research/collaborations') : url('en/research/collaborations') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_collaboration') : url('en/bsip_collaboration') }}">
                     <span class="node-content"><i class="fas fa-handshake"></i>
                       {{ $language === 'hi' ? 'सहयोग' : 'Collaborations' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/research/projects') : url('en/research/projects') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_sponsored_project') : url('en/bsip_sponsored_project') }}">
                     <span class="node-content"><i class="fas fa-project-diagram"></i>
                       {{ $language === 'hi' ? 'प्रायोजित परियोजनाएं' : 'Sponsored Projects' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/research/fellowship') : url('en/research/fellowship') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_fellowship') : url('en/bsip_fellowship') }}">
                     <span class="node-content"><i class="fas fa-graduation-cap"></i>
                       {{ $language === 'hi' ? 'फेलोशिप' : 'Fellowship' }}</span>
                     </a>
                   </li>
                   <li>
-                    <a href="{{ $language === 'hi' ? url('hi/research/awards') : url('en/research/awards') }}">
+                    <a href="{{ $language === 'hi' ? url('hi/bsip_medals_and_awards') : url('en/bsip_medals_and_awards') }}">
                     <span class="node-content"><i class="fas fa-award"></i>
                       {{ $language === 'hi' ? 'पदक एवं पुरस्कार' : 'Medals & Awards' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/research/lectures') : url('en/research/lectures') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_lectures') : url('en/bsip_lectures') }}">
                     <span class="node-content"><i class="fas fa-chalkboard-teacher"></i>
                       {{ $language === 'hi' ? 'व्याख्यान' : 'Lectures' }}</span>
                     </a>
                   </li>
                   <li>
                     <a
-                    href="{{ $language === 'hi' ? url('hi/research/consultancy') : url('en/research/consultancy') }}">
+                    href="{{ $language === 'hi' ? url('hi/bsip_consultancy') : url('en/bsip_consultancy') }}">
                     <span class="node-content"><i class="fas fa-user-cog"></i>
                       {{ $language === 'hi' ? 'परामर्श' : 'Consultancy' }}</span>
                     </a>

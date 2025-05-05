@@ -1371,3 +1371,29 @@ a {
 section.wrapper.header-wrapper {
     z-index: 0;
 }
+/* Print-specific styles */
+@media print {
+    body {
+      background: white;
+      color: black;
+    }
+
+    .navbar,
+    .footer,
+    .no-print {
+      display: none !important;
+    }
+
+    .content-print {
+      padding: 0;
+      margin: 0;
+      page-break-inside: avoid;
+    }
+
+    h1, h2, h3, p {
+      page-break-after: avoid;
+    }
+    /* .print-col-3{
+        width: 25%;
+    } */
+  }

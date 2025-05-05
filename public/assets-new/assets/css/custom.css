@@ -704,7 +704,7 @@
 }
 
 .profile-img-new {
-    border-radius: 50%;
+    /* border-radius: 50%; */
     overflow: hidden;
     margin-right: 15px;
 }
@@ -817,7 +817,7 @@
 }
 
 .feedback-img {
-    background-image: url("../images/contact/online-feedback.avif");
+    background-image: url("../feedback/feedback-form.jpg");
     background-size: cover;
     background-position: center;
     min-height: 100%;

@@ -1,5 +1,5 @@
 <footer class="section bg-footer">
-    <div class="container">
+    <div class="container content-print">
         <div class="row">
             <!-- Contact Section -->
             <div class="col-lg-4 col-6">
@@ -99,34 +99,59 @@
             <div class="divider "></div>
             <div class="row text-center">
                 <div class="col-md-2 footer-link"><a
-                        href="{{ route('frontend.copyRightPolicy', ['language' => $language]) }}"
-                        class="text-white">{{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}</a>
+                    href="{{ route('frontend.copyRightPolicy', ['language' => $language]) }}"
+                    class="text-white"
+                    aria-label="{{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}">
+                    {{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}
+                </a>
+                
                 </div>
                 <div class="col-md-2 footer-link"><a
-                        href="{{ route('frontend.securityPolicy', ['language' => $language]) }}"
-                        class="text-white">{{ $language === 'hi' ? 'सुरक्षा नीति' : 'Security Policy' }}</a></div>
+                    href="{{ route('frontend.securityPolicy', ['language' => $language]) }}"
+                    class="text-white"
+                    aria-label="{{ $language === 'hi' ? 'सुरक्षा नीति' : 'Security Policy' }}">
+                    {{ $language === 'hi' ? 'सुरक्षा नीति' : 'Security Policy' }}
+                </a>
+                </div>
                 <div class="col-md-2 footer-link"><a
-                        href="{{ route('frontend.onlineFeedbackForm', ['language' => $language]) }}"
-                        class="text-white">{{ $language === 'hi' ? 'ऑनलाइन फीडबैक फॉर्म' : 'Online Feedback Form' }}</a>
+                    href="{{ route('frontend.onlineFeedbackForm', ['language' => $language]) }}"
+                    class="text-white"
+                    aria-label="{{ $language === 'hi' ? 'ऑनलाइन फीडबैक फॉर्म' : 'Online Feedback Form' }}">
+                    {{ $language === 'hi' ? 'ऑनलाइन फीडबैक फॉर्म' : 'Online Feedback Form' }}
+                </a>
+                
                 </div>
 
 
-                <div class="col-md-2 footer-link"><a href="{{ route('frontend.help', ['language' => $language]) }}"
-                        class="text-white">{{ $language === 'hi' ? 'मदद' : 'Help' }}</a></div>
                 <div class="col-md-2 footer-link"><a
-                        href="{{ route('frontend.contactUs', ['language' => $language]) }}" class="text-white">
-                        {{ $language === 'hi' ? 'संपर्क करें' : 'Contact Us' }}</a></div>
+                    href="{{ route('frontend.help', ['language' => $language]) }}"
+                    class="text-white"
+                    aria-label="{{ $language === 'hi' ? 'मदद' : 'Help' }}">
+                    {{ $language === 'hi' ? 'मदद' : 'Help' }}
+                </a>
+                </div>
                 <div class="col-md-2 footer-link"><a
-                        href="https://www.india.gov.in/" target="_blank"
-                        aria-label="National Portal"
-                        class="text-white">{{ $language === 'hi' ? 'राष्ट्रीय पोर्टल' : 'National Portal' }}</a></div>
+                    href="{{ route('frontend.contactUs', ['language' => $language]) }}"
+                    class="text-white"
+                    aria-label="{{ $language === 'hi' ? 'संपर्क करें' : 'Contact Us' }}">
+                    {{ $language === 'hi' ? 'संपर्क करें' : 'Contact Us' }}
+                </a>
+                </div>
+                <div class="col-md-2 footer-link"><a
+                    href="https://www.india.gov.in/"
+                    target="_blank"
+                    class="text-white"
+                    aria-label="{{ $language === 'hi' ? 'राष्ट्रीय पोर्टल' : 'National Portal' }}">
+                    {{ $language === 'hi' ? 'राष्ट्रीय पोर्टल' : 'National Portal' }}
+                </a>
+                </div>
             </div>
 
         </div>
     </div>
 
     <!-- Footer Bottom Section -->
-    <div class="container mt-5">
+    <div class="container mt-5 content-print">
         <div class="row">
             <div class="col-md-6">
                 <p class="footer-alt mb-0 f-14">
@@ -137,8 +162,8 @@
                 <p class="footer-alt mb-0 f-14">
                     {{ $language === 'hi' ? 'डिज़ाइन एवं विकसित द्वारा' : 'Designed & Developed By' }}
                     <span>
-                        <a href="https://aayaninfotech.com/" class="text-white" target="_blank" role="link"
-                            aria-label="aayan">Aayan Infotech</a>
+                    <a href="https://aayaninfotech.com/" class="text-white"
+                    target="_blank" role="link" aria-label="Aayan Infotech" style="font-size: 16px;">Aayan Infotech</a>
                     </span>
                 </p>
             </div>

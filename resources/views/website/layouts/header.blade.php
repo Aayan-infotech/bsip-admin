@@ -125,7 +125,7 @@
                             alt="{{ $logo->title ?? 'Birbal Sahni Institute of Palaeosciences Logo' }}">
                     </a>
                 </div>
-                <h1 class="d-none">1</h1>
+                <h1 class="visually-hidden">Welcome to My Accessible Website</h1>
             </div>
         </div>
     </section>
@@ -133,6 +133,18 @@
         .main-menu ul>li {
             margin-right: 8px !important;
         }
+        .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
     </style>
     <section class="wrapper megamenu-wraper">
         <div class="container-fluid common-container four_content">
