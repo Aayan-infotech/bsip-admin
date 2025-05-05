@@ -23,14 +23,15 @@
 
             @foreach ($rajBhashaEvents as $event)
                 <div class="row align-items-center">
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <h2 class="event-heading">
                             {{ $language === 'hi' ? $event->title_hin : $event->title }}
                         </h2>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="text-end">
                             @if ($event->pdf_file)
+                                ({{ $event->pdf_file_size }} MB)
                                 <a href="{{ $event->pdf_file }}" class="btn btn-primary" target="_blank" role="button"
                                     aria-label="Download PDF file" title="Download PDF">
                                     <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>

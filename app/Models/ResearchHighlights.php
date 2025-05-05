@@ -27,4 +27,19 @@ class ResearchHighlights extends Model
         return $value ? asset('storage/' . $value) : null;
     }
 
+    // Get the file size of the hindi and english files in MB
+    public function getHindiFileSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->hindi_file);
+        $filePath = public_path('storage/' . $relativePath);
+        return file_exists($filePath) ? round(filesize($filePath) / 1024 / 1024, 2) : null;
+    }
+    public function getEnglishFileSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->english_file);
+        $filePath = public_path('storage/' . $relativePath);
+        return file_exists($filePath) ? round(filesize($filePath) / 1024 / 1024, 2) : null;
+    }
+
+
 }

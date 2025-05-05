@@ -20,6 +20,7 @@ use App\Models\UsefulLink;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
@@ -40,6 +41,16 @@ class FrontendController extends Controller
         if (! $validLanguage) {
             abort(404, 'Language not supported');
         }
+
+        // get the last modification in the database
+        $result = DB::table('information_schema.tables')
+            ->select('TABLE_NAME', 'UPDATE_TIME')
+            ->where('TABLE_SCHEMA', env('DB_DATABASE'))
+            ->orderByDesc('UPDATE_TIME')
+            ->limit(1)
+            ->first();
+
+        $this->sharedData['lastModified'] = $result ? $result->UPDATE_TIME : null;
 
         // Add the language to the shared data
         $this->sharedData['language'] = $language;
@@ -82,9 +93,7 @@ class FrontendController extends Controller
             ->flatten()
             ->take(6);
 
-
-
-        // dd($this->sharedData['notices']);
+        // dd($this->sharedData['lastModified']);
         // Pass shared data to the view
         return view('website.home', $this->sharedData, compact('director', 'researchHighlights', 'photoGallery'));
     }
@@ -95,6 +104,12 @@ class FrontendController extends Controller
             ->where('archived_status', 'No')
             ->orderBy('expiry_date', 'asc')
         //->take(10) // Limit to 10 notices
+            ->get();
+
+        // Archived Notices
+        $this->sharedData['archivedNotices'] = Notice::where('status', '1')
+            ->where('archived_status', 'Yes')
+            ->orderBy('expiry_date', 'asc')
             ->get();
         // Pass shared data to the view
         return view('website.notices', $this->sharedData);
@@ -110,6 +125,13 @@ class FrontendController extends Controller
         }
         // Get the parent_menu_id from the current page
         $parentMenuId = $currentPage->parent_menu_id;
+
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
         // Fetch all menu pages under the same parent_menu_id
         $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
             ->where('status', 1)
@@ -119,6 +141,8 @@ class FrontendController extends Controller
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
 
         return view('website.history', $this->sharedData);
     }
@@ -132,6 +156,13 @@ class FrontendController extends Controller
         }
         // Get the parent_menu_id from the current page
         $parentMenuId = $currentPage->parent_menu_id;
+
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
         // Fetch all menu pages under the same parent_menu_id
         $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
             ->where('status', 1)
@@ -141,6 +172,8 @@ class FrontendController extends Controller
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
 
         return view('website.parentalBackground', $this->sharedData);
     }
@@ -154,6 +187,13 @@ class FrontendController extends Controller
         }
         // Get the parent_menu_id from the current page
         $parentMenuId = $currentPage->parent_menu_id;
+
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
         // Fetch all menu pages under the same parent_menu_id
         $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
             ->where('status', 1)
@@ -163,6 +203,8 @@ class FrontendController extends Controller
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
 
         return view('website.educationCareer', $this->sharedData);
     }
@@ -177,6 +219,13 @@ class FrontendController extends Controller
         }
         // Get the parent_menu_id from the current page
         $parentMenuId = $currentPage->parent_menu_id;
+
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
         // Fetch all menu pages under the same parent_menu_id
         $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
             ->where('status', 1)
@@ -186,6 +235,8 @@ class FrontendController extends Controller
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
 
         return view('website.generalInterest', $this->sharedData);
     }
@@ -200,6 +251,13 @@ class FrontendController extends Controller
         }
         // Get the parent_menu_id from the current page
         $parentMenuId = $currentPage->parent_menu_id;
+
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
         // Fetch all menu pages under the same parent_menu_id
         $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
             ->where('status', 1)
@@ -209,6 +267,8 @@ class FrontendController extends Controller
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
 
         return view('website.incidentofYouth', $this->sharedData);
     }
@@ -222,6 +282,13 @@ class FrontendController extends Controller
         }
         // Get the parent_menu_id from the current page
         $parentMenuId = $currentPage->parent_menu_id;
+
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
         // Fetch all menu pages under the same parent_menu_id
         $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
             ->where('status', 1)
@@ -231,6 +298,8 @@ class FrontendController extends Controller
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
 
         return view('website.living', $this->sharedData);
     }
@@ -244,6 +313,12 @@ class FrontendController extends Controller
         }
         // Get the parent_menu_id from the current page
         $parentMenuId = $currentPage->parent_menu_id;
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
         // Fetch all menu pages under the same parent_menu_id
         $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
             ->where('status', 1)
@@ -253,6 +328,8 @@ class FrontendController extends Controller
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
 
         return view('website.fossil', $this->sharedData);
     }
@@ -266,6 +343,12 @@ class FrontendController extends Controller
         }
         // Get the parent_menu_id from the current page
         $parentMenuId = $currentPage->parent_menu_id;
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
         // Fetch all menu pages under the same parent_menu_id
         $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
             ->where('status', 1)
@@ -275,6 +358,8 @@ class FrontendController extends Controller
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
 
         return view('website.geology', $this->sharedData);
     }
@@ -288,6 +373,13 @@ class FrontendController extends Controller
         }
         // Get the parent_menu_id from the current page
         $parentMenuId = $currentPage->parent_menu_id;
+
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
         // Fetch all menu pages under the same parent_menu_id
         $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
             ->where('status', 1)
@@ -297,6 +389,8 @@ class FrontendController extends Controller
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
 
         return view('website.honours', $this->sharedData);
     }
@@ -310,6 +404,12 @@ class FrontendController extends Controller
         }
         // Get the parent_menu_id from the current page
         $parentMenuId = $currentPage->parent_menu_id;
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
         // Fetch all menu pages under the same parent_menu_id
         $menuPages = MenuPage::where('parent_menu_id', $parentMenuId)
             ->where('status', 1)
@@ -319,6 +419,8 @@ class FrontendController extends Controller
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
+        $this->sharedData['currentPage']       = $currentPage;
 
         return view('website.mrsSavitriSahni', $this->sharedData);
     }
@@ -375,6 +477,12 @@ class FrontendController extends Controller
             ->orderBy('created_at', 'desc')
             ->whereDate('end_date', '>=', Carbon::today())
         //->take(10) // Limit to 10 tender
+            ->get();
+
+        // Archived Tenders
+        $this->sharedData['archivedTenders'] = Tender::where('status', 1)
+            ->where('archived_status', 'Yes')
+            ->orderBy('created_at', 'desc')
             ->get();
         // Pass shared data to the view
         return view('website.tender', $this->sharedData);

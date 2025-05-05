@@ -112,12 +112,11 @@
 
 
                 <div class="col-md-2 footer-link"><a href="{{ route('frontend.help', ['language' => $language]) }}"
-                        class="text-white">{{ $language === 'hi' ? 'मदद' : 'Help' }}</a></div>
+                        class="text-white">{{ $language === 'hi' ? 'सहायता' : 'Help' }}</a></div>
                 <div class="col-md-2 footer-link"><a
                         href="{{ route('frontend.contactUs', ['language' => $language]) }}" class="text-white">
                         {{ $language === 'hi' ? 'संपर्क करें' : 'Contact Us' }}</a></div>
-                <div class="col-md-2 footer-link"><a
-                        href="https://www.india.gov.in/" target="_blank"
+                <div class="col-md-2 footer-link"><a href="https://www.india.gov.in/" target="_blank"
                         aria-label="National Portal"
                         class="text-white">{{ $language === 'hi' ? 'राष्ट्रीय पोर्टल' : 'National Portal' }}</a></div>
             </div>
@@ -128,17 +127,22 @@
     <!-- Footer Bottom Section -->
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6">
+
+            <div class="col-md-4 text-center">
                 <p class="footer-alt mb-0 f-14">
                     {{ $language === 'hi' ? '2025 © कॉपीराइट, सर्वाधिकार सुरक्षित' : '2025 © Copyright | All Rights Reserved' }}
                 </p>
             </div>
-            <div class="col-md-6 text-end">
+            <div class="col-md-4">
+                <p class="footer-alt mb-0 f-14 text-center">Last Updated At: {{ $lastModified }}</p>
+            </div>
+
+            <div class="col-md-4 text-center">
                 <p class="footer-alt mb-0 f-14">
                     {{ $language === 'hi' ? 'डिज़ाइन एवं विकसित द्वारा' : 'Designed & Developed By' }}
                     <span>
                         <a href="https://aayaninfotech.com/" class="text-white" target="_blank" role="link"
-                            aria-label="aayan">Aayan Infotech</a>
+                            aria-label="aayan">Aayan India</a>
                     </span>
                 </p>
             </div>

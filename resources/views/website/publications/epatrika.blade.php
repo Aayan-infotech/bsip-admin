@@ -47,26 +47,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data as $year => $item)
                             <tr>
-                                <td>{{ $language === 'hi' ? 'ई-पत्रिका भाग 1 (2022)' : 'E-Magazine Part 1 (2022)' }}</td>
-                                <td><a href="{{  asset('assets-new/assets/epatrika/e patrika ank 1 2022.pdf')  }}"
+                                <td>{{ $language === 'hi' ? 'ई-पत्रिका ' . $year  : 'E-Magazine ' . $year  }}</td>
+                                <td><a href="{{  $item['file']  }}"
                                         class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
+                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a>
+                                        <span>({{ $item['size'] }}) MB</span>
+                                    </td>
                             </tr>
-
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'ई-पत्रिका भाग 2 (2023)' : 'E-Magazine Part 2 (2023)' }}</td>
-                                <td><a href="{{  asset('assets-new/assets/epatrika/e patrika ank 2 2023.pdf')  }}"
-                                        class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
-
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'ई-पत्रिका भाग 3 (2024)' : 'E-Magazine Part 3 (2024)' }}</td>
-                                <td><a href="{{  asset('assets-new/assets/epatrika/e patrika ank 3 2024.pdf')  }}"
-                                        class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
 

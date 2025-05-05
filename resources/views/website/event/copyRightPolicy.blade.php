@@ -32,7 +32,7 @@
                                 Where any BSIP material is being published or distributed to others, the source must be prominently acknowledged as:" !!}
                 </p>
                 <p>{!! $language === 'hi'
-                    ? '<strong>"स्रोत: बिरबल साहनी जीवाश्म विज्ञान संस्थान (BSIP)"</strong><br>
+                    ? '<strong>"स्रोत: बीरबल साहनी जीवाश्म विज्ञान संस्थान (BSIP)"</strong><br>
                 यह पुनरुत्पादन की अनुमति उन सामग्रियों पर लागू नहीं होती जो स्पष्ट रूप से किसी तृतीय पक्ष के कॉपीराइट के अंतर्गत आती हैं। ऐसी सामग्री के पुनरुत्पादन के लिए संबंधित कॉपीराइट धारकों से स्वतंत्र अनुमति प्राप्त करना आवश्यक होगा, क्योंकि BSIP के पास ऐसी सामग्री को पुनः प्रस्तुत करने का अधिकार नहीं है।
                 BSIP को यह अधिकार है कि वह इस नीति को किसी भी समय, बिना पूर्व सूचना के संशोधित या वापस ले सकता है।'
                     : '<strong>"Source: Birbal Sahni Institute of Palaeosciences (BSIP)".</strong><br>

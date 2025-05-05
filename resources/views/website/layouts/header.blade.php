@@ -7,7 +7,7 @@
                         <ul id="header-nav">
                             <li class="ico-skip cf"><a href="#skipToContent" title=""> {{ $language === 'hi' ? 'मुख्य सामग्री पर जाएँ':'Skip to main content' }} </a>
                             </li>
-                            <li class="ico-skip cf"><a href="#" title="">{{ $language === 'hi' ? 'स्क्रीन रीडर एक्सेस':'Screen Reader Access' }}</a>
+                            <li class="ico-skip cf"><a href="{{ route('frontend.help',['language'=>$language]) }}" title="">{{ $language === 'hi' ? 'स्क्रीन रीडर एक्सेस':'Screen Reader Access' }}</a>
                             </li>
                             <li class="ico-site-search cf">
                                 <a href="#" id="toggleSearch" title="Site Search" role="link">

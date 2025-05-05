@@ -12,6 +12,7 @@ use App\Models\SocialLink;
 use App\Models\UsefulLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class UnitsManagement extends Controller
 {
@@ -32,6 +33,15 @@ class UnitsManagement extends Controller
         if (! $validLanguage) {
             abort(404, 'Language not supported');
         }
+        // get the last modification in the database
+        $result = DB::table('information_schema.tables')
+            ->select('TABLE_NAME', 'UPDATE_TIME')
+            ->where('TABLE_SCHEMA', env('DB_DATABASE'))
+            ->orderByDesc('UPDATE_TIME')
+            ->limit(1)
+            ->first();
+
+        $this->sharedData['lastModified'] = $result ? $result->UPDATE_TIME : null;
 
         // Add the language to the shared data
         $this->sharedData['language'] = $language;
@@ -82,7 +92,8 @@ class UnitsManagement extends Controller
         return view('website.units.museum', $this->sharedData);
     }
 
-    public function library(Request $request){
+    public function library(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -114,8 +125,8 @@ class UnitsManagement extends Controller
         return view('website.units.library', $this->sharedData);
     }
 
-
-    public function computerSection(Request $request){
+    public function computerSection(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -147,8 +158,8 @@ class UnitsManagement extends Controller
         return view('website.units.computerSection', $this->sharedData);
     }
 
-
-    public function geoHeritage(Request $request){
+    public function geoHeritage(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -180,7 +191,8 @@ class UnitsManagement extends Controller
         return view('website.units.geoHeritage', $this->sharedData);
     }
 
-    public function amberAnalysis(Request $request){
+    public function amberAnalysis(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');

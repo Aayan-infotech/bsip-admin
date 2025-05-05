@@ -114,6 +114,8 @@
                                                 [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
                                                 <i class="fas fa-file-pdf text-danger" role="presentation"></i>
                                             </a>
+                                            {{ $language === 'hi' ? $highlight->hindi_file_size : $highlight->english_file_size }}
+                                            MB
                                         </li>
                                     @endforeach
                                 @endif
@@ -278,8 +280,8 @@
                             <div class="card-body d-flex justify-content-center align-items-center">
                                 <div class="row justify-content-center g-4">
                                     <div class="col-6">
-                                        <a href="{{ $language }}/bsip_past_events" class="card-link text-decoration-none" role="link"
-                                            aria-label="home">
+                                        <a href="{{ $language }}/bsip_past_events"
+                                            class="card-link text-decoration-none" role="link" aria-label="home">
                                             <div class="card-section border rounded text-center p-3">
                                                 <div
                                                     class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
@@ -514,8 +516,8 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12">
-                                            <img src="{{ asset('assets-new/assets/museum/cpgg.jpg') }}"
-                                                alt="cpgg-img" class="img-fluid img-museum">
+                                            <img src="{{ asset('assets-new/assets/museum/cpgg.jpg') }}" alt="cpgg-img"
+                                                class="img-fluid img-museum">
                                         </div>
                                     </div>
                                 </div>
@@ -565,13 +567,15 @@
                         <div class="slider-container">
                             <div class="slider-item">
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                    <img src="{{ asset('assets-new/assets/home-page-facilities/TL-OSL.jpg') }}" alt="Facility 1">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/TL-OSL.jpg') }}"
+                                        alt="Facility 1">
                                     <div class="slider-title">TL/OSL</div>
                                 </a>
                             </div>
                             <div class="slider-item">
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                    <img src="{{ asset('assets-new/assets/home-page-facilities/xrd.jfif') }}" alt="Facility 2">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/xrd.jfif') }}"
+                                        alt="Facility 2">
                                     <div class="slider-title">XRD</div>
                                 </a>
                             </div>
@@ -584,13 +588,15 @@
                             </div>
                             <div class="slider-item">
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                    <img src="{{ asset('assets-new/assets/home-page-facilities/FESEM.jpg') }}" alt="Facility 4">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/FESEM.jpg') }}"
+                                        alt="Facility 4">
                                     <div class="slider-title">FESEM</div>
                                 </a>
                             </div>
                             <div class="slider-item">
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                    <img src="{{ asset('assets-new/assets/home-page-facilities/coal.jfif') }}" alt="Facility 5">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/coal.jfif') }}"
+                                        alt="Facility 5">
                                     <div class="slider-title">Coal CF</div>
                                 </a>
                             </div>
@@ -628,10 +634,9 @@
                             @if ($photoGallery->count() > 0)
                                 @foreach ($photoGallery as $photo)
                                     <li>
-                                        <a href="{{ $photo}}"
-                                            data-fancybox="images">
-                                            <img src="{{ $photo }}"
-                                                alt="Photo Gallery Slide 1" class="photo-gallery-img" />
+                                        <a href="{{ $photo }}" data-fancybox="images">
+                                            <img src="{{ $photo }}" alt="Photo Gallery Slide 1"
+                                                class="photo-gallery-img" />
                                         </a>
                                     </li>
                                 @endforeach
@@ -697,4 +702,73 @@
             </div>
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script>
+        let currentIndex = 0;
+        const jumpMargin = 250; // Matches the slider item width including margin
+        const sliderContainer = document.querySelector(".slider-container");
+        const sliderItems = [...document.querySelectorAll(".slider-item")];
+        const sliderWrapper = document.querySelector(".slider-wrapper");
+        const sliderWrapperWidth = sliderWrapper.offsetWidth;
+
+        // Clone slider items for infinite scrolling
+        sliderItems.forEach((item) => {
+            const clone = item.cloneNode(true);
+            sliderContainer.appendChild(clone);
+        });
+
+        // Add event listeners for buttons
+        document.querySelector(".btn-left").addEventListener("click", slideLeft);
+        document.querySelector(".btn-right").addEventListener("click", slideRight);
+
+        function updateSlider() {
+            const offset = currentIndex * -jumpMargin;
+            sliderContainer.style.transition = "transform 0.5s ease";
+            sliderContainer.style.transform = `translateX(${offset}px)`;
+        }
+
+        function slideLeft() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                // Handle the case when at the start and need to jump to the cloned items
+                sliderContainer.style.transition = "none";
+                currentIndex = sliderItems.length; // Jump to the cloned end
+                const offset = currentIndex * -jumpMargin;
+                sliderContainer.style.transform = `translateX(${offset}px)`;
+                setTimeout(() => {
+                    sliderContainer.style.transition = "transform 0.5s ease";
+                    currentIndex--;
+                    updateSlider();
+                }, 20);
+                return;
+            }
+            updateSlider();
+        }
+
+        function slideRight() {
+            currentIndex++;
+            updateSlider();
+
+            // Reset to the original position when reaching the end of cloned items
+            if (currentIndex >= sliderItems.length) {
+                setTimeout(() => {
+                    sliderContainer.style.transition = "none"; // Disable transition
+                    currentIndex = 0; // Reset index
+                    const offset = currentIndex * -jumpMargin;
+                    sliderContainer.style.transform = `translateX(${offset}px)`;
+                }, 500); // Match the transition duration
+            }
+        }
+
+        function autoScroll() {
+            slideRight();
+        }
+
+        window.onload = () => {
+            // Start auto-scrolling
+            setInterval(autoScroll, 3000); // Auto-scroll every 3 seconds
+        };
+    </script>
 @endsection

@@ -56,6 +56,8 @@
                                                 class="btn btn-view-profile">
                                                 <i class="fas fa-download"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a>
+                                            ({{ $language === 'hi' ? $catalogue->catalogue_file_hin_size : $catalogue->catalogue_file_size }})
+                                            MB
                                         @endif
                                     </td>
                                 </tr>

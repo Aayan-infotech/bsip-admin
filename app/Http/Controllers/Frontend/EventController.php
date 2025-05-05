@@ -3,19 +3,24 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\ContactSetting;
+use App\Models\ContactUs;
 use App\Models\HeaderMenu;
 use App\Models\ImportantLink;
 use App\Models\LanguageSetting;
 use App\Models\Logo;
 use App\Models\MenuPage;
+use App\Models\News;
+use App\Models\OnlineFeedbackForm;
+use App\Models\outreachProgram;
+use App\Models\Pastevents;
+use App\Models\RajBhashaPortal;
 use App\Models\SocialLink;
 use App\Models\UsefulLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use App\Models\Pastevents;
-use App\Models\RajBhashaPortal;
-use App\Models\News;
-use App\Models\outreachProgram;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -37,6 +42,16 @@ class EventController extends Controller
         if (! $validLanguage) {
             abort(404, 'Language not supported');
         }
+
+        // get the last modification in the database
+        $result = DB::table('information_schema.tables')
+            ->select('TABLE_NAME', 'UPDATE_TIME')
+            ->where('TABLE_SCHEMA', env('DB_DATABASE'))
+            ->orderByDesc('UPDATE_TIME')
+            ->limit(1)
+            ->first();
+
+        $this->sharedData['lastModified'] = $result ? $result->UPDATE_TIME : null;
 
         // Add the language to the shared data
         $this->sharedData['language'] = $language;
@@ -90,10 +105,11 @@ class EventController extends Controller
             ->get();
         // dd($pastEvents);
 
-        return view('website.event.pastEvents', $this->sharedData,compact('pastEvents'));
+        return view('website.event.pastEvents', $this->sharedData, compact('pastEvents'));
     }
 
-    public function gallery(Request $request){
+    public function gallery(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -125,7 +141,8 @@ class EventController extends Controller
         return view('website.event.gallery', $this->sharedData);
     }
 
-    public function lemIss2023(Request $request){
+    public function lemIss2023(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -157,50 +174,132 @@ class EventController extends Controller
         return view('website.event.lemIss2023', $this->sharedData);
     }
 
+    public function rajbhashaPatal(Request $request)
+    {
 
-    public function rajbhashaPatal(Request $request){
+
         $rajBhashaEvents = RajBhashaPortal::where('status', 1)
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('website.event.rajbhashaPatal', $this->sharedData,compact('rajBhashaEvents'));
+        return view('website.event.rajbhashaPatal', $this->sharedData, compact('rajBhashaEvents'));
     }
 
-    public function copyRightPolicy(Request $request){
+    public function copyRightPolicy(Request $request)
+    {
         return view('website.event.copyRightPolicy', $this->sharedData);
     }
 
-    public function securityPolicy(Request $request){
+    public function securityPolicy(Request $request)
+    {
         return view('website.event.securityPolicy', $this->sharedData);
     }
-    public function onlineFeedbackForm(Request $request){
+    public function onlineFeedbackForm(Request $request)
+    {
         return view('website.event.onlineFeedbackForm', $this->sharedData);
     }
-    public function help(Request $request){
+    public function help(Request $request)
+    {
         return view('website.event.help', $this->sharedData);
     }
 
-    public function contactUs(Request $request){
+    public function contactUs(Request $request)
+    {
         return view('website.event.contactUs', $this->sharedData);
     }
 
-    public function sitemap(Request $request){
+    public function sitemap(Request $request)
+    {
         return view('website.event.sitemap', $this->sharedData);
     }
 
-    public function news(Request $request){
+    public function news(Request $request)
+    {
         $news = News::where('status', 1)
-        ->orderBy('created_at', 'desc')
-        ->get();
+            ->orderBy('created_at', 'desc')
+            ->get();
         // dd($news);
         return view('website.event.news', $this->sharedData, compact('news'));
     }
 
-    public function outreachProgram(Request $request){
+    public function outreachProgram(Request $request)
+    {
         $outreachProgram = outreachProgram::where('status', 1)
             ->orderBy('created_at', 'desc')
             ->get();
 
         return view('website.event.outreachProgram', $this->sharedData, compact('outreachProgram'));
+    }
+
+    public function feedbackForm(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name'                 => 'required|string|max:255',
+            'email'                => 'required|string|max:255',
+            'comment'              => 'required|string',
+            'g-recaptcha-response' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret'   => env('RECAPTCHA_SECRET_KEY'),
+            'response' => $request->input('g-recaptcha-response'),
+        ]);
+
+        $result = $response->json();
+
+        if (! isset($result['success']) || ! $result['success'] || ! isset($result['score']) || $result['score'] < 0.5) {
+            return response()->json(['error' => 'reCAPTCHA verification failed!'], 422);
+        }
+
+        $validatedData = $validator->validated();
+
+        unset($validatedData['g-recaptcha-response']);
+
+        $feedbackForm = OnlineFeedbackForm::create($validatedData);
+        if ($feedbackForm) {
+            return response()->json(['success' => 'Feedback submitted successfully!'], 200);
+        } else {
+            return response()->json(['error' => 'Failed to submit feedback!'], 500);
+        }
+    }
+
+    public function contactUsForm(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name'                 => 'required|string|max:255',
+            'email'                => 'required|string|max:255',
+            'phone'                => 'required|string|max:255',
+            'subject'              => 'required|string|max:255',
+            'message'              => 'required|string',
+            'g-recaptcha-response' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret'   => env('RECAPTCHA_SECRET_KEY'),
+            'response' => $request->input('g-recaptcha-response'),
+        ]);
+
+        $result = $response->json();
+
+        if (! isset($result['success']) || ! $result['success'] || ! isset($result['score']) || $result['score'] < 0.5) {
+            return response()->json(['error' => 'reCAPTCHA verification failed!'], 422);
+        }
+
+        $validatedData = $validator->validated();
+
+        unset($validatedData['g-recaptcha-response']);
+
+        $contactUs = ContactUs::create($validatedData);
+        if ($contactUs) {
+            return response()->json(['success' => 'Contact Us submitted successfully!'], 200);
+        } else {
+            return response()->json(['error' => 'Failed to submit Contact Us!'], 500);
+        }
     }
 }
