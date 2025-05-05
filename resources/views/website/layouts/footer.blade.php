@@ -134,7 +134,7 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <p class="footer-alt mb-0 f-14 text-center">Last Updated At: {{ $lastModified }}</p>
+                <p class="footer-alt mb-0 f-14 text-center">{{ $language === 'hi' ? 'अंतिम अपडेट' : 'Last Updated' }}: {{ $lastModified }}</p>
             </div>
 
             <div class="col-md-4 text-center">
