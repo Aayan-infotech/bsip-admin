@@ -14,12 +14,15 @@ use App\Models\MonthlyReport;
 use App\Models\ResearchHighlights;
 use App\Models\SocialLink;
 use App\Models\UsefulLink;
+use App\Traits\GettheSize;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class PublicationManagement extends Controller
 {
+    use GettheSize;
     protected $sharedData = [];
 
     public function __construct(Request $request)
@@ -40,6 +43,16 @@ class PublicationManagement extends Controller
 
         // Add the language to the shared data
         $this->sharedData['language'] = $language;
+
+        // get the last modification in the database
+        $result = DB::table('information_schema.tables')
+            ->select('TABLE_NAME', 'UPDATE_TIME')
+            ->where('TABLE_SCHEMA', env('DB_DATABASE'))
+            ->orderByDesc('UPDATE_TIME')
+            ->limit(1)
+            ->first();
+
+        $this->sharedData['lastModified'] = $result ? $result->UPDATE_TIME : null;
 
         $pageUrl     = $request->segment(2);
         $currentPage = MenuPage::where('page_url', $pageUrl)->first();
@@ -180,7 +193,6 @@ class PublicationManagement extends Controller
 
         //     return $report;
         // });
-
 
         // dd($annualReports);
 
@@ -338,7 +350,19 @@ class PublicationManagement extends Controller
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
-        return view('website.publications.newsLetter', $this->sharedData);
+        $data = [];
+
+        $baseFile = 'assets-new/assets/newsletter/';
+        foreach (range(2009, 1998) as $year) {
+            $filePage    = $baseFile . 'Newsletter' . $year . '.pdf';
+            $fileSize    = GettheSize::getFileSizeInMB($filePage);
+            $data[$year] = [
+                'file' => url($filePage),
+                'size' => $fileSize,
+            ];
+        }
+
+        return view('website.publications.newsLetter', $this->sharedData, compact('data'));
     }
 
     public function epatrika(Request $request)
@@ -371,7 +395,34 @@ class PublicationManagement extends Controller
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
-        return view('website.publications.epatrika', $this->sharedData);
+        $data     = [];
+        $baseFile = 'assets-new/assets/epatrika/';
+        $fileName = [
+            [
+                'year' => 2022,
+                'file' => 'e patrika ank 1 2022.pdf',
+            ],
+            [
+                'year' => 2023,
+                'file' => 'e patrika ank 2 2023.pdf',
+            ],
+            [
+                'year' => 2024,
+                'file' => 'e patrika ank 3 2024.pdf',
+            ],
+        ];
+        foreach ($fileName as $file) {
+            $fileName    = $file['file'];
+            $year        = $file['year'];
+            $filePage    = $baseFile . $fileName;
+            $fileSize    = GettheSize::getFileSizeInMB($filePage);
+            $data[$year] = [
+                'file' => url($filePage),
+                'size' => $fileSize,
+            ];
+        }
+
+        return view('website.publications.epatrika', $this->sharedData, compact('data'));
     }
 
 }

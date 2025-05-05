@@ -66,6 +66,8 @@
                                                 class="btn btn-view-profile">
                                                 <i class="fas fa-download"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a>
+                                            ({{ $language === 'hi' ? $researchHighlight->hindi_file_size : $researchHighlight->english_file_size }})
+                                            MB
                                         @endif
                                     </td>
                                 </tr>

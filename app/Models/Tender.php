@@ -25,4 +25,19 @@ class Tender extends Model
         'status',
         'archived_status',
     ];
+
+    public function getTenderDocumentSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->tender_document);
+
+        if (! $relativePath) {
+            return null;
+        }
+
+        $filePath = public_path('storage/' . $relativePath);
+
+        return file_exists($filePath)
+            ? round(filesize($filePath) / 1024 / 1024, 2) // MB
+            : null;
+    }
 }

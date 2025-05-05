@@ -323,6 +323,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('manage_saif/toggleStatus', [StaffManagementController::class, 'toggleSaifStatus'])->name('manage.saif.toggleStatus');
     Route::post('manage_saif/toggleArchivedStatus', [StaffManagementController::class, 'toggleSaifArchivedStatus'])->name('manage.saif.toggleArchivedStatus');
 
+
+    // Visitor Form
+    Route::get('feedbackForm', [StaffManagementController::class, 'feedbackForm'])->name('feedbackFormAdmin');
+    Route::get('feedbackFormList', [StaffManagementController::class, 'feebackFormList'])->name('feedbackFormList');
+
+    Route::get('contact_us', [StaffManagementController::class, 'contactUs'])->name('contactUs.admin');
+    Route::get('contactUsList', [StaffManagementController::class, 'contactUsList'])->name('contactUsList.admin');
 });
 
 Route::get('/initialize-visitor-count', function () {
@@ -431,4 +438,9 @@ Route::group(['prefix' => '{language}', 'where' => ['language' => 'en|hi']], fun
     Route::get('sitemap', [EventController::class, 'sitemap'])->name('frontend.sitemap');
     Route::get('bsip_news', [EventController::class, 'news'])->name('frontend.news');
     Route::get('bsip_outreach-program', [EventController::class, 'outreachProgram'])->name('frontend.outreachProgram');
+
+
+    // Feedback Form
+    Route::post('feedback_form', [EventController::class, 'feedbackForm'])->name('feedbackForm');
+    Route::post('contact_us', [EventController::class, 'contactUsForm'])->name('contactUsForm');
 });

@@ -46,7 +46,7 @@
     </main>
 
     <!-- Include Footer -->
-    @include('website.layouts.footer', ['language' => $language])
+    @include('website.layouts.footer', ['language' => $language, 'lastModified' => $lastModified])
 
 
     <!-- Scripts -->
@@ -61,6 +61,7 @@
     <script src="{{ asset('assets-new/theme/js/easyResponsiveTabs.js') }}"></script>
     <script src="{{ asset('assets-new/theme/js/custom.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
 
     <script>
         function startAutoScroll(containerId) {
@@ -83,72 +84,8 @@
             }
         });
     </script>
-    <script>
-        let currentIndex = 0;
-        const jumpMargin = 250; // Matches the slider item width including margin
-        const sliderContainer = document.querySelector(".slider-container");
-        const sliderItems = [...document.querySelectorAll(".slider-item")];
-        const sliderWrapperWidth = document.querySelector(".slider-wrapper").offsetWidth;
+    @yield('scripts')
 
-        // Clone slider items for infinite scrolling
-        sliderItems.forEach((item) => {
-            const clone = item.cloneNode(true);
-            sliderContainer.appendChild(clone);
-        });
-
-        // Add event listeners for buttons
-        document.querySelector(".btn-left").addEventListener("click", slideLeft);
-        document.querySelector(".btn-right").addEventListener("click", slideRight);
-
-        function updateSlider() {
-            const offset = currentIndex * -jumpMargin;
-            sliderContainer.style.transition = "transform 0.5s ease";
-            sliderContainer.style.transform = `translateX(${offset}px)`;
-        }
-
-        function slideLeft() {
-            if (currentIndex > 0) {
-                currentIndex--;
-            } else {
-                // Handle the case when at the start and need to jump to the cloned items
-                sliderContainer.style.transition = "none";
-                currentIndex = sliderItems.length; // Jump to the cloned end
-                const offset = currentIndex * -jumpMargin;
-                sliderContainer.style.transform = `translateX(${offset}px)`;
-                setTimeout(() => {
-                    sliderContainer.style.transition = "transform 0.5s ease";
-                    currentIndex--;
-                    updateSlider();
-                }, 20);
-                return;
-            }
-            updateSlider();
-        }
-
-        function slideRight() {
-            currentIndex++;
-            updateSlider();
-
-            // Reset to the original position when reaching the end of cloned items
-            if (currentIndex >= sliderItems.length) {
-                setTimeout(() => {
-                    sliderContainer.style.transition = "none"; // Disable transition
-                    currentIndex = 0; // Reset index
-                    const offset = currentIndex * -jumpMargin;
-                    sliderContainer.style.transform = `translateX(${offset}px)`;
-                }, 500); // Match the transition duration
-            }
-        }
-
-        function autoScroll() {
-            slideRight();
-        }
-
-        window.onload = () => {
-            // Start auto-scrolling
-            setInterval(autoScroll, 3000); // Auto-scroll every 3 seconds
-        };
-    </script>
 </body>
 
 </html>

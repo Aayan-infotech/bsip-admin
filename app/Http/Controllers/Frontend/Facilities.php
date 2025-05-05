@@ -8,11 +8,12 @@ use App\Models\ImportantLink;
 use App\Models\LanguageSetting;
 use App\Models\Logo;
 use App\Models\MenuPage;
+use App\Models\SAIF;
 use App\Models\SocialLink;
 use App\Models\UsefulLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use App\Models\SAIF;
+use Illuminate\Support\Facades\DB;
 
 class Facilities extends Controller
 {
@@ -34,6 +35,16 @@ class Facilities extends Controller
         if (! $validLanguage) {
             abort(404, 'Language not supported');
         }
+
+        // get the last modification in the database
+        $result = DB::table('information_schema.tables')
+            ->select('TABLE_NAME', 'UPDATE_TIME')
+            ->where('TABLE_SCHEMA', env('DB_DATABASE'))
+            ->orderByDesc('UPDATE_TIME')
+            ->limit(1)
+            ->first();
+
+        $this->sharedData['lastModified'] = $result ? $result->UPDATE_TIME : null;
 
         // Add the language to the shared data
         $this->sharedData['language'] = $language;
@@ -89,7 +100,8 @@ class Facilities extends Controller
         return view('website.facilities.saif', $this->sharedData, compact('saifData'));
     }
 
-    public function dnaLab(Request $request){
+    public function dnaLab(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -121,7 +133,8 @@ class Facilities extends Controller
         return view('website.facilities.dnaLab', $this->sharedData);
     }
 
-    public function sem(Request $request){
+    public function sem(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -153,7 +166,8 @@ class Facilities extends Controller
         return view('website.facilities.sem', $this->sharedData);
     }
 
-    public function c14(Request $request){
+    public function c14(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -185,7 +199,8 @@ class Facilities extends Controller
         return view('website.facilities.c14', $this->sharedData);
     }
 
-    public function sectionCutting(Request $request){
+    public function sectionCutting(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');
@@ -217,7 +232,8 @@ class Facilities extends Controller
         return view('website.facilities.sectionCutting', $this->sharedData);
     }
 
-    public function maceration(Request $request){
+    public function maceration(Request $request)
+    {
         $currentPage = MenuPage::where('page_url', $request->segment(2))->first();
         if (! $currentPage) {
             abort(404, 'Page not found');

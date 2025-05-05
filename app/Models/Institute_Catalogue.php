@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -32,4 +31,34 @@ class Institute_Catalogue extends Model
     {
         return asset('storage/' . $value);
     }
+
+    // get the size of the file  of the catalogue
+
+    public function getCatalogueFileSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->catalogue_file);
+
+        if (! $relativePath) {
+            return null;
+        }
+
+        $filePath = public_path('storage/' . $relativePath);
+
+        return file_exists($filePath)
+        ? round(filesize($filePath) / 1024 / 1024, 2) // MB
+        : null;
+    }
+    public function getCatalogueFileHinSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->catalogue_file_hin);
+        if (! $relativePath) {
+            return null;
+        }
+        $filePath = public_path('storage/' . $relativePath);
+
+        return file_exists($filePath)
+        ? round(filesize($filePath) / 1024 / 1024, 2) // in MB
+        : null;
+    }
+
 }

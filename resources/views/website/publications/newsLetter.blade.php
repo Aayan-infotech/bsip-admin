@@ -47,70 +47,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 2009' : 'Newsletter 2009' }}</td>
-                                <td><a href="{{ asset('assets-new/assets/newsletter/Newsletter2009.pdf') }}" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                    {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 2008' : 'Newsletter 2008' }}</td>
-                                <td><a href="{{ asset('assets-new/assets/newsletter/Newsletter2008.pdf') }}" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                    {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 2007' : 'Newsletter 2007' }}</td>
-                                <td><a href="#" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 2006' : 'Newsletter 2006' }}</td>
-                                <td><a href="{{ asset('assets-new/assets/newsletter/Newsletter2006.pdf') }}" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 2005' : 'Newsletter 2005' }}</td>
-                                <td><a href="{{ asset('assets-new/assets/newsletter/Newsletter2005.pdf') }}" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 2004' : 'Newsletter 2004' }}</td>
-                                <td><a href="{{ asset('assets-new/assets/newsletter/Newsletter2004.pdf') }}" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 2003' : 'Newsletter 2003' }}</td>
-                                <td><a href="{{ asset('assets-new/assets/newsletter/Newsletter2003.pdf') }}" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 2002' : 'Newsletter 2002' }}</td>
-                                <td><a href="{{ asset('assets-new/assets/newsletter/Newsletter2002.pdf') }}" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 2001' : 'Newsletter 2001' }}</td>
-                                <td><a href="{{ asset('assets-new/assets/newsletter/Newsletter2001.pdf') }}" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        Download</a></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 2000' : 'Newsletter 2000' }}</td>
-                                <td><a href="{{ asset('assets-new/assets/newsletter/Newsletter2000.pdf') }}" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 1999' : 'Newsletter 1999' }}</td>
-                                <td><a href="{{ asset('assets-new/assets/newsletter/Newsletter1999.pdf') }}" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'सूचना पत्र 1998' : 'Newsletter 1998' }}</td>
-                                <td><a href="{{ asset('assets-new/assets/newsletter/Newsletter1998.pdf') }}" class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a></td>
-                            </tr>
+                            @foreach ($data as $year => $item)
+                                <tr>
+                                    <td>{{ $language === 'hi' ? 'सूचना पत्र' : 'Newsletter' }} {{ $year }}</td>
+                                    <td><a href="{{ $item['file'] }}" class="btn btn-view-profile"><i
+                                                class="fas fa-download"></i>
+                                            {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a>
+                                        <span>({{ $item['size'] }}) MB</span>
+
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
-
-
                 </div>
             </div>
         </div>

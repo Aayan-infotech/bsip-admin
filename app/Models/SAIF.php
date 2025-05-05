@@ -2,7 +2,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class SAIF extends Model
 {
@@ -33,6 +32,22 @@ class SAIF extends Model
     public function scientist()
     {
         return $this->belongsTo(Staff::class, 'employee_id');
+    }
+
+    // get the size of the pdf file in MB
+    public function getPdfFileSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->pdf_file);
+
+        if (! $relativePath) {
+            return null;
+        }
+
+        $filePath = public_path('storage/' . $relativePath);
+
+        return file_exists($filePath)
+        ? round(filesize($filePath) / 1024 / 1024, 2) // MB
+        : null;
     }
 
 }

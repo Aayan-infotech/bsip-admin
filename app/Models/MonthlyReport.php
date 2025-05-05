@@ -27,4 +27,33 @@ class MonthlyReport extends Model
     {
         return asset('storage/' . $value);
     }
+
+    public function getReportFileSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->report_file);
+
+        if (! $relativePath) {
+            return null;
+        }
+
+        $filePath = public_path('storage/' . $relativePath);
+
+        return file_exists($filePath)
+            ? round(filesize($filePath) / 1024 / 1024, 2) // MB
+            : null;
+    }
+    public function getReportFileHinSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->report_file_hin);
+
+        if (! $relativePath) {
+            return null;
+        }
+
+        $filePath = public_path('storage/' . $relativePath);
+
+        return file_exists($filePath)
+            ? round(filesize($filePath) / 1024 / 1024, 2) // MB
+            : null;
+    }
 }

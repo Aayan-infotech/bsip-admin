@@ -91,6 +91,7 @@
                                         <a href="{{ $saif->pdf_file }}" class="btn btn-view-profile"><i
                                                 class="fas fa-file-pdf"></i>
                                             Download</a>
+                                        <span>({{ $saif->pdf_file_size }}) MB</span>
                                     </div>
                                 </div>
                             </div>

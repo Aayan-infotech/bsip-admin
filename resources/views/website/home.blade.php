@@ -112,24 +112,24 @@
                                             <li class="list-group-item">
                                                 {{ $language === 'hi' ? $highlight->hin_title : $highlight->title }}
 
-                                                <a href="{{ $language === 'hi' ? $highlight->hindi_file : $highlight->english_file }}"
-                                                    class="text-primary" role="link" aria-label="View Pdf" target="_blank">
-                                                    [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
-                                                    <i class="fas fa-file-pdf text-danger" role="presentation"></i>
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    @endif
-                                </ul>
-                            </div>
-                            <div class="card-footer text-end">
-                                <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_research_highlights_all' : 'bsip_research_highlights_all' }}"
-                                    class="button-profile-card">
-                                    {{ $language === 'hi' ? 'और पढ़ें' : 'Read More' }}
-                                </a>
-                            </div>
+                                            <a href="{{ $language === 'hi' ? $highlight->hindi_file : $highlight->english_file }}"
+                                                class="text-primary" role="link" aria-label="home" target="_blank">
+                                                [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
+                                                <i class="fas fa-file-pdf text-danger" role="presentation"></i>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_research_highlights_all' : 'bsip_research_highlights_all' }}"
+                                class="button-profile-card">
+                                {{ $language === 'hi' ? 'और पढ़ें' : 'Read More' }}
+                            </a>
                         </div>
                     </div>
+                </div>
 
                     <!-- Notices/Updates -->
                     <div class="col-md-4">
@@ -264,82 +264,81 @@
                         </div>
 
 
-                    </div>
                 </div>
             </div>
-            <section class="main-contents-home-page">
-                <div class="container-fluid p-5 content-print">
-                    <div class="row">
-                        <!-- Recent Events -->
-                        <div class="col-md-4">
-                            <div class="card shadow border-0">
-                                <h2 class="header-section-profiles m-0">
-                                    <i class="fas fa-calendar-alt me-2" role="presentation"></i>
-                                    {{ $language === 'hi' ? 'रीसेन्ट ईवेन्ट' : 'Recent Events' }}
-                                </h2>
-                                <div class="card-body d-flex justify-content-center align-items-center">
-                                    <div class="row justify-content-center g-4">
-                                        <div class="col-6">
-                                            <a href="{{ $language }}/bsip_past_events"
-                                                class="card-link text-decoration-none" role="link" aria-label="Bsip Past Events">
-                                                <div class="card-section border rounded text-center p-3">
-                                                    <div
-                                                        class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-calendar-alt fa-1x" role="presentation"></i>
-                                                    </div>
-                                                    <p class="mt-2 fw-bold">{{ $language === 'hi' ? 'आयोजन' : 'Events' }}
-                                                    </p>
+        </div>
+        <section class="main-contents-home-page">
+            <div class="container-fluid p-5">
+                <div class="row">
+                    <!-- Recent Events -->
+                    <div class="col-md-4">
+                        <div class="card shadow border-0">
+                            <h2 class="header-section-profiles m-0">
+                                <i class="fas fa-calendar-alt me-2" role="presentation"></i>
+                                {{ $language === 'hi' ? 'रीसेन्ट ईवेन्ट' : 'Recent Events' }}
+                            </h2>
+                            <div class="card-body d-flex justify-content-center align-items-center">
+                                <div class="row justify-content-center g-4">
+                                    <div class="col-6">
+                                        <a href="{{ $language }}/bsip_past_events" class="card-link text-decoration-none" role="link"
+                                            aria-label="home">
+                                            <div class="card-section border rounded text-center p-3">
+                                                <div
+                                                    class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
+                                                    <i class="fas fa-calendar-alt fa-1x" role="presentation"></i>
                                                 </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="https://youtu.be/NpKQ1LPbrfE" class="card-link text-decoration-none"
-                                                role="link" aria-label="Platinum Jubilee" target="_blank">
-                                                <div class="card-section border rounded text-center p-2">
-                                                    <div
-                                                        class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-flask fa-1x" role="presentation"></i>
-                                                    </div>
-                                                    <p class="mt-2 fw-bold">
-                                                        {{ $language === 'hi' ? 'प्लैटिनम जुबली मूवी (अंग्रेजी)' : 'Platinum Jubilee Movie (English)' }}
-                                                    </p>
+                                                <p class="mt-2 fw-bold">{{ $language === 'hi' ? 'आयोजन' : 'Events' }}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="https://youtu.be/NpKQ1LPbrfE" class="card-link text-decoration-none"
+                                            role="link" aria-label="home" target="_blank">
+                                            <div class="card-section border rounded text-center p-2">
+                                                <div
+                                                    class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
+                                                    <i class="fas fa-flask fa-1x" role="presentation"></i>
                                                 </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="https://www.youtube.com/watch?v=NpKQ1LPbrfE"
-                                                class="card-link text-decoration-none" role="link" aria-label="Platinum Jubiliee 2"
-                                                target="_blank">
-                                                <div class="card-section border rounded text-center p-2">
-                                                    <div
-                                                        class="icon-container bg-warning text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-film fa-1x" role="presentation"></i>
-                                                    </div>
-                                                    <p class="mt-2 fw-bold">
-                                                        {{ $language === 'hi' ? 'प्लैटिनम जुबली फिल्म (हिंदी)' : 'Platinum Jubilee Movie (Hindi)' }}
-                                                    </p>
+                                                <p class="mt-2 fw-bold">
+                                                    {{ $language === 'hi' ? 'प्लैटिनम जुबली मूवी (अंग्रेजी)' : 'Platinum Jubilee Movie (English)' }}
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="https://www.youtube.com/watch?v=NpKQ1LPbrfE"
+                                            class="card-link text-decoration-none" role="link" aria-label="home"
+                                            target="_blank">
+                                            <div class="card-section border rounded text-center p-2">
+                                                <div
+                                                    class="icon-container bg-warning text-white d-flex justify-content-center align-items-center mx-auto">
+                                                    <i class="fas fa-film fa-1x" role="presentation"></i>
                                                 </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="https://www.youtube.com/@bsiponline573"
-                                                class="card-link text-decoration-none" role="link" aria-label="Old Movies"
-                                                target="_blank">
-                                                <div class="card-section border rounded text-center p-3">
-                                                    <div
-                                                        class="icon-container bg-danger text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-video fa-1x" role="presentation"></i>
-                                                    </div>
-                                                    <p class="mt-2 fw-bold">
-                                                        {{ $language === 'hi' ? 'यूट्यूब पुरानी फिल्में' : 'YouTube Old Movies' }}
-                                                    </p>
+                                                <p class="mt-2 fw-bold">
+                                                    {{ $language === 'hi' ? 'प्लैटिनम जुबली फिल्म (हिंदी)' : 'Platinum Jubilee Movie (Hindi)' }}
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="https://www.youtube.com/@bsiponline573"
+                                            class="card-link text-decoration-none" role="link" aria-label="home"
+                                            target="_blank">
+                                            <div class="card-section border rounded text-center p-3">
+                                                <div
+                                                    class="icon-container bg-danger text-white d-flex justify-content-center align-items-center mx-auto">
+                                                    <i class="fas fa-video fa-1x" role="presentation"></i>
                                                 </div>
-                                            </a>
-                                        </div>
+                                                <p class="mt-2 fw-bold">
+                                                    {{ $language === 'hi' ? 'यूट्यूब पुरानी फिल्में' : 'YouTube Old Movies' }}
+                                                </p>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                         <!-- Career -->
                         <div class="col-md-4">
@@ -511,26 +510,26 @@
                             </a>
                         </div>
 
-                        <!-- CPGG Card -->
-                        <div class="col-md-4">
-                            <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_geo_heritage' : 'bsip_geo_heritage' }}"
-                                class="text-decoration-none" role="link" aria-label="CPGG Page">
-                                <div class="card shadow">
-                                    <h2 class="header-section-profiles">
-                                        <i class="fas fa-handshake me-2"></i>
-                                        {{ $language === 'hi' ? 'सीपीजीजी' : 'CPGG' }}
-                                    </h2>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <img src="{{ asset('assets-new/assets/museum/cpgg.jpg') }}" alt="cpgg-img"
-                                                    class="img-fluid img-museum">
-                                            </div>
+                    <!-- CPGG Card -->
+                    <div class="col-md-4">
+                        <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_geo_heritage' : 'bsip_geo_heritage' }}"
+                            class="text-decoration-none" role="link" aria-label="home">
+                            <div class="card shadow">
+                                <h2 class="header-section-profiles">
+                                    <i class="fas fa-handshake me-2"></i>
+                                    {{ $language === 'hi' ? 'सीपीजीजी' : 'CPGG' }}
+                                </h2>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <img src="{{ asset('assets-new/assets/museum/cpgg.jpg') }}"
+                                                alt="cpgg-img" class="img-fluid img-museum">
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
+                    </div>
 
                         <!-- Media Cell Card -->
                         <div class="col-md-4">
@@ -553,116 +552,114 @@
                             </a>
                         </div>
 
-                    </div>
                 </div>
-            </section>
-            <section class="main-contents-home-page">
-                <div class="container-fluid heading-facilities-home content-print">
-                    <h2 class="header-section-profiles m-0 text-center bg-primary text-white py-3"
-                        aria-label="{{ $language === 'hi' ? 'सुविधाएँ' : 'Facilities' }}">
-                        <i class="fas fa-microscope me-2" role="presentation"></i>
-                        {{ $language === 'hi' ? 'सुविधाएँ' : 'Facilities' }}
-                    </h2>
-                </div>
-                <div class="container-fluid container-slider-facilities content-print">
-                    <div class="carousel-facilities">
-                        <button class="btn-slider-home btn-left" onclick="slideLeft();"
-                            aria-label="{{ $language === 'hi' ? 'बाएं स्लाइड करें' : 'Slide Left' }}">
-                            <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        </button>
-                        <div class="slider-wrapper">
-                            <div class="slider-container">
-                                <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                        <img src="{{ asset('assets-new/assets/home-page-facilities/TL-OSL.jpg') }}"
-                                            alt="Facility 1">
-                                        <div class="slider-title">TL/OSL</div>
-                                    </a>
-                                </div>
-                                <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                        <img src="{{ asset('assets-new/assets/home-page-facilities/xrd.jfif') }}"
-                                            alt="Facility 2">
-                                        <div class="slider-title">XRD</div>
-                                    </a>
-                                </div>
-                                <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                        <img src="{{ asset('assets-new/assets/home-page-facilities/nutrient.jfif') }}"
-                                            alt="Facility 3">
-                                        <div class="slider-title">Nutrien Analyzer</div>
-                                    </a>
-                                </div>
-                                <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                        <img src="{{ asset('assets-new/assets/home-page-facilities/FESEM.jpg') }}"
-                                            alt="Facility 4">
-                                        <div class="slider-title">FESEM</div>
-                                    </a>
-                                </div>
-                                <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                        <img src="{{ asset('assets-new/assets/home-page-facilities/coal.jfif') }}"
-                                            alt="Facility 5">
-                                        <div class="slider-title">Coal CF</div>
-                                    </a>
-                                </div>
-                                <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
-                                        <img src="{{ asset('assets-new/assets/home-page-facilities/bomb.jfif') }}"
-                                            alt="Facility 6">
-                                        <div class="slider-title">Bomb Calorimeter</div>
-                                    </a>
-                                </div>
+            </div>
+        </section>
+        <section class="main-contents-home-page">
+            <div class="container-fluid heading-facilities-home">
+                <h2 class="header-section-profiles m-0 text-center bg-primary text-white py-3"
+                    aria-label="{{ $language === 'hi' ? 'सुविधाएँ' : 'Facilities' }}">
+                    <i class="fas fa-microscope me-2" role="presentation"></i>
+                    {{ $language === 'hi' ? 'सुविधाएँ' : 'Facilities' }}
+                </h2>
+            </div>
+            <div class="container-fluid container-slider-facilities">
+                <div class="carousel-facilities">
+                    <button class="btn-slider-home btn-left" onclick="slideLeft();"
+                        aria-label="{{ $language === 'hi' ? 'बाएं स्लाइड करें' : 'Slide Left' }}">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </button>
+                    <div class="slider-wrapper">
+                        <div class="slider-container">
+                            <div class="slider-item">
+                                <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/TL-OSL.jpg') }}" alt="Facility 1">
+                                    <div class="slider-title">TL/OSL</div>
+                                </a>
+                            </div>
+                            <div class="slider-item">
+                                <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/xrd.jfif') }}" alt="Facility 2">
+                                    <div class="slider-title">XRD</div>
+                                </a>
+                            </div>
+                            <div class="slider-item">
+                                <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/nutrient.jfif') }}"
+                                        alt="Facility 3">
+                                    <div class="slider-title">Nutrien Analyzer</div>
+                                </a>
+                            </div>
+                            <div class="slider-item">
+                                <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/FESEM.jpg') }}" alt="Facility 4">
+                                    <div class="slider-title">FESEM</div>
+                                </a>
+                            </div>
+                            <div class="slider-item">
+                                <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/coal.jfif') }}" alt="Facility 5">
+                                    <div class="slider-title">Coal CF</div>
+                                </a>
+                            </div>
+                            <div class="slider-item">
+                                <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <img src="{{ asset('assets-new/assets/home-page-facilities/bomb.jfif') }}"
+                                        alt="Facility 6">
+                                    <div class="slider-title">Bomb Calorimeter</div>
+                                </a>
                             </div>
                         </div>
-                        <button class="btn-slider-home btn-right" onclick="slideRight();"
-                            aria-label="{{ $language === 'hi' ? 'दाएं स्लाइड करें' : 'Slide Right' }}">
-                            <i class="fa fa-angle-right" aria-hidden="true"></i>
-                        </button>
+                    </div>
+                    <button class="btn-slider-home btn-right" onclick="slideRight();"
+                        aria-label="{{ $language === 'hi' ? 'दाएं स्लाइड करें' : 'Slide Right' }}">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Magazine and External Links -->
+        <div class="wrapper home-btm-slider">
+            <div class="container common-container four_content gallery-container">
+                <div class="gallery-area clearfix">
+                    <div class="gallery-heading text-center" role="main">
+                        <h3>{{ $language === 'hi' ? 'फोटो गैलरी' : 'Photo Gallery' }}</h3>
+                        <a class="bttn-more bttn-view"
+                            href="{{ $language }}/{{ $language === 'hi' ? 'bsip_rajbhasha_patal' : 'bsip_rajbhasha_patal' }}"
+                            target="_blank" aria-label="{{ $language === 'hi' ? 'सभी को देखें' : 'View All' }}">
+                            <span>{{ $language === 'hi' ? 'सभी को देखें' : 'View All' }}</span>
+                        </a>
+                    </div>
+                    <div class="fancybox">
+                        <ul class="slider">
+                            @if ($photoGallery->count() > 0)
+                                @foreach ($photoGallery as $photo)
+                                    <li>
+                                        <a href="{{ $photo}}"
+                                            data-fancybox="images">
+                                            <img src="{{ $photo }}"
+                                                alt="Photo Gallery Slide 1" class="photo-gallery-img" />
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
+                        </ul>
                     </div>
                 </div>
-            </section>
-
-            <!-- Magazine and External Links -->
-            <div class="wrapper home-btm-slider">
-                <div class="container common-container four_content gallery-container content-print">
-                    <div class="gallery-area clearfix">
-                        <div class="gallery-heading text-center">
-                            <h3>{{ $language === 'hi' ? 'फोटो गैलरी' : 'Photo Gallery' }}</h3>
-                            <a class="bttn-more bttn-view"
-                                href="{{ $language }}/{{ $language === 'hi' ? 'bsip_rajbhasha_patal' : 'bsip_rajbhasha_patal' }}"
-                                target="_blank" aria-label="{{ $language === 'hi' ? 'सभी को देखें' : 'View All' }}">
-                                <span>{{ $language === 'hi' ? 'सभी को देखें' : 'View All' }}</span>
-                            </a>
-                        </div>
-                        <div class="fancybox">
-                            <ul class="slider">
-                                @if ($photoGallery->count() > 0)
-                                    @foreach ($photoGallery as $photo)
-                                        <li>
-                                            <a href="{{ $photo}}" data-fancybox="images">
-                                                <img src="{{ $photo }}" alt="Photo Gallery Slide 1" class="photo-gallery-img" />
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </div>
+                <div class="gallery-right">
+                    <div class="video-heading text-center">
+                        <h3>{{ $language === 'hi' ? 'वीडियो गैलरी' : 'Video Gallery' }}</h3>
                     </div>
-                    <div class="gallery-right">
-                        <div class="video-heading text-center">
-                            <h3>{{ $language === 'hi' ? 'वीडियो गैलरी' : 'Video Gallery' }}</h3>
-                        </div>
-                        <div class="video-wrapper">
-                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/NpKQ1LPbrfE"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
+                    <div class="video-wrapper">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/NpKQ1LPbrfE"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
+        </div>
 
 
         </section>

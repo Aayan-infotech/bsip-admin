@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\OnlineFeedbackForm;
+use App\Models\ContactUs;
 
 class StaffManagementController extends Controller
 {
@@ -791,6 +793,52 @@ class StaffManagementController extends Controller
             }
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
+    public function feedbackForm()
+    {
+        return view('feedback_form');
+    }
+
+    public function feebackFormList(Request $request){
+        if ($request->ajax()) {
+            $saifs = OnlineFeedbackForm::get();
+            return DataTables::of($saifs)
+                ->addColumn('status', function ($saif) {
+                    $checked    = $saif->status ? 'checked' : '';
+                    $statusText = $saif->status
+                    ? ' <span class="badge badge-success" style="color: white;background: #2c751d;">Active</span>'
+                    : ' <span class="badge badge-danger" style="color: white;background: #df0d17;">Blocked</span>';
+
+
+                    return $statusText;
+                })
+
+                ->rawColumns(['status'])
+                ->make(true);
+        }
+    }
+
+    public function contactUs(){
+        return view('contact_us');
+    }
+
+    public function contactUsList(Request $request){
+        if ($request->ajax()) {
+            $saifs = ContactUs::get();
+            return DataTables::of($saifs)
+                ->addColumn('status', function ($saif) {
+                    $checked    = $saif->status ? 'checked' : '';
+                    $statusText = $saif->status
+                    ? ' <span class="badge badge-success" style="color: white;background: #2c751d;">Active</span>'
+                    : ' <span class="badge badge-danger" style="color: white;background: #df0d17;">Blocked</span>';
+                    return $statusText;
+                })
+
+                ->rawColumns(['status'])
+                ->make(true);
         }
     }
 }

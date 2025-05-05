@@ -4,9 +4,9 @@
 $(document).ready(function(){
 	//alert('hello');
 if($('.nav-menu li ul[class="sub-nav-group"] li ul[class="sub-nav-group"] li').find('li')){
- alert('hello');	
+ alert('hello');
 }
-			
+
 });
 
 } ) ( jQuery );
@@ -46,9 +46,9 @@ jQuery(document).ready(function () {
   jQuery(document).ready(function () {
     jQuery("#main-menu div > ul").attr("id", "nav");
     //
-    dropdown1("nav", "hover", 10);
-    //
-    dropdown1("header-nav", "hover", 20);
+    // dropdown1("nav", "hover", 10);
+    // //
+    // dropdown1("header-nav", "hover", 20);
   });
 
   // Mobile Nav
@@ -110,7 +110,12 @@ jQuery(document).ready(function () {
 //Drop down menu for Keyboard accessing
 
 function dropdown1(dropdownId, hoverClass, mouseOffDelay) {
+    console.log("dropdown1");
+    console.log(dropdownId);
+    console.log(hoverClass);
+    console.log(mouseOffDelay);
   if ((dropdown = document.getElementById(dropdownId))) {
+    console.log(dropdown);
     var listItems = dropdown.getElementsByTagName("li");
     for (var i = 0; i < listItems.length; i++) {
       listItems[i].onmouseover = function () {
@@ -124,6 +129,7 @@ function dropdown1(dropdownId, hoverClass, mouseOffDelay) {
         this.className = that.className;
       };
       var anchor = listItems[i].getElementsByTagName("a");
+      console.log(anchor);
       anchor = anchor[0];
       anchor.onfocus = function () {
         tabOn(this.parentNode);

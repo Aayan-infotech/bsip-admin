@@ -68,6 +68,8 @@
                                                 <i class="fas fa-download"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}
                                             </a>
+                                            ({{ $language === 'hi' ? $monthlyReport->report_file_hin_size : $monthlyReport->report_file_size }})
+                                            MB
                                         @endif
                                     </td>
                                 </tr>
