@@ -81,8 +81,7 @@
                                 <label class="de-lag" for="language-select">
                                     <span>Language</span>
                                 </label>
-                                <select id="language-select" title="Select language"
-                                    onchange="location = this.value;">
+                                <select id="language-select" title="Select language" onchange="confirmAndChangeLanguage(this)">
                                     <option value="{{ url('en/' . request()->segment(2)) }}"
                                         {{ request()->segment(1) === 'en' ? 'selected' : '' }}>English</option>
                                     <option value="{{ url('hi/' . request()->segment(2)) }}"
@@ -97,12 +96,16 @@
                                     <li>
                                         <a href="{{ url('/en') }}" lang="en" class="alink"
                                             title="Click here for English version."
-                                            {{ $language === 'en' ? 'aria-current="page"' : '' }}>English</a>
+                                            {{ $language === 'en' ? 'aria-current="page"' : '' }}
+                                            onclick="return confirmLanguageChange('English')"
+                                            >English</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/hi') }}" lang="hi" class="alink"
                                             title="Click here for हिन्दी version."
-                                            {{ $language === 'hi' ? 'aria-current="page"' : '' }}>हिन्दी</a>
+                                            {{ $language === 'hi' ? 'aria-current="page"' : '' }}
+                                            onclick="return confirmLanguageChange('हिन्दी')"
+                                        >हिन्दी</a>
                                     </li>
                                 </ul>
                             </li>
@@ -170,7 +173,9 @@
                                                 <a href="{{ Str::startsWith($page->page_url, ['http://', 'https://']) ? $page->page_url : url($language . '/' . $page->page_url) }}"
                                                     target="{{ Str::startsWith($page->page_url, ['http://', 'https://']) ? '_blank' : '_self' }}"
                                                     role="link"
-                                                    aria-label="{{ $language === 'hi' ? $page->hin_title : $page->title }}">
+                                                    aria-label="{{ $language === 'hi' ? $page->hin_title : $page->title }}"
+                                                    onclick="{{  Str::startsWith($page->page_url, ['http://', 'https://']) ? 'return confirmExternalLink()' : '' }}">
+
                                                     {{ $language === 'hi' ? $page->hin_title : $page->title }}
                                                 </a>
                                             </li>

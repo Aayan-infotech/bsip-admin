@@ -81,7 +81,9 @@
                     <a href="{{ Str::startsWith($menuPage->page_url, ['http://', 'https://']) ? $menuPage->page_url : url($language . '/' . $menuPage->page_url) }}"
                         target="{{ Str::startsWith($menuPage->page_url, ['http://', 'https://']) ? '_blank' : '_self' }}"
                         class="{{ $menuPage->id === $currentPageId ? 'active' : '' }}"
-                        aria-label="{{ $language === 'hi' ? $menuPage->hin_title : $menuPage->title }}">
+                        aria-label="{{ $language === 'hi' ? $menuPage->hin_title : $menuPage->title }}"
+                         onclick="{{ Str::startsWith($menuPage->page_url, ['http://', 'https://']) ? 'return confirmExternalLink()' : '' }}"
+                        >
                         <i class="{{ $menuPage->icon }}"></i>
                         <span>{{ $language === 'hi' ? $menuPage->hin_title : $menuPage->title }}</span>
                     </a>

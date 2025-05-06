@@ -36,6 +36,39 @@
     <link rel="stylesheet" href="{{ asset('assets-new/assets/css/custom.css') }}">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <script>
+        function confirmLanguageChange(language) {
+            let message = language === 'English' ?
+                'Do you want to change the language?' : 'क्या आप भाषा बदलना चाहते हैं?';
+
+            return confirm(message);
+        }
+
+
+
+        function confirmAndChangeLanguage(select) {
+            const selectedOption = select.options[select.selectedIndex];
+            const language = selectedOption.text;
+
+            // const message = {{ $language === 'hi' ? 'क्या आप भाषा बदलना चाहते हैं?' : 'Do you want to change the language?' }};
+            const message = (language === 'English') ?
+                'Do you want to change the language?' : 'क्या आप भाषा बदलना चाहते हैं?';
+
+            if (confirm(message)) {
+                location = selectedOption.value;
+            } else {
+                // Revert to previously selected option
+                select.selectedIndex = [...select.options].findIndex(option => option.defaultSelected);
+            }
+        }
+
+        function confirmExternalLink() {
+            const language = '{{ $language }}';
+            console.log(language);
+            return confirm(language === 'hi' ? 'क्या आप बाहरी लिंक पर जाना चाहते हैं?' :
+                'Do you want to go to external link?');
+        }
+    </script>
 </head>
 
 <body>
