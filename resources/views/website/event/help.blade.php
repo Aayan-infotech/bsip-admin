@@ -43,49 +43,49 @@
                         </tr>
                         <tr>
                             <td>Non Visual Desktop Access (NVDA)</td>
-                            <td><a href="http://www.nvda-project.org" target="_blank"><i class="bi bi-link-45deg"></i>
+                            <td><a href="http://www.nvda-project.org" target="_blank" onclick="return confirmExternalLink()"><i class="bi bi-link-45deg"></i>
                                     nvda-project.org</a></td>
                             <td><i class="bi bi-check-circle-fill text-success"></i> Free</td>
                         </tr>
                         <tr>
                             <td>System Access To Go</td>
-                            <td><a href="http://www.satogo.com" target="_blank"><i class="bi bi-link-45deg"></i>
+                            <td><a href="http://www.satogo.com" target="_blank" onclick="return confirmExternalLink()"><i class="bi bi-link-45deg"></i>
                                     satogo.com</a></td>
                             <td><i class="bi bi-check-circle-fill text-success"></i> Free</td>
                         </tr>
                         <tr>
                             <td>Thunder</td>
-                            <td><a href="http://www.webbie.org.uk/thunder" target="_blank"><i class="bi bi-link-45deg"></i>
+                            <td><a href="http://www.webbie.org.uk/thunder" target="_blank" onclick="return confirmExternalLink()"><i class="bi bi-link-45deg"></i>
                                     webbie.org.uk</a></td>
                             <td><i class="bi bi-check-circle-fill text-success"></i> Free</td>
                         </tr>
                         <tr>
                             <td>WebAnywhere</td>
-                            <td><a href="http://webinsight.cs.washington.edu/" target="_blank"><i
+                            <td><a href="http://webinsight.cs.washington.edu/" target="_blank" onclick="return confirmExternalLink()"><i
                                         class="bi bi-link-45deg"></i> webinsight.cs.washington.edu</a></td>
                             <td><i class="bi bi-check-circle-fill text-success"></i> Free</td>
                         </tr>
                         <tr>
                             <td>Hal</td>
-                            <td><a href="http://www.yourdolphin.co.uk/productdetail.asp?id=5" target="_blank"><i
+                            <td><a href="http://www.yourdolphin.co.uk/productdetail.asp?id=5" target="_blank" onclick="return confirmExternalLink()"><i
                                         class="bi bi-link-45deg"></i> yourdolphin.co.uk</a></td>
                             <td><i class="bi bi-currency-dollar text-warning"></i> Commercial</td>
                         </tr>
                         <tr>
                             <td>JAWS</td>
-                            <td><a href="http://www.freedomscientific.com/Downloads/JAWS" target="_blank"><i
+                            <td><a href="http://www.freedomscientific.com/Downloads/JAWS" target="_blank" onclick="return confirmExternalLink()"><i
                                         class="bi bi-link-45deg"></i> freedomscientific.com</a></td>
                             <td><i class="bi bi-currency-dollar text-warning"></i> Commercial</td>
                         </tr>
                         <tr>
                             <td>Supernova</td>
-                            <td><a href="http://www.yourdolphin.co.uk/productdetail.asp?id=1" target="_blank"><i
+                            <td><a href="http://www.yourdolphin.co.uk/productdetail.asp?id=1" target="_blank" onclick="return confirmExternalLink()"><i
                                         class="bi bi-link-45deg"></i> yourdolphin.co.uk</a></td>
                             <td><i class="bi bi-currency-dollar text-warning"></i> Commercial</td>
                         </tr>
                         <tr>
                             <td>Window-Eyes</td>
-                            <td><a href="http://www.gwmicro.com/Window-Eyes/" target="_blank"><i
+                            <td><a href="http://www.gwmicro.com/Window-Eyes/" target="_blank" onclick="return confirmExternalLink()"><i
                                         class="bi bi-link-45deg"></i> gwmicro.com</a></td>
                             <td><i class="bi bi-currency-dollar text-warning"></i> Commercial</td>
                         </tr>

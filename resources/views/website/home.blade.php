@@ -116,7 +116,7 @@
                                                 {{ $language === 'hi' ? $highlight->hin_title : $highlight->title }}
 
                                                 <a href="{{ $language === 'hi' ? $highlight->hindi_file : $highlight->english_file }}"
-                                                    class="text-primary" role="link" aria-label="home" target="_blank">
+                                                    class="text-dark" role="link" aria-label="home" target="_blank">
                                                     [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
                                                     <i class="fas fa-file-pdf text-danger" role="presentation"></i>
                                                 </a>
@@ -591,42 +591,42 @@
                         <div class="slider-wrapper">
                             <div class="slider-container">
                                 <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}" class="text-dark">
                                         <img src="{{ asset('assets-new/assets/home-page-facilities/TL-OSL.jpg') }}"
                                             alt="Facility 1">
                                         <div class="slider-title">TL/OSL</div>
                                     </a>
                                 </div>
                                 <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}" class="text-dark">
                                         <img src="{{ asset('assets-new/assets/home-page-facilities/xrd.jfif') }}"
                                             alt="Facility 2">
                                         <div class="slider-title">XRD</div>
                                     </a>
                                 </div>
                                 <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}" class="text-dark" >
                                         <img src="{{ asset('assets-new/assets/home-page-facilities/nutrient.jfif') }}"
                                             alt="Facility 3">
                                         <div class="slider-title">Nutrien Analyzer</div>
                                     </a>
                                 </div>
                                 <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}" class="text-dark">
                                         <img src="{{ asset('assets-new/assets/home-page-facilities/FESEM.jpg') }}"
                                             alt="Facility 4">
                                         <div class="slider-title">FESEM</div>
                                     </a>
                                 </div>
                                 <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}" class="text-dark">
                                         <img src="{{ asset('assets-new/assets/home-page-facilities/coal.jfif') }}"
                                             alt="Facility 5">
                                         <div class="slider-title">Coal CF</div>
                                     </a>
                                 </div>
                                 <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}">
+                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}" class="text-dark">
                                         <img src="{{ asset('assets-new/assets/home-page-facilities/bomb.jfif') }}"
                                             alt="Facility 6">
                                         <div class="slider-title">Bomb Calorimeter</div>
@@ -695,33 +695,33 @@
                     <ul class="slides">
                         <li>
                             <a target="_blank" href="http://digitalindia.gov.in/"
-                                title="Digital India, External Link that opens in a new window"><img
+                                title="Digital India, External Link that opens in a new window" onclick="return confirmExternalLink()"><img
                                     src="assets-new/assets/images/carousel/digital-india.png" alt="Digital India"></a>
                         </li>
                         <li>
                             <a target="_blank" href="http://www.makeinindia.com/"
-                                title="Make In India, External Link that opens in a new window"> <img
+                                title="Make In India, External Link that opens in a new window" onclick="return confirmExternalLink()"> <img
                                     src="assets-new/assets/images/carousel/makeinindia.png" alt="Make In India"></a>
                         </li>
                         <li>
                             <a target="_blank" href="http://india.gov.in/"
-                                title="National Portal of India, External Link that opens in a new window"><img
+                                title="National Portal of India, External Link that opens in a new window" onclick="return confirmExternalLink()"><img
                                     src="assets-new/assets/images/carousel/india-gov.png"
                                     alt="National Portal of India"></a>
                         </li>
                         <li>
                             <a target="_blank" href="http://goidirectory.nic.in/"
-                                title="GOI Web Directory, External Link that opens in a new window"><img
+                                title="GOI Web Directory, External Link that opens in a new window" onclick="return confirmExternalLink()"><img
                                     src="assets-new/assets/images/carousel/goidirectory.png" alt="GOI Web Directory"></a>
                         </li>
                         <li>
                             <a target="_blank" href="https://data.gov.in/"
-                                title="Data portal, External Link that opens in a new window"><img
+                                title="Data portal, External Link that opens in a new window" onclick="return confirmExternalLink()"><img
                                     src="assets-new/assets/images/carousel/data-gov.png" alt="Data portal"></a>
                         </li>
                         <li>
                             <a target="_blank" href="https://mygov.in/"
-                                title="MyGov, External Link that opens in a new window"><img
+                                title="MyGov, External Link that opens in a new window" onclick="return confirmExternalLink()"><img
                                     src="assets-new/assets/images/carousel/mygov.png" alt="MyGov Portal"></a>
                         </li>
                     </ul>

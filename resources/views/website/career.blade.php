@@ -58,6 +58,7 @@
                                 <a href="{{ asset('storage/' . $job->pdf) }}" target="_blank" class="btn btn-outline-success btn-sm" role="link" aria-label="{{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}">
                                     <i class="fas fa-download" aria-hidden="true"></i> {{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}
                                 </a>
+                                ({{ $job->pdf_size }}) MB
                                 @else
                                 <span class="text-muted">{{ $language === 'hi' ? 'कोई पीडीएफ नहीं' : 'No PDF' }}</span>
                                 @endif

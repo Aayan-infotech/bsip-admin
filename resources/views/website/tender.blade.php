@@ -62,6 +62,7 @@
                                                 <i class="fas fa-download" aria-hidden="true"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}
                                             </a>
+                                            ({{ $tender->tender_document_size }}) MB
                                         @else
                                             <span
                                                 class="text-muted">{{ $language === 'hi' ? 'कोई पीडीएफ नहीं' : 'No PDF' }}</span>
@@ -119,7 +120,7 @@
                                                 <i class="fas fa-download" aria-hidden="true"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}
                                             </a>
-                                            ({{ $tender->tender_document_size }} MB)
+                                            ({{ $tender->tender_document_size }}) MB
                                         @else
                                             <span
                                                 class="text-muted">{{ $language === 'hi' ? 'कोई पीडीएफ नहीं' : 'No PDF' }}</span>

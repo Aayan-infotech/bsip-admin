@@ -24,5 +24,53 @@ class Forms extends Model
         'status',
         'archived_status',
     ];
+
+    public function getPdfSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->pdf);
+
+        if (! $relativePath) {
+            return 0;
+        }
+
+        $filePath = public_path('storage/' . $relativePath);
+
+        return file_exists($filePath)
+        ? round(filesize($filePath) / 1024 / 1024, 2) // MB
+        : 0;
+    }
+    public function getDocumentSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->document);
+
+        if (! $relativePath) {
+            return 0;
+        }
+
+        $filePath = public_path('storage/' . $relativePath);
+
+        return file_exists($filePath)
+        ? round(filesize($filePath) / 1024 / 1024, 2) // MB
+        : 0;
+    }
+    public function getHinDocumentSizeAttribute()
+    {
+        if (! $this->hin_document) {
+            return 0;
+        }
+
+        $relativePath = str_replace(url('storage') . '/', '', $this->hin_document);
+
+        if (! $relativePath) {
+            return 0;
+        }
+
+        $filePath = public_path('storage/' . $relativePath);
+
+        return file_exists($filePath)
+        ? round(filesize($filePath) / 1024 / 1024, 2) // MB
+        : 0;
+    }
+  
 }
 

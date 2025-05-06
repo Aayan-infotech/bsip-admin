@@ -63,7 +63,9 @@
 
                                     @foreach ($socialLinks as $link)
                                         <li>
-                                            <a target="_blank" title="Social Link" href="{{ $link->url }}"><img
+                                            <a target="_blank" title="Social Link" href="{{ $link->url }}"
+                                                onclick="return confirmExternalLink()"
+                                                ><img
                                                     alt="Social Link"
                                                     src="{{ asset('storage/' . $link->icon_image) }}"></a>
                                         </li>
