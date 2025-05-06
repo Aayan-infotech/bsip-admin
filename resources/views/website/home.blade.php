@@ -576,7 +576,7 @@
             </section>
             <section class="main-contents-home-page">
                 <div class="container-fluid heading-facilities-home">
-                    <h2 class="header-section-profiles m-0 text-center bg-primary text-white py-3"
+                    <h2 class="header-section-profiles m-0 text-center text-white py-3"
                         aria-label="{{ $language === 'hi' ? 'सुविधाएँ' : 'Facilities' }}">
                         <i class="fas fa-microscope me-2" role="presentation"></i>
                         {{ $language === 'hi' ? 'सुविधाएँ' : 'Facilities' }}

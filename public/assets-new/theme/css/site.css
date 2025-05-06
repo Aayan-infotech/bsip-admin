@@ -254,7 +254,7 @@ ul#nav li a i.fa-home {
 .banner-wrapper .flex-direction-nav a::before {
 	font-size: 15px;
 	font-weight: 300;
-	background: #19181f;
+	background: #000000;
 	display: inline-block;
 	color: #FFF;
 	border-radius: 0;
@@ -1873,7 +1873,7 @@ ul.ul-v>li a {
 }
 
 .flex-control-paging li a.flex-active {
-	background: #fff;
+	background: #000000;
 	opacity: 0.7;
 }
 
@@ -2327,7 +2327,7 @@ em {
 }
 
 .resp-tabs-container li:hover {
-	background-color: #0262af;
+	background-color: #004b8c;
 }
 
 .resp-tab-content li a {
@@ -2666,7 +2666,7 @@ h2.resp-accordion {
 }
 
 .resp-tabs-list li {
-	background: #0262af;
+	background: #004b8c;
 	color: #000000;
 }
 
@@ -2761,7 +2761,7 @@ h2.resp-accordion {
 
 .megamenu-wraper {
 	border-top: 1px solid #d6d4d4;
-	background: #0262af;
+	background: #004b8c;
 }
 
 .main-menu>ul>li a.home {

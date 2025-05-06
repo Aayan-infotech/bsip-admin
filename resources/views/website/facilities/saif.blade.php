@@ -83,7 +83,7 @@
                         @foreach ($saifData as $saif)
                             <div class="col-md-4 mb-4">
                                 <div class="card h-100">
-                                    <img src="{{ $saif->image }}" class="card-img-top-saif img-fluid" alt="Image">
+                                    <img src="{{ $saif->image }}" class="card-img-top-saif img-fluid" alt="Saif Page Image">
                                     <div class="card-body text-center p-2">
                                         <h5 class="card-title">
                                             {{ $language === 'hi' ? $saif->instrument_name_hin : $saif->instrument_name }}

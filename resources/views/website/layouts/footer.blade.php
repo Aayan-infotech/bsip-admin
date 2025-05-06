@@ -82,21 +82,38 @@
 
             <!-- Site Visitors Section -->
             <div class="col-lg-2 col-6">
-                <div class="visitor-section text-center">
+                <div class="visitor-section">
                     <h4 class="footer-heading mb-3" style="font-weight: bold; color: #1565c0;">
                         {{ $language === 'hi' ? 'साइट आगंतुक' : 'Site Visitors' }}
                     </h4>
                     <div class="visitor-counter"
-                        style="background: #f7f7f7; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                        <p style="font-size: 18px; font-weight: bold; margin: 0; color: #333;">
+                        style="background: #f7f7f7; padding: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <p style="font-size: 18px; font-weight: bold; margin: 0; color: #000000;">
                             {{ $language === 'hi' ? 'आगंतुक : ' . $visitorCount : 'Visitors : ' . $visitorCount }}
                         </p>
                     </div>
                 </div>
+                <div class="mt-3">
+                    <h4 class="footer-heading" style="font-weight: bold; color: #1565c0;">
+                        {{ $language === 'hi' ? 'महत्वपूर्ण लिंक' : 'Other Links' }}
+                    </h4>
+                    <div class="important-links">
+                        <ul class="list-unstyled footer-link">
+                            <li><a href="https://quiz.mygov.in/" target="_blank">{{ $language === 'hi' ? 'माईगव क्विज़' : 'MyGov Quiz' }}</a></li>
+                            <li><a href="https://transformingindia.mygov.in/" target="_blank">{{ $language === 'hi' ? 'ट्रांसफॉर्मिंग इंडिया' : 'Transforming India' }}</a></li>
+                            <li><a href="https://innovate.mygov.in/" target="_blank">{{ $language === 'hi' ? 'माईगव नवाचार' : 'MyGov Innovation' }}</a></li>
+                            <li><a href="https://pledge.mygov.in/" target="_blank">{{ $language === 'hi' ? 'माईगव प्रतिज्ञा' : 'MyGov Pledge' }}</a></li>
+                            {{-- <li><a href="https://blog.mygov.in/" target="_blank">{{ $language === 'hi' ? 'माईगव ब्लॉग' : 'MyGov Blog' }}</a></li>
+                            <li><a href="https://self4society.mygov.in/" target="_blank">{{ $language === 'hi' ? 'सेल्फ4सोसाइटी' : 'Self4Society' }}</a></li>
+                            <li><a href="https://campus.mygov.in/" target="_blank">{{ $language === 'hi' ? 'कैंपस कार्यक्रम' : 'Campus Program' }}</a></li> --}}
+                        </ul>
+                    </div>
+                </div>
+                
             </div>
 
 
-            <div class="divider "></div>
+            <div class="divider" style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
             <div class="row text-center">
                 <div class="col-md-2 footer-link"><a
                     href="{{ route('frontend.copyRightPolicy', ['language' => $language]) }}"
@@ -155,7 +172,7 @@
                     {{ $language === 'hi' ? 'डिज़ाइन एवं विकसित द्वारा' : 'Designed & Developed By' }}
                     <span>
                         <a href="https://aayaninfotech.com/" class="text-white" target="_blank" role="link"
-                            aria-label="aayan">Aayan Infotech</a>
+                            aria-label="aayan">Aayan India</a>
                     </span>
                 </p>
             </div>

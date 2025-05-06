@@ -55,7 +55,7 @@
                                 <div class="col-md-4 mb-4">
                                     <div class="card h-100">
                                         <img src="{{ asset('assets-new/assets/images/c14/c14_bpu.jpg') }}"
-                                            class="card-img-top-saif img-fluid" alt="Image">
+                                            class="card-img-top-saif img-fluid" alt="Benzene Preparation Unit">
                                         <div class="card-body text-center p-2">
                                             <h5 class="card-title">{{ $language === 'hi' ? 'बेंजीन तैयारी इकाई' : 'Benzene Preparation Unit' }}</h5>
 
@@ -65,7 +65,7 @@
                                 <div class="col-md-4 mb-4">
                                     <div class="card h-100">
                                         <img src="{{ asset('assets-new/assets/images/c14/c14_lsbc.jpg') }}"
-                                            class="card-img-top-saif img-fluid" alt="Image">
+                                            class="card-img-top-saif img-fluid" alt="Liquid Scintillation Beta Counter">
                                         <div class="card-body text-center p-2">
                                             <h5 class="card-title">{{ $language === 'hi' ? 'तरल सिंटिलेशन बीटा काउंटर \'क्वांटुलस\'' : 'Liquid Scintillation Beta Counter \'Quantulus\'' }}</h5>
 
@@ -75,7 +75,7 @@
                                 <div class="col-md-4 mb-4">
                                     <div class="card h-100">
                                         <img src="{{ asset('assets-new/assets/images/c14/c14_gps.jpg') }}"
-                                            class="card-img-top-saif img-fluid" alt="Image">
+                                            class="card-img-top-saif img-fluid" alt="Newly established Automated Graphite preparation system for AMS C-14 dating">
                                         <div class="card-body text-center p-2">
                                             <h5 class="card-title">{{ $language === 'hi' ? 'स्वचालित ग्रेफाइट तैयारी प्रणाली' : 'Newly established Automated Graphite preparation system for AMS C-14 dating' }}</h5>
 
@@ -85,7 +85,7 @@
                                 <div class="col-md-4 mb-4">
                                     <div class="card h-100">
                                         <img src="{{ asset('assets-new/assets/images/c14/c14_new_gps.jpg') }}"
-                                            class="card-img-top-saif img-fluid" alt="Image">
+                                            class="card-img-top-saif img-fluid" alt="Elemental Analyzer (EA)">
                                         <div class="card-body text-center p-2">
                                             <h5 class="card-title">
                                                 {{ $language === 'hi' ? 'तत्व विश्लेषक (ईए), आइसोटोप अनुपात द्रव्यमान स्पेक्ट्रोमीटर (आईआरएमएस) और कार्बोनेट हैंडलिंग प्रणाली (सीएचएस)' : 'Elemental Analyzer (EA), Isotope ratio mass spectrometer (IRMS) and Carbonate Handling system (CHS)' }}</h5>

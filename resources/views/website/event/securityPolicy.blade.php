@@ -25,11 +25,6 @@
         <div class="container my-5">
             <h1 class="mb-4 text-center">{{ $language === 'hi' ? 'सुरक्षा नीति' : 'Security Policy' }}</h1>
 
-
-
-
-
-
             <!-- Privacy -->
             <section class="p-4 rounded mb-4 section-privacy">
                 <div class="policy-header"> {{ $language === 'hi' ? 'गोपनीयता नीति' : 'Privacy Policy' }}</div>
@@ -43,6 +38,20 @@
                                                                 A "cookie" is a piece of software code sent to your browser when you access a website. The BSIP website does not use cookies' !!}</p>
 
             </section>
+<!-- Hyperlinking Policy -->
+<section class="p-4 rounded mb-4 section-terms">
+    <div class="policy-header"> {{ $language === 'hi' ? 'हाइपरलिंकिंग नीति' : 'Hyperlinking Policy' }}</div>
+    {!! $language === 'hi'
+        ? '<p>इस वेबसाइट पर कई स्थानों पर आपको अन्य वेबसाइटों/पोर्टलों के लिंक मिल सकते हैं। ये लिंक केवल आपकी सुविधा के लिए प्रदान किए गए हैं। <strong>बीरबल साहनी जीवाश्म विज्ञान संस्थान (BSIP)</strong> इन लिंक की गई वेबसाइटों की सामग्री या विश्वसनीयता के लिए उत्तरदायी नहीं है, और उनमें व्यक्त विचारों का अनिवार्य रूप से समर्थन नहीं करता है। किसी लिंक की उपस्थिति या इस पोर्टल पर उसकी सूची को किसी भी प्रकार की स्वीकृति नहीं माना जाना चाहिए।</p>
+           <p>हम यह सुनिश्चित नहीं कर सकते कि ये लिंक हर समय कार्यशील रहेंगे, और लिंक किए गए पृष्ठों की उपलब्धता पर हमारा कोई नियंत्रण नहीं है।</p>
+           <p>जब तक अन्यथा उल्लेख न किया गया हो, तब तक हमारी वेबसाइट से सीधे लिंक करने के लिए किसी पूर्व अनुमति की आवश्यकता नहीं है। हालांकि, यदि आप हमारी साइट से लिंक करते हैं, तो हम अपेक्षा करते हैं कि आप हमें इसकी सूचना दें।</p>
+           <p>साथ ही, हम यह अनुमति नहीं देते कि हमारी वेबसाइट के पृष्ठ किसी अन्य साइट पर फ्रेम में लोड किए जाएं। हमारे वेबसाइट के पृष्ठ उपयोगकर्ता के नए ब्राउज़र विंडो/टैब में खुलने चाहिए।</p>'
+        : '<p>At various locations on this website, you may find links to external websites or portals. These links are provided solely for your convenience. The <strong>Birbal Sahni Institute of Palaeosciences (BSIP)</strong> is not responsible for the content or reliability of these linked websites and does not necessarily endorse the views expressed within them. The mere presence of a link or its inclusion on this portal should not be considered as an endorsement of any kind.</p>
+           <p>We do not guarantee the functionality of these external links at all times, and we have no control over the availability or performance of the linked pages.</p>
+           <p>Direct linking to our website is permitted without prior permission unless explicitly stated otherwise. However, we do request that you inform us when you provide a link to our site.</p>
+           <p>Please note, we do not allow our website’s pages to be loaded into frames on any other website. BSIP web pages must open in a new browser window or tab.</p>' 
+    !!}
+</section>
 
             <!-- Terms of Use -->
             <section class="p-4 rounded mb-4 section-terms">

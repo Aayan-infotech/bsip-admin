@@ -12,13 +12,13 @@
     border-radius: 10px;
     box-shadow: 0 1.2rem 20px rgba(0, 0, 0, 0.25);
     margin: 10px;
-    border-bottom: 5px solid #0262af !important;
+    border-bottom: 5px solid #004b8c !important;
 }
 
 .card:hover {
     transform: scale(1.03);
     transition: 0.5s;
-    border: 3px solid #0262af;
+    border: 3px solid #004b8c;
 }
 
 .card-image img {
@@ -79,7 +79,7 @@
 }
 
 .header-section-profiles {
-    background-color: #0262af;
+    background-color: #004b8c;
     text-align: center;
     padding: 10px;
     color: #fff;
@@ -98,7 +98,7 @@
     text-decoration: none;
     text-align: center;
     width: 40%;
-    background-color: #0262af;
+    background-color: #004b8c;
     /* Primary blue color */
     color: #fff !important;
     font-size: 18px;
@@ -114,7 +114,7 @@
 }
 
 .button-profile-card:hover {
-    background-color: #0262af !important;
+    background-color: #004b8c !important;
     color: #fff !important;
     /* Darker blue on hover */
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
@@ -270,12 +270,15 @@
 }
 
 .footer-link a:hover {
-    color: #0262af;
+    color: #004b8c;
 }
 
 .contact-info {
     color: #fff;
     font-size: 14px;
+}
+.contact-info a{
+    text-decoration: none ;
 }
 .site-visitors-counter {
     color: #fff !important;
@@ -422,7 +425,7 @@
 .dropdown-menu {
     display: none;
     position: absolute;
-    background-color: #0262af;
+    background-color: #004b8c;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
     left: 40%;
@@ -440,7 +443,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: #0262af;
+    background-color: #004b8c;
 }
 
 /* Style for each dropdown item */
@@ -453,7 +456,7 @@
 
 /* Hover effect for dropdown items */
 .dropdown-item:hover {
-    color: #0262af !important;
+    color: #004b8c !important;
 }
 
 /* Styling for the parent menu link */
@@ -755,7 +758,7 @@
     border: none;
     border-radius: 10px;
     box-shadow: 0 1.2rem 20px rgba(0, 0, 0, 0.25);
-    border-bottom: 5px solid #0262af !important;
+    border-bottom: 5px solid #004b8c !important;
     transition: all 0.3s ease-in-out; /* Smooth transition */
     margin-bottom: 40px;
 }

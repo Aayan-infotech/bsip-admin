@@ -45,7 +45,7 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <img src="{{ asset('assets-new/assets/images/services/macration.jpg') }}"
-                                        class="img-history img-fluid" alt="Image">
+                                        class="img-history img-fluid" alt="Maceration Image">
                                 </div>
                             </div>
                             <p>{{ $language === 'hi' ? 'तलछट से जैविक अवशेषों की पुनर्प्राप्ति के लिए नवीनतम मैक्रेशन सुविधाएं उपलब्ध हैं।':'Latest Maceration facilities are available for the recovery of organic remains from the
