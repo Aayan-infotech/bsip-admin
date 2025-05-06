@@ -1,5 +1,8 @@
 @extends('website.layouts.app')
-
+@push('meta-tags')
+    <meta name="description"
+        content="Welcome to the Birbal Sahni Institute of Palaeosciences (BSIP), India's leading research institute in palaeobotany, palaeobiology, and earth sciences, advancing the study of plant fossils and Earth's history.">
+@endpush
 @section('content')
     <section>
         <div class="container-fluid p-0">

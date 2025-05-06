@@ -7,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
 
     <meta name="format-detection" content="telephone=no" />
-    <meta name="description" content="">
-    <meta name="author" content="">
+    @stack('meta-tags')
+    <meta name="author" content="Birbal Sahni Institute of Palaeosciences">
+    <meta name="keywords"
+        content="BSIP, Birbal Sahni Institute of Palaeosciences, Palaeobotany, Palaeobiology, Research,
+        Science, Education, India">
     <link rel="apple-touch-icon" href="{{ asset('assets-new/assets/images/favicon/bsip-favicon.png') }}">
     <link rel="icon" href="{{ asset('assets-new/assets/images/favicon/bsip-favicon.png') }}">
     <!-- <title>{{ $language === 'hi' ? 'मुख्य पृष्ठ | बीरबल साहनी पुरावनस्पतिविज्ञान संस्थान' : 'Home | Birbal Sahni Institute of Palaeosciences' }}</title> -->

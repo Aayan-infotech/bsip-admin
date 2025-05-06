@@ -1,4 +1,8 @@
 @extends('website.layouts.app')
+@push('meta-tags')
+<meta name="description"
+content="Explore the adventurous life of Prof. Birbal Sahni — from sports and student life at Cambridge to his legendary Himalayan treks that enriched his pioneering palaeobotanical research.">
+@endpush
 
 @section('content')
 <section>
