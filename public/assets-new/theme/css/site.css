@@ -135,6 +135,7 @@ ul#nav li a i.fa-home {
 	padding: 0px;
 	font-weight: 600;
 	font-size: 100%;
+	text-decoration: none;
 }
 
 .gallery-heading a.bttn-more.bttn-view {
@@ -248,7 +249,7 @@ ul#nav li a i.fa-home {
 }
 
 .banner-wrapper .flex-direction-nav a {
-	opacity: .5
+	opacity: 1;
 }
 
 .banner-wrapper .flex-direction-nav a::before {
@@ -1908,7 +1909,7 @@ ul.ul-v>li a {
 }
 
 .video-icon {
-	background: #015296;
+	background: #004b8c;
 	text-align: center;
 }
 

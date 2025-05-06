@@ -10,7 +10,7 @@
                             <li class="ico-skip cf"><a href="{{ route('frontend.help',['language'=>$language]) }}" title="">{{ $language === 'hi' ? 'स्क्रीन रीडर एक्सेस':'Screen Reader Access' }}</a>
                             </li>
                             <li class="ico-site-search cf">
-                                <a href="#" id="toggleSearch" title="Site Search" role="link">
+                                <a href="#" id="toggleSearch" title="Site Search" role="link" class="text-dark">
                                     <img class="top"
                                         src="{{ asset('assets-new/assets/images/ico-site-search.png') }}"
                                         alt="Site Search" /></a>
@@ -56,7 +56,7 @@
                                 </div>
                             </li>
                             <li class="ico-social cf">
-                                <a href="#" id="toggleSocial" title="Social Medias" role="link">
+                                <a href="#" id="toggleSocial" title="Social Medias" role="link" class="text-dark">
                                     <img class="top" src="{{ asset('assets-new/assets/images/ico-social.png') }}"
                                         alt="Social Medias" /></a>
                                 <ul>
@@ -72,7 +72,7 @@
                             </li>
                             <li class="ico-sitemap cf">
                                 <a href="{{ route('frontend.sitemap', ['language' => $language]) }}" title="Sitemap"
-                                    role="link" aria-label="sitemap">
+                                    role="link" aria-label="sitemap" class="text-dark">
                                     <img class="top" src="{{ asset('assets-new/assets/images/ico-sitemap.png') }}"
                                         alt="Sitemap" /></a>
                             </li>

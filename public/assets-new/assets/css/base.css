@@ -903,7 +903,7 @@ th {
     /*font-size: 65%;*/
     font-size: 15px;
     text-align: center;
-    border-left: 1px solid #e2e0e0;
+    border-left: 1px solid #000000;
 }
 .common-right ul .language > a {
     background-image: none !important;
@@ -1066,6 +1066,7 @@ th {
     opacity: 1;
 }
 .common-right ul > li > a {
+    color: #000;
     padding: 6px;
     font-size: 120%;
 }

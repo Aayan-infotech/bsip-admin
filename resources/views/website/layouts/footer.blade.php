@@ -25,7 +25,7 @@
                     </p>
 
                     <!-- Social Links -->
-                    <div class="mt-1">
+                    <div class="mt-1 footer-link">
                         <ul class="list-inline">
                             @foreach ($socialLinks as $link)
                                 <li class="list-inline-item">
