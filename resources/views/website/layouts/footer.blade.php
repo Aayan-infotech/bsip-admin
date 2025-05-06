@@ -92,7 +92,7 @@
                         {{ $language === 'hi' ? 'महत्वपूर्ण लिंक' : 'Other Links' }}
                     </h4>
                     <div class="important-links">
-                        <ul class="list-unstyled footer-link">
+                        <ul class="list-unstyled footer-link mt-4">
                             <li><a href="https://quiz.mygov.in/" target="_blank" onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'माईगव क्विज़' : 'MyGov Quiz' }}</a></li>
                             <li><a href="https://transformingindia.mygov.in/" target="_blank" onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'ट्रांसफॉर्मिंग इंडिया' : 'Transforming India' }}</a></li>
                             <li><a href="https://innovate.mygov.in/" target="_blank" onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'माईगव नवाचार' : 'MyGov Innovation' }}</a></li>
