@@ -40,7 +40,7 @@
           <!-- Home -->
           <ul>
           <li class="root-node">
-            <a href="{{ $language === 'hi' ? url('hi') : url('en') }}">
+            <a href="{{ $language === 'hi' ? url('/hi') : url('/en') }}">
             <span class="node-content">
               <i class="fas fa-home"></i>
               {{ $language === 'hi' ? 'मुख्य पृष्ठ' : 'Home' }}
@@ -51,12 +51,13 @@
             <ul>
             <!-- About BSIP -->
             <li>
-              <a href="{{ $language === 'hi' ? url('hi/about') : url('en/about') }}">
-              <span class="node-content">
-                <i class="fas fa-info-circle"></i>
-                {{ $language === 'hi' ? 'बीएसआईपी के बारे में' : 'Profile' }}
-              </span>
+              <a href="javascript:void(0)">
+                <span class="node-content">
+                  <i class="fas fa-info-circle"></i>
+                  {{ $language === 'hi' ? 'बीएसआईपी के बारे में' : 'About Us' }}
+                </span>
               </a>
+              
               <div class="submenu-list" style="display: block;">
               <ul>
                 <li><a
@@ -115,12 +116,13 @@
 
             <!-- Administration -->
             <li>
-              <a href="{{ $language === 'hi' ? url('hi/administration') : url('en/administration') }}">
-              <span class="node-content">
-                <i class="fas fa-sitemap"></i>
-                {{ $language === 'hi' ? 'संरचना' : 'Structure' }}
-              </span>
+              <a href="javascript:void(0)">
+                <span class="node-content">
+                  <i class="fas fa-sitemap"></i>
+                  {{ $language === 'hi' ? 'संरचना' : 'Structure' }}
+                </span>
               </a>
+              
               <div class="submenu-list" style="display: block;">
               <ul>
                 <li>
@@ -185,12 +187,13 @@
 
             <!-- Staff -->
             <li>
-              <a href="{{ $language === 'hi' ? url('hi/staff') : url('en/staff') }}">
-              <span class="node-content">
-                <i class="fas fa-user-friends"></i>
-                {{ $language === 'hi' ? 'कर्मचारी' : 'Staff' }}
-              </span>
+              <a href="javascript:void(0)">
+                <span class="node-content">
+                  <i class="fas fa-user-friends"></i>
+                  {{ $language === 'hi' ? 'कर्मचारी' : 'Staff' }}
+                </span>
               </a>
+              
               <div class="submenu-list" style="display: block;">
               <ul>
                 <li>
@@ -493,7 +496,7 @@
 
             <!-- Rajbhasha Patal -->
             <li>
-              <a href="{{ $language === 'hi' ? url('hi/rajbhasha') : url('en/rajbhasha') }}">
+              <a href="{{ $language === 'hi' ? url('hi/bsip_rajbhasha_patal') : url('en/bsip_rajbhasha_patal') }}">
               <span class="node-content">
                 <i class="fas fa-language"></i>
                 {{ $language === 'hi' ? 'राजभाषा पटल' : 'Rajbhasha Patal' }}
