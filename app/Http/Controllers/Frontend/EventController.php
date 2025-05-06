@@ -11,7 +11,7 @@ use App\Models\Logo;
 use App\Models\MenuPage;
 use App\Models\News;
 use App\Models\OnlineFeedbackForm;
-use App\Models\outreachProgram;
+use App\Models\OutreachProgram;
 use App\Models\Pastevents;
 use App\Models\RajBhashaPortal;
 use App\Models\SocialLink;
@@ -224,7 +224,7 @@ class EventController extends Controller
 
     public function outreachProgram(Request $request)
     {
-        $outreachProgram = outreachProgram::where('status', 1)
+        $outreachProgram = OutreachProgram::where('status', 1)
             ->orderBy('created_at', 'desc')
             ->get();
 
