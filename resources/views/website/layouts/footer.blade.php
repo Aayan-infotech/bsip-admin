@@ -87,18 +87,7 @@
 
             <!-- Site Visitors Section -->
             <div class="col-lg-2 col-6">
-                <div class="visitor-section">
-                    <h4 class="footer-heading mb-3" style="font-weight: bold; color: #1565c0;">
-                        {{ $language === 'hi' ? 'साइट आगंतुक' : 'Site Visitors' }}
-                    </h4>
-                    <div class="visitor-counter"
-                        style="background: #f7f7f7; padding: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                        <p style="font-size: 18px; font-weight: bold; margin: 0; color: #000000;">
-                            {{ $language === 'hi' ? 'आगंतुक : ' . $visitorCount : 'Visitors : ' . $visitorCount }}
-                        </p>
-                    </div>
-                </div>
-                <div class="mt-3">
+                <div class="">
                     <h4 class="footer-heading" style="font-weight: bold; color: #1565c0;">
                         {{ $language === 'hi' ? 'महत्वपूर्ण लिंक' : 'Other Links' }}
                     </h4>
@@ -114,6 +103,18 @@
                         </ul>
                     </div>
                 </div>
+                <div class="visitor-section">
+                    {{-- <h4 class="footer-heading mb-3" style="font-weight: bold; color: #1565c0;">
+                        {{ $language === 'hi' ? 'साइट आगंतुक' : 'Site Visitors' }}
+                    </h4> --}}
+                    <div class="visitor-counter"
+                        style="background: #f7f7f7; padding: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <p style="font-size: 18px; font-weight: bold; margin: 0; color: #000000;">
+                            {{ $language === 'hi' ? 'आगंतुक : ' . $visitorCount : 'Visitors : ' . $visitorCount }}
+                        </p>
+                    </div>
+                </div>
+                
 
             </div>
 

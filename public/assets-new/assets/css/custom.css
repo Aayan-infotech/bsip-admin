@@ -62,7 +62,7 @@
 }
 
 .card-content a {
-    color: #000;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -88,6 +88,9 @@
 .auto-scroll a{
     text-decoration: none;
     color:#004b8c !important;
+}
+.auto-scroll span{
+    color:#000;
 }
 
 .paragraph-profile-card {

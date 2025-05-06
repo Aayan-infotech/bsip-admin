@@ -137,7 +137,9 @@ ul#nav li a i.fa-home {
 	font-size: 100%;
 	text-decoration: none;
 }
-
+.gallery-area a span{
+	color:#000;
+}
 .gallery-heading a.bttn-more.bttn-view {
 	border-bottom: 2px solid #000;
 }
@@ -1254,7 +1256,7 @@ li.nav-item:hover {
 .main-menu a.btn-more.opened:hover,
 .main-menu a.btn-more.opened:focus {
 	background-color: #E22D15!important;
-	color: #red!important
+	color: red !important
 }
 
 .main-menu .sub-nav ul li a:hover {
@@ -3641,14 +3643,14 @@ button.text-slide1.pause::after {
 
 .gallery-heading a.bttn-more.bttn-view:after {
 	content: "\2192";
-	color: #e22d15;
+	color: #000;
 	padding-left: 0px;
 	text-decoration: none;
 }
 
 .gallery-right a.bttn-more.bttn-view:after {
 	content: "\2192";
-	color: #e22d15;
+	color: #000;
 	padding-left: 5px;
 	font-size: 15px;
 	text-decoration: none;
