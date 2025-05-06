@@ -40,20 +40,20 @@
                                 <th scope="col" class="text-center">#<br></th>
                                 <th scope="col" class="text-center">
                                     {{ $language === 'hi' ? 'शीर्षक' : 'Title' }}<br><small
-                                        class="text-muted">{{ $language === 'hi' ? '(शीर्षक)' : '(Title)' }}</small></th>
+                                        class="text-muted"  style="color: #b3b3b3 !important;">{{ $language === 'hi' ? '(शीर्षक)' : '(Title)' }}</small></th>
                                 <th scope="col" class="text-center">{{ $language === 'hi' ? 'पीडीएफ' : 'PDF' }}<br><small
-                                        class="text-muted">{{ $language === 'hi' ? '(पीडीएफ)' : '(PDF)' }}</small></th>
+                                        class="text-muted"  style="color: #b3b3b3 !important;">{{ $language === 'hi' ? '(पीडीएफ)' : '(PDF)' }}</small></th>
                                 <th scope="col" class="text-center">
                                     {{ $language === 'hi' ? 'डाउनलोड करें' : 'Word Document' }}
                                     <br>
                                     <small class="text-muted"
-                                        style="color: #979797 !important;">{{ $language === 'hi' ? '(अंग्रेज़ी)' : '(English)' }}</small>
+                                        style="color: #b3b3b3!important;">{{ $language === 'hi' ? '(अंग्रेज़ी)' : '(English)' }}</small>
                                 </th>
                                 <th scope="col" class="text-center">
                                     {{ $language === 'hi' ? 'डाउनलोड करें' : 'Word Document' }}
                                     <br>
                                     <small class="text-muted"
-                                        style="color: #979797 !important;">{{ $language === 'hi' ? '(हिंदी)' : '(Hindi)' }}</small>
+                                        style="color: #b3b3b3 !important;">{{ $language === 'hi' ? '(हिंदी)' : '(Hindi)' }}</small>
                                 </th>
                             </tr>
                         </thead>
