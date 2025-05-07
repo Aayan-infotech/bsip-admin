@@ -62,7 +62,7 @@
 }
 
 .card-content a {
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
 }
 
@@ -84,6 +84,9 @@
     color: #fff;
     margin: 0;
     font-size: 18px;
+}
+.header-section-profiles a{
+    text-decoration: none;
 }
 .auto-scroll a{
     text-decoration: none;
@@ -225,7 +228,7 @@
 .slider-title {
     font-size: 16px;
     font-weight: bold;
-    color: #333;
+    color: #000;
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -971,4 +974,7 @@
 }
 .contact-page-form form {
     padding: 20px 15px 0;
+}
+.ytp-info-panel-preview{
+    background: #000 !important;
 }

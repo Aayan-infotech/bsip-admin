@@ -676,7 +676,6 @@
                         <div class="video-wrapper">
                             <iframe width="100%" height="315" src="https://www.youtube.com/embed/NpKQ1LPbrfE"
                                 title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                         </div>
                     </div>
@@ -704,7 +703,7 @@
                                     src="assets-new/assets/images/carousel/makeinindia.png" alt="Make In India"></a>
                         </li>
                         <li>
-                            <a target="_blank" href="http://india.gov.in/"
+                            <a target="_blank" href="https://www.india.gov.in/"
                                 title="National Portal of India, External Link that opens in a new window" onclick="return confirmExternalLink()"><img
                                     src="assets-new/assets/images/carousel/india-gov.png"
                                     alt="National Portal of India"></a>

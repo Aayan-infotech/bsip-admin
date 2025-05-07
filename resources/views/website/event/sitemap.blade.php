@@ -197,7 +197,7 @@
               <div class="submenu-list" style="display: block;">
               <ul>
                 <li>
-                <a href="{{ $language === 'hi' ? url('hi/staff/director') : url('en/staff/director') }}">
+                <a href="{{ $language === 'hi' ? url('hi/director') : url('en/director') }}">
                   <span class="node-content"><i class="fas fa-user-tie"></i>
                   {{ $language === 'hi' ? 'निदेशक' : 'Director' }}</span>
                 </a>
@@ -374,7 +374,7 @@
               <div class="submenu-list" style="display: block;">
               <ul>
                 <li><a
-                  href="{{ $language === 'hi' ? url('hi/career/bsip-recruitment') : url('en/career/bsip-recruitment') }}">
+                  href="{{ $language === 'hi' ? url('https://bsiprecruitment.in/') : url('https://bsiprecruitment.in/') }}">
                   <span class="node-content"><i class="fas fa-user-plus"></i>
                   {{ $language === 'hi' ? 'बीएसआईपी भर्ती पोर्टल' : 'BSIP Recruitment Portal' }}</span></a>
                 </li>

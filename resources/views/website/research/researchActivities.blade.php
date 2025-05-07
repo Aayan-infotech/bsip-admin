@@ -106,7 +106,7 @@
                                                         </tbody>
                                                     </table>
                                                     @if ($activity->projects->isNotEmpty())
-                                                        <button class="btn btn-sm btn-primary"
+                                                        <button class="btn btn-sm btn-dark"
                                                             onclick="toggleComponents({{ $activity->id }},this)">
                                                             {{ $language === 'hi' ? 'प्रोजेक्ट घटक देखें' : 'View Project Components' }}
                                                         </button>
