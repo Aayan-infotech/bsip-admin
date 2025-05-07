@@ -40,6 +40,7 @@ use App\Http\Controllers\UserRightsController;
 use App\Http\Controllers\Users\UserController;
 use App\Models\LanguageSetting;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\BlogController;
 
 Auth::routes();
 
@@ -330,6 +331,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('contact_us', [StaffManagementController::class, 'contactUs'])->name('contactUs.admin');
     Route::get('contactUsList', [StaffManagementController::class, 'contactUsList'])->name('contactUsList.admin');
+
+
+    // Blog Management
+    Route::get('blogs', [BlogController::class, 'index'])->name('blogs.index');
+    Route::post('blogs/store', [BlogController::class, 'store'])->name('blogs.store');
+    Route::get('blogs/list', [BlogController::class, 'getBlogs'])->name('blogs.list');
+    Route::get('blogs/edit/{id}', [BlogController::class, 'edit'])->name('blogs.edit');
+    Route::post('blogs/update/{id}', [BlogController::class, 'update'])->name('blogs.update');
+    Route::post('blogs/toggleStatus', [BlogController::class, 'toggleStatus'])->name('blogs.toggleStatus');
 });
 
 Route::get('/initialize-visitor-count', function () {
@@ -438,9 +448,13 @@ Route::group(['prefix' => '{language}', 'where' => ['language' => 'en|hi']], fun
     Route::get('sitemap', [EventController::class, 'sitemap'])->name('frontend.sitemap');
     Route::get('bsip_news', [EventController::class, 'news'])->name('frontend.news');
     Route::get('bsip_outreach-program', [EventController::class, 'outreachProgram'])->name('frontend.outreachProgram');
+    Route::get('bsip_media_cell', [EventController::class, 'allBlogs'])->name('frontend.mediaCell');
+    Route::get('bsip_media_cell/{slug}', [EventController::class, 'show'])->name('frontend.blog.show');
 
 
     // Feedback Form
     Route::post('feedback_form', [EventController::class, 'feedbackForm'])->name('feedbackForm');
     Route::post('contact_us', [EventController::class, 'contactUsForm'])->name('contactUsForm');
+
+    Route::get('policies', [EventController::class, 'policies'])->name('frontend.policies');
 });

@@ -114,7 +114,7 @@
                         </p>
                     </div>
                 </div>
-                
+
 
             </div>
 
@@ -122,7 +122,7 @@
             <div class="divider" style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
             <div class="row text-center">
                 <div class="col-md-2 footer-link"><a
-                    href="{{ route('frontend.copyRightPolicy', ['language' => $language]) }}"
+                    href="{{ route('frontend.policies', ['language' => $language]) }}#policy-copyright"
                     class="text-white"
                     aria-label="{{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}">
                     {{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}
@@ -130,7 +130,7 @@
 
                 </div>
                 <div class="col-md-2 footer-link"><a
-                    href="{{ route('frontend.securityPolicy', ['language' => $language]) }}"
+                    href="{{ route('frontend.policies', ['language' => $language]) }}#policy-security"
                     class="text-white"
                     aria-label="{{ $language === 'hi' ? 'सुरक्षा नीति' : 'Security Policy' }}">
                     {{ $language === 'hi' ? 'सुरक्षा नीति' : 'Security Policy' }}

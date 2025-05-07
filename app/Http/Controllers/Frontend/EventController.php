@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Blog;
 
 class EventController extends Controller
 {
@@ -302,4 +303,30 @@ class EventController extends Controller
             return response()->json(['error' => 'Failed to submit Contact Us!'], 500);
         }
     }
+
+
+    public function policies(Request $request)
+    {
+        return view('website.event.policies', $this->sharedData);
+    }
+
+
+    public function allBlogs(Request $request)
+    {
+        $language = $request->input('language', 'en');
+        $this->sharedData['pageTitle'] = $language === 'hi' ? 'मीडिया सेल' : 'Media Cell';
+        $allBlogs = Blog::where('status', 1)->paginate(12);
+        $data = $allBlogs->items();
+
+        return view('website.event.mediaCell', $this->sharedData, compact('allBlogs', 'data'));
+    }
+
+    public function show($lang, $slug)
+    {
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+        $this->sharedData['pageTitle'] = $lang === 'hi' ? $blog->hin_title : $blog->title;
+        return view('website.blog.show', $this->sharedData, compact('blog'));
+    }
+
+
 }
