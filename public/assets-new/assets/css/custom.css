@@ -978,3 +978,8 @@
 .ytp-info-panel-preview{
     background: #000 !important;
 }
+
+
+.ytp-small-mode .ytp-info-panel-preview{
+    background: #000 !important;
+}

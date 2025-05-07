@@ -22,7 +22,7 @@
     </section>
     <section class="contact-page-sec">
         <div class="container">
-            <h2 class="text-center mb-4">Get in Touch</h2>
+            <h2 class="text-center mb-4">{{ $language === 'hi' ? 'संपर्क करें' : 'Get in Touch' }}</h2>
             <div class="row">
                 <div class="col-md-4">
                     <div class="contact-info-1">
@@ -31,9 +31,9 @@
                                 <i class="fas fa-map-marked"></i>
                             </div>
                             <div class="contact-info-text">
-                                <h2>Address</h2>
-                                <span>53 University Road,</span>
-                                <span>Lucknow - 226007, Uttar Pradesh, India</span>
+                                <h2>{{ $language === 'hi' ? 'पता' : 'Address' }}</h2>
+                                <span>{{ $language === 'hi' ? '53 विश्वविद्यालय रोड,' : '53 University Road,' }}</span>
+                                <span>{{ $language === 'hi' ? 'लखनऊ - 226007, उत्तर प्रदेश, भारत' : 'Lucknow - 226007, Uttar Pradesh, India' }}</span>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div class="contact-info-text">
-                                <h2>E-mail</h2>
+                                <h2>{{ $language === 'hi' ? 'ई-मेल' : 'E-mail' }}</h2>
                                 <span>director[at]bsip[dot]res[dot]in</span>
                                 <span>registrar[at]bsip[dot]res[dot]in</span>
                             </div>
@@ -59,7 +59,7 @@
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div class="contact-info-text">
-                                <h2>Phone</h2>
+                                <h2>{{ $language === 'hi' ? 'फोन' : 'Phone' }}</h2>
                                 <span>+91-522-2742903</span>
                                 <span>+91-522-2742902</span>
                             </div>
@@ -70,43 +70,43 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="contact-page-form" method="post">
-                        <h2 class="text-center">Send us Your Query!</h2>
+                        <h2 class="text-center">{{ $language === 'hi' ? 'हमें अपना प्रश्न भेजें!' : 'Send us Your Query!' }}</h2>
                         <div class="alert" role="alert" id="feedbackMessage"></div>
                         <form id="contactForm" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="single-input-field">
-                                        <input type="text" placeholder="Your Name" name="name" />
+                                        <input type="text" placeholder="{{ $language === 'hi' ? 'आपका नाम' : 'Your Name' }}" name="name" />
                                         <span class="text-danger error-name"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="single-input-field">
-                                        <input type="email" placeholder="E-mail" name="email"  />
+                                        <input type="email" placeholder="{{ $language === 'hi' ? 'ई-मेल' : 'E-mail' }}" name="email"  />
                                         <span class="text-danger error-email"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="single-input-field">
-                                        <input type="text" placeholder="Phone Number" name="phone" />
+                                        <input type="text" placeholder="{{ $language === 'hi' ? 'फोन नंबर' : 'Phone Number' }}" name="phone" />
                                         <span class="text-danger error-phone"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="single-input-field">
-                                        <input type="text" placeholder="Subject" name="subject" />
+                                        <input type="text" placeholder="{{ $language === 'hi' ? 'विषय' : 'Subject' }}" name="subject" />
                                         <span class="text-danger error-subject"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-12 message-input">
                                     <div class="single-input-field">
-                                        <textarea placeholder="Write Your Message" name="message"></textarea>
+                                        <textarea placeholder="{{ $language === 'hi' ? 'अपना संदेश लिखें' : 'Write Your Message' }}" name="message"></textarea>
                                         <span class="text-danger error-message"></span>
                                     </div>
                                 </div>
                                 <div class="single-input-fieldsbtn">
-                                    <input type="submit" value="Submit"  id="submitButton"/>
+                                    <input type="submit" value="{{ $language === 'hi' ? 'भेजें' : 'Submit' }}"  id="submitButton"/>
                                 </div>
                                 {{-- <div class="text-center">
                                     <button type="submit" id="submitButton" class="btn btn-primary btn-submit">Submit</button>

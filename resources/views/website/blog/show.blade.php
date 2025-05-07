@@ -41,8 +41,8 @@
 
                             </div>
                         </div>
-                        <img src="{{ $blog->image ? $blog->image : asset('assets-new/assets/images/bsip-imgd.png')}}"
-                            alt="AI Technology" class="img-fluid "  />
+                        <img src="{{ $blog->image ? $blog->image : asset('assets-new/assets/images/bsip-imgd.png') }}"
+                            alt="AI Technology" class="img-fluid " />
 
                         {!! $language === 'hi' ? $blog->hin_description : $blog->description !!}
                     </article>

@@ -150,7 +150,9 @@
                         class="text-white">{{ $language === 'hi' ? 'मदद' : 'Help' }}</a></div>
                 <div class="col-md-2 footer-link"><a
                         href="{{ route('frontend.contactUs', ['language' => $language]) }}" class="text-white">
-                        {{ $language === 'hi' ? 'संपर्क करें' : 'Contact Us' }}</a></div>
+                        {{ $language === 'hi' ? 'वेब सूचना प्रबंधक' : 'Web Information Manager' }}</a></div>
+
+
                 <div class="col-md-2 footer-link"><a
                         href="https://www.india.gov.in/" target="_blank"
                         aria-label="National Portal"
