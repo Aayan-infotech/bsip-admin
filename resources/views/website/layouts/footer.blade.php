@@ -147,7 +147,7 @@
 
 
                 <div class="col-md-2 footer-link"><a href="{{ route('frontend.help', ['language' => $language]) }}"
-                        class="text-white">{{ $language === 'hi' ? 'मदद' : 'Help' }}</a></div>
+                        class="text-white">{{ $language === 'hi' ? 'सहायता' : 'Help' }}</a></div>
                 <div class="col-md-2 footer-link"><a
                         href="{{ route('frontend.contactUs', ['language' => $language]) }}" class="text-white">
                         {{ $language === 'hi' ? 'वेब सूचना प्रबंधक' : 'Web Information Manager' }}</a></div>
