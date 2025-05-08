@@ -646,7 +646,7 @@
             <div class="wrapper home-btm-slider">
                 <div class="container common-container four_content gallery-container">
                     <div class="gallery-area clearfix">
-                        <div class="gallery-heading text-center" role="main">
+                        <div class="gallery-heading text-center">
                             <h3>{{ $language === 'hi' ? 'फोटो गैलरी' : 'Photo Gallery' }}</h3>
                             <a class="bttn-more bttn-view"
                                 href="{{ $language }}/{{ $language === 'hi' ? 'bsip_rajbhasha_patal' : 'bsip_rajbhasha_patal' }}"
