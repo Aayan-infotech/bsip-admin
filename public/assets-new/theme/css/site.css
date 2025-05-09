@@ -2138,7 +2138,7 @@ em {
 	line-height: 34px;
 	padding: 0 40px 0 8px;
 	width: 270px;
-	background: url(../images/menu-bullet.png) #fff no-repeat 8px 12px;
+	background: #fff no-repeat 8px 12px;
 	font-family: 'Lato', sans-serif;
 	font-weight: 600;
 }
@@ -2883,7 +2883,7 @@ h2.resp-accordion {
 
 .four_content .common-left ul li {
 	padding-top: 10px;
-	
+
 }
 
 .common-left ul li {
@@ -2995,7 +2995,7 @@ h2 small {
 }
 @media(max-width:768px){
     .common-left a {
-	
+
 	font-size:11px;
 }
 }

@@ -10,31 +10,16 @@
                             <li class="ico-skip cf"><a href="{{ route('frontend.help',['language'=>$language]) }}" title="">{{ $language === 'hi' ? 'स्क्रीन रीडर एक्सेस':'Screen Reader Access' }}</a>
                             </li>
                             <li class="ico-site-search cf">
-                                <a href="#" id="toggleSearch" title="Site Search" role="link" class="text-dark">
+                                <a href="javascript:void(0)" id="toggleSearch" title="Site Search" role="link" class="text-dark">
                                     <img class="top"
                                         src="{{ asset('assets-new/assets/images/ico-site-search.png') }}"
                                         alt="Site Search" /></a>
                                 <div class="search-drop both-search">
-                                    <div class="google-find">
-                                        <form method="get" action="http://www.google.com/search" target="_blank">
-                                            <label for="search_key_g" class="notdisplay">Search</label>
-                                            <input type="text" name="q" value="" id="search_key_g" />
-                                            <input type="submit" value="Search" class="submit" />
-                                            <fieldset>
-                                                <legend>Search Options</legend>
-                                                <input type="radio" name="sitesearch" value="" id="the_web">
-                                                <label for="the_web">The Web</label>
-                                                <input type="radio" name="sitesearch" value="india.gov.in" checked
-                                                    id="the_domain">
-                                                <label for="the_domain">INDIA.GOV.IN</label>
-                                            </fieldset>
-                                        </form>
-                                    </div>
                                     <div class="find">
-                                        <form name="searchForm" action="#">
-                                            <label for="search_key" class="notdisplay">Search</label>
-                                            <input type="text" name="search_key" id="search_key"
-                                                onKeyUp="autoComplete()" autocomplete="off" required />
+                                        <form name="searchForm" id="searchForm" action="{{ route('frontend.search', ['language' => $language]) }}">
+                                            <label for="search" class="notdisplay">Search</label>
+                                            <input type="text" name="search" id="search"
+                                                 autocomplete="off" required value="{{ old('search') }}" />
                                             <input type="submit" value="Search" class="bttn-search" />
                                         </form>
                                         <div id="auto_suggesion"></div>

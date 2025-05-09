@@ -13,10 +13,15 @@
                         <a href="/"
                             aria-label="मुख्य पृष्ठ पर जाएं">{{ $language === 'hi' ? 'मुख्य पृष्ठ' : 'Home' }}</a>
                     </li>
-                    <li class="breadcrumb-item active">
+                    <li class="breadcrumb-item">
                         <a href="#"
                             aria-label="{{ $language === 'hi' ? 'मीडिया सेल' : 'Media Cell' }}">{{ $language === 'hi' ? 'मीडिया सेल' : 'Media Cell' }}</a>
                     </li>
+                    <li class="breadcrumb-item active">
+                        <a href="{{ route('frontend.blog.show', ['language' => $language, 'slug' => $blog->slug]) }}"
+                            aria-label="{{ $language === 'hi' ? $blog->hin_title : $blog->title }}">{{ $language === 'hi' ? $blog->hin_title : $blog->title }}</a>
+                    </li>
+
                 </ul>
             </nav>
         </div>

@@ -112,6 +112,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'nullable|min:6|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -121,6 +122,9 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
         $user->save();
 
         return response()->json(['message' => 'User updated successfully!']);

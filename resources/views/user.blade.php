@@ -96,6 +96,16 @@
                         <label>Email:</label>
                         <input type="email" id="editEmail" readonly name="email" class="form-control" required>
                     </div>
+                    <div class="mb-3">
+                        <label>Password:</label>
+                        <input type="password" id="editPassword" name="password" class="form-control">
+                        <span class="text-danger error-password"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label>Confirm Password:</label>
+                        <input type="password" id="editPasswordConfirmation" name="password_confirmation" class="form-control">
+                        <span class="text-danger error-password_confirmation"></span>
+                    </div>
                     <button type="submit" class="btn btn-primary">Update User</button>
                 </form>
             </div>

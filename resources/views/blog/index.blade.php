@@ -133,7 +133,7 @@
 
         #editor,
         #hin_editor {
-            height:100px;
+            height: 100px;
         }
     </style>
 
@@ -144,17 +144,189 @@
             // Initialize Quill editor
             const quill = new Quill('#editor', {
                 theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{
+                            header: [1, 2, 3, 4, 5, 6, false]
+                        }],
+                        ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+                        ['blockquote', 'code-block'],
+                        [{
+                            list: 'ordered'
+                        }, {
+                            list: 'bullet'
+                        }],
+                        [{
+                            script: 'sub'
+                        }, {
+                            script: 'super'
+                        }], // superscript/subscript
+                        [{
+                            indent: '-1'
+                        }, {
+                            indent: '+1'
+                        }], // outdent/indent
+                        [{
+                            direction: 'rtl'
+                        }], // text direction
+                        [{
+                            size: ['small', false, 'large', 'huge']
+                        }], // custom dropdown
+                        [{
+                            color: []
+                        }, {
+                            background: []
+                        }], // dropdown with defaults
+                        [{
+                            font: []
+                        }],
+                        [{
+                            align: []
+                        }],
+                        ['link', 'image', 'video'], // media
+                        ['clean'] // remove formatting
+                    ]
+                }
             });
 
             const quillHindi = new Quill('#hin_editor', {
-                theme: 'snow'
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{
+                            header: [1, 2, 3, 4, 5, 6, false]
+                        }],
+                        ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+                        ['blockquote', 'code-block'],
+                        [{
+                            list: 'ordered'
+                        }, {
+                            list: 'bullet'
+                        }],
+                        [{
+                            script: 'sub'
+                        }, {
+                            script: 'super'
+                        }], // superscript/subscript
+                        [{
+                            indent: '-1'
+                        }, {
+                            indent: '+1'
+                        }], // outdent/indent
+                        [{
+                            direction: 'rtl'
+                        }], // text direction
+                        [{
+                            size: ['small', false, 'large', 'huge']
+                        }], // custom dropdown
+                        [{
+                            color: []
+                        }, {
+                            background: []
+                        }], // dropdown with defaults
+                        [{
+                            font: []
+                        }],
+                        [{
+                            align: []
+                        }],
+                        ['link', 'image', 'video'], // media
+                        ['clean'] // remove formatting
+                    ]
+                }
             });
             // Initialize Quill editor for edit modal
             const editQuill = new Quill('#editEditor', {
                 theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{
+                            header: [1, 2, 3, 4, 5, 6, false]
+                        }],
+                        ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+                        ['blockquote', 'code-block'],
+                        [{
+                            list: 'ordered'
+                        }, {
+                            list: 'bullet'
+                        }],
+                        [{
+                            script: 'sub'
+                        }, {
+                            script: 'super'
+                        }], // superscript/subscript
+                        [{
+                            indent: '-1'
+                        }, {
+                            indent: '+1'
+                        }], // outdent/indent
+                        [{
+                            direction: 'rtl'
+                        }], // text direction
+                        [{
+                            size: ['small', false, 'large', 'huge']
+                        }], // custom dropdown
+                        [{
+                            color: []
+                        }, {
+                            background: []
+                        }], // dropdown with defaults
+                        [{
+                            font: []
+                        }],
+                        [{
+                            align: []
+                        }],
+                        ['link', 'image', 'video'], // media
+                        ['clean'] // remove formatting
+                    ]
+                }
             });
             const editQuillHindi = new Quill('#editHinEditor', {
-                theme: 'snow'
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{
+                            header: [1, 2, 3, 4, 5, 6, false]
+                        }],
+                        ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+                        ['blockquote', 'code-block'],
+                        [{
+                            list: 'ordered'
+                        }, {
+                            list: 'bullet'
+                        }],
+                        [{
+                            script: 'sub'
+                        }, {
+                            script: 'super'
+                        }], // superscript/subscript
+                        [{
+                            indent: '-1'
+                        }, {
+                            indent: '+1'
+                        }], // outdent/indent
+                        [{
+                            direction: 'rtl'
+                        }], // text direction
+                        [{
+                            size: ['small', false, 'large', 'huge']
+                        }], // custom dropdown
+                        [{
+                            color: []
+                        }, {
+                            background: []
+                        }], // dropdown with defaults
+                        [{
+                            font: []
+                        }],
+                        [{
+                            align: []
+                        }],
+                        ['link', 'image', 'video'], // media
+                        ['clean'] // remove formatting
+                    ]
+                }
             });
 
 

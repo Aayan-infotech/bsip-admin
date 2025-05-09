@@ -41,6 +41,7 @@ use App\Http\Controllers\Users\UserController;
 use App\Models\LanguageSetting;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SearchController;
 
 Auth::routes();
 
@@ -457,4 +458,6 @@ Route::group(['prefix' => '{language}', 'where' => ['language' => 'en|hi']], fun
     Route::post('contact_us', [EventController::class, 'contactUsForm'])->name('contactUsForm');
 
     Route::get('policies', [EventController::class, 'policies'])->name('frontend.policies');
+
+    Route::get('search', [SearchController::class, 'search'])->name('frontend.search');
 });
