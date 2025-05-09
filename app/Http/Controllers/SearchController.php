@@ -164,6 +164,21 @@ class SearchController extends Controller
                 $name = $route->getName();
                 // dd($matchedTables);
 
+                $normalizedUri  = strtolower(str_replace(['_', '{', '}', '/'], ' ', $uri));
+                $normalizedName = $name ? strtolower(str_replace('_', ' ', $name)) : '';
+
+                $searchNormalized = strtolower($search);
+                $searchNormalized = str_replace('_', ' ', $searchNormalized);
+
+                // Match if search term is found in route URI or route name
+                if (str_contains($normalizedUri, $searchNormalized) || ($normalizedName && str_contains($normalizedName, $searchNormalized))) {
+                    $matchedPages[] = [
+                        'uri'  => $uri,
+                        'url'  => $name ? route($name, ['language' => $this->sharedData['language']]) : url($uri),
+                        'name' => $name ?? $uri,
+                    ];
+                }
+
                 if (
                     (array_key_exists('news', $matchedTables) && $route->uri() === '{language}/bsip_news') ||
                     (array_key_exists('research_highlights', $matchedTables) && $route->uri() === '{language}/bsip_research_activities') ||
