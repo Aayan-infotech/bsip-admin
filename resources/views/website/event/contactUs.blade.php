@@ -10,8 +10,7 @@
             <nav class="bio-breadcrumb" aria-label="Breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="/"
-                            aria-label="मुख्य पृष्ठ पर जाएं">{{ $language === 'hi' ? 'मुख्य पृष्ठ' : 'Home' }}</a>
+                        <a href="/" aria-label="मुख्य पृष्ठ पर जाएं">{{ $language === 'hi' ? 'मुख्य पृष्ठ' : 'Home' }}</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         {{ $language === 'hi' ? 'संपर्क करें' : 'Contact us' }}
@@ -23,7 +22,23 @@
     <section class="contact-page-sec">
         <div class="container">
             <h2 class="text-center mb-4">{{ $language === 'hi' ? 'संपर्क करें' : 'Get in Touch' }}</h2>
-            <div class="row">
+            <di class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="contact-info-1">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h2>{{ $language === 'hi' ? 'वेब सूचना प्रबंधक' : 'Web Information Manager' }}</h2>
+                                <span>{{ $language === 'hi' ? 'प्रो. महेश जी. ठक्कर (निदेशक)' : 'Prof. Mahesh G. Thakkar (Director)' }}</span>
+                                {{-- <span>{{ $language === 'hi' ? 'निदेशक, बीएसआईपी' : 'Director, BSIP' }}</span> --}}
+                                <span>Email: director[at]bsip[dot]res[dot]in</span>
+                                <span>Phone: +91-522-2742901</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-4">
                     <div class="contact-info-1">
                         <div class="contact-info-item">
@@ -32,12 +47,16 @@
                             </div>
                             <div class="contact-info-text">
                                 <h2>{{ $language === 'hi' ? 'पता' : 'Address' }}</h2>
-                                <span>{{ $language === 'hi' ? '53 विश्वविद्यालय रोड,' : '53 University Road,' }}</span>
-                                <span>{{ $language === 'hi' ? 'लखनऊ - 226007, उत्तर प्रदेश, भारत' : 'Lucknow - 226007, Uttar Pradesh, India' }}</span>
+                                <span>{{ $language === 'hi' ? 'बीरबल साहनी पुराविज्ञान संस्थान,' : 'Birbal Sahni Institute of Palaeosciences,' }}</span>
+                                <span>{{ $language === 'hi' ? '53 यूनिवर्सिटी रोड, लखनऊ - 226007,' : '53 University Road, Lucknow - 226007,' }}</span>
+                                <span>{{ $language === 'hi' ? 'उत्तर प्रदेश, भारत' : 'Uttar Pradesh, India' }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </di>
+            <div class="row justify-content-center">
+                
                 <div class="col-md-4">
                     <div class="contact-info-1">
                         <div class="contact-info-item">
@@ -60,7 +79,7 @@
                             </div>
                             <div class="contact-info-text">
                                 <h2>{{ $language === 'hi' ? 'फोन' : 'Phone' }}</h2>
-                                <span>+91-522-2742903</span>
+                                <span>+91-522-2742901</span>
                                 <span>+91-522-2742902</span>
                             </div>
                         </div>
@@ -70,46 +89,56 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="contact-page-form" method="post">
-                        <h2 class="text-center">{{ $language === 'hi' ? 'हमें अपना प्रश्न भेजें!' : 'Send us Your Query!' }}</h2>
+                        <h2 class="text-center">{{ $language === 'hi' ? 'हमें अपना प्रश्न भेजें!' : 'Send us Your Query!' }}
+                        </h2>
                         <div class="alert" role="alert" id="feedbackMessage"></div>
                         <form id="contactForm" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="single-input-field">
-                                        <input type="text" placeholder="{{ $language === 'hi' ? 'आपका नाम' : 'Your Name' }}" name="name" />
+                                        <input type="text" placeholder="{{ $language === 'hi' ? 'आपका नाम' : 'Your Name' }}"
+                                            name="name" />
                                         <span class="text-danger error-name"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="single-input-field">
-                                        <input type="email" placeholder="{{ $language === 'hi' ? 'ई-मेल' : 'E-mail' }}" name="email"  />
+                                        <input type="email" placeholder="{{ $language === 'hi' ? 'ई-मेल' : 'E-mail' }}"
+                                            name="email" />
                                         <span class="text-danger error-email"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="single-input-field">
-                                        <input type="text" placeholder="{{ $language === 'hi' ? 'फोन नंबर' : 'Phone Number' }}" name="phone" />
+                                        <input type="text"
+                                            placeholder="{{ $language === 'hi' ? 'फोन नंबर' : 'Phone Number' }}"
+                                            name="phone" />
                                         <span class="text-danger error-phone"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="single-input-field">
-                                        <input type="text" placeholder="{{ $language === 'hi' ? 'विषय' : 'Subject' }}" name="subject" />
+                                        <input type="text" placeholder="{{ $language === 'hi' ? 'विषय' : 'Subject' }}"
+                                            name="subject" />
                                         <span class="text-danger error-subject"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-12 message-input">
                                     <div class="single-input-field">
-                                        <textarea placeholder="{{ $language === 'hi' ? 'अपना संदेश लिखें' : 'Write Your Message' }}" name="message"></textarea>
+                                        <textarea
+                                            placeholder="{{ $language === 'hi' ? 'अपना संदेश लिखें' : 'Write Your Message' }}"
+                                            name="message"></textarea>
                                         <span class="text-danger error-message"></span>
                                     </div>
                                 </div>
                                 <div class="single-input-fieldsbtn">
-                                    <input type="submit" value="{{ $language === 'hi' ? 'भेजें' : 'Submit' }}"  id="submitButton"/>
+                                    <input type="submit" value="{{ $language === 'hi' ? 'भेजें' : 'Submit' }}"
+                                        id="submitButton" />
                                 </div>
                                 {{-- <div class="text-center">
-                                    <button type="submit" id="submitButton" class="btn btn-primary btn-submit">Submit</button>
+                                    <button type="submit" id="submitButton"
+                                        class="btn btn-primary btn-submit">Submit</button>
                                 </div> --}}
                             </div>
                         </form>
@@ -129,19 +158,20 @@
         .contact-info-1 {
             display: inline-block;
             width: 100%;
+            height: 100%;
             text-align: center;
             margin-bottom: 10px;
         }
     </style>
-     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
             const form = document.getElementById("contactForm");
             const submitBtn = document.getElementById("submitButton");
             const feedbackMessage = document.getElementById("feedbackMessage");
 
             form.reset();
 
-            form.addEventListener("submit", function(e) {
+            form.addEventListener("submit", function (e) {
                 e.preventDefault();
 
                 submitBtn.disabled = true;
@@ -150,17 +180,17 @@
 
                 document.querySelectorAll(".text-danger").forEach(el => el.textContent = "");
 
-                grecaptcha.ready(function() {
+                grecaptcha.ready(function () {
                     grecaptcha.execute("{{ env('RECAPTCHA_SITE_KEY') }}", {
                         action: 'contactUsForm'
-                    }).then(function(token) {
+                    }).then(function (token) {
                         const formData = new FormData(form);
                         formData.append("g-recaptcha-response", token);
 
                         fetch("{{ route('contactUsForm', ['language' => $language]) }}", {
-                                method: "POST",
-                                body: formData,
-                            })
+                            method: "POST",
+                            body: formData,
+                        })
                             .then(response => response.json().then(data => ({
                                 status: response.status,
                                 body: data
@@ -217,7 +247,7 @@
                                 submitBtn.innerHTML = 'Submit Feedback';
                             });
 
-                    }).catch(function(error) {
+                    }).catch(function (error) {
                         feedbackMessage.classList.add("alert", "alert-danger");
                         feedbackMessage.innerHTML =
                             `Recaptcha verification failed. Please try again.`;

@@ -143,13 +143,17 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.auto-scroll {
-    /* max-height: 200px; */
-    /* Adjust the height as per your layout */
+/* .auto-scroll {
+    max-height: 200px;
     overflow: hidden;
-    /* Hide overflowing content */
     position: relative;
+} */
+
+.auto-scroll {
+  overflow-y: auto;
+  position: relative;
 }
+
 
 .img-museum {
     width: 100%;
@@ -357,7 +361,7 @@
 
 .card-section p {
     font-size: 0.8rem;
-    color: #333;
+    color: #000 !important;
     transition: color 0.3s;
 }
 
@@ -897,7 +901,7 @@
 }
 .contact-info-icon i {
     font-size: 30px;
-    color: #fda40b;
+    color: #fff;
 }
 .contact-info-text p {
     margin-bottom: 0px;

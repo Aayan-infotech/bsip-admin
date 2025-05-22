@@ -130,10 +130,10 @@
 
                 </div>
                 <div class="col-md-2 footer-link"><a
-                    href="{{ route('frontend.policies', ['language' => $language]) }}#policy-security"
+                    href="{{ route('frontend.policies', ['language' => $language]) }}#policy-contribution"
                     class="text-white"
-                    aria-label="{{ $language === 'hi' ? 'सुरक्षा नीति' : 'Security Policy' }}">
-                    {{ $language === 'hi' ? 'सुरक्षा नीति' : 'Security Policy' }}
+                    aria-label="{{ $language === 'hi' ? 'वेब नीतियाँ' : 'Web Policies' }}">
+                    {{ $language === 'hi' ? 'वेब नीतियाँ' : 'Web Policies' }}
                 </a>
                 </div>
                 <div class="col-md-2 footer-link"><a

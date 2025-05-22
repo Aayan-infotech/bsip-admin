@@ -9,8 +9,7 @@
     <meta name="format-detection" content="telephone=no" />
     @stack('meta-tags')
     <meta name="author" content="Birbal Sahni Institute of Palaeosciences">
-    <meta name="keywords"
-        content="BSIP, Birbal Sahni Institute of Palaeosciences, Palaeobotany, Palaeobiology, Research,
+    <meta name="keywords" content="BSIP, Birbal Sahni Institute of Palaeosciences, Palaeobotany, Palaeobiology, Research,
         Science, Education, India">
     <link rel="apple-touch-icon" href="{{ asset('assets-new/assets/images/favicon/bsip-favicon.png') }}">
     <link rel="icon" href="{{ asset('assets-new/assets/images/favicon/bsip-favicon.png') }}">
@@ -99,6 +98,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
 
+    {{--
     <script>
         function startAutoScroll(containerId) {
             const container = document.getElementById(containerId);
@@ -119,7 +119,46 @@
                 startAutoScroll("notices-updates");
             }
         });
-    </script>
+    </script> --}}
+
+    <script>
+    function setupAutoScroll(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        let scrollInterval = null;
+
+        function startScrolling() {
+            if (scrollInterval) return;
+
+            scrollInterval = setInterval(() => {
+                container.scrollTop += 1;
+                if (container.scrollTop >= container.scrollHeight - container.clientHeight) {
+                    container.scrollTop = 0;
+                }
+            }, 30);
+        }
+
+        function stopScrolling() {
+            clearInterval(scrollInterval);
+            scrollInterval = null;
+        }
+
+        container.addEventListener("mouseover", stopScrolling);
+        container.addEventListener("mouseout", startScrolling);
+
+        startScrolling();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const path = window.location.pathname;
+        if (path === "/en" || path === "/hi") {
+            setupAutoScroll("research-highlights");
+            setupAutoScroll("notices-updates");
+        }
+    });
+</script>
+
     @yield('scripts')
 
 </body>

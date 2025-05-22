@@ -1,7 +1,7 @@
 @extends('website.layouts.app')
 @push('meta-tags')
     <meta name="description"
-        content="Welcome to the Birbal Sahni Institute of Palaeosciences (BSIP), India's leading research institute in palaeobotany, palaeobiology, and earth sciences, advancing the study of plant fossils and Earth's history."/>
+        content="Welcome to the Birbal Sahni Institute of Palaeosciences (BSIP), India's leading research institute in palaeobotany, palaeobiology, and earth sciences, advancing the study of plant fossils and Earth's history." />
 @endpush
 @section('content')
     <!-- //Slider -->
@@ -36,8 +36,8 @@
                                 <div class="card-content">
                                     <p class="paragraph-profile-card">
                                         {{ $language === 'hi'
-                                            ? 'प्रोफेसर बीरबल साहनी, एफआरएस, और एक महान दूरदर्शी, ने वर्ष 1946 में पैलियोबॉटनी संस्थान के रूप में संस्थान की स्थापना की...'
-                                            : 'Professor Birbal Sahni, FRS, and a great visionary, established the Institute as Institute of Palaeobotany...' }}
+        ? 'प्रोफेसर बीरबल साहनी, एफआरएस, और एक महान दूरदर्शी, ने वर्ष 1946 में पैलियोबॉटनी संस्थान के रूप में संस्थान की स्थापना की...'
+        : 'Professor Birbal Sahni, FRS, and a great visionary, established the Institute as Institute of Palaeobotany...' }}
                                     </p>
                                     <div class="row">
                                         <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_institute_history' : 'bsip_institute_history' }}"
@@ -144,7 +144,7 @@
                             <div class="card-body auto-scroll" id="notices-updates">
                                 <ul class="list-group list-group-flush">
                                     <!-- @foreach ($notices as $notice)
-    -->
+                -->
                                     @php
                                         $today = \Carbon\Carbon::today(); // Get today's date
                                     @endphp
@@ -153,8 +153,7 @@
                                             <li class="list-group-item">
                                                 <span>{{ $language === 'hi' ? $notice->hin_title : $notice->title }}</span>
                                                 @if ($notice->expiry_date)
-                                                    <span
-                                                        aria-label="{{ $language === 'hi' ? 'अंतिम तिथि' : 'Last Date' }}">
+                                                    <span aria-label="{{ $language === 'hi' ? 'अंतिम तिथि' : 'Last Date' }}">
                                                         [{{ $language === 'hi' ? 'अंतिम तिथि' : 'Last Date' }}:
                                                         {{ \Carbon\Carbon::parse($notice->expiry_date)->format('d-m-Y') }}]
                                                     </span>
@@ -167,8 +166,7 @@
                                                     </a>
                                                 @endif
                                                 @if ($notice->url)
-                                                    <a href="{{ $notice->url }}" target="_blank" class="text-primary"
-                                                        role="link"
+                                                    <a href="{{ $notice->url }}" target="_blank" class="text-primary" role="link"
                                                         aria-label="{{ $language === 'hi' ? 'लिंक देखें' : 'View Link' }}">
                                                         [{{ $language === 'hi' ? 'लिंक देखें' : 'View Link' }}]
                                                     </a>
@@ -183,7 +181,7 @@
                                         </li>
                                     @endforelse
                                     <!--
-    @endforeach -->
+                @endforeach -->
                                 </ul>
                             </div>
                             <div class="card-footer text-end">
@@ -223,8 +221,7 @@
                                     <!-- Research Projects -->
                                     <div class="col-6">
                                         <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_research_activities' : 'bsip_research_activities' }}"
-                                            class="card-link text-decoration-none" role="link"
-                                            aria-label="Bsip Activities">
+                                            class="card-link text-decoration-none" role="link" aria-label="Bsip Activities">
                                             <div class="card-section border rounded text-center p-3">
                                                 <div
                                                     class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
@@ -366,8 +363,7 @@
                                                 <div class="card-section border rounded text-center p-2">
                                                     <div
                                                         class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-chalkboard-teacher fa-1x"
-                                                            role="presentation"></i>
+                                                        <i class="fas fa-chalkboard-teacher fa-1x" role="presentation"></i>
                                                     </div>
                                                     <p class="mt-2 fw-bold">
                                                         {{ $language === 'hi' ? 'अनुसंधान विद्वानों के लिए बीरबल साहनी प्रशिक्षण कार्यक्रम' : 'Birbal Sahni Training Programs For Research Scholars' }}
@@ -407,8 +403,7 @@
                                         </div>
                                         <div class="col-6">
                                             <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_career' : 'bsip_career' }}"
-                                                class="card-link text-decoration-none" role="link"
-                                                aria-label="Bsip Career">
+                                                class="card-link text-decoration-none" role="link" aria-label="Bsip Career">
                                                 <div class="card-section border rounded text-center p-3">
                                                     <div
                                                         class="icon-container bg-danger text-white d-flex justify-content-center align-items-center mx-auto">
@@ -541,8 +536,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12">
-                                                <img src="{{ asset('assets-new/assets/museum/cpgg.jpg') }}"
-                                                    alt="cpgg-img" class="img-fluid img-museum">
+                                                <img src="{{ asset('assets-new/assets/museum/cpgg.jpg') }}" alt="cpgg-img"
+                                                    class="img-fluid img-museum">
                                             </div>
                                         </div>
                                     </div>
@@ -605,7 +600,7 @@
                                     </a>
                                 </div>
                                 <div class="slider-item">
-                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}" class="text-dark" >
+                                    <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}" class="text-dark">
                                         <img src="{{ asset('assets-new/assets/home-page-facilities/nutrient.jfif') }}"
                                             alt="Facility 3">
                                         <div class="slider-title">Nutrien Analyzer</div>
@@ -660,8 +655,7 @@
                                     @foreach ($photoGallery as $photo)
                                         <li>
                                             <a href="{{ $photo }}" data-fancybox="images">
-                                                <img src="{{ $photo }}" alt="Photo Gallery Slide 1"
-                                                    class="photo-gallery-img" />
+                                                <img src="{{ $photo }}" alt="Photo Gallery Slide 1" class="photo-gallery-img" />
                                             </a>
                                         </li>
                                     @endforeach
@@ -695,34 +689,76 @@
                     <ul class="slides">
                         <li>
                             <a target="_blank" href="http://digitalindia.gov.in/"
-                                title="Digital India, External Link that opens in a new window" onclick="return confirmExternalLink()"><img
+                                title="Digital India, External Link that opens in a new window"
+                                onclick="return confirmExternalLink()"><img
                                     src="assets-new/assets/images/carousel/digital-india.png" alt="Digital India"></a>
                         </li>
                         <li>
                             <a target="_blank" href="http://www.makeinindia.com/"
-                                title="Make In India, External Link that opens in a new window" onclick="return confirmExternalLink()"> <img
+                                title="Make In India, External Link that opens in a new window"
+                                onclick="return confirmExternalLink()"> <img
                                     src="assets-new/assets/images/carousel/makeinindia.png" alt="Make In India"></a>
                         </li>
                         <li>
                             <a target="_blank" href="https://www.india.gov.in/"
-                                title="National Portal of India, External Link that opens in a new window" onclick="return confirmExternalLink()"><img
+                                title="National Portal of India, External Link that opens in a new window"
+                                onclick="return confirmExternalLink()"><img
                                     src="assets-new/assets/images/carousel/india-gov.png"
                                     alt="National Portal of India"></a>
                         </li>
                         <li>
                             <a target="_blank" href="http://goidirectory.nic.in/"
-                                title="GOI Web Directory, External Link that opens in a new window" onclick="return confirmExternalLink()"><img
+                                title="GOI Web Directory, External Link that opens in a new window"
+                                onclick="return confirmExternalLink()"><img
                                     src="assets-new/assets/images/carousel/goidirectory.png" alt="GOI Web Directory"></a>
                         </li>
                         <li>
                             <a target="_blank" href="https://data.gov.in/"
-                                title="Data portal, External Link that opens in a new window" onclick="return confirmExternalLink()"><img
+                                title="Data portal, External Link that opens in a new window"
+                                onclick="return confirmExternalLink()"><img
                                     src="assets-new/assets/images/carousel/data-gov.png" alt="Data portal"></a>
                         </li>
                         <li>
                             <a target="_blank" href="https://mygov.in/"
-                                title="MyGov, External Link that opens in a new window" onclick="return confirmExternalLink()"><img
+                                title="MyGov, External Link that opens in a new window"
+                                onclick="return confirmExternalLink()"><img
                                     src="assets-new/assets/images/carousel/mygov.png" alt="MyGov Portal"></a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.uidai.gov.in/"
+                                title="Aadhaar UIDAI, External Link that opens in a new window"
+                                onclick="return confirmExternalLink()">
+                                <img src="assets-new/assets/images/carousel/uidai.png" alt="UIDAI Aadhaar">
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.myscheme.gov.in/"
+                                title="MyScheme, External Link that opens in a new window"
+                                onclick="return confirmExternalLink()">
+                                <img src="assets-new/assets/images/carousel/myscheme.png" alt="MyScheme">
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.india.gov.in/"
+                                title="National Portal of India, External Link that opens in a new window"
+                                onclick="return confirmExternalLink()">
+                                <img src="assets-new/assets/images/carousel/national-portal-new.png"
+                                    alt="National Portal of India">
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.digilocker.gov.in/"
+                                title="DigiLocker, External Link that opens in a new window"
+                                onclick="return confirmExternalLink()">
+                                <img src="assets-new/assets/images/carousel/digilocker.png" alt="DigiLocker">
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://meripehchaan.gov.in/"
+                                title="MyGov SSO, External Link that opens in a new window"
+                                onclick="return confirmExternalLink()">
+                                <img src="assets-new/assets/images/carousel/sso.png" alt="MyGov SSO">
+                            </a>
                         </li>
                     </ul>
                 </div>

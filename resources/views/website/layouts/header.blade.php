@@ -147,7 +147,8 @@
                                 role="link"
                                 aria-label="{{ $language === 'hi' ? $menu->hin_title : $menu->title }}">
                                 @if ($menu->title === 'Home')
-                                    <i class="fa fa-home" aria-hidden="true"></i> <!-- Home icon -->
+                                    {{-- <i class="fa fa-home" aria-hidden="true"></i> --}}
+                                    {{ $language === 'hi' ? 'होम' : 'Home' }}
                                 @else
                                     {{ $language === 'hi' ? $menu->hin_title : $menu->title }}
                                 @endif
