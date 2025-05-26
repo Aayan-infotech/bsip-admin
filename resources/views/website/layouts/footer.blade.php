@@ -29,7 +29,7 @@
                         <ul class="list-inline">
                             @foreach ($socialLinks as $link)
                                 <li class="list-inline-item">
-                                    <a href="{{ $link->url }}" role="link" aria-label="{{ $link->title }}"
+                                    <a href="{{ $link->url }}"  aria-label="{{ $link->title }}"
                                         target="_blank"
                                         onclick="return confirmExternalLink()"
                                         >
@@ -52,7 +52,7 @@
                         @foreach ($importantLinks as $link)
                             <li>
                                 <a href="{{ Str::startsWith($link->url, ['http://', 'https://']) ? $link->url : url($language . '/' . $link->url) }}"
-                                    role="link"
+                                    
                                     aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}"
                                     {{ Str::startsWith($link->url, ['http://', 'https://']) ? 'target="_blank"' : '' }}
                                     onclick="{{ Str::startsWith($link->url, ['http://', 'https://']) ? 'return confirmExternalLink()' : '' }}">
@@ -72,7 +72,7 @@
                         @foreach ($usefulLinks as $link)
                             <li>
                                 <a href="{{ Str::startsWith($link->url, ['http://', 'https://']) ? $link->url : url($language . '/' . $link->url) }}"
-                                    role="link"
+                                    
                                     aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}"
                                     {{ Str::startsWith($link->url, ['http://', 'https://']) ? 'target="_blank"' : '' }}
                                     onclick="{{ Str::startsWith($link->url, ['http://', 'https://']) ? 'return confirmExternalLink()' : '' }}"
@@ -132,8 +132,8 @@
                 <div class="col-md-2 footer-link"><a
                     href="{{ route('frontend.policies', ['language' => $language]) }}#policy-contribution"
                     class="text-white"
-                    aria-label="{{ $language === 'hi' ? 'वेब नीतियाँ' : 'Web Policies' }}">
-                    {{ $language === 'hi' ? 'वेब नीतियाँ' : 'Web Policies' }}
+                    aria-label="{{ $language === 'hi' ? 'वेबसाइट नीतियां' : 'Website Policies' }}">
+                    {{ $language === 'hi' ? 'वेबसाइट नीतियां' : 'Website Policies' }}
                 </a>
                 </div>
                 <div class="col-md-2 footer-link"><a
@@ -153,10 +153,16 @@
                         {{ $language === 'hi' ? 'संपर्क करें' : 'Contact Us' }}</a></div>
 
 
-                <div class="col-md-2 footer-link"><a
-                        href="https://www.india.gov.in/" target="_blank"
-                        aria-label="National Portal"
-                        class="text-white" onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'राष्ट्रीय पोर्टल' : 'National Portal' }}</a></div>
+                <div class="col-md-2 footer-link">
+  <a
+    href="#"
+    class="text-white"
+    aria-label="National Portal"
+    onclick="openInNewWindow(event, 'https://www.india.gov.in/')">
+    {{ $language === 'hi' ? 'राष्ट्रीय पोर्टल' : 'National Portal' }}
+  </a>
+</div>
+
             </div>
 
         </div>
@@ -179,7 +185,7 @@
                 <p class="footer-alt mb-0 f-14">
                     {{ $language === 'hi' ? 'डिज़ाइन एवं विकसित द्वारा' : 'Designed & Developed By' }}
                     <span>
-                        <a href="https://aayaninfotech.com/" class="text-white" target="_blank" role="link"
+                        <a href="https://aayaninfotech.com/" class="text-white" target="_blank" 
                             aria-label="aayan">Aayan India</a>
                     </span>
                 </p>

@@ -121,7 +121,7 @@
 .main-menu .sub-nav ul li a.focus,
 .main-menu .sub-nav ul li a.hover {
     text-decoration: none;
-    outline: 1px dotted #edce6b;
+    outline: 1px solid #000;
 }
 .sub-nav ul li:hover a {
     background: none !important;

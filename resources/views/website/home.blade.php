@@ -1,13 +1,12 @@
 @extends('website.layouts.app')
 @push('meta-tags')
     <meta name="description"
-        content="Welcome to the Birbal Sahni Institute of Palaeosciences (BSIP), India's leading research institute in palaeobotany, palaeobiology, and earth sciences, advancing the study of plant fossils and Earth's history." />
+        content="Welcome to the Birbal Sahni Institute of Palaeosciences (BSIP), India's leading research institute in palaeobotany, palaeobiology, and earth sciences, advancing the study of plant fossils and Earth's history.">
 @endpush
 @section('content')
     <!-- //Slider -->
-    <main role="main">
-
         <section class="wrapper banner-wrapper">
+             <h2 class="visually-hidden">Main Banner</h2>
             <div id="flexSlider" class="flexslider">
                 <ul class="slides">
                     @foreach ($sliders as $slider)
@@ -116,7 +115,7 @@
                                                 {{ $language === 'hi' ? $highlight->hin_title : $highlight->title }}
 
                                                 <a href="{{ $language === 'hi' ? $highlight->hindi_file : $highlight->english_file }}"
-                                                    class="text-dark" role="link" aria-label="home" target="_blank">
+                                                    class="text-dark" aria-label="home" target="_blank">
                                                     [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
                                                     <i class="fas fa-file-pdf text-danger" role="presentation"></i>
                                                 </a>
@@ -144,34 +143,39 @@
                             <div class="card-body auto-scroll" id="notices-updates">
                                 <ul class="list-group list-group-flush">
                                     <!-- @foreach ($notices as $notice)
-                -->
+                                    -->
                                     @php
                                         $today = \Carbon\Carbon::today(); // Get today's date
                                     @endphp
                                     @forelse ($notices as $index => $notice)
                                         @if (\Carbon\Carbon::parse($notice->expiry_date)->gte($today))
                                             <li class="list-group-item">
-                                                <span>{{ $language === 'hi' ? $notice->hin_title : $notice->title }}</span>
-                                                @if ($notice->expiry_date)
-                                                    <span aria-label="{{ $language === 'hi' ? 'अंतिम तिथि' : 'Last Date' }}">
-                                                        [{{ $language === 'hi' ? 'अंतिम तिथि' : 'Last Date' }}:
-                                                        {{ \Carbon\Carbon::parse($notice->expiry_date)->format('d-m-Y') }}]
-                                                    </span>
-                                                @endif
-                                                @if ($notice->pdf)
-                                                    <a href="{{ asset('storage/' . $notice->pdf) }}" target="_blank"
-                                                        class="text-primary" role="link"
-                                                        aria-label="{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}">
-                                                        [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
-                                                    </a>
-                                                @endif
-                                                @if ($notice->url)
-                                                    <a href="{{ $notice->url }}" target="_blank" class="text-primary" role="link"
-                                                        aria-label="{{ $language === 'hi' ? 'लिंक देखें' : 'View Link' }}">
-                                                        [{{ $language === 'hi' ? 'लिंक देखें' : 'View Link' }}]
-                                                    </a>
-                                                @endif
-                                            </li>
+    <span>{{ $language === 'hi' ? $notice->hin_title : $notice->title }}</span>
+
+    @if ($notice->expiry_date)
+        <span>
+            [{{ $language === 'hi' ? 'अंतिम तिथि' : 'Last Date' }}:
+            {{ \Carbon\Carbon::parse($notice->expiry_date)->format('d-m-Y') }}]
+        </span>
+    @endif
+
+    @if ($notice->pdf)
+        <a href="{{ asset('storage/' . $notice->pdf) }}" target="_blank"
+           class="text-primary"
+           aria-label="{{ $language === 'hi' ? 'पीडीएफ डाउनलोड करें' : 'Download PDF' }}">
+            [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
+        </a>
+    @endif
+
+    @if ($notice->url)
+        <a href="{{ $notice->url }}" target="_blank"
+           class="text-primary"
+           aria-label="{{ $language === 'hi' ? 'लिंक खोलें' : 'Open Link' }}">
+            [{{ $language === 'hi' ? 'लिंक देखें' : 'View Link' }}]
+        </a>
+    @endif
+</li>
+
                                         @endif
                                     @empty
                                         <li>
@@ -181,12 +185,12 @@
                                         </li>
                                     @endforelse
                                     <!--
-                @endforeach -->
+                                    @endforeach -->
                                 </ul>
                             </div>
                             <div class="card-footer text-end">
                                 <a href="{{ $language === 'hi' ? $language . '/bsip_notice_and_updates_all' : $language . '/bsip_notice_and_updates_all' }}"
-                                    class="button-profile-card" role="link"
+                                    class="button-profile-card"
                                     aria-label="{{ $language === 'hi' ? 'सभी नोटिस और अपडेट पढ़ें' : 'Read all notices and updates' }}">
                                     {{ $language === 'hi' ? 'और पढ़ें' : 'Read More' }}
                                 </a>
@@ -205,7 +209,7 @@
                                     <!-- Journal of Palaeosciences -->
                                     <div class="col-6">
                                         <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_the_paleobotanist' : 'bsip_the_paleobotanist' }}"
-                                            class="card-link text-decoration-none" role="link"
+                                            class="card-link text-decoration-none focus-outline"
                                             aria-label="BSIP Paleobotanist">
                                             <div class="card-section border rounded text-center p-3">
                                                 <div
@@ -221,7 +225,8 @@
                                     <!-- Research Projects -->
                                     <div class="col-6">
                                         <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_research_activities' : 'bsip_research_activities' }}"
-                                            class="card-link text-decoration-none" role="link" aria-label="Bsip Activities">
+                                            class="card-link text-decoration-none focus-outline"
+                                            aria-label="Bsip Activities">
                                             <div class="card-section border rounded text-center p-3">
                                                 <div
                                                     class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
@@ -236,7 +241,7 @@
                                     <!-- Annual Report -->
                                     <div class="col-6">
                                         <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_annual_reports' : 'bsip_annual_reports' }}"
-                                            class="card-link text-decoration-none" role="link"
+                                            class="card-link text-decoration-none focus-outline"
                                             aria-label="Bsip Annual Reports">
                                             <div class="card-section border rounded text-center p-3">
                                                 <div
@@ -252,7 +257,7 @@
                                     <!-- Monthly Report -->
                                     <div class="col-6">
                                         <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_monthly_report' : 'bsip_monthly_report' }}"
-                                            class="card-link text-decoration-none" role="link"
+                                            class="card-link text-decoration-none focus-outline"
                                             aria-label="Bsip Monthly Report">
                                             <div class="card-section border rounded text-center p-3">
                                                 <div
@@ -287,11 +292,11 @@
                                     <div class="row justify-content-center g-4">
                                         <div class="col-6">
                                             <a href="{{ $language }}/bsip_past_events"
-                                                class="card-link text-decoration-none" role="link" aria-label="home">
+                                                class="card-link text-decoration-none focus-outline" aria-label="home">
                                                 <div class="card-section border rounded text-center p-3">
                                                     <div
                                                         class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-calendar-alt fa-1x" role="presentation"></i>
+                                                        <i class="fas fa-calendar-alt fa-1x"></i>
                                                     </div>
                                                     <p class="mt-2 fw-bold">{{ $language === 'hi' ? 'आयोजन' : 'Events' }}
                                                     </p>
@@ -299,12 +304,13 @@
                                             </a>
                                         </div>
                                         <div class="col-6">
-                                            <a href="https://youtu.be/NpKQ1LPbrfE" class="card-link text-decoration-none"
-                                                role="link" aria-label="home" target="_blank">
+                                            <a href="https://youtu.be/NpKQ1LPbrfE"
+                                                class="card-link text-decoration-none focus-outline" target="_blank"
+                                                aria-label="home">
                                                 <div class="card-section border rounded text-center p-2">
                                                     <div
                                                         class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-flask fa-1x" role="presentation"></i>
+                                                        <i class="fas fa-flask fa-1x"></i>
                                                     </div>
                                                     <p class="mt-2 fw-bold">
                                                         {{ $language === 'hi' ? 'प्लैटिनम जुबली मूवी (अंग्रेजी)' : 'Platinum Jubilee Movie (English)' }}
@@ -314,12 +320,12 @@
                                         </div>
                                         <div class="col-6">
                                             <a href="https://www.youtube.com/watch?v=NpKQ1LPbrfE"
-                                                class="card-link text-decoration-none" role="link" aria-label="home"
-                                                target="_blank">
+                                                class="card-link text-decoration-none focus-outline" target="_blank"
+                                                aria-label="home">
                                                 <div class="card-section border rounded text-center p-2">
                                                     <div
                                                         class="icon-container bg-warning text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-film fa-1x" role="presentation"></i>
+                                                        <i class="fas fa-film fa-1x"></i>
                                                     </div>
                                                     <p class="mt-2 fw-bold">
                                                         {{ $language === 'hi' ? 'प्लैटिनम जुबली फिल्म (हिंदी)' : 'Platinum Jubilee Movie (Hindi)' }}
@@ -329,12 +335,12 @@
                                         </div>
                                         <div class="col-6">
                                             <a href="https://www.youtube.com/@bsiponline573"
-                                                class="card-link text-decoration-none" role="link" aria-label="home"
-                                                target="_blank">
+                                                class="card-link text-decoration-none focus-outline" target="_blank"
+                                                aria-label="home">
                                                 <div class="card-section border rounded text-center p-3">
                                                     <div
                                                         class="icon-container bg-danger text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-video fa-1x" role="presentation"></i>
+                                                        <i class="fas fa-video fa-1x"></i>
                                                     </div>
                                                     <p class="mt-2 fw-bold">
                                                         {{ $language === 'hi' ? 'यूट्यूब पुरानी फिल्में' : 'YouTube Old Movies' }}
@@ -357,13 +363,12 @@
                                 <div class="card-body d-flex justify-content-center align-items-center">
                                     <div class="row justify-content-center g-4">
                                         <div class="col-6">
-                                            <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_short_term_training_program' : 'bsip_short_term_training_program' }}"
-                                                class="card-link text-decoration-none" role="link"
-                                                aria-label="Presentation Part">
+                                            <a href="{{ $language }}/bsip_short_term_training_program"
+                                                class="card-link text-decoration-none focus-outline">
                                                 <div class="card-section border rounded text-center p-2">
                                                     <div
                                                         class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-chalkboard-teacher fa-1x" role="presentation"></i>
+                                                        <i class="fas fa-chalkboard-teacher fa-1x"></i>
                                                     </div>
                                                     <p class="mt-2 fw-bold">
                                                         {{ $language === 'hi' ? 'अनुसंधान विद्वानों के लिए बीरबल साहनी प्रशिक्षण कार्यक्रम' : 'Birbal Sahni Training Programs For Research Scholars' }}
@@ -372,13 +377,12 @@
                                             </a>
                                         </div>
                                         <div class="col-6">
-                                            <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_master_dissertation_program' : 'bsip_master_dissertation_program' }}"
-                                                class="card-link text-decoration-none" role="link"
-                                                aria-label="Master's Dissertation Programs at BSIP">
+                                            <a href="{{ $language }}/bsip_master_dissertation_program"
+                                                class="card-link text-decoration-none focus-outline">
                                                 <div class="card-section border rounded text-center p-3">
                                                     <div
                                                         class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-graduation-cap fa-1x" role="presentation"></i>
+                                                        <i class="fas fa-graduation-cap fa-1x"></i>
                                                     </div>
                                                     <p class="mt-2 fw-bold">
                                                         {{ $language === 'hi' ? 'बीरबल साहनी प्रशिक्षण कार्यक्रम के लिए शोध विद्वान' : "Master's Dissertation Programs at BSIP" }}
@@ -387,13 +391,12 @@
                                             </a>
                                         </div>
                                         <div class="col-6">
-                                            <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_admission_to_phd' : 'bsip_admission_to_phd' }}"
-                                                class="card-link text-decoration-none" role="link"
-                                                aria-label="Admission to PhD">
+                                            <a href="{{ $language }}/bsip_admission_to_phd"
+                                                class="card-link text-decoration-none focus-outline">
                                                 <div class="card-section border rounded text-center p-3">
                                                     <div
                                                         class="icon-container bg-warning text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-university fa-1x" role="presentation"></i>
+                                                        <i class="fas fa-university fa-1x"></i>
                                                     </div>
                                                     <p class="mt-2 fw-bold">
                                                         {{ $language === 'hi' ? 'पीएचडी में प्रवेश' : 'Admission to PhD' }}
@@ -402,12 +405,12 @@
                                             </a>
                                         </div>
                                         <div class="col-6">
-                                            <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_career' : 'bsip_career' }}"
-                                                class="card-link text-decoration-none" role="link" aria-label="Bsip Career">
+                                            <a href="{{ $language }}/bsip_career"
+                                                class="card-link text-decoration-none focus-outline">
                                                 <div class="card-section border rounded text-center p-3">
                                                     <div
                                                         class="icon-container bg-danger text-white d-flex justify-content-center align-items-center mx-auto">
-                                                        <i class="fas fa-bullhorn fa-1x" role="presentation"></i>
+                                                        <i class="fas fa-bullhorn fa-1x"></i>
                                                     </div>
                                                     <p class="mt-2 fw-bold">
                                                         {{ $language === 'hi' ? 'विज्ञापन' : 'Advertisement' }}
@@ -430,9 +433,8 @@
                                 <div class="card-body d-flex justify-content-center align-items-center">
                                     <div class="row justify-content-center g-4">
                                         <div class="col-6">
-                                            <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_scientific' : 'bsip_scientific' }}"
-                                                class="card-link text-decoration-none" role="link"
-                                                aria-label="Bsip Scientific">
+                                            <a href="{{ $language }}/bsip_scientific"
+                                                class="card-link text-decoration-none focus-outline">
                                                 <div class="card-section border rounded text-center p-3">
                                                     <div
                                                         class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
@@ -445,9 +447,8 @@
                                             </a>
                                         </div>
                                         <div class="col-6">
-                                            <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_technical_staff' : 'bsip_technical_staff' }}"
-                                                class="card-link text-decoration-none" role="link"
-                                                aria-label="Bsip Technical">
+                                            <a href="{{ $language }}/bsip_technical_staff"
+                                                class="card-link text-decoration-none focus-outline">
                                                 <div class="card-section border rounded text-center p-3">
                                                     <div
                                                         class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
@@ -460,9 +461,8 @@
                                             </a>
                                         </div>
                                         <div class="col-6">
-                                            <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_administrative' : 'bsip_administrative' }}"
-                                                class="card-link text-decoration-none" role="link"
-                                                aria-label="Bsip Administrative">
+                                            <a href="{{ $language }}/bsip_administrative"
+                                                class="card-link text-decoration-none focus-outline">
                                                 <div class="card-section border rounded text-center p-3">
                                                     <div
                                                         class="icon-container bg-warning text-white d-flex justify-content-center align-items-center mx-auto">
@@ -475,9 +475,8 @@
                                             </a>
                                         </div>
                                         <div class="col-6">
-                                            <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_superannuated_employee' : 'bsip_superannuated_employee' }}"
-                                                class="card-link text-decoration-none" role="link"
-                                                aria-label="Bsip Superannuated Employee">
+                                            <a href="{{ $language }}/bsip_superannuated_employee"
+                                                class="card-link text-decoration-none focus-outline">
                                                 <div class="card-section border rounded text-center p-3">
                                                     <div
                                                         class="icon-container bg-danger text-white d-flex justify-content-center align-items-center mx-auto">
@@ -493,9 +492,11 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
+
 
 
 
@@ -506,13 +507,13 @@
                         <!-- Museum Card -->
                         <div class="col-md-4">
                             <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_museum' : 'bsip_museum' }}"
-                                class="text-decoration-none" role="link" aria-label="Museum Page">
+                                class="text-decoration-none" aria-label="Museum Page">
                                 <div class="card shadow">
                                     <h2 class="header-section-profiles">
                                         <i class="fas fa-landmark me-2"></i>
                                         {{ $language === 'hi' ? 'संग्रहालय' : 'Museum' }}
                                     </h2>
-                                    <div class="card-body">
+                                    <div class="card-body focus-outline">
                                         <div class="row">
                                             <div class="col-12">
                                                 <img src="{{ asset('assets-new/assets/museum/museum2.jpg') }}"
@@ -527,7 +528,7 @@
                         <!-- CPGG Card -->
                         <div class="col-md-4">
                             <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_geo_heritage' : 'bsip_geo_heritage' }}"
-                                class="text-decoration-none" role="link" aria-label="home">
+                                class="text-decoration-none" aria-label="home">
                                 <div class="card shadow">
                                     <h2 class="header-section-profiles">
                                         <i class="fas fa-handshake me-2"></i>
@@ -548,7 +549,7 @@
                         <!-- Media Cell Card -->
                         <div class="col-md-4">
                             <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_media_cell' : 'bsip_media_cell' }}"
-                                class="text-decoration-none" role="link" aria-label="Bsip Media Cell">
+                                class="text-decoration-none" aria-label="Bsip Media Cell">
                                 <div class="card shadow">
                                     <h2 class="header-section-profiles">
                                         <i class="fas fa-broadcast-tower me-2"></i>
@@ -650,28 +651,32 @@
                             </a>
                         </div>
                         <div class="fancybox">
-                            <ul class="slider">
-                                @if ($photoGallery->count() > 0)
-                                    @foreach ($photoGallery as $photo)
-                                        <li>
-                                            <a href="{{ $photo }}" data-fancybox="images">
-                                                <img src="{{ $photo }}" alt="Photo Gallery Slide 1" class="photo-gallery-img" />
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </div>
+    <ul class="slider">
+        @if ($photoGallery->count() > 0)
+            @foreach ($photoGallery as $index => $photo)
+                <li>
+                    <a href="{{ $photo }}" data-fancybox="images">
+                        <img src="{{ $photo }}" alt="Photo Gallery Slide {{ $index + 1 }}" class="photo-gallery-img">
+                    </a>
+                </li>
+            @endforeach
+        @endif
+    </ul>
+</div>
+
                     </div>
                     <div class="gallery-right">
                         <div class="video-heading text-center">
                             <h3>{{ $language === 'hi' ? 'वीडियो गैलरी' : 'Video Gallery' }}</h3>
                         </div>
                         <div class="video-wrapper">
-                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/NpKQ1LPbrfE"
-                                title="YouTube video player" frameborder="0"
+                            <iframe height="315" src="https://www.youtube.com/embed/NpKQ1LPbrfE"
+                                title="YouTube video player" style="border:none; width: 100%;"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+                                allowfullscreen>
+                            </iframe>
+
+
                         </div>
                     </div>
                 </div>
@@ -684,6 +689,7 @@
 
         <!-- // Brand -->
         <section class="wrapper carousel-wrapper">
+            <h2 class="visually-hidden">Brand Slider</h2>
             <div class="container common-container four_content carousel-container content-print">
                 <div id="flexCarousel" class="flexslider carousel">
                     <ul class="slides">
@@ -764,5 +770,4 @@
                 </div>
             </div>
         </section>
-    </main>
 @endsection

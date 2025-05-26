@@ -1176,7 +1176,7 @@ th {
     display: inline-block;
 }
 a:focus {
-    outline: 0.1em dotted #333;
+    outline: 0.15em solid #000;
 }
 .common-left ul li.gov-india a:hover {
     color: #000 !important;
@@ -1294,7 +1294,7 @@ a {
 
 .common-right ul li.ico-accessibility ul li a:focus,
 #flexCarousel ul li a:focus {
-    outline: dotted 1px #000;
+    outline: 1px solid #000;
 }
 .copyright-content a {
     text-decoration: underline;

@@ -131,7 +131,7 @@ background:#212121 !important;
 
 .sw-logo{display:inline-block;}
 
-a:focus{outline:1px dotted #fff !important;}
+a:focus{outline:1px solid #fff !important;}
 .common-left ul li.gov-india a:hover
 {color:#ffff00 !important;}
 .common-left ul li.gov-india a:focus

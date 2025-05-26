@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
 
-    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="telephone=no">
     @stack('meta-tags')
     <meta name="author" content="Birbal Sahni Institute of Palaeosciences">
     <meta name="keywords" content="BSIP, Birbal Sahni Institute of Palaeosciences, Palaeobotany, Palaeobiology, Research,
@@ -122,42 +122,179 @@
     </script> --}}
 
     <script>
-    function setupAutoScroll(containerId) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
+        function setupAutoScroll(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
 
-        let scrollInterval = null;
+            let scrollInterval = null;
 
-        function startScrolling() {
-            if (scrollInterval) return;
+            function startScrolling() {
+                if (scrollInterval) return;
 
-            scrollInterval = setInterval(() => {
-                container.scrollTop += 1;
-                if (container.scrollTop >= container.scrollHeight - container.clientHeight) {
-                    container.scrollTop = 0;
+                scrollInterval = setInterval(() => {
+                    container.scrollTop += 1;
+                    if (container.scrollTop >= container.scrollHeight - container.clientHeight) {
+                        container.scrollTop = 0;
+                    }
+                }, 30);
+            }
+
+            function stopScrolling() {
+                clearInterval(scrollInterval);
+                scrollInterval = null;
+            }
+
+            container.addEventListener("mouseover", stopScrolling);
+            container.addEventListener("mouseout", startScrolling);
+
+            startScrolling();
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const path = window.location.pathname;
+            if (path === "/en" || path === "/hi") {
+                setupAutoScroll("research-highlights");
+                setupAutoScroll("notices-updates");
+            }
+        });
+    </script>
+    <script>
+        let currentIndex = 0;
+        const jumpMargin = 250; // Matches the slider item width including margin
+        const sliderContainer = document.querySelector(".slider-container");
+        const sliderItems = [...document.querySelectorAll(".slider-item")];
+        const sliderWrapperWidth = document.querySelector(".slider-wrapper").offsetWidth;
+
+        // Clone slider items for infinite scrolling
+        sliderItems.forEach((item) => {
+            const clone = item.cloneNode(true);
+            sliderContainer.appendChild(clone);
+        });
+
+        // Add event listeners for buttons
+        document.querySelector(".btn-left").addEventListener("click", slideLeft);
+        document.querySelector(".btn-right").addEventListener("click", slideRight);
+
+        function updateSlider() {
+            const offset = currentIndex * -jumpMargin;
+            sliderContainer.style.transition = "transform 0.5s ease";
+            sliderContainer.style.transform = `translateX(${offset}px)`;
+        }
+
+        function slideLeft() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                // Handle the case when at the start and need to jump to the cloned items
+                sliderContainer.style.transition = "none";
+                currentIndex = sliderItems.length; // Jump to the cloned end
+                const offset = currentIndex * -jumpMargin;
+                sliderContainer.style.transform = `translateX(${offset}px)`;
+                setTimeout(() => {
+                    sliderContainer.style.transition = "transform 0.5s ease";
+                    currentIndex--;
+                    updateSlider();
+                }, 20);
+                return;
+            }
+            updateSlider();
+        }
+
+        function slideRight() {
+            currentIndex++;
+            updateSlider();
+
+            // Reset to the original position when reaching the end of cloned items
+            if (currentIndex >= sliderItems.length) {
+                setTimeout(() => {
+                    sliderContainer.style.transition = "none"; // Disable transition
+                    currentIndex = 0; // Reset index
+                    const offset = currentIndex * -jumpMargin;
+                    sliderContainer.style.transform = `translateX(${offset}px)`;
+                }, 500); // Match the transition duration
+            }
+        }
+
+        function autoScroll() {
+            slideRight();
+        }
+
+        window.onload = () => {
+            // Start auto-scrolling
+            setInterval(autoScroll, 3000); // Auto-scroll every 3 seconds
+        };
+
+    </script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuItems = document.querySelectorAll('.menu-toggle');
+
+            menuItems.forEach(item => {
+                const parentLi = item.closest('.nav-item');
+                const submenu = parentLi.querySelector('.sub-nav');
+
+                item.addEventListener('keydown', function (e) {
+                    if ((e.key === 'Enter' || e.key === ' ') && submenu) {
+                        e.preventDefault();
+                        const isOpen = submenu.getAttribute('data-keyboard-toggle') === 'true';
+
+                        // Close all other keyboard-toggled submenus
+                        document.querySelectorAll('.sub-nav').forEach(s => {
+                            s.setAttribute('data-keyboard-toggle', 'false');
+                            s.closest('.nav-item').querySelector('.menu-toggle')?.setAttribute('aria-expanded', 'false');
+                        });
+
+                        // Toggle current submenu
+                        if (!isOpen) {
+                            submenu.setAttribute('data-keyboard-toggle', 'true');
+                            item.setAttribute('aria-expanded', 'true');
+                            // Focus first link in submenu if exists
+                            submenu.querySelector('a')?.focus();
+                        }
+                    } else if (e.key === 'Escape') {
+                        if (submenu) {
+                            submenu.setAttribute('data-keyboard-toggle', 'false');
+                            item.setAttribute('aria-expanded', 'false');
+                            item.focus();
+                        }
+                    }
+                });
+
+                // Close submenu if focus leaves the menu item and submenu
+                item.addEventListener('blur', () => {
+                    setTimeout(() => {
+                        if (!parentLi.contains(document.activeElement)) {
+                            submenu?.setAttribute('data-keyboard-toggle', 'false');
+                            item.setAttribute('aria-expanded', 'false');
+                        }
+                    }, 150);
+                });
+            });
+
+            // Global ESC key closes all submenus
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.sub-nav').forEach(s => s.setAttribute('data-keyboard-toggle', 'false'));
+                    document.querySelectorAll('.menu-toggle').forEach(s => s.setAttribute('aria-expanded', 'false'));
                 }
-            }, 30);
-        }
-
-        function stopScrolling() {
-            clearInterval(scrollInterval);
-            scrollInterval = null;
-        }
-
-        container.addEventListener("mouseover", stopScrolling);
-        container.addEventListener("mouseout", startScrolling);
-
-        startScrolling();
+            });
+        });
+    </script>
+    <script>
+  function openInNewWindow(event, url) {
+    event.preventDefault(); // Prevent default link behavior
+    const confirmProceed = confirm("You are about to open a new browser window. Continue?");
+    if (confirmProceed) {
+      window.open(
+        url,
+        '_blank',
+        'toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=1200,height=800'
+      );
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const path = window.location.pathname;
-        if (path === "/en" || path === "/hi") {
-            setupAutoScroll("research-highlights");
-            setupAutoScroll("notices-updates");
-        }
-    });
+  }
 </script>
+
 
     @yield('scripts')
 
