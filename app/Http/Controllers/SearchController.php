@@ -64,12 +64,17 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
-        $search      = $request->input('search');
-        $searchLower = strtolower($search);
+        // dd($this->sharedData);
+        $search       = $request->input('search');
+        $searchLower  = strtolower($search);
+        $matchedPages = [];
+
+        if (empty($search)) {
+            return view('website.searchResult', $this->sharedData, compact('matchedPages'));
+        }
 
         // Step 1: Search public GET routes
-        $routes       = Route::getRoutes();
-        $matchedPages = [];
+        $routes = Route::getRoutes();
 
         // Step 2: Search all tables
         $tables        = DB::select('SHOW TABLES');
@@ -194,6 +199,7 @@ class SearchController extends Controller
 
             }
         }
+
 
         return view('website.searchResult', $this->sharedData, compact('matchedPages'));
     }

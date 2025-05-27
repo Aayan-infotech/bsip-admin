@@ -9,7 +9,8 @@
     <meta name="format-detection" content="telephone=no" />
     @stack('meta-tags')
     <meta name="author" content="Birbal Sahni Institute of Palaeosciences">
-    <meta name="keywords" content="BSIP, Birbal Sahni Institute of Palaeosciences, Palaeobotany, Palaeobiology, Research,
+    <meta name="keywords"
+        content="BSIP, Birbal Sahni Institute of Palaeosciences, Palaeobotany, Palaeobiology, Research,
         Science, Education, India">
     <link rel="apple-touch-icon" href="{{ asset('assets-new/assets/images/favicon/bsip-favicon.png') }}">
     <link rel="icon" href="{{ asset('assets-new/assets/images/favicon/bsip-favicon.png') }}">
@@ -68,6 +69,19 @@
                 'Do you want to go to external link?');
         }
     </script>
+    <style>
+        @media print {
+
+            header,
+            .slides {
+                display: block !important;
+            }
+
+            .ico-social.cf li img {
+                border: 1px solid red
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -122,42 +136,57 @@
     </script> --}}
 
     <script>
-    function setupAutoScroll(containerId) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
+        function setupAutoScroll(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
 
-        let scrollInterval = null;
+            let scrollInterval = null;
 
-        function startScrolling() {
-            if (scrollInterval) return;
+            function startScrolling() {
+                if (scrollInterval) return;
 
-            scrollInterval = setInterval(() => {
-                container.scrollTop += 1;
-                if (container.scrollTop >= container.scrollHeight - container.clientHeight) {
-                    container.scrollTop = 0;
-                }
-            }, 30);
+                scrollInterval = setInterval(() => {
+                    container.scrollTop += 1;
+                    if (container.scrollTop >= container.scrollHeight - container.clientHeight) {
+                        container.scrollTop = 0;
+                    }
+                }, 30);
+            }
+
+            function stopScrolling() {
+                clearInterval(scrollInterval);
+                scrollInterval = null;
+            }
+
+            container.addEventListener("mouseover", stopScrolling);
+            container.addEventListener("mouseout", startScrolling);
+
+            startScrolling();
         }
 
-        function stopScrolling() {
-            clearInterval(scrollInterval);
-            scrollInterval = null;
-        }
+        document.addEventListener("DOMContentLoaded", () => {
+            const path = window.location.pathname;
+            if (path === "/en" || path === "/hi") {
+                setupAutoScroll("research-highlights");
+                setupAutoScroll("notices-updates");
+            }
+        });
 
-        container.addEventListener("mouseover", stopScrolling);
-        container.addEventListener("mouseout", startScrolling);
+        // let currentZoom = window.devicePixelRatio;
 
-        startScrolling();
-    }
+        // function checkZoomChange() {
+        //     const newZoom = window.devicePixelRatio;
+        //     if (newZoom !== currentZoom) {
+        //         currentZoom = newZoom;
+        //         const zoomPercent = Math.round(newZoom * 100);
+        //         if (zoomPercent > 130) {
+        //             window.location.reload();
+        //         }
+        //     }
+        // }
+        // window.addEventListener('resize', checkZoomChange);
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const path = window.location.pathname;
-        if (path === "/en" || path === "/hi") {
-            setupAutoScroll("research-highlights");
-            setupAutoScroll("notices-updates");
-        }
-    });
-</script>
+    </script>
 
     @yield('scripts')
 
