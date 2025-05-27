@@ -172,6 +172,73 @@
         }
     });
 </script>
+<script>
+      let currentIndex = 0;
+      const jumpMargin = 250; // Matches the slider item width including margin
+      const sliderContainer = document.querySelector(".slider-container");
+      const sliderItems = [...document.querySelectorAll(".slider-item")];
+      const sliderWrapperWidth = document.querySelector(".slider-wrapper").offsetWidth;
+
+      // Clone slider items for infinite scrolling
+      sliderItems.forEach((item) => {
+         const clone = item.cloneNode(true);
+         sliderContainer.appendChild(clone);
+      });
+
+      // Add event listeners for buttons
+      document.querySelector(".btn-left").addEventListener("click", slideLeft);
+      document.querySelector(".btn-right").addEventListener("click", slideRight);
+
+      function updateSlider() {
+         const offset = currentIndex * -jumpMargin;
+         sliderContainer.style.transition = "transform 0.5s ease";
+         sliderContainer.style.transform = `translateX(${offset}px)`;
+      }
+
+      function slideLeft() {
+         if (currentIndex > 0) {
+            currentIndex--;
+         } else {
+            // Handle the case when at the start and need to jump to the cloned items
+            sliderContainer.style.transition = "none";
+            currentIndex = sliderItems.length; // Jump to the cloned end
+            const offset = currentIndex * -jumpMargin;
+            sliderContainer.style.transform = `translateX(${offset}px)`;
+            setTimeout(() => {
+               sliderContainer.style.transition = "transform 0.5s ease";
+               currentIndex--;
+               updateSlider();
+            }, 20);
+            return;
+         }
+         updateSlider();
+      }
+
+      function slideRight() {
+         currentIndex++;
+         updateSlider();
+
+         // Reset to the original position when reaching the end of cloned items
+         if (currentIndex >= sliderItems.length) {
+            setTimeout(() => {
+               sliderContainer.style.transition = "none"; // Disable transition
+               currentIndex = 0; // Reset index
+               const offset = currentIndex * -jumpMargin;
+               sliderContainer.style.transform = `translateX(${offset}px)`;
+            }, 500); // Match the transition duration
+         }
+      }
+
+      function autoScroll() {
+         slideRight();
+      }
+
+      window.onload = () => {
+         // Start auto-scrolling
+         setInterval(autoScroll, 3000); // Auto-scroll every 3 seconds
+      };
+
+   </script>
 
     @yield('scripts')
 
