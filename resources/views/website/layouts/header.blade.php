@@ -52,12 +52,12 @@
                                     <img class="top" src="{{ asset('assets-new/assets/images/ico-social.png') }}"
                                         alt="Social Medias" >
                                 </a>
-                                <ul>
+                                <ul style="visibility: hidden;">
                                     @foreach ($socialLinks as $link)
                                         <li>
                                             <a target="_blank" title="Social Link" href="{{ $link->url }}"
                                                 onclick="return confirmExternalLink()">
-                                                <img alt="Social Link" src="{{ asset('storage/' . $link->icon_image) }}">
+                                                <img alt="Social Link" src="{{ asset('storage/' . $link->icon_image) }}" style="background:black;width:5px;">
                                             </a>
                                         </li>
                                     @endforeach
@@ -180,7 +180,7 @@
                 <ul class="nav-menu clearfix"></ul>
             </nav>
         </div>
-        
+
     </section>
 
 </header>
