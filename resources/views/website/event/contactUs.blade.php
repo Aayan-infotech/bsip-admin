@@ -163,99 +163,179 @@
             margin-bottom: 10px;
         }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.getElementById("contactForm");
-            const submitBtn = document.getElementById("submitButton");
-            const feedbackMessage = document.getElementById("feedbackMessage");
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contactForm");
+        const submitBtn = document.getElementById("submitButton");
+        const feedbackMessage = document.getElementById("feedbackMessage");
 
-            form.reset();
+        form.reset();
 
-            form.addEventListener("submit", function (e) {
-                e.preventDefault();
+        const nameInput = form.name;
+        const emailInput = form.email;
+        const phoneInput = form.phone;
+        const subjectInput = form.subject;
+        const messageInput = form.message;
 
-                submitBtn.disabled = true;
-                submitBtn.innerHTML =
-                    '<i class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i> Processing...';
+        const nameError = document.querySelector(".error-name");
+        const emailError = document.querySelector(".error-email");
+        const phoneError = document.querySelector(".error-phone");
+        const subjectError = document.querySelector(".error-subject");
+        const messageError = document.querySelector(".error-message");
 
-                document.querySelectorAll(".text-danger").forEach(el => el.textContent = "");
+        // Real-time validation for each field
+        nameInput.addEventListener("input", function () {
+            const value = this.value.trim();
+            if (!value) {
+                nameError.textContent = "Name is required";
+            } else if (!/^[A-Za-z\s]+$/.test(value)) {
+                nameError.textContent = "Only alphabets allowed";
+            } else {
+                nameError.textContent = "";
+            }
+        });
 
-                grecaptcha.ready(function () {
-                    grecaptcha.execute("{{ env('RECAPTCHA_SITE_KEY') }}", {
-                        action: 'contactUsForm'
-                    }).then(function (token) {
-                        const formData = new FormData(form);
-                        formData.append("g-recaptcha-response", token);
+        phoneInput.addEventListener("input", function () {
+            const value = this.value.trim();
+            if (!value) {
+                phoneError.textContent = "Phone is required";
+            } else if (!/^\d+$/.test(value)) {
+                phoneError.textContent = "Only numbers allowed";
+            } else {
+                phoneError.textContent = "";
+            }
+        });
 
-                        fetch("{{ route('contactUsForm', ['language' => $language]) }}", {
-                            method: "POST",
-                            body: formData,
-                        })
-                            .then(response => response.json().then(data => ({
-                                status: response.status,
-                                body: data
-                            })))
-                            .then(({
-                                status,
-                                body
-                            }) => {
-                                feedbackMessage.classList.remove("alert-danger",
-                                    "alert-success");
+        emailInput.addEventListener("input", function () {
+            const value = this.value.trim();
+            if (!value) {
+                emailError.textContent = "Email is required";
+            } else {
+                emailError.textContent = "";
+            }
+        });
 
-                                if (status === 200) {
-                                    feedbackMessage.classList.add("alert",
-                                        "alert-success");
-                                    feedbackMessage.innerHTML =
-                                        `Form submitted successfully!`;
+        subjectInput.addEventListener("input", function () {
+            const value = this.value.trim();
+            if (!value) {
+                subjectError.textContent = "Subject is required";
+            } else {
+                subjectError.textContent = "";
+            }
+        });
 
-                                    form.reset();
-                                    // remove the feedback message after 2 seconds
-                                    setTimeout(() => {
-                                        feedbackMessage.classList.remove(
-                                            "alert",
-                                            "alert-success");
-                                        feedbackMessage.innerHTML = "";
-                                    }, 2000);
+        messageInput.addEventListener("input", function () {
+            const value = this.value.trim();
+            if (!value) {
+                messageError.textContent = "Message is required";
+            } else {
+                messageError.textContent = "";
+            }
+        });
 
-                                } else if (status === 422) {
-                                    feedbackMessage.classList.add("alert",
-                                        "alert-danger");
-                                    feedbackMessage.innerHTML =
-                                        `All fields are required!`;
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            feedbackMessage.classList.remove("alert", "alert-success", "alert-danger");
+            feedbackMessage.innerHTML = "";
 
-                                    for (const key in body.errors) {
-                                        const errorElement = document.querySelector(
-                                            ".error-" + key);
-                                        if (errorElement) {
-                                            errorElement.textContent = body.errors[key][
-                                                0
-                                            ];
-                                        }
-                                    }
-                                } else {
-                                    throw new Error("Unexpected error");
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
+            let isValid = true;
+
+            // Manual recheck
+            if (!nameInput.value.trim()) {
+                nameError.textContent = "Name is required";
+                isValid = false;
+            } else if (!/^[A-Za-z\s]+$/.test(nameInput.value.trim())) {
+                nameError.textContent = "Only alphabets allowed";
+                isValid = false;
+            }
+
+            if (!emailInput.value.trim()) {
+                emailError.textContent = "Email is required";
+                isValid = false;
+            }
+
+            if (!phoneInput.value.trim()) {
+                phoneError.textContent = "Phone is required";
+                isValid = false;
+            } else if (!/^\d+$/.test(phoneInput.value.trim())) {
+                phoneError.textContent = "Only numbers allowed";
+                isValid = false;
+            }
+
+            if (!subjectInput.value.trim()) {
+                subjectError.textContent = "Subject is required";
+                isValid = false;
+            }
+
+            if (!messageInput.value.trim()) {
+                messageError.textContent = "Message is required";
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML =
+                '<i class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i> Processing...';
+
+            grecaptcha.ready(function () {
+                grecaptcha.execute("{{ env('RECAPTCHA_SITE_KEY') }}", {
+                    action: 'contactUsForm'
+                }).then(function (token) {
+                    const formData = new FormData(form);
+                    formData.append("g-recaptcha-response", token);
+
+                    fetch("{{ route('contactUsForm', ['language' => $language]) }}", {
+                        method: "POST",
+                        body: formData,
+                    })
+                        .then(response => response.json().then(data => ({
+                            status: response.status,
+                            body: data
+                        })))
+                        .then(({ status, body }) => {
+                            feedbackMessage.classList.remove("alert-danger", "alert-success");
+
+                            if (status === 200) {
+                                feedbackMessage.classList.add("alert", "alert-success");
+                                feedbackMessage.innerHTML = `Form submitted successfully!`;
+                                form.reset();
+                                setTimeout(() => {
+                                    feedbackMessage.classList.remove("alert", "alert-success");
+                                    feedbackMessage.innerHTML = "";
+                                }, 2000);
+                            } else if (status === 422) {
                                 feedbackMessage.classList.add("alert", "alert-danger");
-                                feedbackMessage.innerHTML =
-                                    `Something went wrong! Please try again.`;
-                            })
-                            .finally(() => {
-                                submitBtn.disabled = false;
-                                submitBtn.innerHTML = 'Submit Feedback';
-                            });
+                                feedbackMessage.innerHTML = `All fields are required!`;
+                                for (const key in body.errors) {
+                                    const errorElement = document.querySelector(".error-" + key);
+                                    if (errorElement) {
+                                        errorElement.textContent = body.errors[key][0];
+                                    }
+                                }
+                            } else {
+                                throw new Error("Unexpected error");
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            feedbackMessage.classList.add("alert", "alert-danger");
+                            feedbackMessage.innerHTML = `Something went wrong! Please try again.`;
+                        })
+                        .finally(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '{{ $language === "hi" ? "भेजें" : "Submit" }}';
+                        });
 
-                    }).catch(function (error) {
-                        feedbackMessage.classList.add("alert", "alert-danger");
-                        feedbackMessage.innerHTML =
-                            `Recaptcha verification failed. Please try again.`;
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = 'Submit Feedback';
-                    });
+                }).catch(function (error) {
+                    feedbackMessage.classList.add("alert", "alert-danger");
+                    feedbackMessage.innerHTML = `Recaptcha verification failed. Please try again.`;
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '{{ $language === "hi" ? "भेजें" : "Submit" }}';
                 });
             });
         });
-    </script>
+    });
+</script>
+
 @endsection

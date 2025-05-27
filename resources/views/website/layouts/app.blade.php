@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
 
-    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="telephone=no">
     @stack('meta-tags')
     <meta name="author" content="Birbal Sahni Institute of Palaeosciences">
     <meta name="keywords"
@@ -164,29 +164,14 @@
             startScrolling();
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const path = window.location.pathname;
-            if (path === "/en" || path === "/hi") {
-                setupAutoScroll("research-highlights");
-                setupAutoScroll("notices-updates");
-            }
-        });
-
-        // let currentZoom = window.devicePixelRatio;
-
-        // function checkZoomChange() {
-        //     const newZoom = window.devicePixelRatio;
-        //     if (newZoom !== currentZoom) {
-        //         currentZoom = newZoom;
-        //         const zoomPercent = Math.round(newZoom * 100);
-        //         if (zoomPercent > 130) {
-        //             window.location.reload();
-        //         }
-        //     }
-        // }
-        // window.addEventListener('resize', checkZoomChange);
-
-    </script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const path = window.location.pathname;
+        if (path === "/en" || path === "/hi") {
+            setupAutoScroll("research-highlights");
+            setupAutoScroll("notices-updates");
+        }
+    });
+</script>
 
     @yield('scripts')
 
