@@ -188,7 +188,8 @@
                         processData: false,
                         contentType: false,
                         success: function(response) {
-                            toastr.success(response.message);
+                            // console.log(response);
+                            toastr.success('Notice added successfully!');
                             form.trigger("reset");
                             table.ajax.reload();
                         },
@@ -261,7 +262,8 @@
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    toastr.success(response.message);
+                    // toastr.success(response.message);
+                    toastr.success('Notice updated successfully!');
                     $('#editNoticeModal').modal('hide');
                     $('#notices-table').DataTable().ajax.reload();
                 },

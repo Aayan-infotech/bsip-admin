@@ -14,7 +14,6 @@
         Science, Education, India">
     <link rel="apple-touch-icon" href="{{ asset('assets-new/assets/images/favicon/bsip-favicon.png') }}">
     <link rel="icon" href="{{ asset('assets-new/assets/images/favicon/bsip-favicon.png') }}">
-    <!-- <title>{{ $language === 'hi' ? 'मुख्य पृष्ठ | बीरबल साहनी पुरावनस्पतिविज्ञान संस्थान' : 'Home | Birbal Sahni Institute of Palaeosciences' }}</title> -->
     <title>
         {{ $pageTitle }}{{ $language === 'hi' ? ' | बीरबल साहनी पुरावनस्पतिविज्ञान संस्थान' : ' | Birbal Sahni Institute of Palaeosciences' }}
     </title>
