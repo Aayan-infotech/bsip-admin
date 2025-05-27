@@ -481,8 +481,9 @@ class FrontendController extends Controller
 
         // Archived Tenders
         $this->sharedData['archivedTenders'] = Tender::where('status', 1)
-            ->where('archived_status', 'Yes')
+            // ->where('archived_status', 'Yes')
             ->orderBy('created_at', 'desc')
+            ->whereDate('end_date', '<', Carbon::today())
             ->get();
         // Pass shared data to the view
         return view('website.tender', $this->sharedData);

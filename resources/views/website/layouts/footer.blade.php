@@ -29,10 +29,8 @@
                         <ul class="list-inline">
                             @foreach ($socialLinks as $link)
                                 <li class="list-inline-item">
-                                    <a href="{{ $link->url }}"  aria-label="{{ $link->title }}"
-                                        target="_blank"
-                                        onclick="return confirmExternalLink()"
-                                        >
+                                    <a href="{{ $link->url }}" aria-label="{{ $link->title }}" target="_blank"
+                                        onclick="return confirmExternalLink()">
                                         <!-- <i class="fab {{ $link->icon_class }} footer-social-icon"></i> -->
                                         <img style="max-width:30px;" alt="Social Link"
                                             src="{{ asset('storage/' . $link->icon_image) }}">
@@ -52,7 +50,6 @@
                         @foreach ($importantLinks as $link)
                             <li>
                                 <a href="{{ Str::startsWith($link->url, ['http://', 'https://']) ? $link->url : url($language . '/' . $link->url) }}"
-                                    
                                     aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}"
                                     {{ Str::startsWith($link->url, ['http://', 'https://']) ? 'target="_blank"' : '' }}
                                     onclick="{{ Str::startsWith($link->url, ['http://', 'https://']) ? 'return confirmExternalLink()' : '' }}">
@@ -72,11 +69,9 @@
                         @foreach ($usefulLinks as $link)
                             <li>
                                 <a href="{{ Str::startsWith($link->url, ['http://', 'https://']) ? $link->url : url($language . '/' . $link->url) }}"
-                                    
                                     aria-label="{{ $language === 'hi' ? $link->hin_title : $link->title }}"
                                     {{ Str::startsWith($link->url, ['http://', 'https://']) ? 'target="_blank"' : '' }}
-                                    onclick="{{ Str::startsWith($link->url, ['http://', 'https://']) ? 'return confirmExternalLink()' : '' }}"
-                                    >
+                                    onclick="{{ Str::startsWith($link->url, ['http://', 'https://']) ? 'return confirmExternalLink()' : '' }}">
                                     {{ $language === 'hi' ? $link->hin_title : $link->title }}
                                 </a>
                             </li>
@@ -93,10 +88,18 @@
                     </h4>
                     <div class="important-links">
                         <ul class="list-unstyled footer-link mt-4">
-                            <li><a href="https://quiz.mygov.in/" target="_blank" onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'माईगव क्विज़' : 'MyGov Quiz' }}</a></li>
-                            <li><a href="https://transformingindia.mygov.in/" target="_blank" onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'ट्रांसफॉर्मिंग इंडिया' : 'Transforming India' }}</a></li>
-                            <li><a href="https://innovate.mygov.in/" target="_blank" onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'माईगव नवाचार' : 'MyGov Innovation' }}</a></li>
-                            <li><a href="https://pledge.mygov.in/" target="_blank" onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'माईगव प्रतिज्ञा' : 'MyGov Pledge' }}</a></li>
+                            <li><a href="https://quiz.mygov.in/" target="_blank"
+                                    onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'माईगव क्विज़' : 'MyGov Quiz' }}</a>
+                            </li>
+                            <li><a href="https://transformingindia.mygov.in/" target="_blank"
+                                    onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'ट्रांसफॉर्मिंग इंडिया' : 'Transforming India' }}</a>
+                            </li>
+                            <li><a href="https://innovate.mygov.in/" target="_blank"
+                                    onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'माईगव नवाचार' : 'MyGov Innovation' }}</a>
+                            </li>
+                            <li><a href="https://pledge.mygov.in/" target="_blank"
+                                    onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'माईगव प्रतिज्ञा' : 'MyGov Pledge' }}</a>
+                            </li>
                             {{-- <li><a href="https://blog.mygov.in/" target="_blank" onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'माईगव ब्लॉग' : 'MyGov Blog' }}</a></li>
                             <li><a href="https://self4society.mygov.in/" target="_blank" onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'सेल्फ4सोसाइटी' : 'Self4Society' }}</a></li>
                             <li><a href="https://campus.mygov.in/" target="_blank" onclick="return confirmExternalLink()">{{ $language === 'hi' ? 'कैंपस कार्यक्रम' : 'Campus Program' }}</a></li> --}}
@@ -122,26 +125,25 @@
             <div class="divider" style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
             <div class="row text-center">
                 <div class="col-md-2 footer-link"><a
-                    href="{{ route('frontend.policies', ['language' => $language]) }}#policy-copyright"
-                    class="text-white"
-                    aria-label="{{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}">
-                    {{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}
-                </a>
+                        href="{{ route('frontend.policies', ['language' => $language]) }}#policy-copyright"
+                        class="text-white"
+                        aria-label="{{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}">
+                        {{ $language === 'hi' ? 'कॉपीराइट नीति' : 'Copyright Policy' }}
+                    </a>
 
                 </div>
                 <div class="col-md-2 footer-link"><a
-                    href="{{ route('frontend.policies', ['language' => $language]) }}#policy-contribution"
-                    class="text-white"
-                    aria-label="{{ $language === 'hi' ? 'वेबसाइट नीतियां' : 'Website Policies' }}">
-                    {{ $language === 'hi' ? 'वेबसाइट नीतियां' : 'Website Policies' }}
-                </a>
+                        href="{{ route('frontend.policies', ['language' => $language]) }}#policy-contribution"
+                        class="text-white"
+                        aria-label="{{ $language === 'hi' ? 'वेबसाइट नीतियां' : 'Website Policies' }}">
+                        {{ $language === 'hi' ? 'वेबसाइट नीतियां' : 'Website Policies' }}
+                    </a>
                 </div>
                 <div class="col-md-2 footer-link"><a
-                    href="{{ route('frontend.onlineFeedbackForm', ['language' => $language]) }}"
-                    class="text-white"
-                    aria-label="{{ $language === 'hi' ? 'ऑनलाइन फीडबैक फॉर्म' : 'Online Feedback Form' }}">
-                    {{ $language === 'hi' ? 'ऑनलाइन फीडबैक फॉर्म' : 'Online Feedback Form' }}
-                </a>
+                        href="{{ route('frontend.onlineFeedbackForm', ['language' => $language]) }}" class="text-white"
+                        aria-label="{{ $language === 'hi' ? 'ऑनलाइन फीडबैक फॉर्म' : 'Online Feedback Form' }}">
+                        {{ $language === 'hi' ? 'ऑनलाइन फीडबैक फॉर्म' : 'Online Feedback Form' }}
+                    </a>
 
                 </div>
 
@@ -154,14 +156,11 @@
 
 
                 <div class="col-md-2 footer-link">
-  <a
-    href="#"
-    class="text-white"
-    aria-label="National Portal"
-    onclick="openInNewWindow(event, 'https://www.india.gov.in/')">
-    {{ $language === 'hi' ? 'राष्ट्रीय पोर्टल' : 'National Portal' }}
-  </a>
-</div>
+                    <a href="#" class="text-white" aria-label="National Portal"
+                        onclick="openInNewWindow(event, 'https://www.india.gov.in/')">
+                        {{ $language === 'hi' ? 'राष्ट्रीय पोर्टल' : 'National Portal' }}
+                    </a>
+                </div>
 
             </div>
 
@@ -178,14 +177,15 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <p class="footer-alt mb-0 f-14 text-center">{{ $language === 'hi' ? 'अंतिम अपडेट' : 'Last Updated' }}: {{ $lastModified }}</p>
+                <p class="footer-alt mb-0 f-14 text-center">{{ $language === 'hi' ? 'अंतिम अपडेट' : 'Last Updated' }}:
+                    {{ $lastModified }}</p>
             </div>
 
             <div class="col-md-4 text-center">
                 <p class="footer-alt mb-0 f-14">
                     {{ $language === 'hi' ? 'डिज़ाइन एवं विकसित द्वारा' : 'Designed & Developed By' }}
                     <span>
-                        <a href="https://aayaninfotech.com/" class="text-white" target="_blank" 
+                        <a href="https://aayaninfotech.com/" class="text-white" target="_blank" onclick="return confirmExternalLink()"
                             aria-label="aayan">Aayan India</a>
                     </span>
                 </p>

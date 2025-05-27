@@ -96,19 +96,18 @@ body {
         padding: 5px 0px 0px 0;
     }
 }
-/* @media screen and (max-width: 1024px) { */
-.megamenu-wraper #main_menu {
-    display: none !important;
+@media screen and (max-width: 940px) {
+    .megamenu-wraper #main_menu {
+        display: none !important;
+    }
+    .megamenu-wraper #overflow_menu {
+        display: none !important;
+    }
 }
-.megamenu-wraper #overflow_menu {
-    display: none !important;
-}
-/* } */
 
 footer {
     border: 1px solid #ccc;
 }
-
 
 footer div.container {
     width: 100% !important;
