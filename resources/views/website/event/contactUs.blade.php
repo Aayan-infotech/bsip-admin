@@ -89,70 +89,68 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-    <div class="contact-page-form" method="post">
-        <h2 class="text-center">
-            {{ $language === 'hi' ? 'हमें अपना प्रश्न भेजें!' : 'Send us Your Query!' }}
-        </h2>
-        <div class="alert" role="alert" id="feedbackMessage"></div>
-        <form id="contactForm" method="post">
-            @csrf
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="single-input-field">
-                        <label for="name">{{ $language === 'hi' ? 'नाम' : 'Name' }}</label>
-                        <input type="text" id="name" pattern="[A-Za-z\s]+" required
-                            placeholder="{{ $language === 'hi' ? 'आपका नाम' : 'Your Name' }}"
-                            name="name" />
-                        <span class="text-danger error-name"></span>
+                    <div class="contact-page-form" method="post">
+                        <h2 class="text-center">
+                            {{ $language === 'hi' ? 'हमें अपना प्रश्न भेजें!' : 'Send us Your Query!' }}
+                        </h2>
+                        <div class="alert" role="alert" id="feedbackMessage"></div>
+                        <form id="contactForm" method="post">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="single-input-field">
+                                        <label for="name">{{ $language === 'hi' ? 'नाम' : 'Name' }}</label>
+                                        <input type="text" id="name" pattern="[A-Za-z\s]+" required
+                                            placeholder="{{ $language === 'hi' ? 'आपका नाम' : 'Your Name' }}"
+                                            name="name" />
+                                        <span class="text-danger error-name"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="single-input-field">
+                                        <label for="email">{{ $language === 'hi' ? 'ई-मेल' : 'Email' }}</label>
+                                        <input type="email" id="email"
+                                            placeholder="{{ $language === 'hi' ? 'ई-मेल' : 'E-mail' }}" name="email" />
+                                        <span class="text-danger error-email"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="single-input-field">
+                                        <label
+                                            for="phone">{{ $language === 'hi' ? 'फोन नंबर' : 'Phone Number' }}</label>
+                                        <input type="tel" id="phone" pattern="[0-9]{10}" required
+                                            title="{{ $language === 'hi' ? '10 अंकों का फोन नंबर दर्ज करें' : 'Enter a 10-digit phone number' }}"
+                                            class="form-control" maxlength="10"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                            placeholder="{{ $language === 'hi' ? 'फोन नंबर' : 'Phone Number' }}"
+                                            name="phone" />
+                                        <span class="text-danger error-phone"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="single-input-field">
+                                        <label for="subject">{{ $language === 'hi' ? 'विषय' : 'Subject' }}</label>
+                                        <input type="text" id="subject"
+                                            placeholder="{{ $language === 'hi' ? 'विषय' : 'Subject' }}" name="subject" />
+                                        <span class="text-danger error-subject"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 message-input">
+                                    <div class="single-input-field">
+                                        <label for="message">{{ $language === 'hi' ? 'संदेश' : 'Message' }}</label>
+                                        <textarea id="message" placeholder="{{ $language === 'hi' ? 'अपना संदेश लिखें' : 'Write Your Message' }}"
+                                            name="message"></textarea>
+                                        <span class="text-danger error-message"></span>
+                                    </div>
+                                </div>
+                                <div class="single-input-fieldsbtn">
+                                    <input type="submit" value="{{ $language === 'hi' ? 'भेजें' : 'Submit' }}"
+                                        id="submitButton" />
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="single-input-field">
-                        <label for="email">{{ $language === 'hi' ? 'ई-मेल' : 'Email' }}</label>
-                        <input type="email" id="email"
-                            placeholder="{{ $language === 'hi' ? 'ई-मेल' : 'E-mail' }}"
-                            name="email" />
-                        <span class="text-danger error-email"></span>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="single-input-field">
-                        <label for="phone">{{ $language === 'hi' ? 'फोन नंबर' : 'Phone Number' }}</label>
-                        <input type="tel" id="phone" pattern="[0-9]{10}" required
-                            title="{{ $language === 'hi' ? '10 अंकों का फोन नंबर दर्ज करें' : 'Enter a 10-digit phone number' }}"
-                            class="form-control" maxlength="10"
-                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                            placeholder="{{ $language === 'hi' ? 'फोन नंबर' : 'Phone Number' }}"
-                            name="phone" />
-                        <span class="text-danger error-phone"></span>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="single-input-field">
-                        <label for="subject">{{ $language === 'hi' ? 'विषय' : 'Subject' }}</label>
-                        <input type="text" id="subject"
-                            placeholder="{{ $language === 'hi' ? 'विषय' : 'Subject' }}"
-                            name="subject" />
-                        <span class="text-danger error-subject"></span>
-                    </div>
-                </div>
-                <div class="col-md-12 message-input">
-                    <div class="single-input-field">
-                        <label for="message">{{ $language === 'hi' ? 'संदेश' : 'Message' }}</label>
-                        <textarea id="message"
-                            placeholder="{{ $language === 'hi' ? 'अपना संदेश लिखें' : 'Write Your Message' }}"
-                            name="message"></textarea>
-                        <span class="text-danger error-message"></span>
-                    </div>
-                </div>
-                <div class="single-input-fieldsbtn">
-                    <input type="submit" value="{{ $language === 'hi' ? 'भेजें' : 'Submit' }}"
-                        id="submitButton" />
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 
                 <div class="col-md-6">
                     <div class="contact-page-map">
