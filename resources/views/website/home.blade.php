@@ -10,13 +10,19 @@
         <div id="flexSlider" class="flexslider">
             <ul class="slides">
                 @foreach ($sliders as $slider)
-                    <li>
-                        <img src="{{ asset('storage/' . $slider->image) }}" alt="bsip slide image">
+                    <li class="slide-item">
+                        <div class="slide-content">
+                            <img src="{{ asset('storage/' . $slider->image) }}" alt="bsip slide image">
+                            <div class="slide-title">
+                                <h3>{{ $slider->title }}</h3> {{-- assuming your slider has a "title" field --}}
+                            </div>
+                        </div>
                     </li>
                 @endforeach
             </ul>
         </div>
     </section>
+
     <section id="skipToContent" class="wrapper body-wrapper ">
         <section class="main-contents-home-page">
             <div class="container-fluid p-5 content-print">
