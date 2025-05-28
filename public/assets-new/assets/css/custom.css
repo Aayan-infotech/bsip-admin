@@ -1235,3 +1235,26 @@
         font-size: 12px;
     }
 }
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 560px; /* Optional: Set a max width */
+    cursor: pointer;
+  }
+
+  .video-wrapper img {
+    width: 100%;
+    display: block;
+  }
+
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    height: 64px;
+    background: url('https://img.icons8.com/ios-filled/100/ffffff/play-button-circled.png') no-repeat center center;
+    background-size: contain;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Ensures the click goes to the link */
+  }

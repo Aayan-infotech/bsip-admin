@@ -138,7 +138,6 @@
         </div>
     </section>
     <section class="wrapper megamenu-wraper">
-        <h2 class="visually-hidden">Main Navigation</h2>
         <div class="container-fluid common-container four_content">
             <p class="showhide"><em></em><em></em><em></em></p>
             <nav class="main-menu clearfix" id="main_menu">

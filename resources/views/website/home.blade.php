@@ -679,13 +679,11 @@
                         <h3>{{ $language === 'hi' ? 'वीडियो गैलरी' : 'Video Gallery' }}</h3>
                     </div>
                     <div class="video-wrapper">
-                        <iframe height="315" src="https://www.youtube.com/embed/NpKQ1LPbrfE"
-                            title="YouTube video player" style="border:none; width: 100%;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-
-
+                        <a href="https://www.youtube.com/watch?v=NpKQ1LPbrfE" target="_blank" rel="noopener noreferrer"
+                            onclick="return confirmExternalLink()">
+                            <img src="https://img.youtube.com/vi/NpKQ1LPbrfE/hqdefault.jpg" alt="YouTube Video Thumbnail">
+                            <div class="play-button"></div>
+                        </a>
                     </div>
                 </div>
             </div>
