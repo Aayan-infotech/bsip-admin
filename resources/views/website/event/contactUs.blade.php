@@ -31,9 +31,9 @@
                             </div>
                             <div class="contact-info-text">
                                 <h2>{{ $language === 'hi' ? 'वेब सूचना प्रबंधक' : 'Web Information Manager' }}</h2>
-                                <span>{{ $language === 'hi' ? 'प्रो. महेश जी. ठक्कर (निदेशक)' : 'Prof. Mahesh G. Thakkar (Director)' }}</span>
+                               <span>{{ $language === 'hi' ? 'संदीप कुमार शिवहरे (रजिस्ट्रार, बीएसआईपी)' : 'Sandeep Kumar Shivhare (Registrar, BSIP)' }}</span>
                                 {{-- <span>{{ $language === 'hi' ? 'निदेशक, बीएसआईपी' : 'Director, BSIP' }}</span> --}}
-                                <span>Email: director[at]bsip[dot]res[dot]in</span>
+                                <span>Email: registrar[at]bsip[dot]res[dot]in</span>
                                 <span>Phone: +91-522-2742901</span>
                             </div>
                         </div>
