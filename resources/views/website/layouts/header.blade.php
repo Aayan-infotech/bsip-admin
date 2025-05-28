@@ -53,7 +53,7 @@
                                     <img class="top" src="{{ asset('assets-new/assets/images/ico-social.png') }}"
                                         alt="Social Medias">
                                 </a>
-                                <ul style="visibility: hidden;">
+                                <ul>
                                     @foreach ($socialLinks as $link)
                                         <li>
                                             <a target="_blank" title="Social Link" href="{{ $link->url }}"

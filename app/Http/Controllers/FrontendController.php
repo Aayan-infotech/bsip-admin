@@ -28,9 +28,11 @@ class FrontendController extends Controller
 
     public function __construct(Request $request)
     {
-        $language                           = $request->route('language', 'en'); // Default to 'en' if not provided
-        $this->sharedData['visitorCount']   = Cache::increment('visitor_count', 1);
-        $this->sharedData['headerMenus']    = HeaderMenu::with(['menuPages'])->where('status', 'Active')->get();
+        $language                         = $request->route('language', 'en'); // Default to 'en' if not provided
+        $this->sharedData['visitorCount'] = Cache::increment('visitor_count', 1);
+        $this->sharedData['headerMenus']  = HeaderMenu::with(['menuPages' => function ($query) {
+            $query->where('status', 'Active');
+        }])->where('status', 'Active')->get();
         $this->sharedData['socialLinks']    = SocialLink::all();
         $this->sharedData['importantLinks'] = ImportantLink::all();
         $this->sharedData['usefulLinks']    = UsefulLink::all();
@@ -139,8 +141,8 @@ class FrontendController extends Controller
             ->get();
 
         // Pass data to the view
-        $this->sharedData['currentPageId'] = $currentPage->id;
-        $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
@@ -170,8 +172,8 @@ class FrontendController extends Controller
             ->get();
 
         // Pass data to the view
-        $this->sharedData['currentPageId'] = $currentPage->id;
-        $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
@@ -201,8 +203,8 @@ class FrontendController extends Controller
             ->get();
 
         // Pass data to the view
-        $this->sharedData['currentPageId'] = $currentPage->id;
-        $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
@@ -233,8 +235,8 @@ class FrontendController extends Controller
             ->get();
 
         // Pass data to the view
-        $this->sharedData['currentPageId'] = $currentPage->id;
-        $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
@@ -265,8 +267,8 @@ class FrontendController extends Controller
             ->get();
 
         // Pass data to the view
-        $this->sharedData['currentPageId'] = $currentPage->id;
-        $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
@@ -296,8 +298,8 @@ class FrontendController extends Controller
             ->get();
 
         // Pass data to the view
-        $this->sharedData['currentPageId'] = $currentPage->id;
-        $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
@@ -312,7 +314,7 @@ class FrontendController extends Controller
             abort(404, 'Page not found');
         }
         // Get the parent_menu_id from the current page
-        $parentMenuId = $currentPage->parent_menu_id;
+        $parentMenuId      = $currentPage->parent_menu_id;
         $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
         if (! $currentHeaderMenu) {
             $currentHeaderMenu              = [];
@@ -326,8 +328,8 @@ class FrontendController extends Controller
             ->get();
 
         // Pass data to the view
-        $this->sharedData['currentPageId'] = $currentPage->id;
-        $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
@@ -342,7 +344,7 @@ class FrontendController extends Controller
             abort(404, 'Page not found');
         }
         // Get the parent_menu_id from the current page
-        $parentMenuId = $currentPage->parent_menu_id;
+        $parentMenuId      = $currentPage->parent_menu_id;
         $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
         if (! $currentHeaderMenu) {
             $currentHeaderMenu              = [];
@@ -356,8 +358,8 @@ class FrontendController extends Controller
             ->get();
 
         // Pass data to the view
-        $this->sharedData['currentPageId'] = $currentPage->id;
-        $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
@@ -387,8 +389,8 @@ class FrontendController extends Controller
             ->get();
 
         // Pass data to the view
-        $this->sharedData['currentPageId'] = $currentPage->id;
-        $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
@@ -403,7 +405,7 @@ class FrontendController extends Controller
             abort(404, 'Page not found');
         }
         // Get the parent_menu_id from the current page
-        $parentMenuId = $currentPage->parent_menu_id;
+        $parentMenuId      = $currentPage->parent_menu_id;
         $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
         if (! $currentHeaderMenu) {
             $currentHeaderMenu              = [];
@@ -417,8 +419,8 @@ class FrontendController extends Controller
             ->get();
 
         // Pass data to the view
-        $this->sharedData['currentPageId'] = $currentPage->id;
-        $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentPageId']     = $currentPage->id;
+        $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
@@ -481,7 +483,7 @@ class FrontendController extends Controller
 
         // Archived Tenders
         $this->sharedData['archivedTenders'] = Tender::where('status', 1)
-            // ->where('archived_status', 'Yes')
+        // ->where('archived_status', 'Yes')
             ->orderBy('created_at', 'desc')
             ->whereDate('end_date', '<', Carbon::today())
             ->get();

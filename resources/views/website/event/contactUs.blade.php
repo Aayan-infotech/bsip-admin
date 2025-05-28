@@ -10,7 +10,8 @@
             <nav class="bio-breadcrumb" aria-label="Breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="/" aria-label="मुख्य पृष्ठ पर जाएं">{{ $language === 'hi' ? 'मुख्य पृष्ठ' : 'Home' }}</a>
+                        <a href="/"
+                            aria-label="मुख्य पृष्ठ पर जाएं">{{ $language === 'hi' ? 'मुख्य पृष्ठ' : 'Home' }}</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         {{ $language === 'hi' ? 'संपर्क करें' : 'Contact us' }}
@@ -31,7 +32,7 @@
                             </div>
                             <div class="contact-info-text">
                                 <h2>{{ $language === 'hi' ? 'वेब सूचना प्रबंधक' : 'Web Information Manager' }}</h2>
-                               <span>{{ $language === 'hi' ? 'संदीप कुमार शिवहरे (रजिस्ट्रार, बीएसआईपी)' : 'Sandeep Kumar Shivhare (Registrar, BSIP)' }}</span>
+                                <span>{{ $language === 'hi' ? 'संदीप कुमार शिवहरे (रजिस्ट्रार, बीएसआईपी)' : 'Sandeep Kumar Shivhare (Registrar, BSIP)' }}</span>
                                 {{-- <span>{{ $language === 'hi' ? 'निदेशक, बीएसआईपी' : 'Director, BSIP' }}</span> --}}
                                 <span>Email: registrar[at]bsip[dot]res[dot]in</span>
                                 <span>Phone: +91-522-2742901</span>
@@ -56,7 +57,7 @@
                 </div>
             </di>
             <div class="row justify-content-center">
-                
+
                 <div class="col-md-4">
                     <div class="contact-info-1">
                         <div class="contact-info-item">
@@ -89,7 +90,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="contact-page-form" method="post">
-                        <h2 class="text-center">{{ $language === 'hi' ? 'हमें अपना प्रश्न भेजें!' : 'Send us Your Query!' }}
+                        <h2 class="text-center">
+                            {{ $language === 'hi' ? 'हमें अपना प्रश्न भेजें!' : 'Send us Your Query!' }}
                         </h2>
                         <div class="alert" role="alert" id="feedbackMessage"></div>
                         <form id="contactForm" method="post">
@@ -97,7 +99,9 @@
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="single-input-field">
-                                        <input type="text" placeholder="{{ $language === 'hi' ? 'आपका नाम' : 'Your Name' }}"
+                                        <input type="text"
+                                            pattern="[A-Za-z\s]+" required
+                                            placeholder="{{ $language === 'hi' ? 'आपका नाम' : 'Your Name' }}"
                                             name="name" />
                                         <span class="text-danger error-name"></span>
                                     </div>
@@ -111,7 +115,10 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="single-input-field">
-                                        <input type="text"
+                                        <input type="tel" pattern="[0-9]{10}" required
+                                            title="{{ $language === 'hi' ? '10 अंकों का फोन नंबर दर्ज करें' : 'Enter a 10-digit phone number' }}"
+                                            class="form-control" id="phone" maxlength="10"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                             placeholder="{{ $language === 'hi' ? 'फोन नंबर' : 'Phone Number' }}"
                                             name="phone" />
                                         <span class="text-danger error-phone"></span>
@@ -126,9 +133,7 @@
                                 </div>
                                 <div class="col-md-12 message-input">
                                     <div class="single-input-field">
-                                        <textarea
-                                            placeholder="{{ $language === 'hi' ? 'अपना संदेश लिखें' : 'Write Your Message' }}"
-                                            name="message"></textarea>
+                                        <textarea placeholder="{{ $language === 'hi' ? 'अपना संदेश लिखें' : 'Write Your Message' }}" name="message"></textarea>
                                         <span class="text-danger error-message"></span>
                                     </div>
                                 </div>
@@ -163,179 +168,194 @@
             margin-bottom: 10px;
         }
     </style>
-   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("contactForm");
-        const submitBtn = document.getElementById("submitButton");
-        const feedbackMessage = document.getElementById("feedbackMessage");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("contactForm");
+            const submitBtn = document.getElementById("submitButton");
+            const feedbackMessage = document.getElementById("feedbackMessage");
 
-        form.reset();
+            form.reset();
 
-        const nameInput = form.name;
-        const emailInput = form.email;
-        const phoneInput = form.phone;
-        const subjectInput = form.subject;
-        const messageInput = form.message;
+            const nameInput = form.name;
+            const emailInput = form.email;
+            const phoneInput = form.phone;
+            const subjectInput = form.subject;
+            const messageInput = form.message;
 
-        const nameError = document.querySelector(".error-name");
-        const emailError = document.querySelector(".error-email");
-        const phoneError = document.querySelector(".error-phone");
-        const subjectError = document.querySelector(".error-subject");
-        const messageError = document.querySelector(".error-message");
+            const nameError = document.querySelector(".error-name");
+            const emailError = document.querySelector(".error-email");
+            const phoneError = document.querySelector(".error-phone");
+            const subjectError = document.querySelector(".error-subject");
+            const messageError = document.querySelector(".error-message");
 
-        // Real-time validation for each field
-        nameInput.addEventListener("input", function () {
-            const value = this.value.trim();
-            if (!value) {
-                nameError.textContent = "Name is required";
-            } else if (!/^[A-Za-z\s]+$/.test(value)) {
-                nameError.textContent = "Only alphabets allowed";
-            } else {
-                nameError.textContent = "";
-            }
-        });
+            // Real-time validation for each field
+            nameInput.addEventListener("input", function() {
+                const value = this.value.trim();
+                if (!value) {
+                    nameError.textContent = "Name is required";
+                } else if (!/^[A-Za-z\s]+$/.test(value)) {
+                    nameError.textContent = "Only alphabets allowed";
+                } else {
+                    nameError.textContent = "";
+                }
+            });
 
-        phoneInput.addEventListener("input", function () {
-            const value = this.value.trim();
-            if (!value) {
-                phoneError.textContent = "Phone is required";
-            } else if (!/^\d+$/.test(value)) {
-                phoneError.textContent = "Only numbers allowed";
-            } else {
-                phoneError.textContent = "";
-            }
-        });
+            phoneInput.addEventListener("input", function() {
+                const value = this.value.trim();
+                if (!value) {
+                    phoneError.textContent = "Phone is required";
+                } else if (!/^\d+$/.test(value)) {
+                    phoneError.textContent = "Only numbers allowed";
+                } else {
+                    phoneError.textContent = "";
+                }
+            });
 
-        emailInput.addEventListener("input", function () {
-            const value = this.value.trim();
-            if (!value) {
-                emailError.textContent = "Email is required";
-            } else {
-                emailError.textContent = "";
-            }
-        });
+            emailInput.addEventListener("input", function() {
+                const value = this.value.trim();
+                if (!value) {
+                    emailError.textContent = "Email is required";
+                } else {
+                    emailError.textContent = "";
+                }
+            });
 
-        subjectInput.addEventListener("input", function () {
-            const value = this.value.trim();
-            if (!value) {
-                subjectError.textContent = "Subject is required";
-            } else {
-                subjectError.textContent = "";
-            }
-        });
+            subjectInput.addEventListener("input", function() {
+                const value = this.value.trim();
+                if (!value) {
+                    subjectError.textContent = "Subject is required";
+                } else {
+                    subjectError.textContent = "";
+                }
+            });
 
-        messageInput.addEventListener("input", function () {
-            const value = this.value.trim();
-            if (!value) {
-                messageError.textContent = "Message is required";
-            } else {
-                messageError.textContent = "";
-            }
-        });
+            messageInput.addEventListener("input", function() {
+                const value = this.value.trim();
+                if (!value) {
+                    messageError.textContent = "Message is required";
+                } else {
+                    messageError.textContent = "";
+                }
+            });
 
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
-            feedbackMessage.classList.remove("alert", "alert-success", "alert-danger");
-            feedbackMessage.innerHTML = "";
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                feedbackMessage.classList.remove("alert", "alert-success", "alert-danger");
+                feedbackMessage.innerHTML = "";
 
-            let isValid = true;
+                let isValid = true;
 
-            // Manual recheck
-            if (!nameInput.value.trim()) {
-                nameError.textContent = "Name is required";
-                isValid = false;
-            } else if (!/^[A-Za-z\s]+$/.test(nameInput.value.trim())) {
-                nameError.textContent = "Only alphabets allowed";
-                isValid = false;
-            }
+                // Manual recheck
+                if (!nameInput.value.trim()) {
+                    nameError.textContent = "Name is required";
+                    isValid = false;
+                } else if (!/^[A-Za-z\s]+$/.test(nameInput.value.trim())) {
+                    nameError.textContent = "Only alphabets allowed";
+                    isValid = false;
+                }
 
-            if (!emailInput.value.trim()) {
-                emailError.textContent = "Email is required";
-                isValid = false;
-            }
+                if (!emailInput.value.trim()) {
+                    emailError.textContent = "Email is required";
+                    isValid = false;
+                }
 
-            if (!phoneInput.value.trim()) {
-                phoneError.textContent = "Phone is required";
-                isValid = false;
-            } else if (!/^\d+$/.test(phoneInput.value.trim())) {
-                phoneError.textContent = "Only numbers allowed";
-                isValid = false;
-            }
+                if (!phoneInput.value.trim()) {
+                    phoneError.textContent = "Phone is required";
+                    isValid = false;
+                } else if (!/^\d+$/.test(phoneInput.value.trim())) {
+                    phoneError.textContent = "Only numbers allowed";
+                    isValid = false;
+                }
 
-            if (!subjectInput.value.trim()) {
-                subjectError.textContent = "Subject is required";
-                isValid = false;
-            }
+                if (!subjectInput.value.trim()) {
+                    subjectError.textContent = "Subject is required";
+                    isValid = false;
+                }
 
-            if (!messageInput.value.trim()) {
-                messageError.textContent = "Message is required";
-                isValid = false;
-            }
+                if (!messageInput.value.trim()) {
+                    messageError.textContent = "Message is required";
+                    isValid = false;
+                }
 
-            if (!isValid) return;
+                if (!isValid) return;
 
-            submitBtn.disabled = true;
-            submitBtn.innerHTML =
-                '<i class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i> Processing...';
+                submitBtn.disabled = true;
+                submitBtn.innerHTML =
+                    '<i class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i> Processing...';
 
-            grecaptcha.ready(function () {
-                grecaptcha.execute("{{ env('RECAPTCHA_SITE_KEY') }}", {
-                    action: 'contactUsForm'
-                }).then(function (token) {
-                    const formData = new FormData(form);
-                    formData.append("g-recaptcha-response", token);
+                grecaptcha.ready(function() {
+                    grecaptcha.execute("{{ env('RECAPTCHA_SITE_KEY') }}", {
+                        action: 'contactUsForm'
+                    }).then(function(token) {
+                        const formData = new FormData(form);
+                        formData.append("g-recaptcha-response", token);
 
-                    fetch("{{ route('contactUsForm', ['language' => $language]) }}", {
-                        method: "POST",
-                        body: formData,
-                    })
-                        .then(response => response.json().then(data => ({
-                            status: response.status,
-                            body: data
-                        })))
-                        .then(({ status, body }) => {
-                            feedbackMessage.classList.remove("alert-danger", "alert-success");
+                        fetch("{{ route('contactUsForm', ['language' => $language]) }}", {
+                                method: "POST",
+                                body: formData,
+                            })
+                            .then(response => response.json().then(data => ({
+                                status: response.status,
+                                body: data
+                            })))
+                            .then(({
+                                status,
+                                body
+                            }) => {
+                                feedbackMessage.classList.remove("alert-danger",
+                                    "alert-success");
 
-                            if (status === 200) {
-                                feedbackMessage.classList.add("alert", "alert-success");
-                                feedbackMessage.innerHTML = `Form submitted successfully!`;
-                                form.reset();
-                                setTimeout(() => {
-                                    feedbackMessage.classList.remove("alert", "alert-success");
-                                    feedbackMessage.innerHTML = "";
-                                }, 2000);
-                            } else if (status === 422) {
-                                feedbackMessage.classList.add("alert", "alert-danger");
-                                feedbackMessage.innerHTML = `All fields are required!`;
-                                for (const key in body.errors) {
-                                    const errorElement = document.querySelector(".error-" + key);
-                                    if (errorElement) {
-                                        errorElement.textContent = body.errors[key][0];
+                                if (status === 200) {
+                                    feedbackMessage.classList.add("alert",
+                                        "alert-success");
+                                    feedbackMessage.innerHTML =
+                                        `Form submitted successfully!`;
+                                    form.reset();
+                                    setTimeout(() => {
+                                        feedbackMessage.classList.remove(
+                                            "alert", "alert-success");
+                                        feedbackMessage.innerHTML = "";
+                                    }, 2000);
+                                } else if (status === 422) {
+                                    feedbackMessage.classList.add("alert",
+                                        "alert-danger");
+                                    feedbackMessage.innerHTML =
+                                        `All fields are required!`;
+                                    for (const key in body.errors) {
+                                        const errorElement = document.querySelector(
+                                            ".error-" + key);
+                                        if (errorElement) {
+                                            errorElement.textContent = body.errors[key][
+                                                0
+                                            ];
+                                        }
                                     }
+                                } else {
+                                    throw new Error("Unexpected error");
                                 }
-                            } else {
-                                throw new Error("Unexpected error");
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            feedbackMessage.classList.add("alert", "alert-danger");
-                            feedbackMessage.innerHTML = `Something went wrong! Please try again.`;
-                        })
-                        .finally(() => {
-                            submitBtn.disabled = false;
-                            submitBtn.innerHTML = '{{ $language === "hi" ? "भेजें" : "Submit" }}';
-                        });
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                feedbackMessage.classList.add("alert", "alert-danger");
+                                feedbackMessage.innerHTML =
+                                    `Something went wrong! Please try again.`;
+                            })
+                            .finally(() => {
+                                submitBtn.disabled = false;
+                                submitBtn.innerHTML =
+                                    '{{ $language === 'hi' ? 'भेजें' : 'Submit' }}';
+                            });
 
-                }).catch(function (error) {
-                    feedbackMessage.classList.add("alert", "alert-danger");
-                    feedbackMessage.innerHTML = `Recaptcha verification failed. Please try again.`;
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '{{ $language === "hi" ? "भेजें" : "Submit" }}';
+                    }).catch(function(error) {
+                        feedbackMessage.classList.add("alert", "alert-danger");
+                        feedbackMessage.innerHTML =
+                            `Recaptcha verification failed. Please try again.`;
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML =
+                            '{{ $language === 'hi' ? 'भेजें' : 'Submit' }}';
+                    });
                 });
             });
         });
-    });
-</script>
-
+    </script>
 @endsection

@@ -30,7 +30,15 @@ jQuery(document).ready(function () {
     jQuery(".dark").hide();
   }
   jQuery(".search-drop").css("display", "none");
-  jQuery(".common-right ul li ul").css("visibility", "hidden");
+  jQuery(".common-right ul li ul").css("display", "none");
+  jQuery(".common-right ul li").hover(
+    function () {
+      jQuery(this).find("ul").stop(true, true).slideDown(200);
+    },
+    function () {
+      jQuery(this).find("ul").stop(true, true).slideUp(200);
+    }
+  );
 
   // Fix Header
 
