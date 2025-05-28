@@ -22,7 +22,9 @@ class UnitsManagement extends Controller
     {
         $language                           = $request->route('language', 'en'); // Default to 'en' if not provided
         $this->sharedData['visitorCount']   = Cache::increment('visitor_count', 1);
-        $this->sharedData['headerMenus']    = HeaderMenu::with(['menuPages'])->where('status', 'Active')->get();
+        $this->sharedData['headerMenus']    = HeaderMenu::with(['menuPages'=> function ($query) {
+            $query->where('status', 'Active');
+        }])->where('status', 'Active')->get();
         $this->sharedData['socialLinks']    = SocialLink::all();
         $this->sharedData['importantLinks'] = ImportantLink::all();
         $this->sharedData['usefulLinks']    = UsefulLink::all();
