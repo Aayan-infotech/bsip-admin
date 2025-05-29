@@ -355,7 +355,7 @@ class PublicationManagement extends Controller
         $data = [];
 
         $baseFile = 'assets-new/assets/newsletter/';
-        foreach (range(2003, 1998) as $year) {
+        foreach (range(2001, 1998) as $year) {
             $filePage    = $baseFile . 'Newsletter' . $year . '.pdf';
             $fileSize    = GettheSize::getFileSizeInMB($filePage);
             $data[$year] = [
