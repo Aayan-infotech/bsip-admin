@@ -26,21 +26,23 @@
 
             @foreach ($rajBhashaEvents as $event)
                 <div class="row align-items-center">
-                    <div class="col-md-9">
+                    <div class="col-md-8">
                         <h2 class="event-heading">
                             {{ $language === 'hi' ? $event->title_hin : $event->title }}
                         </h2>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="text-end">
                             @if ($event->pdf_file)
-                                ({{ $event->pdf_file_size }} MB)
-                                <a href="{{ $event->pdf_file }}" class="btn btn-primary" target="_blank" role="button"
+                                
+                                <a href="{{ $event->pdf_file }}" class="btn btn-view-profile" target="_blank" onclick="return confirmExternalLink()" role="button"
                                     aria-label="Download PDF file" title="Download PDF">
                                     <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                                    {{ $language === 'hi' ? 'डाउनलोड पीडीएफ़' : 'Download PDF' }}
                                 </a>
+                                ({{ $event->pdf_file_size }} MB)
                             @endif
-                            <button class="btn btn-primary ms-2" aria-label="Event Date For Event" title="Event Date">
+                            <button class="btn btn-view-profile ms-2" aria-label="Event Date For Event" title="Event Date">
                                 {{ \Carbon\Carbon::parse($event->date)->format('d-m-Y') }}
                             </button>
                         </div>
