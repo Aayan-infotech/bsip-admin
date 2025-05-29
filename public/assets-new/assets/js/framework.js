@@ -39,6 +39,7 @@ jQuery(document).ready(function () {
       jQuery(this).find("ul").stop(true, true).slideUp(200);
     }
   );
+  jQuery(".common-right ul li ul").css('background', '#000');
 
   // Fix Header
 
