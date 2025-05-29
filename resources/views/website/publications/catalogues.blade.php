@@ -44,19 +44,21 @@
                     <table class="table table-striped table-bordered">
                         <thead class="table-dark">
                             <tr>
+                                <th>{{ $language === 'hi' ? 'क्र.सं' : 'S.No' }}</th>
                                 <th>{{ $language === 'hi' ? 'कैटलॉग नाम' : 'Catalog Name' }}</th>
-                                <th>{{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</th>
+                                <th>{{ $language === 'hi' ? 'डाउनलोड पीडीएफ़' : 'Download PDF' }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($catalogues as $catalogue)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $language === 'hi' ? $catalogue->catalogue_hin_name : $catalogue->catalogue_name }}
                                     </td>
                                     <td>
                                         @if ($catalogue->catalogue_file || $catalogue->catalogue_file_hin)
                                             <a href="{{ $language === 'hi' ? $catalogue->catalogue_file_hin : $catalogue->catalogue_file }}"
-                                                class="btn btn-view-profile">
+                                                class="btn btn-view-profile" target="_blank" onclick="return confirmExternalLink()">
                                                 <i class="fas fa-download"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a>
                                             ({{ $language === 'hi' ? $catalogue->catalogue_file_hin_size : $catalogue->catalogue_file_size }})

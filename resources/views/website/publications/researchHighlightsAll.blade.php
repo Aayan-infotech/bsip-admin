@@ -46,8 +46,8 @@
                             <tr>
                                 <th>{{ $language === 'hi' ? 'क्र.सं' : 'S.No' }}</th>
                                 <th>{{ $language === 'hi' ? 'शीर्षक' : 'Title' }}</th>
-                                <th>{{ $language === 'hi' ? 'यूआरएल' : 'URL' }}</th>
-                                <th>{{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</th>
+                                <th>{{ $language === 'hi' ? 'बाहरी लिंक' : 'External Link' }}</th>
+                                <th>{{ $language === 'hi' ? 'डाउनलोड पीडीएफ़' : 'Download PDF' }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,7 +58,8 @@
                                     </td>
                                     <td>
                                         @if ($researchHighlight->link)
-                                            <a href="{{ $researchHighlight->link }}" target="_blank">
+                                            <a href="{{ $researchHighlight->link }}" target="_blank"
+                                                onclick="return confirmExternalLink()">
                                                 {{ $researchHighlight->link }}
                                             </a>
                                         @endif
@@ -66,7 +67,8 @@
                                     <td>
                                         @if ($researchHighlight->hindi_file || $researchHighlight->english_file)
                                             <a href="{{ $language === 'hi' ? $researchHighlight->hindi_file : $researchHighlight->english_file }}"
-                                                class="btn btn-view-profile">
+                                                class="btn btn-view-profile" target="_blank"
+                                                onclick="return confirmExternalLink()">
                                                 <i class="fas fa-download"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a>
                                             ({{ $language === 'hi' ? $researchHighlight->hindi_file_size : $researchHighlight->english_file_size }})

@@ -45,26 +45,37 @@
                         <table class="table table-striped table-bordered">
                             <thead class="table-dark">
                                 <tr>
+                                    <th>{{ $language === 'hi' ? 'क्र.सं' : 'S.No' }}</th>
                                     <th>{{ $language === 'hi' ? 'इवेंट का नाम' : 'Event Name' }}</th>
                                     <th>{{ $language === 'hi' ? 'सामाजिक लिंक' : 'Social Links' }}</th>
-                                    <th>{{ $language === 'hi' ? 'देखें' : 'View' }}</th>
+                                    <th>{{ $language === 'hi' ? 'डाउनलोड पीडीएफ़' : 'Download PDF' }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($pastEvents as $event)
                                     <tr>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>
                                             {{ $language === 'hi' ? $event->hin_title : $event->title }}
                                         </td>
                                         <td>
-                                            @if($event->youtube_url)
-                                                <a href="{{ $event->youtube_url }}" target="_blank" class="btn btn-primary btn-sm">YouTube</a>
+                                            @if ($event->youtube_url)
+                                                <a href="{{ $event->youtube_url }}" target="_blank"
+                                                    onclick="return confirmExternalLink()"
+                                                    class="btn btn-view-profile">YouTube <i
+                                                        class="fas fa-arrow-up-right-from-square"></i></a>
                                             @endif
-                                            @if($event->facebook_url)
-                                                <a href="{{ $event->facebook_url }}" target="_blank" class="btn btn-primary btn-sm">Facebook</a>
+                                            @if ($event->facebook_url)
+                                                <a href="{{ $event->facebook_url }}" target="_blank"
+                                                    onclick="return confirmExternalLink()"
+                                                    class="btn btn-view-profile">Facebook <i
+                                                        class="fas fa-arrow-up-right-from-square"></i></a>
                                             @endif
                                         </td>
-                                        <td><a href="{{ $event->pdf ?? '#' }}" class="btn btn-primary btn-sm" target="_blank">View</a></td>
+                                        <td><a href="{{ $event->pdf ?? '#' }}" class="btn btn-view-profile" target="_blank"
+                                                onclick="return confirmExternalLink()"><i class="fas fa-download"></i>
+                                                {{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}</a><span
+                                                class="ms-1">(0.25) MB</span></td>
                                     </tr>
                                 @endforeach
 

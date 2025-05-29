@@ -45,20 +45,22 @@
                     <table class="table table-striped table-bordered">
                         <thead class="table-dark">
                             <tr>
+                                <th>{{ $language === 'hi' ? 'क्र.सं' : 'S.No' }}</th>
                                 <th>{{ $language === 'hi' ? 'ई-पत्रिका शीर्षक' : 'E-Magazine Title' }}</th>
-                                <th>{{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</th>
+                                <th>{{ $language === 'hi' ? 'डाउनलोड पीडीएफ़' : 'Download PDF' }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $year => $item)
-                            <tr>
-                                <td>{{ $language === 'hi' ? 'ई-पत्रिका ' . $year  : 'E-Magazine ' . $year  }}</td>
-                                <td><a href="{{  $item['file']  }}"
-                                        class="btn btn-view-profile"><i class="fas fa-download"></i>
-                                        {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a>
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $language === 'hi' ? 'ई-पत्रिका ' . $year : 'E-Magazine ' . $year }}</td>
+                                    <td><a href="{{ $item['file'] }}" class="btn btn-view-profile" target="_blank"
+                                            onclick="return confirmExternalLink()"><i class="fas fa-download"></i>
+                                            {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</a>
                                         <span>({{ $item['size'] }}) MB</span>
                                     </td>
-                            </tr>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

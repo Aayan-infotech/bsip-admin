@@ -52,7 +52,7 @@
                                 <th>{{ $language === 'hi' ? 'वर्ष' : 'Year' }}</th>
                                 <th>{{ $language === 'hi' ? 'महीना' : 'Month' }}</th>
                                 <th>{{ $language === 'hi' ? 'शीर्षक' : 'Title' }}</th>
-                                <th>{{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}</th>
+                                <th>{{ $language === 'hi' ? 'डाउनलोड पीडीएफ़' : 'Download PDF' }}</th>
                             </tr>
                         </thead>
 
@@ -67,7 +67,8 @@
                                     <td>
                                         @if ($monthlyReport->report_file || $monthlyReport->report_file_hin)
                                             <a href="{{ $language === 'hi' ? $monthlyReport->report_file_hin : $monthlyReport->report_file }}"
-                                                class="btn btn-view-profile">
+                                                class="btn btn-view-profile" target="_blank"
+                                                onclick="return confirmExternalLink()">
                                                 <i class="fas fa-download"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड' : 'Download' }}
                                             </a>

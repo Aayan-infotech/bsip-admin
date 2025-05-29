@@ -35,7 +35,7 @@
                     <table class="table table-hover table-bordered align-middle" aria-describedby="notices">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col" class="text-center">{{ $language === 'hi' ? '#' : '#' }}</th>
+                                <th scope="col" class="text-center">{{ $language === 'hi' ? 'क्र.सं' : 'S.No' }}</th>
                                 <th scope="col" class="text-center">
                                     {{ $language === 'hi' ? 'निविदा संदर्भ' : 'Tender Reference' }}</th>
                                 <th scope="col" class="text-center">
@@ -57,12 +57,14 @@
                                     <td class="text-center">
                                         @if ($tender->tender_document)
                                             <a href="{{ asset('storage/' . $tender->tender_document) }}" target="_blank"
+                                                onclick="return confirmExternalLink()"
                                                 class="btn btn-outline-success btn-sm" role="link"
                                                 aria-label="{{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}">
                                                 <i class="fas fa-download" aria-hidden="true"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}
                                             </a>
-                                            ({{ $tender->tender_document_size }}) MB
+                                            ({{ $tender->tender_document_size }})
+                                            MB
                                         @else
                                             <span
                                                 class="text-muted">{{ $language === 'hi' ? 'कोई पीडीएफ नहीं' : 'No PDF' }}</span>
@@ -87,13 +89,14 @@
                 {{-- Archived Tenders --}}
                 <div class="col-md-12 content">
                     <div>
-                        <h3 id="notices" tabindex="0">{{ $language === 'hi' ? 'पुरालेख निविदा' : 'Archived Tenders' }}</h3>
+                        <h3 id="notices" tabindex="0">{{ $language === 'hi' ? 'पुरालेख निविदा' : 'Archived Tenders' }}
+                        </h3>
                         <div class="divider"></div>
                     </div>
                     <table class="table table-hover table-bordered align-middle" aria-describedby="notices">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col" class="text-center">{{ $language === 'hi' ? '#' : '#' }}</th>
+                                <th scope="col" class="text-center">{{ $language === 'hi' ? 'क्र.सं' : 'S.No' }}</th>
                                 <th scope="col" class="text-center">
                                     {{ $language === 'hi' ? 'निविदा संदर्भ' : 'Tender Reference' }}</th>
                                 <th scope="col" class="text-center">
@@ -115,12 +118,14 @@
                                     <td class="text-center">
                                         @if ($tender->tender_document)
                                             <a href="{{ asset('storage/' . $tender->tender_document) }}" target="_blank"
+                                                onclick="return confirmExternalLink()"
                                                 class="btn btn-outline-success btn-sm" role="link"
                                                 aria-label="{{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}">
                                                 <i class="fas fa-download" aria-hidden="true"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}
                                             </a>
-                                            ({{ $tender->tender_document_size }}) MB
+                                            ({{ $tender->tender_document_size }})
+                                            MB
                                         @else
                                             <span
                                                 class="text-muted">{{ $language === 'hi' ? 'कोई पीडीएफ नहीं' : 'No PDF' }}</span>
