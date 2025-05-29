@@ -34,6 +34,7 @@
                     'menuPages' => $menuPages,
                     'currentPageId' => $currentPageId,
                     'language' => $language,
+                    'currentHeaderMenu' => $currentHeaderMenu,
                 ])
 
                 <!-- Main Content -->

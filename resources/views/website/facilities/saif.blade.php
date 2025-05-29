@@ -59,7 +59,7 @@
                                             {{ $language === 'hi' ? 'डाउनलोड पीडीएफ़' : 'Download PDF' }}
                                             <i class="fas fa-file-pdf ms-2"></i>
                                         </a>
-                                        <span class="ms-1">(0.25) MB</span>
+                                        <span class="ms-1">({{$staticFiles[0]['size']}}) MB</span>
                                     </td>
                                     <td>-</td>
                                 </tr>
@@ -73,7 +73,7 @@
                                             {{ $language === 'hi' ? 'डाउनलोड पीडीएफ़' : 'Download PDF' }}
                                             <i class="fas fa-file-pdf ms-2"></i>
                                         </a>
-                                        <span class="ms-1">(0.25) MB</span>
+                                        <span class="ms-1">({{$staticFiles[1]['size']}}) MB</span>
                                     </td>
                                     <td>-</td>
                                 </tr>
@@ -87,7 +87,7 @@
                                             {{ $language === 'hi' ? 'डाउनलोड वर्ड' : 'Download Word' }}
                                             <i class="fas fa-file-word ms-2"></i>
                                         </a>
-                                        <span class="ms-1">(0.25) MB</span>
+                                        <span class="ms-1">({{$staticFiles[2]['size']}}) MB</span>
                                     </td>
                                     <td>-</td>
                                 </tr>
@@ -101,7 +101,7 @@
                                             {{ $language === 'hi' ? 'डाउनलोड पीडीएफ़' : 'Download PDF' }}
                                             <i class="fas fa-file-pdf ms-2"></i>
                                         </a>
-                                        <span class="ms-1">(0.25) MB</span>
+                                        <span class="ms-1">({{$staticFiles[3]['size']}}) MB</span>
                                     </td>
                                     <td>-</td>
                                 </tr>

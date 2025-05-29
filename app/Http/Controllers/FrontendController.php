@@ -458,9 +458,18 @@ class FrontendController extends Controller
             ->orderBy('sequence', 'asc')
             ->get();
 
+        // Check if the current header menu exists, if not create a default one
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
+
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
 
         $this->sharedData['career'] = Career::where('status', 1)
             ->where('archived_status', 'No')
@@ -504,9 +513,17 @@ class FrontendController extends Controller
             ->orderBy('sequence', 'asc')
             ->get();
 
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
+
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
 
         return view('website.admissionToPhd', $this->sharedData);
     }
@@ -524,9 +541,17 @@ class FrontendController extends Controller
             ->orderBy('sequence', 'asc')
             ->get();
 
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
+
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
 
         return view('website.disseration', $this->sharedData);
     }
@@ -544,9 +569,17 @@ class FrontendController extends Controller
             ->orderBy('sequence', 'asc')
             ->get();
 
+        $currentHeaderMenu = HeaderMenu::where('id', $parentMenuId)->first();
+        if (! $currentHeaderMenu) {
+            $currentHeaderMenu              = [];
+            $currentHeaderMenu['title']     = $this->sharedData['pageTitle'];
+            $currentHeaderMenu['hin_title'] = $this->sharedData['pageTitle'];
+        }
+
         // Pass data to the view
         $this->sharedData['currentPageId'] = $currentPage->id;
         $this->sharedData['menuPages']     = $menuPages;
+        $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
 
         return view('website.training', $this->sharedData);
     }

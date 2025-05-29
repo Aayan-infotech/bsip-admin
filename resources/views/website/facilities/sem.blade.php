@@ -87,7 +87,7 @@
                                                 <i class="fas fa-download"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}
                                             </a>
-                                            <span class="ms-1">(0.25) MB</span>
+                                            <span class="ms-1">({{$staticFiles[0]['size']}}) MB</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -102,7 +102,7 @@
                                                 <i class="fas fa-download"></i>
                                                 {{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}
                                             </a>
-                                            <span class="ms-1">(0.25) MB</span>
+                                            <span class="ms-1">({{$staticFiles[1]['size']}}) MB</span>
                                         </td>
                                     </tr>
                                 </tbody>

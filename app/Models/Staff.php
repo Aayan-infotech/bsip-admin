@@ -73,4 +73,19 @@ class Staff extends Model
     {
         return $this->hasMany(AwardsHonors::class, 'staff_id');
     }
+
+        public function getCVSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->cv);
+
+        if (! $relativePath) {
+            return null;
+        }
+
+        $filePath = public_path('storage/' . $relativePath);
+
+        return file_exists($filePath)
+        ? round(filesize($filePath) / 1024 / 1024, 2) // MB
+        : null;
+    }
 }

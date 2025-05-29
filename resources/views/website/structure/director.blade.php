@@ -220,6 +220,7 @@
                                             <h5>You can Download CV Here :</h5>
                                             <a href="{{ asset($member->cv) }}" target="_blank" class="btn btn-primary">
                                                 {{ $language === 'hi' ? 'सीवी डाउनलोड करें' : 'Download CV' }}
+                                                <span class="badge bg-secondary">{{ $member->cv_size }} MB</span>
                                             </a>
                                         </div>
                                     </div>

@@ -47,8 +47,8 @@
                                 {{ $language === 'hi'
                                     ? 'लॉजिटेक सेक्शन कटिंग और पॉलिशिंग मशीनों का उपयोग जीवाश्म लकड़ी के वर्गों को काटने के लिए किया जाता है। Palaeobotanical शोधों पर डेटाबेस विकसित करने के लिए छवि विश्लेषक और स्कैनर का उपयोग किया जा रहा है।'
                                     : 'Logitech Section Cutting and Polishing Machines are used for cutting
-                                                                                                                                sections of fossil woods. Image Analyser and scanner for developing database on
-                                                                                                                                palaeobotanical researches are being utilized.' }}
+                                                                                                                                                                sections of fossil woods. Image Analyser and scanner for developing database on
+                                                                                                                                                                palaeobotanical researches are being utilized.' }}
                             </p>
                         </div>
                     </div>
@@ -74,7 +74,8 @@
                                     <tr>
                                         <th>{{ $language === 'hi' ? 'क्र.सं' : 'S.No' }}</th>
                                         <th>{{ $language === 'hi' ? 'विवरण' : 'Description' }}</th>
-                                        <th>{{ $language === 'hi' ? 'वर्ड फ़ाइल डाउनलोड करें' : 'Download Word File' }}</th>
+                                        <th>{{ $language === 'hi' ? 'वर्ड फ़ाइल डाउनलोड करें' : 'Download Word File' }}
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -88,9 +89,9 @@
                                                 class="btn btn-view-profile" target="_blank"
                                                 onclick="return confirmExternalLink()">
                                                 <i class="fas fa-download"></i>
-                                                {{ $language === 'hi' ? 'डाउनलोड करें' : 'Download' }}
+                                                {{ $language === 'hi' ? 'डाउनलोड करें' : 'Download Word' }}
                                             </a>
-                                            <span class="ms-1">(0.25) MB</span>
+                                            <span class="ms-1">({{ $staticFiles }}) MB</span>
                                         </td>
                                     </tr>
                                 </tbody>

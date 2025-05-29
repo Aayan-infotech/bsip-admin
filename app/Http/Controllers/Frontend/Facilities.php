@@ -11,20 +11,22 @@ use App\Models\MenuPage;
 use App\Models\SAIF;
 use App\Models\SocialLink;
 use App\Models\UsefulLink;
+use App\Traits\GettheSize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB
+;
 
 class Facilities extends Controller
 {
-    //
+    use GettheSize;
     protected $sharedData = [];
 
     public function __construct(Request $request)
     {
-        $language                           = $request->route('language', 'en'); // Default to 'en' if not provided
-        $this->sharedData['visitorCount']   = Cache::increment('visitor_count', 1);
-        $this->sharedData['headerMenus']    = HeaderMenu::with(['menuPages'=> function ($query) {
+        $language                         = $request->route('language', 'en'); // Default to 'en' if not provided
+        $this->sharedData['visitorCount'] = Cache::increment('visitor_count', 1);
+        $this->sharedData['headerMenus']  = HeaderMenu::with(['menuPages' => function ($query) {
             $query->where('status', 'Active');
         }])->where('status', 'Active')->get();
         $this->sharedData['socialLinks']    = SocialLink::all();
@@ -93,6 +95,25 @@ class Facilities extends Controller
         $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
+
+        $staticFile = [
+            'assets-new/assets/saif/Revised rates for sample analysis V2.pdf',
+            'assets-new/assets/saif/BSIP_SAIF_Requisition_form.pdf',
+            'assets-new/assets/saif/BSIP_SAIF_Requisition_form.docx',
+            'assets-new/assets/saif/BSIP_Bankdetails_21022018.pdf',
+        ];
+
+        $data = [];
+
+        foreach ($staticFile as $file) {
+            $fileSize = GettheSize::getFileSizeInMB($file);
+            $data[]   = [
+                'file' => url($file),
+                'size' => $fileSize,
+            ];
+        }
+
+        $this->sharedData['staticFiles'] = $data;
 
         // Fetch SAIF data
         $saifData = SAIF::with(['scientist' => function ($query) {
@@ -165,6 +186,20 @@ class Facilities extends Controller
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
 
+        $staticFiles = [
+            'assets-new/assets/images/fesem/internal-requisition-form.pdf',
+            'assets-new/assets/images/fesem/outsider.pdf'
+        ];
+        $data = [];
+        foreach ($staticFiles as $file) {
+            $fileSize = GettheSize::getFileSizeInMB($file);
+            $data[]   = [
+                'file' => url($file),
+                'size' => $fileSize,
+            ];
+        }
+        $this->sharedData['staticFiles'] = $data;
+
         return view('website.facilities.sem', $this->sharedData);
     }
 
@@ -230,6 +265,9 @@ class Facilities extends Controller
         $this->sharedData['menuPages']         = $menuPages;
         $this->sharedData['currentHeaderMenu'] = $currentHeaderMenu;
         $this->sharedData['currentPage']       = $currentPage;
+
+        $data = GettheSize::getFileSizeInMB('assets-new/assets/images/services/Wood cutting form.doc');
+        $this->sharedData['staticFiles'] = $data;
 
         return view('website.facilities.sectionCutting', $this->sharedData);
     }
