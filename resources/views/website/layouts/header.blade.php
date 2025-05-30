@@ -128,7 +128,7 @@
         <div class="container-fluid common-container four_content header-container">
             <div class="row">
                 <div class="col-md-12 logo">
-                    
+
                     <a href="{{ url($language) }}" title="{{ $logo->title ?? 'Go to home page' }}" rel="home"
                         class="header__logo" id="logo"
                         aria-label="Homepage - Birbal Sahni Institute of Palaeosciences">

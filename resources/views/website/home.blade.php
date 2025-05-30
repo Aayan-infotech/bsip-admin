@@ -120,8 +120,9 @@
                                             {{ $language === 'hi' ? $highlight->hin_title : $highlight->title }}
 
                                             <a href="{{ $language === 'hi' ? $highlight->hindi_file : $highlight->english_file }}"
-                                                class="text-dark fw-bold" aria-label="home" target="_blank"
-                                                onclick="return confirmExternalLink()">
+                                                class="text-dark fw-bold"
+                                                aria-label="{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}"
+                                                target="_blank" onclick="return confirmExternalLink()">
                                                 [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
                                                 <i class="fas fa-file-pdf text-danger" role="presentation"></i>
                                             </a>
@@ -168,7 +169,7 @@
                                             @if ($notice->pdf)
                                                 <a href="{{ asset('storage/' . $notice->pdf) }}" target="_blank"
                                                     onclick="return confirmExternalLink()" class="text-dark fw-bold"
-                                                    aria-label="{{ $language === 'hi' ? 'पीडीएफ डाउनलोड करें' : 'Download PDF' }}">
+                                                    aria-label="{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}">
                                                     [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
                                                 </a>
                                             @endif
@@ -215,7 +216,7 @@
                                 <div class="col-6">
                                     <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_the_paleobotanist' : 'bsip_the_paleobotanist' }}"
                                         class="card-link text-decoration-none focus-outline"
-                                        aria-label="BSIP Paleobotanist">
+                                        aria-label="{{ $language === 'hi' ? 'पुरापाषाण विज्ञान जर्नल' : 'Journal of Palaeosciences' }}">
                                         <div class="card-section border rounded text-center p-3">
                                             <div
                                                 class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
@@ -230,7 +231,7 @@
                                 <!-- Research Projects -->
                                 <div class="col-6">
                                     <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_research_activities' : 'bsip_research_activities' }}"
-                                        class="card-link text-decoration-none focus-outline" aria-label="Bsip Activities">
+                                        class="card-link text-decoration-none focus-outline" aria-label="{{ $language === 'hi' ? 'अनुसंधान परियोजनायें' : 'Research Projects' }}">
                                         <div class="card-section border rounded text-center p-3">
                                             <div
                                                 class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
@@ -246,7 +247,7 @@
                                 <div class="col-6">
                                     <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_annual_reports' : 'bsip_annual_reports' }}"
                                         class="card-link text-decoration-none focus-outline"
-                                        aria-label="Bsip Annual Reports">
+                                        aria-label="{{ $language === 'hi' ? 'वार्षिक रिपोर्ट' : 'Annual Report' }}">
                                         <div class="card-section border rounded text-center p-3">
                                             <div
                                                 class="icon-container bg-warning text-white d-flex justify-content-center align-items-center mx-auto">
@@ -262,7 +263,7 @@
                                 <div class="col-6">
                                     <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_monthly_report' : 'bsip_monthly_report' }}"
                                         class="card-link text-decoration-none focus-outline"
-                                        aria-label="Bsip Monthly Report">
+                                        aria-label="{{ $language === 'hi' ? 'मासिक रिपोर्ट' : 'Monthly Report' }}">
                                         <div class="card-section border rounded text-center p-3">
                                             <div
                                                 class="icon-container bg-danger text-white d-flex justify-content-center align-items-center mx-auto">
@@ -296,7 +297,8 @@
                                 <div class="row justify-content-center g-4">
                                     <div class="col-6">
                                         <a href="{{ $language }}/bsip_past_events"
-                                            class="card-link text-decoration-none focus-outline" aria-label="home">
+                                            class="card-link text-decoration-none focus-outline"
+                                            aria-label="{{ $language === 'hi' ? 'आयोजन' : 'Events' }}">
                                             <div class="card-section border rounded text-center p-3">
                                                 <div
                                                     class="icon-container bg-primary text-white d-flex justify-content-center align-items-center mx-auto">
@@ -310,7 +312,7 @@
                                     <div class="col-6">
                                         <a href="https://youtu.be/NpKQ1LPbrfE"
                                             class="card-link text-decoration-none focus-outline" target="_blank"
-                                            aria-label="home">
+                                            aria-label="{{ $language === 'hi' ? 'प्लैटिनम जुबली मूवी (अंग्रेजी)' : 'Platinum Jubilee Movie (English)' }}">
                                             <div class="card-section border rounded text-center p-2">
                                                 <div
                                                     class="icon-container bg-success text-white d-flex justify-content-center align-items-center mx-auto">
@@ -325,7 +327,7 @@
                                     <div class="col-6">
                                         <a href="https://www.youtube.com/watch?v=NpKQ1LPbrfE"
                                             class="card-link text-decoration-none focus-outline" target="_blank"
-                                            aria-label="home">
+                                            aria-label="{{ $language === 'hi' ? 'प्लैटिनम जुबली फिल्म (हिंदी)' : 'Platinum Jubilee Movie (Hindi)' }}">
                                             <div class="card-section border rounded text-center p-2">
                                                 <div
                                                     class="icon-container bg-warning text-white d-flex justify-content-center align-items-center mx-auto">
@@ -340,7 +342,7 @@
                                     <div class="col-6">
                                         <a href="https://www.youtube.com/@bsiponline573"
                                             class="card-link text-decoration-none focus-outline" target="_blank"
-                                            aria-label="home">
+                                            aria-label="{{ $language === 'hi' ? 'यूट्यूब पुरानी फिल्में' : 'YouTube Old Movies' }}">
                                             <div class="card-section border rounded text-center p-3">
                                                 <div
                                                     class="icon-container bg-danger text-white d-flex justify-content-center align-items-center mx-auto">
@@ -511,7 +513,7 @@
                     <!-- Museum Card -->
                     <div class="col-md-4">
                         <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_museum' : 'bsip_museum' }}"
-                            class="text-decoration-none" aria-label="Museum Page">
+                            class="text-decoration-none" aria-label="{{ $language === 'hi' ? 'संग्रहालय' : 'Museum' }}">
                             <div class="card shadow">
                                 <h2 class="header-section-profiles">
                                     <i class="fas fa-landmark me-2"></i>
@@ -532,7 +534,7 @@
                     <!-- CPGG Card -->
                     <div class="col-md-4">
                         <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_geo_heritage' : 'bsip_geo_heritage' }}"
-                            class="text-decoration-none" aria-label="home">
+                            class="text-decoration-none" aria-label="{{ $language === 'hi' ? 'सीपीजीजी' : 'CPGG' }}">
                             <div class="card shadow">
                                 <h2 class="header-section-profiles">
                                     <i class="fas fa-handshake me-2"></i>
@@ -553,7 +555,7 @@
                     <!-- Media Cell Card -->
                     <div class="col-md-4">
                         <a href="{{ $language }}/{{ $language === 'hi' ? 'bsip_media_cell' : 'bsip_media_cell' }}"
-                            class="text-decoration-none" aria-label="Bsip Media Cell">
+                            class="text-decoration-none" aria-label="{{ $language === 'hi' ? 'मीडिया सेल' : 'Media Cell' }}">
                             <div class="card shadow">
                                 <h2 class="header-section-profiles">
                                     <i class="fas fa-broadcast-tower me-2"></i>

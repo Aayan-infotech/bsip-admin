@@ -186,7 +186,7 @@
                     {{ $language === 'hi' ? 'डिज़ाइन एवं विकसित द्वारा' : 'Designed & Developed By' }}
                     <span>
                         <a href="https://aayaninfotech.com/" class="text-white" target="_blank" onclick="return confirmExternalLink()"
-                            aria-label="aayan">Aayan India</a>
+                            aria-label="Aayan India">Aayan India</a>
                     </span>
                 </p>
             </div>
