@@ -120,7 +120,8 @@
                                             {{ $language === 'hi' ? $highlight->hin_title : $highlight->title }}
 
                                             <a href="{{ $language === 'hi' ? $highlight->hindi_file : $highlight->english_file }}"
-                                                class="text-dark" aria-label="home" target="_blank">
+                                                class="text-dark fw-bold" aria-label="home" target="_blank"
+                                                onclick="return confirmExternalLink()">
                                                 [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
                                                 <i class="fas fa-file-pdf text-danger" role="presentation"></i>
                                             </a>
@@ -166,14 +167,15 @@
 
                                             @if ($notice->pdf)
                                                 <a href="{{ asset('storage/' . $notice->pdf) }}" target="_blank"
-                                                    class="text-primary"
+                                                    onclick="return confirmExternalLink()" class="text-dark fw-bold"
                                                     aria-label="{{ $language === 'hi' ? 'पीडीएफ डाउनलोड करें' : 'Download PDF' }}">
                                                     [{{ $language === 'hi' ? 'पीडीएफ देखें' : 'View PDF' }}]
                                                 </a>
                                             @endif
 
                                             @if ($notice->url)
-                                                <a href="{{ $notice->url }}" target="_blank" class="text-primary"
+                                                <a href="{{ $notice->url }}" target="_blank"
+                                                    onclick="return confirmExternalLink()" class="text-dark fw-bold"
                                                     aria-label="{{ $language === 'hi' ? 'लिंक खोलें' : 'Open Link' }}">
                                                     [{{ $language === 'hi' ? 'लिंक देखें' : 'View Link' }}]
                                                 </a>
