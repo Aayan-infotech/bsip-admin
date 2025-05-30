@@ -85,7 +85,7 @@
                                 {{ $language === 'hi' ? 'निदेशक' : 'Director' }}
                             </h2>
                             <div class="card-image">
-                                <img src="{{ $director->profile_picture }}" alt="" class="director-img">
+                                <img src="{{ $director->profile_picture }}" alt="Director Image" class="director-img">
                             </div>
                             <div class="card-content">
                                 <h3>{{ $language === 'hi' ? $director->name_hin : $director->name }}</h3>
