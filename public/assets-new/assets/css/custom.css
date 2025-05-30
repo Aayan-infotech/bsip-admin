@@ -264,8 +264,8 @@
 }
 
 .bg-footer {
-    /* background-color: #33383c; */
-    background: url(../images/footer-top-bg.jpg) repeat #000;
+    background-color: #000;
+    /* background: url(../images/footer-top-bg.jpg) repeat #000; */
     padding: 50px 0 30px;
 }
 
