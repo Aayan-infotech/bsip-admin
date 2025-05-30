@@ -77,7 +77,7 @@
                                 <label class="de-lag" for="language-select">
                                     <span>Language</span>
                                 </label>
-                                <select id="language-select" title="Select language"
+                                <select id="language-select" title="Select language" aria-label="Select Language"
                                     onchange="confirmAndChangeLanguage(this)">
                                     <option value="{{ url('en/' . request()->segment(2)) }}"
                                         {{ request()->segment(1) === 'en' ? 'selected' : '' }}>

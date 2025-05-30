@@ -4,7 +4,7 @@
             <!-- Contact Section -->
             <div class="col-lg-4 col-6">
                 <div class="">
-                    <h4 class="footer-heading">{{ $language === 'hi' ? 'संपर्क करें' : 'Contact Us' }}</h4>
+                    <h2 class="footer-heading">{{ $language === 'hi' ? 'संपर्क करें' : 'Contact Us' }}</h2>
                     <p class="contact-info mt-4">
                         {{ $language === 'hi'
                             ? 'बीरबल साहनी पुराविज्ञान संस्थान, 53 विश्वविद्यालय रोड, लखनऊ - 226007, उत्तर प्रदेश, भारत'
@@ -45,7 +45,7 @@
             <!-- Important Links Section -->
             <div class="col-lg-3 col-6">
                 <div class="">
-                    <h4 class="footer-heading">{{ $language === 'hi' ? 'महत्वपूर्ण लिंक' : 'Important Links' }}</h4>
+                    <h2 class="footer-heading">{{ $language === 'hi' ? 'महत्वपूर्ण लिंक' : 'Important Links' }}</h2>
                     <ul class="list-unstyled footer-link mt-4">
                         @foreach ($importantLinks as $link)
                             <li>
@@ -64,7 +64,7 @@
             <!-- Useful Links Section -->
             <div class="col-lg-3 col-6">
                 <div class="">
-                    <h4 class="footer-heading">{{ $language === 'hi' ? 'उपयोगी लिंक' : 'Useful Links' }}</h4>
+                    <h2 class="footer-heading">{{ $language === 'hi' ? 'उपयोगी लिंक' : 'Useful Links' }}</h2>
                     <ul class="list-unstyled footer-link mt-4">
                         @foreach ($usefulLinks as $link)
                             <li>
@@ -83,9 +83,9 @@
             <!-- Site Visitors Section -->
             <div class="col-lg-2 col-6">
                 <div class="">
-                    <h4 class="footer-heading" style="font-weight: bold; color: #1565c0;">
+                    <h2 class="footer-heading" style="font-weight: bold; color: #1565c0;">
                         {{ $language === 'hi' ? 'महत्वपूर्ण लिंक' : 'Other Links' }}
-                    </h4>
+                    </h2>
                     <div class="important-links">
                         <ul class="list-unstyled footer-link mt-4">
                             <li><a href="https://quiz.mygov.in/" target="_blank"
