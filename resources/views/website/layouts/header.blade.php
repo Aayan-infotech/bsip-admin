@@ -48,7 +48,7 @@
                                         style="display: none;">Light Mode</a>
                                 </div>
                             </li>
-                            <li class="ico-social cf">
+                            {{-- <li class="ico-social cf">
                                 <a href="#" id="toggleSocial" title="Social Medias" class="text-dark">
                                     <img class="top" src="{{ asset('assets-new/assets/images/ico-social.png') }}"
                                         alt="Social Medias">
@@ -58,12 +58,13 @@
                                         <li>
                                             <a target="_blank" title="Social Link" href="{{ $link->url }}"
                                                 onclick="return confirmExternalLink()">
-                                                <img alt="Social Link" src="{{ asset('storage/' . $link->icon_image) }}">
+                                                <img alt="Social Link"
+                                                    src="{{ asset('storage/' . $link->icon_image) }}">
                                             </a>
                                         </li>
                                     @endforeach
                                 </ul>
-                            </li>
+                            </li> --}}
                             <li class="ico-sitemap cf">
                                 <a href="{{ route('frontend.sitemap', ['language' => $language]) }}" title="Sitemap"
                                     aria-label="sitemap" class="text-dark">
@@ -127,11 +128,14 @@
         <div class="container-fluid common-container four_content header-container">
             <div class="row">
                 <div class="col-md-12 logo">
-                    <a href="{{ url($language) }}" title="{{ $logo->title ?? 'Home' }}" rel="home"
-                        class="header__logo" id="logo">
+                    
+                    <a href="{{ url($language) }}" title="{{ $logo->title ?? 'Go to home page' }}" rel="home"
+                        class="header__logo" id="logo"
+                        aria-label="Homepage - Birbal Sahni Institute of Palaeosciences">
                         <img class="national_emblem" src="{{ asset($logo->logo ?? 'default-logo.png') }}"
-                            alt="{{ $logo->title ?? 'Birbal Sahni Institute of Palaeosciences Logo' }}">
+                            alt="Birbal Sahni Institute of Palaeosciences - Homepage" loading="lazy">
                     </a>
+
                 </div>
                 <h1 class="visually-hidden">Welcome to My Accessible Website</h1>
             </div>

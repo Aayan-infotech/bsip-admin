@@ -376,7 +376,7 @@
     .font-controll,
     .high-contrast,
     .skip-cont {
-        display: none;
+        display: block;
     }
 }
 @media all and (max-width: 500px) {
