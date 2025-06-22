@@ -144,7 +144,10 @@
     <div class="wrapper megamenu-wraper">
 
         <div class="container-fluid common-container four_content">
-            <p class="showhide"><em></em><em></em><em></em></p>
+            {{-- <p class="showhide"><em></em><em></em><em></em></p> --}}
+            <a href="javascript:void(0);" class="showhide" id="menuToggleBtn" aria-label="Toggle mobile menu" >
+                <em></em><em></em><em></em>
+            </a>
             <nav class="main-menu clearfix" id="main_menu">
                 <ul class="nav-menu">
                     @foreach ($headerMenus as $menu)

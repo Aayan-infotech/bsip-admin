@@ -40,6 +40,7 @@
                                     <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
                                     {{ $language === 'hi' ? 'डाउनलोड पीडीएफ़' : 'Download PDF' }}
                                 </a>
+                                ({{ $event->pdf_file_size }} MB)
                             @endif
                             <button class="btn btn-view-profile ms-2" aria-label="Event Date For Event" title="Event Date">
                                 {{ \Carbon\Carbon::parse($event->date)->format('d-m-Y') }}

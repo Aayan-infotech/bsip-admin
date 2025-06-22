@@ -68,6 +68,28 @@
         }
     </script>
     <style>
+
+
+.showhide:focus-visible {
+  outline: 3px solid #000; /* or any color for visible focus */
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.showhide {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.showhide em {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: black;
+  margin: 4px 0;
+}
+
         @media print {
 
             header,

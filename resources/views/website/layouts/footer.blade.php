@@ -32,7 +32,7 @@
                                     <a href="{{ $link->url }}" aria-label="{{ $link->title }}" target="_blank"
                                         onclick="return confirmExternalLink()">
                                         <!-- <i class="fab {{ $link->icon_class }} footer-social-icon"></i> -->
-                                        <img style="max-width:30px;" alt="Social Link"
+                                        <img style="max-width:30px;" alt="Social Link" title="Social Media Link"
                                             src="{{ asset('storage/' . $link->icon_image) }}">
                                     </a>
                                 </li>

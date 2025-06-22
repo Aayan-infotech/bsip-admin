@@ -29,6 +29,21 @@ class OutreachProgram extends Model
         return $value ? url('storage/' . $value) : null;
     }
 
+        public function getPdfFileSizeAttribute()
+    {
+        $relativePath = str_replace(url('storage') . '/', '', $this->pdf_file);
+
+        if (! $relativePath) {
+            return null;
+        }
+
+        $filePath = public_path('storage/' . $relativePath);
+
+        return file_exists($filePath)
+            ? round(filesize($filePath) / 1024 / 1024, 2) // MB
+            : null;
+    }
+
     protected function images(): Attribute
     {
         return Attribute::make(
