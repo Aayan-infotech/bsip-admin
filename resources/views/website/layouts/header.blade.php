@@ -102,16 +102,16 @@
                                                 onclick="return confirmLanguageChange('English')">
                                                 English
                                             </a>
-
                                         </li>
                                         <li>
                                             <a href="{{ url('/hi') }}" lang="hi" class="alink"
                                                 title="Click here for हिन्दी version."
-                                                {{ $language === 'hi' ? 'aria-current="page"' : '' }}
+                                                @if ($language === 'hi') aria-current="page" @endif
                                                 onclick="return confirmLanguageChange('हिन्दी')">
                                                 हिन्दी
                                             </a>
                                         </li>
+
                                     </ul>
                                 </nav>
                             </li>
@@ -145,7 +145,7 @@
 
         <div class="container-fluid common-container four_content">
             {{-- <p class="showhide"><em></em><em></em><em></em></p> --}}
-            <a href="javascript:void(0);" class="showhide" id="menuToggleBtn" aria-label="Toggle mobile menu" >
+            <a href="javascript:void(0);" class="showhide" id="menuToggleBtn" aria-label="Toggle mobile menu">
                 <em></em><em></em><em></em>
             </a>
             <nav class="main-menu clearfix" id="main_menu">
