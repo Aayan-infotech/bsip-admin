@@ -7,7 +7,7 @@
 
 @section('content')
     <section>
-        <div class="container-fluid p-0">
+        <div class="container-fluid p-0" id="skipToContent">
             <!-- Breadcrumb -->
             <nav class="bio-breadcrumb" aria-label="Breadcrumb">
                 <ul class="breadcrumb">

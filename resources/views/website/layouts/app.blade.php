@@ -329,6 +329,33 @@
             }
         }
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const nodes = document.querySelectorAll('.org-node, .org-subnode');
+        const descPanel = document.getElementById('org-description-panel');
+
+        nodes.forEach(node => {
+            node.addEventListener('focus', () => {
+                const description = node.getAttribute('data-description');
+                if (description) descPanel.textContent = description;
+            });
+
+            node.addEventListener('mouseenter', () => {
+                const description = node.getAttribute('data-description');
+                if (description) descPanel.textContent = description;
+            });
+
+            node.addEventListener('mouseleave', () => {
+                descPanel.textContent = "{{ $language === 'hi' ? 'विवरण देखने के लिए किसी भी आइटम पर होवर करें या फोकस करें' : 'Hover or focus on any item to see its description' }}";
+            });
+
+            node.addEventListener('blur', () => {
+                descPanel.textContent = "{{ $language === 'hi' ? 'विवरण देखने के लिए किसी भी आइटम पर होवर करें या फोकस करें' : 'Hover or focus on any item to see its description' }}";
+            });
+        });
+    });
+</script>
+
 
     @yield('scripts')
 
