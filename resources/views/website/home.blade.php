@@ -35,7 +35,7 @@
                                 {{ $language === 'hi' ? 'बीएसआईपी एक नजर में' : 'BSIP At A Glance' }}
                             </h2>
                             <div class="card-image">
-                                <img src="{{ asset('assets-new/assets/images/home/bsip-1.png') }}" alt="BSIP At A Glance 1">
+                                <img src="{{ asset('assets-new/assets/images/home/bsip-1.png') }}" alt="BSIP At A Glance" title="BSIP At A Glance">
                             </div>
                             <div class="card-content">
                                 <p class="paragraph-profile-card">
@@ -61,8 +61,8 @@
                                 {{ $language === 'hi' ? 'संस्थापक' : 'Founder' }}
                             </h2>
                             <div class="card-image">
-                                <img src="{{ asset('assets-new/assets/images/founder.png') }}" alt="Founder"
-                                    width="100">
+                                <img src="{{ asset('assets-new/assets/images/founder.png') }}" alt="Founder BSIP"
+                                    width="100" title="Founder BSIP">
                             </div>
                             <div class="card-content">
                                 <h3>{{ $language === 'hi' ? 'प्रो. बीरबल साहनी' : 'Prof. Birbal Sahni, FRS' }}</h3>
@@ -85,7 +85,7 @@
                                 {{ $language === 'hi' ? 'निदेशक' : 'Director' }}
                             </h2>
                             <div class="card-image">
-                                <img src="{{ $director->profile_picture }}" alt="Director Image" class="director-img">
+                                <img src="{{ $director->profile_picture }}" alt="Director Image" title="Director BSIP" class="director-img">
                             </div>
                             <div class="card-content">
                                 <h3>{{ $language === 'hi' ? $director->name_hin : $director->name }}</h3>
@@ -523,7 +523,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <img src="{{ asset('assets-new/assets/museum/museum2.jpg') }}"
-                                                alt="museum-img" class="img-fluid img-museum">
+                                                alt="museum-img" title="Museum BSIP" class="img-fluid img-museum">
                                         </div>
                                     </div>
                                 </div>
@@ -543,7 +543,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12">
-                                            <img src="{{ asset('assets-new/assets/museum/cpgg.jpg') }}" alt="cpgg-img"
+                                            <img src="{{ asset('assets-new/assets/museum/cpgg.jpg') }}" alt="cpgg-img" title="CPGG BSIP"
                                                 class="img-fluid img-museum">
                                         </div>
                                     </div>
@@ -565,7 +565,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <img src="{{ asset('assets-new/assets/museum/media-cell-eng.jpg') }}"
-                                                alt="cell-img" class="img-fluid img-museum">
+                                                alt="cell-img" title="Media Cell BSIP" class="img-fluid img-museum">
                                         </div>
                                     </div>
                                 </div>
@@ -596,7 +596,7 @@
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}"
                                     class="text-dark">
                                     <img src="{{ asset('assets-new/assets/home-page-facilities/TL-OSL.jpg') }}"
-                                        alt="Facility 1">
+                                        alt="Facility 1" title="TL/OSL">
                                     <div class="slider-title">TL/OSL</div>
                                 </a>
                             </div>
@@ -604,7 +604,7 @@
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}"
                                     class="text-dark">
                                     <img src="{{ asset('assets-new/assets/home-page-facilities/xrd.jfif') }}"
-                                        alt="Facility 2">
+                                        alt="Facility 2" title="XRD">
                                     <div class="slider-title">XRD</div>
                                 </a>
                             </div>
@@ -612,7 +612,7 @@
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}"
                                     class="text-dark">
                                     <img src="{{ asset('assets-new/assets/home-page-facilities/nutrient.jfif') }}"
-                                        alt="Facility 3">
+                                        alt="Facility 3" title="Nutrien Analyzer">
                                     <div class="slider-title">Nutrien Analyzer</div>
                                 </a>
                             </div>
@@ -620,7 +620,7 @@
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}"
                                     class="text-dark">
                                     <img src="{{ asset('assets-new/assets/home-page-facilities/FESEM.jpg') }}"
-                                        alt="Facility 4">
+                                        alt="Facility 4" title="FESEM">
                                     <div class="slider-title">FESEM</div>
                                 </a>
                             </div>
@@ -628,7 +628,7 @@
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}"
                                     class="text-dark">
                                     <img src="{{ asset('assets-new/assets/home-page-facilities/coal.jfif') }}"
-                                        alt="Facility 5">
+                                        alt="Facility 5" title="Coal CF">
                                     <div class="slider-title">Coal CF</div>
                                 </a>
                             </div>
@@ -636,7 +636,7 @@
                                 <a href="{{ $language }}/{{ $language === 'hi' ? 'saif' : 'saif' }}"
                                     class="text-dark">
                                     <img src="{{ asset('assets-new/assets/home-page-facilities/bomb.jfif') }}"
-                                        alt="Facility 6">
+                                        alt="Facility 6" title="Bomb Calorimeter">
                                     <div class="slider-title">Bomb Calorimeter</div>
                                 </a>
                             </div>
@@ -669,7 +669,7 @@
                                     <li>
                                         <a href="{{ $photo }}" data-fancybox="images">
                                             <img src="{{ $photo }}"
-                                                alt="Photo Gallery Slide {{ $index + 1 }}" class="photo-gallery-img">
+                                                alt="Photo Gallery Slide {{ $index + 1 }}" title="Photo Gallery" class="photo-gallery-img">
                                         </a>
                                     </li>
                                 @endforeach
@@ -685,7 +685,7 @@
                     <div class="video-wrapper">
                         <a href="https://www.youtube.com/watch?v=NpKQ1LPbrfE" target="_blank" rel="noopener noreferrer"
                             onclick="return confirmExternalLink()">
-                            <img src="https://img.youtube.com/vi/NpKQ1LPbrfE/hqdefault.jpg" alt="YouTube Video Thumbnail">
+                            <img src="https://img.youtube.com/vi/NpKQ1LPbrfE/hqdefault.jpg" alt="YouTube Video Thumbnail" title="YouTube thumbnail Image">
                             <div class="play-button"></div>
                         </a>
                     </div>

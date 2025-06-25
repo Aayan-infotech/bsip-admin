@@ -43,7 +43,7 @@
                     @if ($language === 'hi')
                     <div class="col-md-2">
                         <img src="{{ asset('assets-new/assets/savitri/savitri-sahni-1.jpg') }}"
-                            alt="श्रीमती सावित्री साहनी की छवि" class="img-fluid img-history rounded shadow-sm">
+                            alt="श्रीमती सावित्री साहनी की छवि" title="Mrs. Savitri Sahni" class="img-fluid img-history rounded shadow-sm">
                     </div>
                     <div class="col-md-10">
                         <p class="normal-text" style="text-align: justify;">
@@ -58,7 +58,7 @@
                     @else
                     <div class="col-md-2">
                         <img src="{{ asset('assets-new/assets/savitri/savitri-sahni-1.jpg') }}"
-                            alt="Image of Mrs. Savitri Sahni" class="img-fluid img-history rounded shadow-sm">
+                            alt="Image of Mrs. Savitri Sahni" title="Image of Mrs. Savitri Sahni" class="img-fluid img-history rounded shadow-sm">
                     </div>
                     <div class="col-md-10">
                         <p class="normal-text" style="text-align: justify;">

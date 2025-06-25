@@ -60,7 +60,7 @@
                         @foreach ($event->images as $image)
                             <div class="col-md-3">
                                 <div class="card-event">
-                                    <img src="{{ $image }}" class="card-img-event" alt="Event Image 1">
+                                    <img src="{{ $image }}" class="card-img-event" alt="Event Image 1" title="Event Image">
                                     {{-- <div class="card-body-event">
                                         <p class="card-text-event">
                                             Antakshari competition organized in BSIP on 24.9.2024 under Hindi Fortnight 2024

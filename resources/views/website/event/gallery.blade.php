@@ -43,11 +43,11 @@
                             <div class="divider"></div>
                         </div>
                         <div class="col-md-4"><img src="{{ asset('assets-new/assets/gallery/gallery-1.jpg') }}"
-                                alt="" class="img-fluid img-history"></div>
+                                alt="Gallery Image 1" title="Gallery Image 1" class="img-fluid img-history"></div>
                         <div class="col-md-4"><img src="{{ asset('assets-new/assets/gallery/gallery-1.jpg') }}"
-                                alt="" class="img-fluid img-history"></div>
+                                alt="Gallery Image 2" title="Gallery Image 3" class="img-fluid img-history"></div>
                         <div class="col-md-4"><img src="{{ asset('assets-new/assets/gallery/gallery-1.jpg') }}"
-                                alt="" class="img-fluid img-history"></div>
+                                alt="Gallery Image 3" title="Gallery Image 3" class="img-fluid img-history"></div>
                     </div>
                 </div>
             </div>

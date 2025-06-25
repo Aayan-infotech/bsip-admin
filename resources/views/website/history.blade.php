@@ -44,7 +44,7 @@
                         @if ($language === 'hi')
                             <div class="col-md-5">
                                 <img src="{{ asset('images/pages/inauguration%20speach.gif') }}"
-                                    alt="{{ $language === 'hi' ? 'इतिहास छवि 1' : 'History Image 1' }}"
+                                    alt="{{ $language === 'hi' ? 'इतिहास छवि 1' : 'History Image 1' }}" title="History Image 1"
                                     class="img-fluid img-history rounded shadow-sm">
                             </div>
                             <div class="col-md-7">
@@ -113,7 +113,7 @@
                         @else
                             <div class="col-md-5">
                                 <img src="{{ asset('images/pages/inauguration%20speach.gif') }}"
-                                    alt="{{ $language === 'hi' ? 'इतिहास छवि 1' : 'History Image 1' }}"
+                                    alt="{{ $language === 'hi' ? 'इतिहास छवि 1' : 'History Image 1' }}" title="History Image 2"
                                     class="img-fluid img-history rounded shadow-sm">
                             </div>
                             <div class="col-md-7">

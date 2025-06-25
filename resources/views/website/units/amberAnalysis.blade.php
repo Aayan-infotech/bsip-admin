@@ -93,13 +93,13 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-1.jpeg') }}" alt="amber 1"
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-1.jpeg') }}" alt="amber 1" title="Amber Analysis and Palaeoentomology Laboratory Image 1"
                                 class="img-fluid img-history"></div>
-                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-2.jpeg') }}" alt="amber 2"
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-2.jpeg') }}" alt="amber 2" title="Amber Analysis and Palaeoentomology Laboratory Image 2"
                                 class="img-fluid img-history"></div>
-                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-3.jpeg') }}" alt="amber 3"
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-3.jpeg') }}" alt="amber 3" title="Amber Analysis and Palaeoentomology Laboratory Image 3"
                                 class="img-fluid img-history"></div>
-                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-4.jpeg') }}" alt="amber "
+                        <div class="col-md-3"><img src="{{ asset('assets-new/assets/amber/amber-4.jpeg') }}" alt="amber " title="Amber Analysis and Palaeoentomology Laboratory Image 4"
                                 class="img-fluid img-history"></div>
                     </div>
                     <div class="row">

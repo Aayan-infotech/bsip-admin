@@ -34,7 +34,7 @@
                                 <a href="{{ route('frontend.blog.show', ['language' => $language, 'slug' => $blog->slug]) }}"
                                     class="blogosphere-card-link">
                                     <img src="{{ $blog->image ? $blog->image : asset('assets-new/assets/images/bsip-imgd.png') }}"
-                                        class="blogosphere-card-img" alt="Tech Image" />
+                                        class="blogosphere-card-img" alt="Tech Image" title="Media Cell Image" />
                                 </a>
                             </div>
                             <div class="blogosphere-card-body">

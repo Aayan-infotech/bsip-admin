@@ -150,7 +150,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/adminDashboard') }}">
-                    <img src="bsipLogo.png" alt="logo" width="25" height="25"
+                    <img src="bsipLogo.png" alt="logo" title="BSIP Logo" width="25" height="25"
                         class="d-inline-block align-text-top">
                     <span>{{ config('app.name', 'Laravel') }}</span>
                 </a>

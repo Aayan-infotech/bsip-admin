@@ -41,7 +41,7 @@
                     <div class="divider"></div>
                     <div class="row">
                         <div class="col-md-4"><img src="{{ asset('assets-new/assets/geo-heritage/compsec.jpg') }}"
-                                alt="Computer Section" class="img-fluid img-history"></div>
+                                alt="Computer Section" title="Computer Section Image" class="img-fluid img-history"></div>
                         <div class="col-md-8">
                             <p class="normal-text">
                                 {{ $language === 'hi'

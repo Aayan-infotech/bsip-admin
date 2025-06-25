@@ -46,15 +46,15 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="{{ asset('assets-new/assets/images/fesem/i2.jpg') }}" alt=""
+                            <img src="{{ asset('assets-new/assets/images/fesem/i2.jpg') }}" alt="Scanning Electron Microscope" title="Scanning Electron Microscope Image 1"
                                 class="img-fluid img-history">
                         </div>
                         <div class="col-md-4">
-                            <img src="{{ asset('assets-new/assets/images/fesem/i1.jpg') }}" alt=""
+                            <img src="{{ asset('assets-new/assets/images/fesem/i1.jpg') }}" alt="Scanning Electron Microscope" title="Scanning Electron Microscope Image 2"
                                 class="img-fluid img-history">
                         </div>
                         <div class="col-md-4">
-                            <img src="{{ asset('assets-new/assets/images/fesem/i3.jpg') }}" alt=""
+                            <img src="{{ asset('assets-new/assets/images/fesem/i3.jpg') }}" alt="Scanning Electron Microscope" title="Scanning Electron Microscope Image 3"
                                 class="img-fluid img-history">
                         </div>
                     </div>

@@ -61,7 +61,7 @@
                                                         <div class="col-md-4 imgcard-new">
                                                             <div class="profile-img-new">
                                                                 <img src="{{ asset($staff->profile_picture) }}"
-                                                                    alt="{{ $staff->name }}">
+                                                                    alt="{{ $staff->name }}" title="Profile Picture">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-8">

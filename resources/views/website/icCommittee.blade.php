@@ -140,7 +140,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 text-center">
-                                    <img src="{{ asset('ic.jpg') }}" alt="Image of IC Committee Convener" class="ic-image"
+                                    <img src="{{ asset('ic.jpg') }}" alt="Image of IC Committee Convener" title="Image of IC Committee Convener" class="ic-image"
                                         role="img" aria-label="Image of IC Committee Convener">
                                 </div>
                             </div>
@@ -323,7 +323,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 text-center">
-                                    <img src="{{ asset('ic.jpg') }}" alt="Image of IC Committee Convener"
+                                    <img src="{{ asset('ic.jpg') }}" alt="Image of IC Committee Convener" title="Image of IC Committee Convener"
                                         class="ic-image border img-fluid" role="img"
                                         aria-label="Image of IC Committee Convener">
                                 </div>

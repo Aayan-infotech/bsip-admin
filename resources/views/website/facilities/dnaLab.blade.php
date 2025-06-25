@@ -53,15 +53,15 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="{{ asset('assets-new/assets/images/services/dna-lab-1.jpg') }}" alt=""
+                            <img src="{{ asset('assets-new/assets/images/services/dna-lab-1.jpg') }}" alt="DNA Lab" title="DNA Lab Image 1"
                                 class="img-fluid img-history">
                         </div>
                         <div class="col-md-4">
-                            <img src="{{ asset('assets-new/assets/images/services/dna-lab-1.jpg') }}" alt=""
+                            <img src="{{ asset('assets-new/assets/images/services/dna-lab-1.jpg') }}" alt="DNA Lab" title="DNA Lab Image 2"
                                 class="img-fluid img-history">
                         </div>
                         <div class="col-md-4">
-                            <img src="{{ asset('assets-new/assets/images/services/dna-lab-1.jpg') }}" alt=""
+                            <img src="{{ asset('assets-new/assets/images/services/dna-lab-1.jpg') }}" alt="DNA Lab" title="DNA Lab Image 3"
                                 class="img-fluid img-history">
                         </div>
                     </div>

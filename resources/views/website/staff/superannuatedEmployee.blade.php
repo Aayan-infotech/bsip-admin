@@ -55,7 +55,7 @@
                                     <tbody>
                                         @foreach ($superannuatedEmployee->staff as $employee)
                                             <tr>
-                                                <td><img src="{{ $employee->profile_picture }}" alt="{{ $employee->name }}"
+                                                <td><img src="{{ $employee->profile_picture }}" alt="{{ $employee->name }}" title="Superannuated"
                                                         class="img-fluid rounded" width="50"></td>
                                                 <td>{{ $language === 'hi' ? $employee->name_hin : $employee->name }}</td>
                                                 <td>{{ $language === 'hi' ? $employee->hin_current_position : $employee->current_position }}

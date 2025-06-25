@@ -41,7 +41,7 @@
                     <div class="divider"></div>
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="{{ asset('assets-new/assets/geo-heritage/geo-1.jpg') }}" alt=""
+                            <img src="{{ asset('assets-new/assets/geo-heritage/geo-1.jpg') }}" alt="img-history" title="Centre for Geo-heritage and Geo-tourism Promotion Image 1"
                                 class="img-fluid img-history">
                         </div>
                     </div>
@@ -273,7 +273,7 @@
                                                                 visited BSIP, Lucknow to sign the MoU and discussed plans with Dr. Vandana Prasad, Director,
                                                                 BSIP.' }}
                             </p>
-                            <img src="{{ asset('assets-new/assets/geo-heritage/geo-2.png') }}" alt=""
+                            <img src="{{ asset('assets-new/assets/geo-heritage/geo-2.png') }}" alt="Centre for Geo-heritage and Geo-tourism Promotion Image 2" title="Centre for Geo-heritage and Geo-tourism Promotion Image 2"
                                 class="img-fluid img-history">
                         </div>
                     </div>
@@ -290,7 +290,7 @@
                                                             Palaeosciences, Lucknow on 28 June 2023. The Governing Body and Research Advisory Committee
                                                             members and senior scientists were present during the ceremony.' }}
                             </p>
-                            <img src="{{ asset('assets-new/assets/geo-heritage/geo-3.png') }}" alt=""
+                            <img src="{{ asset('assets-new/assets/geo-heritage/geo-3.png') }}" alt="Centre for Geo-heritage and Geo-tourism Promotion Image 3" title="Centre for Geo-heritage and Geo-tourism Promotion Image 3"
                                 class="img-fluid img-history">
                         </div>
                     </div>
