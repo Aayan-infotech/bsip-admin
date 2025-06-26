@@ -442,7 +442,14 @@
         height: auto;
     }
 }
-
+@media all and (max-width: 500px){
+    .four_content .common-right ul {
+        padding-left: 0;
+        text-align: center;
+        display: ruby;
+        height: 30px;
+    }
+}
 /*Top left four li*/
 @media all and (min-width: 640px) and (max-width: 929px) {
     .four_content .common-left {
