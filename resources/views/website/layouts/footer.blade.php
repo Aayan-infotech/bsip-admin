@@ -29,10 +29,25 @@
                         <ul class="list-inline">
                             @foreach ($socialLinks as $link)
                                 <li class="list-inline-item">
+                                    @php
+                                        $linkTitle = '';
+                                        if (str_contains($link->url, 'youtube')) {
+                                            $linkTitle = 'YouTube';
+                                        } elseif (str_contains($link->url, 'facebook')) {
+                                            $linkTitle = 'Facebook';
+                                        } elseif (str_contains($link->url, 'twitter')) {
+                                            $linkTitle = 'Twitter';
+                                        } elseif (str_contains($link->url, 'instagram')) {
+                                            $linkTitle = 'Instagram';
+                                        } elseif (str_contains($link->url, 'linkedin')) {
+                                            $linkTitle = 'LinkedIn';
+                                        } else {
+                                            $linkTitle = 'Social Media Link';
+                                        }
+                                    @endphp
                                     <a href="{{ $link->url }}" aria-label="{{ $link->title }}" target="_blank"
                                         onclick="return confirmExternalLink()">
-                                        <!-- <i class="fab {{ $link->icon_class }} footer-social-icon"></i> -->
-                                        <img style="max-width:30px;" alt="Social Link" title="Social Media Link"
+                                        <img style="max-width:30px;" alt="Social Link" title="{{ $linkTitle }}"
                                             src="{{ asset('storage/' . $link->icon_image) }}">
                                     </a>
                                 </li>
@@ -185,8 +200,8 @@
                 <p class="footer-alt mb-0 f-14">
                     {{ $language === 'hi' ? 'डिज़ाइन एवं विकसित द्वारा' : 'Designed & Developed By' }}
                     <span>
-                        <a href="https://aayaninfotech.com/" class="text-white" target="_blank" onclick="return confirmExternalLink()"
-                            aria-label="Aayan India">Aayan India</a>
+                        <a href="https://aayaninfotech.com/" class="text-white" target="_blank"
+                            onclick="return confirmExternalLink()" aria-label="Aayan India">Aayan India</a>
                     </span>
                 </p>
             </div>

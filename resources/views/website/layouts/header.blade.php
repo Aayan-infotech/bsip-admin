@@ -133,7 +133,7 @@
                         class="header__logo" id="logo"
                         aria-label="Homepage - Birbal Sahni Institute of Palaeosciences">
                         <img class="national_emblem" src="{{ asset($logo->logo ?? 'default-logo.png') }}"
-                            alt="Birbal Sahni Institute of Palaeosciences - Homepage" loading="lazy">
+                            alt="Birbal Sahni Institute of Palaeosciences - Homepage" title="Birbal Sahni Institute of Palaeosciences Logo" loading="lazy">
                     </a>
 
                 </div>

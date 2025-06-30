@@ -100,7 +100,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="single-input-field">
                                         <label for="name">{{ $language === 'hi' ? 'नाम' : 'Name' }}</label>
-                                        <input type="text" id="name" pattern="[A-Za-z\s]+" required
+                                        <input type="text" id="name" pattern="[A-Za-z\s]+" 
                                             placeholder="{{ $language === 'hi' ? 'आपका नाम' : 'Your Name' }}"
                                             name="name" />
                                         <span class="text-danger error-name"></span>
@@ -118,7 +118,7 @@
                                     <div class="single-input-field">
                                         <label
                                             for="phone">{{ $language === 'hi' ? 'फोन नंबर' : 'Phone Number' }}</label>
-                                        <input type="tel" id="phone" pattern="[0-9]{10}" required
+                                        <input type="tel" id="phone" pattern="[0-9]{10}"
                                             title="{{ $language === 'hi' ? '10 अंकों का फोन नंबर दर्ज करें' : 'Enter a 10-digit phone number' }}"
                                             class="form-control" maxlength="10"
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '')"
